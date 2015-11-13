@@ -436,54 +436,55 @@ https://tsubaiso.net/customer_masters/show/1000
 JSON レスポンスの例:
 ```
 {
-accountant_email: "accountant@test.co.jp"
-address: "東京都渋谷区幡ヶ谷2-6-5 6F"
-administrator_name: null
-ap_account_code: "325~999"
-ap_reason_selections: ""
-ar_account_code: "135~999"
-ar_reason_selections: ""
-bank_account_number: ""
-bank_branch_code: ""
-bank_branch_name: null
-bank_code: ""
-bank_course: 2
-bank_name: null
-bank_nominee: ""
-bill_detail_round_rule: 1
-code: "100"
-created_at: "2015/11/13 11:10:39 +0900"
-dept_code: "COMMON"
-email: null
-fax: null
-finish_timestamp: null
-foreign_currency: 0
-id: 100
-is_valid: 1
-locale: "ja-JP"
-name: "テスト株式会社"
-name_kana: "テストカブシキガイシャ"
-need_tax_deductions: 1
-pay_closing_schedule: "-1"
-pay_interface_id: null
-pay_sight: "-1m-1"
-receive_closing_schedule: "-1"
-receive_interface_id: null
-receive_sight: "1m20"
-regist_user_code: "user"
-sender_name: "reconciliation_keyword"
-sort_no: null
-start_timestamp: null
-tax_type_for_remittance_charge: 3
-tel: "03-1234-5678"
-update_user_code: "user"
-updated_at: "2015/11/13 11:14:00 +0900"
-used_in_ap: 1
-used_in_ar: 1
-withholding_tax_base: 1
-withholding_tax_segment: "nta2795"
-zip: "1510072"
-}```
+  accountant_email: "accountant@test.co.jp"
+  address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+  administrator_name: null
+  ap_account_code: "325~999"
+  ap_reason_selections: ""
+  ar_account_code: "135~999"
+  ar_reason_selections: ""
+  bank_account_number: ""
+  bank_branch_code: ""
+  bank_branch_name: null
+  bank_code: ""
+  bank_course: 2
+  bank_name: null
+  bank_nominee: ""
+  bill_detail_round_rule: 1
+  code: "100"
+  created_at: "2015/11/13 11:10:39 +0900"
+  dept_code: "COMMON"
+  email: null
+  fax: null
+  finish_timestamp: null
+  foreign_currency: 0
+  id: 100
+  is_valid: 1
+  locale: "ja-JP"
+  name: "テスト株式会社"
+  name_kana: "テストカブシキガイシャ"
+  need_tax_deductions: 1
+  pay_closing_schedule: "-1"
+  pay_interface_id: null
+  pay_sight: "-1m-1"
+  receive_closing_schedule: "-1"
+  receive_interface_id: null
+  receive_sight: "1m20"
+  regist_user_code: "user"
+  sender_name: "reconciliation_keyword"
+  sort_no: null
+  start_timestamp: null
+  tax_type_for_remittance_charge: 3
+  tel: "03-1234-5678"
+  update_user_code: "user"
+  updated_at: "2015/11/13 11:14:00 +0900"
+  used_in_ap: 1
+  used_in_ar: 1
+  withholding_tax_base: 1
+  withholding_tax_segment: "nta2795"
+  zip: "1510072"
+}
+```
 
 **/customer_masters/create**
 
@@ -534,7 +535,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
 ```
 
-**/ap/destroy/:id**
+**/customer_masters/destroy/:id**
 
 説明: 指定された id の取引先を削除します。成功した場合 204 No Content が返ります。
 
