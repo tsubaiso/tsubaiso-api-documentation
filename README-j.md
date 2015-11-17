@@ -365,61 +365,105 @@ https://tsubaiso.net/customer_masters/list/
 
 JSON レスポンスの例:
 ```
-[
-    {
-        "accrual_timestamp": "2015/10/31 00:00:00 +0900",
-        "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
-        "buying_journal_dc_id": 9835,
-        "code": null,
-        "created_at": "2015/10/06 15:45:21 +0900",
-        "customer_master_id": 8201,
-        "dc": "c",
-        "dept_code": "DEPT C",
-        "id": 6621,
-        "memo": "Office Supplies for Frank",
-        "need_tax_deduction": null,
-        "port_type": 1,
-        "preset_withholding_tax_amount": null,
-        "regist_user_code": "sample_user",
-        "scheduled_memo": null,
-        "scheduled_pay_timestamp": null,
-        "update_user_code": null,
-        "updated_at": "2015/10/06 15:45:21 +0900",
-        "withholding_tax_base": null,
-        "withholding_tax_segment": null,
-        "account_code": "604",
-        "buying_price": 5000,
-        "buying_tax": 400,
-        "buying_tax_type": 0
-    }, {
-        "accrual_timestamp": "2015/10/31 00:00:00 +0900",
-        "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
-        "buying_journal_dc_id": 9836,
-        "code": null,
-        "created_at": "2015/10/06 15:48:42 +0900",
-        "customer_master_id": 101,
-        "dc": "c",
-        "dept_code": "SETSURITSU",
-        "id": 622,
-        "memo": "Television for Cafeteria",
-        "need_tax_deduction": null,
-        "port_type": 1,
-        "preset_withholding_tax_amount": null,
-        "regist_user_code": "client_user",
-        "scheduled_memo": null,
-        "scheduled_pay_timestamp": null,
-        "update_user_code": null,
-        "updated_at": "2015/10/06 15:48:42 +0900",
-        "withholding_tax_base": null,
-        "withholding_tax_segment": null,
-        "account_code": "604",
-        "buying_price": 10000,
-        "buying_tax": 800,
-        "buying_tax_type": 0
-    }
-]
+[2]
+0:  {
+accountant_email: "accountant@test.co.jp"
+address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+administrator_name: null
+ap_account_code: "325~999"
+ap_reason_selections: ""
+ar_account_code: "135~999"
+ar_reason_selections: ""
+bank_account_number: ""
+bank_branch_code: ""
+bank_branch_name: null
+bank_code: ""
+bank_course: 2
+bank_name: null
+bank_nominee: ""
+bill_detail_round_rule: 1
+code: "100"
+created_at: "2015/11/13 11:10:39 +0900"
+dept_code: "COMMON"
+email: null
+fax: null
+finish_timestamp: null
+foreign_currency: 0
+id: 100
+is_valid: 1
+locale: "ja-JP"
+name: "テスト株式会社"
+name_kana: "テストカブシキガイシャ"
+need_tax_deductions: 1
+pay_closing_schedule: "-1"
+pay_interface_id: null
+pay_sight: "-1m-1"
+receive_closing_schedule: "-1"
+receive_interface_id: null
+receive_sight: "1m20"
+regist_user_code: "user"
+sender_name: "reconciliation_keyword"
+sort_no: null
+start_timestamp: null
+tax_type_for_remittance_charge: 3
+tel: "03-1234-5678"
+update_user_code: "user"
+updated_at: "2015/11/13 11:14:00 +0900"
+used_in_ap: 1
+used_in_ar: 1
+withholding_tax_base: 1
+withholding_tax_segment: "nta2795"
+zip: "1510072"
+}-
+1:  {
+accountant_email: null
+address: "東京都中野区幡ヶ谷1-7-20-101"
+administrator_name: null
+ap_account_code: "325~999"
+ap_reason_selections: null
+ar_account_code: "135~999"
+ar_reason_selections: null
+bank_account_number: null
+bank_branch_code: null
+bank_branch_name: null
+bank_code: null
+bank_course: null
+bank_name: null
+bank_nominee: null
+bill_detail_round_rule: 1
+code: "102"
+created_at: "2015/11/10 18:55:54 +0900"
+dept_code: null
+email: null
+fax: null
+finish_timestamp: null
+foreign_currency: 0
+id: 10002
+is_valid: 1
+locale: null
+name: "テスト株式会社102"
+name_kana: "テストカブシキガイシャ 2"
+need_tax_deductions: null
+pay_closing_schedule: null
+pay_interface_id: null
+pay_sight: null
+receive_closing_schedule: null
+receive_interface_id: null
+receive_sight: null
+regist_user_code: null
+sender_name: "テストカブシキガイシャ 2"
+sort_no: null
+start_timestamp: null
+tax_type_for_remittance_charge: 1
+tel: null
+update_user_code: null
+updated_at: "2015/11/13 18:55:54 +0900"
+used_in_ap: 1
+used_in_ar: 1
+withholding_tax_base: null
+withholding_tax_segment: null
+zip: null
+}-
 ```
 
 **/customer_masters/show/:id**
