@@ -347,3 +347,243 @@ URL Structure:
 ```sh
 https://tsubaiso.net/ap/destroy/6621 
 ```
+
+#### Customers
+
+**/customer_masters/list/**
+
+Description: Returns the entire list of customers.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/customer_masters/list/
+```
+
+Sample JSON Request:
+```
+[
+    {
+        accountant_email: "accountant@test.co.jp"
+        address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+        administrator_name: null
+        ap_account_code: "325~999"
+        ap_reason_selections: ""
+        ar_account_code: "135~999"
+        ar_reason_selections: ""
+        bank_account_number: ""
+        bank_branch_code: ""
+        bank_branch_name: null
+        bank_code: ""
+        bank_course: 2
+        bank_name: null
+        bank_nominee: ""
+        bill_detail_round_rule: 1
+        code: "100"
+        created_at: "2015/11/13 11:10:39 +0900"
+        dept_code: "COMMON"
+        email: null
+        fax: null
+        finish_timestamp: null
+        foreign_currency: 0
+        id: 100
+        is_valid: 1
+        locale: "ja-JP"
+        name: "テスト株式会社"
+        name_kana: "テストカブシキガイシャ"
+        need_tax_deductions: 1
+        pay_closing_schedule: "-1"
+        pay_interface_id: null
+        pay_sight: "-1m-1"
+        receive_closing_schedule: "-1"
+        receive_interface_id: null
+        receive_sight: "1m20"
+        regist_user_code: "user"
+        sender_name: "reconciliation_keyword"
+        sort_no: null
+        start_timestamp: null
+        tax_type_for_remittance_charge: 3
+        tel: "03-1234-5678"
+        update_user_code: "user"
+        updated_at: "2015/11/13 11:14:00 +0900"
+        used_in_ap: 1
+        used_in_ar: 1
+        withholding_tax_base: 1
+        withholding_tax_segment: "nta2795"
+        zip: "1510072"
+    }, {
+        accountant_email: null
+        address: "東京都中野区幡ヶ谷1-7-20-101"
+        administrator_name: null
+        ap_account_code: "325~999"
+        ap_reason_selections: null
+        ar_account_code: "135~999"
+        ar_reason_selections: null
+        bank_account_number: null
+        bank_branch_code: null
+        bank_branch_name: null
+        bank_code: null
+        bank_course: null
+        bank_name: null
+        bank_nominee: null
+        bill_detail_round_rule: 1
+        code: "102"
+        created_at: "2015/11/10 18:55:54 +0900"
+        dept_code: null
+        email: null
+        fax: null
+        finish_timestamp: null
+        foreign_currency: 0
+        id: 10002
+        is_valid: 1
+        locale: null
+        name: "テスト株式会社102"
+        name_kana: "テストカブシキガイシャ 2"
+        need_tax_deductions: null
+        pay_closing_schedule: null
+        pay_interface_id: null
+        pay_sight: null
+        receive_closing_schedule: null
+        receive_interface_id: null
+        receive_sight: null
+        regist_user_code: null
+        sender_name: "テストカブシキガイシャ 2"
+        sort_no: null
+        start_timestamp: null
+        tax_type_for_remittance_charge: 1
+        tel: null
+        update_user_code: null
+        updated_at: "2015/11/13 18:55:54 +0900"
+        used_in_ap: 1
+        used_in_ar: 1
+        withholding_tax_base: null
+        withholding_tax_segment: null
+        zip: null
+    }
+]
+```
+
+**/customer_masters/show/:id**
+
+Description: Returns a single customer.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/customer_masters/show/1000 
+```
+
+Sample JSON response:
+```
+{
+    accountant_email: "accountant@test.co.jp"
+    address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+    administrator_name: null
+    ap_account_code: "325~999"
+    ap_reason_selections: ""
+    ar_account_code: "135~999"
+    ar_reason_selections: ""
+    bank_account_number: ""
+    bank_branch_code: ""
+    bank_branch_name: null
+    bank_code: ""
+    bank_course: 2
+    bank_name: null
+    bank_nominee: ""
+    bill_detail_round_rule: 1
+    code: "100"
+    created_at: "2015/11/13 11:10:39 +0900"
+    dept_code: "COMMON"
+    email: null
+    fax: null
+    finish_timestamp: null
+    foreign_currency: 0
+    id: 100
+    is_valid: 1
+    locale: "ja-JP"
+    name: "テスト株式会社"
+    name_kana: "テストカブシキガイシャ"
+    need_tax_deductions: 1
+    pay_closing_schedule: "-1"
+    pay_interface_id: null
+    pay_sight: "-1m-1"
+    receive_closing_schedule: "-1"
+    receive_interface_id: null
+    receive_sight: "1m20"
+    regist_user_code: "user"
+    sender_name: "reconciliation_keyword"
+    sort_no: null
+    start_timestamp: null
+    tax_type_for_remittance_charge: 3
+    tel: "03-1234-5678"
+    update_user_code: "user"
+    updated_at: "2015/11/13 11:14:00 +0900"
+    used_in_ap: 1
+    used_in_ar: 1
+    withholding_tax_base: 1
+    withholding_tax_segment: "nta2795"
+    zip: "1510072"
+}
+```
+
+**/customer_masters/create**
+
+Description: Create a new customer. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/customer_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | Name of customer (limit: 40 letters).
+`name_kana` | *required* | String | Furigana for name (limit: 40 full-width katakana characters).
+`code` | *required* | String | Code for the customer (limit: 10 half-width English characters, numbers, or hyphens).
+`zip` | *optional* | String | Zip code.
+`address` | *optional* | String | Address (limit: 80 characters).
+`tel` | *optional* | String | Phone Number (limit: 40 numbers, hyphens, asterisks, or pounds).
+`accountant_email` | *optional* | String | Accountant's email address. Invoices will be emailed to this address.
+`dept_code` | *optional* | String | Code of department.
+`tax_type_for_remittance_charge` | *required* | Integer | Tax on transaction fees. 3: Taxed, 0: Non-taxed.
+`sender_name` | *optional* | String | Keyword to use when applying receipts(limit: 40 characters) 
+`locale` | *optional* | String | Language for invoice. "ja-JP": Japanese, "en": English.
+`foreign_currency` | *optional* | Integer | Foreign currency transactions. 0: No, 1: Yes.
+`used_in_ar` | *required* | Integer | Receivables classification. 0: No AR, 1: Accounts Receivable, 2: Non-trade Receivables.
+`receive_closing_schedule` | *optional* | String | Invoice cut-off day for AR. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
+`receive_sight` | *optional* | String | Payment deadline for AR. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`bill_detail_round_rule` | *optional* | Integer | Rounding setting for quotes and invoices. 1: Round-down, 2: Round-up, 3: Round.
+`used_in_ap` | *required* | Integer | Payables classification. 0: No AP, 1: Non-trade Payables, 2: Accounts Payable.
+`pay_closing_schedule` | *optional* | String | Invoice cut-off day for AP. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
+`pay_sight` | *optional* | String | Payment deadline for AP. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`need_tax_deductions` | *optional* | String | Perform tax withholding or not. "0": No withholding, "1": Withholding.
+`withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm).
+`withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
+`bank_code` | *optional* | String | Customer bank code (4 digits).
+`bank_branch_code` | *optional* | String | Customer bank branch code (3 digits).
+`bank_course` | *optional* | Integer | Type of bank account. 1: Savings, 2: Checking, 3: Time Deposit(Current), 4: Time Deposit(Fixed), 5; Installment Savings(Current), 6: Installment Savings(Fixed).
+`bank_nominee` | *optional* | String | Name on bank account (limit: 30 characters).
+`bank_account_number` | *optional* | String | Bank account number.
+`is_valid` | *required* | Integer | Customer use status. 1: In use, 0: Not in use.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
+```
+
+**/customer_masters/destroy/:id**
+
+Description: Deletes the customer with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/customer_masters/destroy/1000 
+```
