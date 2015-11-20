@@ -349,3 +349,243 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/ap/destroy/6621 
 ```
+
+#### 取引先
+
+**/customer_masters/list/**
+
+説明: このエンドポイントは取引先の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例: 
+``` sh
+https://tsubaiso.net/customer_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        accountant_email: "accountant@test.co.jp"
+        address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+        administrator_name: null
+        ap_account_code: "325~999"
+        ap_reason_selections: ""
+        ar_account_code: "135~999"
+        ar_reason_selections: ""
+        bank_account_number: ""
+        bank_branch_code: ""
+        bank_branch_name: null
+        bank_code: ""
+        bank_course: 2
+        bank_name: null
+        bank_nominee: ""
+        bill_detail_round_rule: 1
+        code: "100"
+        created_at: "2015/11/13 11:10:39 +0900"
+        dept_code: "COMMON"
+        email: null
+        fax: null
+        finish_timestamp: null
+        foreign_currency: 0
+        id: 100
+        is_valid: 1
+        locale: "ja-JP"
+        name: "テスト株式会社"
+        name_kana: "テストカブシキガイシャ"
+        need_tax_deductions: 1
+        pay_closing_schedule: "-1"
+        pay_interface_id: null
+        pay_sight: "-1m-1"
+        receive_closing_schedule: "-1"
+        receive_interface_id: null
+        receive_sight: "1m20"
+        regist_user_code: "user"
+        sender_name: "reconciliation_keyword"
+        sort_no: null
+        start_timestamp: null
+        tax_type_for_remittance_charge: 3
+        tel: "03-1234-5678"
+        update_user_code: "user"
+        updated_at: "2015/11/13 11:14:00 +0900"
+        used_in_ap: 1
+        used_in_ar: 1
+        withholding_tax_base: 1
+        withholding_tax_segment: "nta2795"
+        zip: "1510072"
+    }, {
+        accountant_email: null
+        address: "東京都中野区幡ヶ谷1-7-20-101"
+        administrator_name: null
+        ap_account_code: "325~999"
+        ap_reason_selections: null
+        ar_account_code: "135~999"
+        ar_reason_selections: null
+        bank_account_number: null
+        bank_branch_code: null
+        bank_branch_name: null
+        bank_code: null
+        bank_course: null
+        bank_name: null
+        bank_nominee: null
+        bill_detail_round_rule: 1
+        code: "102"
+        created_at: "2015/11/10 18:55:54 +0900"
+        dept_code: null
+        email: null
+        fax: null
+        finish_timestamp: null
+        foreign_currency: 0
+        id: 10002
+        is_valid: 1
+        locale: null
+        name: "テスト株式会社102"
+        name_kana: "テストカブシキガイシャ 2"
+        need_tax_deductions: null
+        pay_closing_schedule: null
+        pay_interface_id: null
+        pay_sight: null
+        receive_closing_schedule: null
+        receive_interface_id: null
+        receive_sight: null
+        regist_user_code: null
+        sender_name: "テストカブシキガイシャ 2"
+        sort_no: null
+        start_timestamp: null
+        tax_type_for_remittance_charge: 1
+        tel: null
+        update_user_code: null
+        updated_at: "2015/11/13 18:55:54 +0900"
+        used_in_ap: 1
+        used_in_ar: 1
+        withholding_tax_base: null
+        withholding_tax_segment: null
+        zip: null
+    }
+]
+```
+
+**/customer_masters/show/:id**
+
+説明: このエンドポイントは単一の取引先を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/customer_masters/show/1000 
+```
+
+JSON レスポンスの例:
+```
+{
+    accountant_email: "accountant@test.co.jp"
+    address: "東京都渋谷区幡ヶ谷2-6-5 6F"
+    administrator_name: null
+    ap_account_code: "325~999"
+    ap_reason_selections: ""
+    ar_account_code: "135~999"
+    ar_reason_selections: ""
+    bank_account_number: ""
+    bank_branch_code: ""
+    bank_branch_name: null
+    bank_code: ""
+    bank_course: 2
+    bank_name: null
+    bank_nominee: ""
+    bill_detail_round_rule: 1
+    code: "100"
+    created_at: "2015/11/13 11:10:39 +0900"
+    dept_code: "COMMON"
+    email: null
+    fax: null
+    finish_timestamp: null
+    foreign_currency: 0
+    id: 100
+    is_valid: 1
+    locale: "ja-JP"
+    name: "テスト株式会社"
+    name_kana: "テストカブシキガイシャ"
+    need_tax_deductions: 1
+    pay_closing_schedule: "-1"
+    pay_interface_id: null
+    pay_sight: "-1m-1"
+    receive_closing_schedule: "-1"
+    receive_interface_id: null
+    receive_sight: "1m20"
+    regist_user_code: "user"
+    sender_name: "reconciliation_keyword"
+    sort_no: null
+    start_timestamp: null
+    tax_type_for_remittance_charge: 3
+    tel: "03-1234-5678"
+    update_user_code: "user"
+    updated_at: "2015/11/13 11:14:00 +0900"
+    used_in_ap: 1
+    used_in_ar: 1
+    withholding_tax_base: 1
+    withholding_tax_segment: "nta2795"
+    zip: "1510072"
+}
+```
+
+**/customer_masters/create**
+
+説明: 取引先を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | 取引先名称(40文字以内)
+`name_kana` | *required* | String | 取引先名称フリガナ(全角カタカナ40文字以内)
+`code` | *required* | String | 識別コード(半角英数字及びハイフン10桁以内)
+`zip` | *optional* | String | 郵便番号
+`address` | *optional* | String | 住所(80文字以内)
+`tel` | *optional* | String | 電話番号(半角数字,ハイフン,アスタリスク,シャープ 40文字以内) 
+`accountant_email` | *optional* | String | 経理担当者メールアドレス。請求書をツバイソからメール送信する場合に使います。
+`dept_code` | *optional* | String | 部門
+`tax_type_for_remittance_charge` | *required* | Integer | 支払手数料の課税区分。3は「共通売上分」、0は「対象外又は非課税仕入」
+`sender_name` | *optional* | String | 自動消込キーワード(40文字以内) 
+`locale` | *optional* | String | 請求書の言語 "ja-JP": 日本語、"en": 英語
+`foreign_currency` | *optional* | Integer | 外貨取引の有無。0:無（外貨での請求書なし）、1: 「有（外貨での請求書あり）」
+`used_in_ar` | *required* | Integer | 販売管理の債権区分。0: 使用しない、 1: 主に売掛金（売上代金の入金先）として使用する、2: 主に未収入金（売上代金以外の入金先）として使用する
+`receive_closing_schedule` | *optional* | String | 請求締日。 "":未設定、"0": 即日、 1: 月初、5: 5日、10: 10日、15: 15日、20: 20日、25: 25日、-1: 月末
+`receive_sight` | *optional* | String | 入金サイト。 "": 未設定、"0": 即日払、"1m20": 締月20日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m15": 締月翌月15日払、"2m20": 締月翌月20日払、"2m25": 締月翌月25日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m15": 締月翌々月15日払、"3m20": 締月翌々月20日払、"3m25": 締月翌々月25日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m15": 締月翌々々月15日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
+`bill_detail_round_rule` | *optional* | Integer | 見積書・請求書の明細の端数処理設定。 1: 切り捨て、2: 切り上げ、3: 四捨五入
+`used_in_ap` | *required* | Integer | 購買管理の債務区分。0: 使用しない、1: 主に未払金（仕入代金以外の支払い先）として使用する、2: 主に買掛金（仕入代金の支払い先）として使用する
+`pay_closing_schedule` | *optional* | String | 支払締日。 "": 未設定、"0": 即日、 "1": 月初、"5": 5日、"10": 10日、"15": 15日、"20": 20日、"25": 25日、"-1": 月末
+`pay_sight` | *optional* | String | 支払サイト。"": 未設定、"0": 即日払、"1m20": 締月20日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m15": 締月翌月15日払、"2m20": 締月翌月20日払、"2m25": 締月翌月25日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m15": 締月翌々月15日払、"3m20": 締月翌々月20日払、"3m25": 締月翌々月25日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m15": 締月翌々々月15日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
+`need_tax_deductions` | *optional* | String | 源泉徴収を行うか否か。 "0": 行わない、"1": 行う
+`withholding_tax_segment` | *optional* | String | 源泉徴収区分。  例："nta2795"  値については、[国税庁の源泉徴収分類コード](https://www.nta.go.jp/taxanswer/gensen/gensen35.htm)を参照ください。
+`withholding_tax_base` | *optional* | Integer | 源泉徴収基準額。1: 消費税込額、2: 消費税抜額
+`bank_code` | *optional* | String | 取引先の銀行コード。(4桁)
+`bank_branch_code` | *optional* | String | 取引先の支店コード(3桁)
+`bank_course` | *optional* | Integer | 取引先の口座種別。 1: 普通、2: 当座、3: 定期預金(流動)、4: 定期預金(固定)、5: 定期積金（流動）、6: 定期積金（固定）
+`bank_nominee` | *optional* | String | 取引先の口座名義（半角カナ30文字以内）
+`bank_account_number` | *optional* | String | 取引先の口座番号
+`is_valid` | *required* | Integer | 取引先ステータス。 1: 使用中、0: 使用停止
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
+```
+
+**/customer_masters/destroy/:id**
+
+説明: 指定された id の取引先を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/destroy/1000 
+```
