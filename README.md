@@ -361,7 +361,7 @@ URL Structure:
 https://tsubaiso.net/customer_masters/list/
 ```
 
-Sample JSON Request:
+Sample JSON Response:
 ```
 [
     {
@@ -500,7 +500,7 @@ Sample JSON response:
     fax: null
     finish_timestamp: null
     foreign_currency: 0
-    id: 100
+    id: 1000
     is_valid: 1
     locale: "ja-JP"
     name: "テスト株式会社"
@@ -574,7 +574,23 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "テスト株式会社", "name_kana": "テストカブシキガイシャ", "code": "9000", "tax_type_for_remittance_charge": "3", "used_in_ar": 1, "used_in_ap": 1, "is_valid": 1 }' https://tsubaiso.net/customer_masters/create
+```
+
+**/customer_masters/update**
+
+Description: Updates a customer. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/customer_masters/update/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート株式会社", "name_kana": "アップデートカブシキガイシャ"}' https://tsubaiso.net/customer_masters/update/1
 ```
 
 **/customer_masters/destroy/:id**
@@ -587,3 +603,222 @@ URL Structure:
 ```sh
 https://tsubaiso.net/customer_masters/destroy/1000 
 ```
+
+#### Staff
+
+**/staffs/list/**
+
+Description: Returns the entire list of staff.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staffs/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staffs/list
+```
+
+Sample JSON Response:
+```
+[
+    {
+        "ccode": XX,
+        "code": "XXXXX",
+        "created_at": "2015/12/07 16:48:10 +0900",
+        "id": XXX,
+        "regist_user_code": null,
+        "status": 0,
+        "update_user_code": null,
+        "updated_at": "2015/12/07 16:48:10 +0900",
+        "visibility": 0,
+        "login": "XXXXX"
+    },
+    {
+        "ccode": XX,
+        "code": "YYYYY",
+        "created_at": "2015/12/07 16:48:10 +0900",
+        "id": YYY,
+        "regist_user_code": null,
+        "status": 0,
+        "update_user_code": null,
+        "updated_at": "2015/12/07 16:48:10 +0900",
+        "visibility": 0,
+        "login": "YYYYY"
+    }
+]
+```
+
+**/staffs/list/**
+
+Description: Returns a single staff member.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staffs/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staffs/show/1
+```
+
+Sample JSON Response:
+```
+{
+    "ccode": XX,
+    "code": "XXXXX",
+    "created_at": "2015/12/07 16:48:10 +0900",
+    "id": 1,
+    "regist_user_code": null,
+    "status": 0,
+    "update_user_code": null,
+    "updated_at": "2015/12/07 16:48:10 +0900",
+    "visibility": 0,
+    "login": "XXXXX"
+}
+```
+
+#### Staff Data
+
+**/staff_data/list/**
+
+Description: Returns all personal data entries for a staff member.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staff_data/list/?staff_id=:staff_id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/list/10000
+```
+
+Sample JSON Response:
+```
+[
+    {
+        "ccode": XX,
+        "code": "BIRTH_YMD",
+        "created_at": "2009/04/28 05:37:41 +0900",
+        "finish_timestamp": "2019/12/31 00:00:00 +0900",
+        "id": XX,
+        "is_closed": 0,
+        "is_ok": 0,
+        "lock_version": 0,
+        "memo": "",
+        "regist_user_code": null,
+        "staff_id": 10000,
+        "start_timestamp": "2001/01/01 00:00:00 +0900",
+        "update_user_code": null,
+        "updated_at": "2009/04/28 06:40:51 +0900",
+        "value": "1950/01/01"
+    },
+    ...    
+]
+```
+
+**/staff_data/show/**
+
+Description: Returns a particular data entry for a staff member. Either an ID or both a staff ID and code must be sent with the request. In addition, a time parameter can be sent if there are more than one entry for a code.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staff_data/show/:id
+https://tsubaiso.net/staff_data/show/?staff_id=:staff_id&code=:code
+https://tsubaiso.net/staff_data/show/?staff_id=:staff_id&code=:code&time=:time
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show/1234
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD", "time": "2001-01-01"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show
+```
+
+Sample JSON Response:
+```
+{
+    "ccode": XX,
+    "code": "BIRTH_YMD",
+    "created_at": "2009/04/28 05:37:41 +0900",
+    "finish_timestamp": "2019/12/31 00:00:00 +0900",
+    "id": XX,
+    "is_closed": 0,
+    "is_ok": 0,
+    "lock_version": 0,
+    "memo": "",
+    "regist_user_code": null,
+    "staff_id": 10000,
+    "start_timestamp": "2001/01/01 00:00:00 +0900",
+    "update_user_code": null,
+    "updated_at": "2009/04/28 06:40:51 +0900",
+    "value": "1950/01/01"
+}    
+```
+
+**/staff_data/create**
+
+Description: Create a new data entry for a staff member. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/staff_data/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`staff_id` | *required* | Integer | ID of staff member.
+`code` | *required* | String | Code for the data subject to be created.
+`value` | *required* | String | Value of the data.
+`memo` | *optional* | String | Memo for the data.
+`start_timestamp` | *required* | String | The date from which this data applies.
+`finish_timestamp` | *required or optional* | String | The date from which this data no longer applies. If no_finish_timestamp is nil or 0, this parameter must be provided.
+`no_finish_timestamp` | *required or optional* | String | 1 if there should be no end date for the application of this data. If finish_timestamp is not provided, this parameter must be provided.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"staff_id": 1000, "code": "NAME_MEI", "value": "Taro", "start_timestamp": "2015-12-15", "no_finish_timestamp": "1"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/create
+```
+
+**/staff_data/update**
+
+Description: Update a data entry for a staff member. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/staff_data/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"value": "1960-01-01"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/update/1
+```
+
+**/staff_data/destroy/:id**
+
+Description: Destroys the staff data specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/staff_data/destroy/8833 
+```
+
