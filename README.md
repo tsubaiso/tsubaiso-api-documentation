@@ -619,7 +619,7 @@ https://tsubaiso.net/staffs/list/
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staffs/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staffs/list
 ```
 
 Sample JSON Response:
@@ -652,7 +652,7 @@ Sample JSON Response:
 ]
 ```
 
-**/staffs/list/**
+**/staffs/show/**
 
 Description: Returns a single staff member.
 
@@ -665,7 +665,7 @@ https://tsubaiso.net/staffs/show/:id
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staffs/show/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staffs/show/1
 ```
 
 Sample JSON Response:
@@ -694,12 +694,12 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/staff_data/list/?staff_id=:staff_id
+https://tsubaiso.net/staff_data/list?staff_id=:staff_id
 ```
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/list/10000
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/staff_data/list/10000
 ```
 
 Sample JSON Response:
@@ -728,22 +728,20 @@ Sample JSON Response:
 
 **/staff_data/show/**
 
-Description: Returns a particular data entry for a staff member. Either an ID or both a staff ID and code must be sent with the request. In addition, a time parameter can be sent if there are more than one entry for a code.
+Description: Returns a particular data entry for a staff member. Either an ID should be sent in the URL or both a staff ID and code must be sent in the body of the request. In addition, a time parameter can be sent if there are more than one entry for a code.
 
 Method: GET
 
-URL Structure:
+URL Structure when sending ID:
 ``` sh
 https://tsubaiso.net/staff_data/show/:id
-https://tsubaiso.net/staff_data/show/?staff_id=:staff_id&code=:code
-https://tsubaiso.net/staff_data/show/?staff_id=:staff_id&code=:code&time=:time
 ```
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show/1234
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD", "time": "2001-01-01"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staff_data/show/1234
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD"}'  https://tsubaiso.net/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD", "time": "2001-01-01"}'  https://tsubaiso.net/staff_data/show
 ```
 
 Sample JSON Response:
@@ -792,7 +790,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"staff_id": 1000, "code": "NAME_MEI", "value": "Taro", "start_timestamp": "2015-12-15", "no_finish_timestamp": "1"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"staff_id": 1000, "code": "NAME_MEI", "value": "Taro", "start_timestamp": "2015-12-15", "no_finish_timestamp": "1"}'  https://tsubaiso.net/staff_data/create
 ```
 
 **/staff_data/update**
@@ -808,7 +806,7 @@ https://tsubaiso.net/staff_data/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"value": "1960-01-01"}'  http://telemann.bulldogwater.com/tsubaiso.chris/staff_data/update/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"value": "1960-01-01"}'  http://tsubaiso.net/staff_data/update/1
 ```
 
 **/staff_data/destroy/:id**
