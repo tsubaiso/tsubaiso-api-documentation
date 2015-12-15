@@ -50,7 +50,7 @@ Method: GET
 
 URL Structure: 
 ```sh 
-https://tsubaiso.net/ar/list/2015/10 
+https://tsubaiso.net/ar/list/:year/:month
 ```
 
 Sample JSON response:
@@ -110,7 +110,7 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/ar/show/8833 
+https://tsubaiso.net/ar/show/:id
 ```
 
 Sample JSON response:
@@ -181,7 +181,7 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar/destroy/8833 
+https://tsubaiso.net/ar/destroy/:id 
 ```
 
 #### Accounts Payables
@@ -194,7 +194,7 @@ Method: GET
 
 URL Structure: 
 ``` sh
-https://tsubaiso.net/ap_payments/list/2015/10
+https://tsubaiso.net/ap_payments/list/:year/:month
 ```
 
 Sample JSON response:
@@ -264,7 +264,7 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/ap_payments/show/6621 
+https://tsubaiso.net/ap_payments/show/:id
 ```
 
 Sample JSON response:
@@ -345,7 +345,7 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ap/destroy/6621 
+https://tsubaiso.net/ap/destroy/:id
 ```
 
 #### Customers
@@ -472,7 +472,7 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/customer_masters/show/1000 
+https://tsubaiso.net/customer_masters/show/:id
 ```
 
 Sample JSON response:
@@ -601,7 +601,7 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/customer_masters/destroy/1000 
+https://tsubaiso.net/customer_masters/destroy/:id
 ```
 
 #### Staff
@@ -819,6 +819,6 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/staff_data/destroy/8833 
+https://tsubaiso.net/staff_data/destroy/:id 
 ```
 
