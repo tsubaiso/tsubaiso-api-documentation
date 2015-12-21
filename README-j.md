@@ -30,7 +30,7 @@ $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H 
 ## レスポンスコードとエラー処理
 
 Code | Description
---- | --- 
+--- | ---
 `200 OK` | リクエスト成功 |
 `204 No Content` | リクエストに成功したが返されるコンテンツはありません。
 `401 Not Authorized` | アクセストークンが送られていないか正しくありません。
@@ -50,9 +50,9 @@ Code | Description
 
 HTTP メソッド: GET
 
-URL 構成例: 
-```sh 
-https://tsubaiso.net/ar/list/2015/10 
+URL 構成例:
+```sh
+https://tsubaiso.net/ar/list/2015/10
 ```
 
 JSON レスポンスの例:
@@ -112,7 +112,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ar/show/8833 
+https://tsubaiso.net/ar/show/8833
 ```
 
 JSON レスポンスの例:
@@ -165,7 +165,7 @@ Parameter | Necessity | Type | Description
 `tax_code` | *required* | Integer | 税区分コード
 `year` | *optional* | Integer | 年
 `month` | *optional* | Integer | 月
-`dept_code` | *optional* | String | 部門コード 
+`dept_code` | *optional* | String | 部門コード
 `sales_tax` | *optional* | Integer | 消費税額。指定されなかった場合、自動で計算されます。
 `scheduled_receipt_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
@@ -183,7 +183,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ar/destroy/8833 
+https://tsubaiso.net/ar/destroy/8833
 ```
 
 #### 仕入・経費明細
@@ -194,7 +194,7 @@ https://tsubaiso.net/ar/destroy/8833
 
 HTTP メソッド: GET
 
-URL 構成例: 
+URL 構成例:
 ``` sh
 https://tsubaiso.net/ap_payments/list/2015/10
 ```
@@ -266,7 +266,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ap_payments/show/6621 
+https://tsubaiso.net/ap_payments/show/6621
 ```
 
 JSON レスポンスの例:
@@ -347,7 +347,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ap/destroy/6621 
+https://tsubaiso.net/ap/destroy/6621
 ```
 
 #### 取引先
@@ -358,7 +358,7 @@ https://tsubaiso.net/ap/destroy/6621
 
 HTTP メソッド: GET
 
-URL 構成例: 
+URL 構成例:
 ``` sh
 https://tsubaiso.net/customer_masters/list/
 ```
@@ -474,7 +474,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/customer_masters/show/1000 
+https://tsubaiso.net/customer_masters/show/1000
 ```
 
 JSON レスポンスの例:
@@ -550,11 +550,11 @@ Parameter | Necessity | Type | Description
 `code` | *required* | String | 識別コード(半角英数字及びハイフン10桁以内)
 `zip` | *optional* | String | 郵便番号
 `address` | *optional* | String | 住所(80文字以内)
-`tel` | *optional* | String | 電話番号(半角数字,ハイフン,アスタリスク,シャープ 40文字以内) 
+`tel` | *optional* | String | 電話番号(半角数字,ハイフン,アスタリスク,シャープ 40文字以内)
 `accountant_email` | *optional* | String | 経理担当者メールアドレス。請求書をツバイソからメール送信する場合に使います。
 `dept_code` | *optional* | String | 部門
 `tax_type_for_remittance_charge` | *required* | Integer | 支払手数料の課税区分。3は「共通売上分」、0は「対象外又は非課税仕入」
-`sender_name` | *optional* | String | 自動消込キーワード(40文字以内) 
+`sender_name` | *optional* | String | 自動消込キーワード(40文字以内)
 `locale` | *optional* | String | 請求書の言語 "ja-JP": 日本語、"en": 英語
 `foreign_currency` | *optional* | Integer | 外貨取引の有無。0:無（外貨での請求書なし）、1: 「有（外貨での請求書あり）」
 `used_in_ar` | *required* | Integer | 販売管理の債権区分。0: 使用しない、 1: 主に売掛金（売上代金の入金先）として使用する、2: 主に未収入金（売上代金以外の入金先）として使用する
@@ -579,6 +579,22 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
 ```
 
+**/customer_masters/update**
+
+説明: 取引先を更新します。 更新に成功した場合、更新された明細が JSON として返されます。
+
+Method: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/update/:id
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート株式会社", "name_kana": "アップデートカブシキガイシャ"}' https://tsubaiso.net/customer_masters/update/1
+```
+
 **/customer_masters/destroy/:id**
 
 説明: 指定された id の取引先を削除します。成功した場合 204 No Content が返ります。
@@ -587,5 +603,221 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/customer_masters/destroy/1000 
+https://tsubaiso.net/customer_masters/destroy/1000
+```
+
+#### Staff
+
+**/staffs/list/**
+
+説明: 社員の一覧を返します。
+
+Method: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staffs/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staffs/list
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "ccode": XX,
+        "code": "XXXXX",
+        "created_at": "2015/12/07 16:48:10 +0900",
+        "id": XXX,
+        "regist_user_code": null,
+        "status": 0,
+        "update_user_code": null,
+        "updated_at": "2015/12/07 16:48:10 +0900",
+        "visibility": 0,
+        "login": "XXXXX"
+    },
+    {
+        "ccode": XX,
+        "code": "YYYYY",
+        "created_at": "2015/12/07 16:48:10 +0900",
+        "id": YYY,
+        "regist_user_code": null,
+        "status": 0,
+        "update_user_code": null,
+        "updated_at": "2015/12/07 16:48:10 +0900",
+        "visibility": 0,
+        "login": "YYYYY"
+    }
+]
+```
+
+**/staffs/show/**
+
+説明: 単一の社員を返します。
+
+Method: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staffs/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staffs/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+    "ccode": XX,
+    "code": "XXXXX",
+    "created_at": "2015/12/07 16:48:10 +0900",
+    "id": 1,
+    "regist_user_code": null,
+    "status": 0,
+    "update_user_code": null,
+    "updated_at": "2015/12/07 16:48:10 +0900",
+    "visibility": 0,
+    "login": "XXXXX"
+}
+```
+
+#### Staff Data
+
+**/staff_data/list/**
+
+説明: このエンドポイントは社員情報の一覧を返します。
+
+Method: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staff_data/list?staff_id=:staff_id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/staff_data/list/10000
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "ccode": XX,
+        "code": "BIRTH_YMD",
+        "created_at": "2009/04/28 05:37:41 +0900",
+        "finish_timestamp": "2019/12/31 00:00:00 +0900",
+        "id": XX,
+        "is_closed": 0,
+        "is_ok": 0,
+        "lock_version": 0,
+        "memo": "",
+        "regist_user_code": null,
+        "staff_id": 10000,
+        "start_timestamp": "2001/01/01 00:00:00 +0900",
+        "update_user_code": null,
+        "updated_at": "2009/04/28 06:40:51 +0900",
+        "value": "1950/01/01"
+    },
+    ...    
+]
+```
+
+**/staff_data/show/**
+
+説明: このエンドポイントは特定の社員情報のデータを返します。IDをURLに入れるか、社員情報IDとコードをリクエストボディに入れる必要があります。さらに、年月日を指定した場合、指定した年月日時点のデータが返されます。
+
+Method: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staff_data/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staff_data/show/1234
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD"}'  https://tsubaiso.net/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD", "time": "2001-01-01"}'  https://tsubaiso.net/staff_data/show
+```
+
+JSON レスポンスの例:
+```
+{
+    "ccode": XX,
+    "code": "BIRTH_YMD",
+    "created_at": "2009/04/28 05:37:41 +0900",
+    "finish_timestamp": "2019/12/31 00:00:00 +0900",
+    "id": XX,
+    "is_closed": 0,
+    "is_ok": 0,
+    "lock_version": 0,
+    "memo": "",
+    "regist_user_code": null,
+    "staff_id": 10000,
+    "start_timestamp": "2001/01/01 00:00:00 +0900",
+    "update_user_code": null,
+    "updated_at": "2009/04/28 06:40:51 +0900",
+    "value": "1950/01/01"
+}    
+```
+
+**/staff_data/create**
+
+説明: 社員を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メッソド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/staff_data/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`staff_id` | *required* | Integer | ID
+`code` | *required* | String | スタッフ情報コード
+`value` | *required* | String | 値
+`memo` | *optional* | String | メモ
+`start_timestamp` | *required* | String | 開始年月日
+`finish_timestamp` | *required or optional* | String | 終了年月日。もし在籍区分が”0: 非在籍”の場合、必須項目とないます。
+`no_finish_timestamp` | *required or optional* | String | 在籍区分。　0: 非在籍 1: 在籍
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"staff_id": 1000, "code": "NAME_MEI", "value": "Taro", "start_timestamp": "2015-12-15", "no_finish_timestamp": "1"}'  https://tsubaiso.net/staff_data/create
+```
+
+**/staff_data/update**
+
+説明: 社員情報を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+Method: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/staff_data/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X POST -d '{"value": "1960-01-01"}'  http://tsubaiso.net/staff_data/update/1
+```
+
+**/staff_data/destroy/:id**
+
+説明: 指定したIDの社員情報を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/staff_data/destroy/:id
 ```
