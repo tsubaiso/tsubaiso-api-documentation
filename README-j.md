@@ -52,7 +52,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ar/list/2015/10
+https://tsubaiso.net/ar/list/:year/:month
 ```
 
 JSON レスポンスの例:
@@ -112,7 +112,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ar/show/8833
+https://tsubaiso.net/ar/show/:id
 ```
 
 JSON レスポンスの例:
@@ -183,7 +183,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ar/destroy/8833
+https://tsubaiso.net/ar/destroy/:id
 ```
 
 #### 仕入・経費明細
@@ -196,7 +196,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ap_payments/list/2015/10
+https://tsubaiso.net/ap_payments/list/:year/:month
 ```
 
 JSON レスポンスの例:
@@ -266,7 +266,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ap_payments/show/6621
+https://tsubaiso.net/ap_payments/show/:id
 ```
 
 JSON レスポンスの例:
@@ -347,7 +347,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ap/destroy/6621
+https://tsubaiso.net/ap/destroy/:id
 ```
 
 #### 取引先
@@ -474,7 +474,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/customer_masters/show/1000
+https://tsubaiso.net/customer_masters/show/:id
 ```
 
 JSON レスポンスの例:
@@ -603,7 +603,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/customer_masters/destroy/1000
+https://tsubaiso.net/customer_masters/destroy/:id
 ```
 
 #### Staff
