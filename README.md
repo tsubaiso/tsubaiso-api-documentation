@@ -728,7 +728,7 @@ Sample JSON Response:
 
 **/staff_data/show/**
 
-Description: Returns a particular data entry for a staff member. Either an ID should be sent in the URL or both a staff ID and code must be sent in the body of the request. In addition, a time parameter can be sent if there are more than one entry for a code.
+Description: Returns a particular data entry for a staff member. Either an ID must be sent in the URL or both a staff ID and code must be sent in the body of the request. In addition, a time parameter can be sent if you would like to return the value for a specific time when there is more than one entry for a code.
 
 Method: GET
 
@@ -785,8 +785,8 @@ Parameter | Necessity | Type | Description
 `value` | *required* | String | Value of the data.
 `memo` | *optional* | String | Memo for the data.
 `start_timestamp` | *required* | String | The date from which this data applies.
-`finish_timestamp` | *required or optional* | String | The date from which this data no longer applies. If no_finish_timestamp is nil or 0, this parameter must be provided.
-`no_finish_timestamp` | *required or optional* | String | 1 if there should be no end date for the application of this data. If finish_timestamp is not provided, this parameter must be provided.
+`finish_timestamp` | *required or optional* | String | The date from which this data no longer applies. If no_finish_timestamp is nil or "0", this parameter must be provided.
+`no_finish_timestamp` | *required or optional* | String | "1" if there should be no end date for the application of this data. If finish_timestamp is not provided, this parameter must be provided.
 
 Sample Request:
 ```sh
