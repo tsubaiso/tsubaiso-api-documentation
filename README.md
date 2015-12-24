@@ -160,6 +160,8 @@ Parameter | Necessity | Type | Description
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
 `dc` | *required* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
+`year` | *optional* | Integer | Year of the transaction. If provided, month must be provided as well. Will use current year if not provided.
+`month` | *optional* | Integer | Month of the transaction. If provided, year must be provided as well. Will use current month if not provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
@@ -168,7 +170,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar/destroy/:id**
@@ -319,6 +321,8 @@ Parameter | Necessity | Type | Description
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction.
+`year` | *optional* | Integer | Year of the transaction. If provided, month must be provided as well. Will use current year if not provided.
+`month` | *optional* | Integer | Month of the transaction. If provided, year must be provided as well. Will use current month if not provided.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `buying_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_pay_timestamp` | *optional* | String | Date of payment. Format must be "YYYY-MM-DD".
@@ -330,7 +334,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap/destroy/:id**
