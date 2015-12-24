@@ -1,6 +1,6 @@
 # Tsubaiso API (beta)
 
-This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables and accounts payable transactions. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
+This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables, accounts payable transactions, customer management and staff/staff data management. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
 
 ## Root Endpoint
 
@@ -161,8 +161,6 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
-`year` | *optional* | Integer | Year of the transaction.
-`month` | *optional* | Integer | Month of the transaction.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_receipt_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
@@ -170,7 +168,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar/destroy/:id**
@@ -321,8 +319,6 @@ Parameter | Necessity | Type | Description
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction.
-`year` | *optional* | Integer | Year of the transaction. If provided, month must be provided as well. Will use current year if not provided.
-`month` | *optional* | Integer | Month of the transaction. If provided, year must be provided as well. Will use current month if not provided.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `buying_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_pay_timestamp` | *optional* | String | Date of payment. Format must be "YYYY-MM-DD".
@@ -334,7 +330,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 8, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap/destroy/:id**
