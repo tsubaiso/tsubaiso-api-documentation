@@ -1,7 +1,7 @@
 # Tsubaiso API (beta)
 
 このドキュメントでは Tsubaiso API のベータ版の説明をします。
-Tsubaiso API ベータ版では売上明細と仕入・経費明細のデータをやりとりできます。
+Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先、社員のデータをやりとりできます。
 将来のバージョンでは、ツバイソシステムの他のモジュールにアクセスするための新しいエンドポイントが加わる予定です。
 
 ## Root Endpoint
@@ -163,8 +163,6 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | String | 原因区分。 'd' は debit の意で「増加」に、'c' は credit の意で「減少」になります。
 `memo` | *required* | String | メモ。値は空文字でも構いませんが必須項目です。
 `tax_code` | *required* | Integer | 税区分コード
-`year` | *optional* | Integer | 年
-`month` | *optional* | Integer | 月
 `dept_code` | *optional* | String | 部門コード
 `sales_tax` | *optional* | Integer | 消費税額。指定されなかった場合、自動で計算されます。
 `scheduled_receipt_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
@@ -172,7 +170,7 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar/destroy/:id**
@@ -323,8 +321,6 @@ Parameter | Necessity | Type | Description
 `memo` | *required* | String | メモ。値は空文字でも構いませんが必須項目です。
 `tax_code` | *required* | Integer | 税区分コード
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」
-`year` | *optional* | Integer | 明細の年。 年が指定された場合は月も必須項目になります。年が指定されない場合は現在の年が使われます。
-`month` | *optional* | Integer | 明細の月。月が指定された場合は年も必須項目になります。月が指定されない場合は現在の月が使われます。
 `dept_code` | *optional* | String | 部門コード
 `buying_tax` | *optional* | Integer | 消費税額。省略された場合は自動で計算されます。
 `scheduled_pay_timestamp` | *optional* | String | 支払予定日。  "YYYY-MM-DD" 形式
@@ -336,7 +332,7 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 8, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap/destroy/:id**
