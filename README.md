@@ -173,6 +173,22 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
+**/ar/update/:id**
+
+Description: Updates an accounts receivables transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price": 5000 }'  https://tsubaiso.net/ar_receipts/update/8833
+```
+
 **/ar/destroy/:id**
 
 Description: Destroys the accounts receivable transaction specified as the id. Returns a status of 204 No Content.
