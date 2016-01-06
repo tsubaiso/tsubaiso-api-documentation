@@ -337,6 +337,22 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
+**/ap_payments/update/:id**
+
+Description: Updates an accounts payable transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ap_payments/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price": 5000 }'  https://tsubaiso.net/ap_payments/update/6621
+```
+
 **/ap/destroy/:id**
 
 Description: Destroys the accounts payable transaction specified as the id. Returns a status of 204 No Content.
@@ -577,7 +593,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "テスト株式会社", "name_kana": "テストカブシキガイシャ", "code": "9000", "tax_type_for_remittance_charge": "3", "used_in_ar": 1, "used_in_ap": 1, "is_valid": 1 }' https://tsubaiso.net/customer_masters/create
 ```
 
-**/customer_masters/update**
+**/customer_masters/update/:id**
 
 Description: Updates a customer. The updated transaction will be sent back as JSON if successful.
 
