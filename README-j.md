@@ -803,8 +803,8 @@ Parameter | Necessity | Type | Description
 `value` | *required* | String | 値
 `memo` | *optional* | String | メモ
 `start_timestamp` | *required* | String | 開始年月日
-`finish_timestamp` | *required or optional* | String | 終了年月日。もし在籍区分が”0: 非在籍”の場合、必須項目となります。
-`no_finish_timestamp` | *required or optional* | String | 在籍区分。　0: 非在籍 1: 在籍
+`finish_timestamp` | *required or optional* | String | 利用終了年月日。もし利用終了区分が”0: 設定する”の場合、必須項目となります。
+`no_finish_timestamp` | *required or optional* | String | 利用終了区分。　0: 設定する 1: 設定しない　利用終了年月日を設定しない場合、"1: 設定しない"が必須となります。
 
 リクエストの例:
 ```sh
