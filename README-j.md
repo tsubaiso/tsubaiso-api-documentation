@@ -339,6 +339,22 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month", 10, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
+**/ap_payments/update/:id**
+
+説明: 仕入・経費明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+Method: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/ap_payments/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "更新  メモ", "price": 5000 }'  https://tsubaiso.net/ap_payments/update/6621
+```
+
 **/ap/destroy/:id**
 
 説明: 指定された id の仕入・経費明細を削除します。成功した場合 204 No Content が返ります。
@@ -579,7 +595,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{name: "テスト株式会社", name_kana: "テストカブシキガイシャ", code: "9000", tax_type_for_remittance_charge: "3", used_in_ar: 1, used_in_ap: 1, is_valid: 1 }' https://tsubaiso.net/customer_masters/create
 ```
 
-**/customer_masters/update**
+**/customer_masters/update/:id**
 
 説明: 取引先を更新します。 更新に成功した場合、更新された明細が JSON として返されます。
 
@@ -787,7 +803,7 @@ Parameter | Necessity | Type | Description
 `value` | *required* | String | 値
 `memo` | *optional* | String | メモ
 `start_timestamp` | *required* | String | 開始年月日
-`finish_timestamp` | *required or optional* | String | 終了年月日。もし在籍区分が”0: 非在籍”の場合、必須項目とないます。
+`finish_timestamp` | *required or optional* | String | 終了年月日。もし在籍区分が”0: 非在籍”の場合、必須項目となります。
 `no_finish_timestamp` | *required or optional* | String | 在籍区分。　0: 非在籍 1: 在籍
 
 リクエストの例:
