@@ -175,6 +175,22 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
+**/ar/update/:id**
+
+説明: 指定された id の売上明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/ar/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "更新  メモ", "price": 5000 }'  https://tsubaiso.net/ar_receipts/update/8833
+```
+
 **/ar/destroy/:id**
 
 説明: 指定された id の売上明細を削除します。成功した場合 204 No Content が返ります。
@@ -343,7 +359,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 説明: 仕入・経費明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
 
-Method: POST
+HTTP メソッド: POST
 
 URL 構成例:
 ```sh
@@ -599,7 +615,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 説明: 取引先を更新します。 更新に成功した場合、更新された明細が JSON として返されます。
 
-Method: POST
+HTTP メソッド: POST
 
 URL 構成例:
 ```sh
@@ -628,7 +644,7 @@ https://tsubaiso.net/customer_masters/destroy/:id
 
 説明: 社員の一覧を返します。
 
-Method: GET
+HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
@@ -674,7 +690,7 @@ JSON レスポンスの例:
 
 説明: 単一の社員を返します。
 
-Method: GET
+HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
@@ -708,7 +724,7 @@ JSON レスポンスの例:
 
 説明: このエンドポイントは社員情報の一覧を返します。
 
-Method: GET
+HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
@@ -748,7 +764,7 @@ JSON レスポンスの例:
 
 説明: このエンドポイントは特定の社員情報のデータを返します。IDをURLに入れるか、社員情報IDとコードをリクエストボディに入れる必要があります。さらに、年月日を指定した場合、指定した年月日時点のデータが返されます。
 
-Method: GET
+HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
@@ -815,7 +831,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 説明: 社員情報を更新します。更新に成功した場合、更新された明細が JSON として返されます。
 
-Method: POST
+HTTP メソッド: POST
 
 URL 構成例:
 ```sh
