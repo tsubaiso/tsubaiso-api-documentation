@@ -57,11 +57,9 @@ Sample JSON response:
 ```
 [
     {
-        "ar_reason_master_id": 0,
         "ar_receipt_attachments_count": null,
         "code": null,
         "created_at": "2015/10/05 15:26:43 +0900",
-        "customer_master_id": 101,
         "dc": "d",
         "dept_code": "DEPT A",
         "id": 8833,
@@ -74,15 +72,15 @@ Sample JSON response:
         "update_user_code": null,
         "updated_at": "2015/10/05 15:26:43 +0900",
         "account_code": "501",
-        "sales_price": 5000,
+        "price": 5000,
         "sales_tax": 400,
-        "sales_tax_type": 18
+        "tax_code": 18,
+        "customer_master_code": 101,
+        "reason_master_code": "SALES"
     }, {
-        "ar_reason_master_id": 121278,
         "ar_receipt_attachments_count": null,
         "code": null,
         "created_at": "2015/10/05 17:39:34 +0900",
-        "customer_master_id": 895820,
         "dc": "d",
         "dept_code": "DEPT B",
         "id": 8834,
@@ -95,9 +93,11 @@ Sample JSON response:
         "update_user_code": null,
         "updated_at": "2015/10/05 17:39:34 +0900",
         "account_code": "500",
-        "sales_price": 10000,
+        "price": 10000,
         "sales_tax": 800,
-        "sales_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 895820,
+        "reason_master_code": "SALES"
     }
 ]
 ```
@@ -116,11 +116,9 @@ https://tsubaiso.net/ar/show/:id
 Sample JSON response:
 ```
 {
-    "ar_reason_master_id": 0,
     "ar_receipt_attachments_count": null,
     "code": null,
     "created_at": "2015/10/05 15:26:43 +0900",
-    "customer_master_id": 101,
     "dc": "d",
     "dept_code": "DEPT A",
     "id": 8833,
@@ -133,9 +131,11 @@ Sample JSON response:
     "update_user_code": null,
     "updated_at": "2015/10/05 15:26:43 +0900",
     "account_code": "501",
-    "sales_price": 5000,
+    "price": 5000,
     "sales_tax": 400,
-    "sales_tax_type": 18
+    "tax_code": 18,
+    "customer_master_code": 101,
+    "reason_master_code": "SALES"
 }
 ```
 
@@ -160,17 +160,15 @@ Parameter | Necessity | Type | Description
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
 `dc` | *required* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
-`year` | *optional* | Integer | Year of the transaction. If provided, month must be provided as well. Will use current year if not provided.
-`month` | *optional* | Integer | Month of the transaction. If provided, year must be provided as well. Will use current month if not provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
-`scheduled_receipt_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
+`scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar_receipts/update/:id**
@@ -219,11 +217,9 @@ Sample JSON response:
     {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
         "buying_journal_dc_id": 9835,
         "code": null,
         "created_at": "2015/10/06 15:45:21 +0900",
-        "customer_master_id": 8201,
         "dc": "c",
         "dept_code": "DEPT C",
         "id": 6621,
@@ -239,17 +235,17 @@ Sample JSON response:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "buying_price": 5000,
+        "price": 5000,
         "buying_tax": 400,
-        "buying_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 8201,
+        "reason_master_code": "BUYING_IN"
     }, {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
         "buying_journal_dc_id": 9836,
         "code": null,
         "created_at": "2015/10/06 15:48:42 +0900",
-        "customer_master_id": 101,
         "dc": "c",
         "dept_code": "SETSURITSU",
         "id": 622,
@@ -265,9 +261,11 @@ Sample JSON response:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "buying_price": 10000,
+        "price": 10000,
         "buying_tax": 800,
-        "buying_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 101,
+        "reason_master_code": "BUYING_IN"
     }
 ]
 ```
@@ -288,11 +286,9 @@ Sample JSON response:
 {
     "accrual_timestamp": "2015/10/31 00:00:00 +0900",
     "ap_payment_attachments_count": null,
-    "ap_reason_master_id": 1,
     "buying_journal_dc_id": 9835,
     "code": null,
     "created_at": "2015/10/06 15:45:21 +0900",
-    "customer_master_id": 8201,
     "dc": "c",
     "dept_code": "DEPT C",
     "id": 6621,
@@ -308,9 +304,11 @@ Sample JSON response:
     "withholding_tax_base": null,
     "withholding_tax_segment": null,
     "account_code": "604",
-    "buying_price": 5000,
+    "price": 5000,
     "buying_tax": 400,
-    "buying_tax_type": 0
+    "tax_code": 0,
+    "customer_master_code": 8201,
+    "reason_master_code": "BUYING_IN"
 }
 ```
 
@@ -337,8 +335,6 @@ Parameter | Necessity | Type | Description
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
 `tax_code` | *required* | Integer | Tax code for the transaction.
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction.
-`year` | *optional* | Integer | Year of the transaction. If provided, month must be provided as well. Will use current year if not provided.
-`month` | *optional* | Integer | Month of the transaction. If provided, year must be provided as well. Will use current month if not provided.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `buying_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_pay_timestamp` | *optional* | String | Date of payment. Format must be "YYYY-MM-DD".
@@ -350,7 +346,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
