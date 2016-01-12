@@ -59,11 +59,9 @@ JSON レスポンスの例:
 ```
 [
     {
-        "ar_reason_master_id": 0,
         "ar_receipt_attachments_count": null,
         "code": null,
         "created_at": "2015/10/05 15:26:43 +0900",
-        "customer_master_id": 101,
         "dc": "d",
         "dept_code": "DEPT A",
         "id": 8833,
@@ -76,15 +74,15 @@ JSON レスポンスの例:
         "update_user_code": null,
         "updated_at": "2015/10/05 15:26:43 +0900",
         "account_code": "501",
-        "sales_price": 5000,
+        "price": 5000,
         "sales_tax": 400,
-        "sales_tax_type": 18
+        "tax_code": 18,
+        "customer_master_code": 101,
+        "reason_master_code": "SALES"
     }, {
-        "ar_reason_master_id": 121278,
         "ar_receipt_attachments_count": null,
         "code": null,
         "created_at": "2015/10/05 17:39:34 +0900",
-        "customer_master_id": 895820,
         "dc": "d",
         "dept_code": "DEPT B",
         "id": 8834,
@@ -97,9 +95,11 @@ JSON レスポンスの例:
         "update_user_code": null,
         "updated_at": "2015/10/05 17:39:34 +0900",
         "account_code": "500",
-        "sales_price": 10000,
+        "price": 10000,
         "sales_tax": 800,
-        "sales_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 895820,
+        "reason_master_code": "SALES"
     }
 ]
 ```
@@ -118,11 +118,9 @@ https://tsubaiso.net/ar/show/:id
 JSON レスポンスの例:
 ```
 {
-    "ar_reason_master_id": 0,
     "ar_receipt_attachments_count": null,
     "code": null,
     "created_at": "2015/10/05 15:26:43 +0900",
-    "customer_master_id": 101,
     "dc": "d",
     "dept_code": "DEPT A",
     "id": 8833,
@@ -135,9 +133,11 @@ JSON レスポンスの例:
     "update_user_code": null,
     "updated_at": "2015/10/05 15:26:43 +0900",
     "account_code": "501",
-    "sales_price": 5000,
+    "price": 5000,
     "sales_tax": 400,
-    "sales_tax_type": 18
+    "tax_code": 18,
+    "customer_master_code": 101,
+    "reason_master_code": "SALES"
 }
 ```
 
@@ -163,16 +163,14 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | String | 原因区分。 'd' は debit の意で「増加」に、'c' は credit の意で「減少」になります。
 `memo` | *required* | String | メモ。値は空文字でも構いませんが必須項目です。
 `tax_code` | *required* | Integer | 税区分コード
-`year` | *optional* | Integer | 明細の年。 年が指定された場合は月も必須項目になります。年が指定されない場合は現在の年が使われます。
-`month` | *optional* | Integer | 明細の月。月が指定された場合は年も必須項目になります。月が指定されない場合は現在の月が使われます。
 `dept_code` | *optional* | String | 部門コード
 `sales_tax` | *optional* | Integer | 消費税額。指定されなかった場合、自動で計算されます。
-`scheduled_receipt_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
+`scheduled_receive_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month": 10, "price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar_receipts/update/:id**
@@ -221,11 +219,9 @@ JSON レスポンスの例:
     {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
         "buying_journal_dc_id": 9835,
         "code": null,
         "created_at": "2015/10/06 15:45:21 +0900",
-        "customer_master_id": 8201,
         "dc": "c",
         "dept_code": "DEPT C",
         "id": 6621,
@@ -241,17 +237,17 @@ JSON レスポンスの例:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "buying_price": 5000,
+        "price": 5000,
         "buying_tax": 400,
-        "buying_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 8201,
+        "reason_master_code": "BUYING_IN"
     }, {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
-        "ap_reason_master_id": 1,
         "buying_journal_dc_id": 9836,
         "code": null,
         "created_at": "2015/10/06 15:48:42 +0900",
-        "customer_master_id": 101,
         "dc": "c",
         "dept_code": "SETSURITSU",
         "id": 622,
@@ -267,9 +263,11 @@ JSON レスポンスの例:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "buying_price": 10000,
+        "price": 10000,
         "buying_tax": 800,
-        "buying_tax_type": 0
+        "tax_code": 0,
+        "customer_master_code": 101,
+        "reason_master_code": "BUYING_IN"
     }
 ]
 ```
@@ -290,11 +288,9 @@ JSON レスポンスの例:
 {
     "accrual_timestamp": "2015/10/31 00:00:00 +0900",
     "ap_payment_attachments_count": null,
-    "ap_reason_master_id": 1,
     "buying_journal_dc_id": 9835,
     "code": null,
     "created_at": "2015/10/06 15:45:21 +0900",
-    "customer_master_id": 8201,
     "dc": "c",
     "dept_code": "DEPT C",
     "id": 6621,
@@ -310,9 +306,11 @@ JSON レスポンスの例:
     "withholding_tax_base": null,
     "withholding_tax_segment": null,
     "account_code": "604",
-    "buying_price": 5000,
+    "price": 5000,
     "buying_tax": 400,
-    "buying_tax_type": 0
+    "tax_code": 0,
+    "customer_master_code": 8201,
+    "reason_master_code": "BUYING_IN"
 }
 ```
 
@@ -339,8 +337,6 @@ Parameter | Necessity | Type | Description
 `memo` | *required* | String | メモ。値は空文字でも構いませんが必須項目です。
 `tax_code` | *required* | Integer | 税区分コード
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」
-`year` | *optional* | Integer | 明細の年。 年が指定された場合は月も必須項目になります。年が指定されない場合は現在の年が使われます。
-`month` | *optional* | Integer | 明細の月。月が指定された場合は年も必須項目になります。月が指定されない場合は現在の月が使われます。
 `dept_code` | *optional* | String | 部門コード
 `buying_tax` | *optional* | Integer | 消費税額。省略された場合は自動で計算されます。
 `scheduled_pay_timestamp` | *optional* | String | 支払予定日。  "YYYY-MM-DD" 形式
@@ -352,7 +348,7 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"year": 2015, "month", 10, "price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
