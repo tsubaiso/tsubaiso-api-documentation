@@ -23,10 +23,6 @@ Tsubaiso API にアクセスするためには、アクセストークンを取�
 $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
 ```
 
-アクセストークンは以下のページから取得できます。（ツバイソアカウント必要）
-
-[Get an API access token](https://tsubaiso.net/api_keys)
-
 ## レスポンスコードとエラー処理
 
 Code | Description

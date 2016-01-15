@@ -21,10 +21,6 @@ The user must provide their access token in order to access the Tsubaiso API.
 $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
 ```
 
-You can create an access token from the page below: (Tsubaiso account required)
-
-[Get an API access token](https://tsubaiso.net/api_keys)
-
 ## Response Codes and Error Handling
 
 Code | Description
