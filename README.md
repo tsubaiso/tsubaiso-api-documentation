@@ -68,7 +68,8 @@ Sample JSON response:
         "update_user_code": null,
         "updated_at": "2015/10/05 15:26:43 +0900",
         "account_code": "501",
-        "price": 5000,
+        "price_including_tax": 5400,
+        "price_excluding_tax": 5000,
         "sales_tax": 400,
         "tax_code": 18,
         "customer_master_code": 101,
@@ -89,7 +90,8 @@ Sample JSON response:
         "update_user_code": null,
         "updated_at": "2015/10/05 17:39:34 +0900",
         "account_code": "500",
-        "price": 10000,
+        "price_including_tax": 10800,
+        "price_excluding_tax": 10000,
         "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 895820,
@@ -127,7 +129,8 @@ Sample JSON response:
     "update_user_code": null,
     "updated_at": "2015/10/05 15:26:43 +0900",
     "account_code": "501",
-    "price": 5000,
+    "price_including_tax": 5400,
+    "price_excluding_tax": 5000,
     "sales_tax": 400,
     "tax_code": 18,
     "customer_master_code": 101,
@@ -150,7 +153,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`price` | *required* | Integer | Amount of the transaction.
+`price_including_tax` | *required* | Integer | Amount of the transaction including tax.
 `realization_timestamp` | *required* | String | Actual date of the transaction. Format must be "YYYY-MM-DD"
 `customer_master_code` | *required* | String | Code of the transaction party.
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
@@ -164,7 +167,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar_receipts/update/:id**
@@ -180,7 +183,7 @@ https://tsubaiso.net/ar_receipts/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price": 5000 }'  https://tsubaiso.net/ar_receipts/update/8833
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800 }'  https://tsubaiso.net/ar_receipts/update/8833
 ```
 
 **/ar/destroy/:id**
@@ -231,7 +234,8 @@ Sample JSON response:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "price": 5000,
+        "price_including_tax": 5400,
+        "price_excluding_tax": 5000,
         "buying_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
@@ -257,7 +261,8 @@ Sample JSON response:
         "withholding_tax_base": null,
         "withholding_tax_segment": null,
         "account_code": "604",
-        "price": 10000,
+        "price_including_tax": 10800
+        "price_excluding_tax": 10000,
         "buying_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
@@ -300,7 +305,8 @@ Sample JSON response:
     "withholding_tax_base": null,
     "withholding_tax_segment": null,
     "account_code": "604",
-    "price": 5000,
+    "price_including_tax": 5400
+    "price_excluding_tax": 5000,
     "buying_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
@@ -323,7 +329,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`price` | *required* | Integer | Amount of the transaction.
+`price_including_tax` | *required* | Integer | Amount of the transaction including tax.
 `accrual_timestamp` | *required* | String | Actual date of the transaction. Format must be "YYYY-MM-DD"
 `customer_master_code` | *required* | String | Code of the transaction party.
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
@@ -342,7 +348,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price": 5000, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
@@ -358,7 +364,7 @@ https://tsubaiso.net/ap_payments/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price": 5000 }'  https://tsubaiso.net/ap_payments/update/6621
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800 }'  https://tsubaiso.net/ap_payments/update/6621
 ```
 
 **/ap/destroy/:id**
@@ -764,15 +770,15 @@ https://tsubaiso.net/staff_data/show/:id
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staff_data/show/1234
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD"}'  https://tsubaiso.net/staff_data/show
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "BIRTH_YMD", "time": "2001-01-01"}'  https://tsubaiso.net/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "QUALIFICATION"}'  https://tsubaiso.net/staff_data/show
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"staff_id": 10000, "code": "QUALIFICATION", "time": "2001-01-01"}'  https://tsubaiso.net/staff_data/show
 ```
 
 Sample JSON Response:
 ```
 {
     "ccode": XX,
-    "code": "BIRTH_YMD",
+    "code": "QUALIFICATION",
     "created_at": "2009/04/28 05:37:41 +0900",
     "finish_timestamp": "2019/12/31 00:00:00 +0900",
     "id": XX,
@@ -785,7 +791,7 @@ Sample JSON Response:
     "start_timestamp": "2001/01/01 00:00:00 +0900",
     "update_user_code": null,
     "updated_at": "2009/04/28 06:40:51 +0900",
-    "value": "1950/01/01"
+    "value": "TOEIC"
 }    
 ```
 
