@@ -854,7 +854,7 @@ https://tsubaiso.net/staff_data/destroy/:id
 
 #### Staff Datum Master
 
-**/staff_datum_master/list/**
+**/staff_datum_masters/list/**
 
 説明: このエンドポイントは社員情報マスタの一覧を返します。
 
@@ -906,7 +906,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/staff_data/show/:id
+https://tsubaiso.net/staff_datum_masters/show/:id
 ```
 
 リクエストの例:
