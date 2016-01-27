@@ -24,7 +24,7 @@ $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H 
 ## Response Codes and Error Handling
 
 Code | Description
---- | --- 
+--- | ---
 `200 OK` | A successful request was made. |
 `204 No Content` | A successful request was made but no content is passed back.
 `401 Not Authorized` | The access token was not provided or was incorrect.
@@ -44,8 +44,8 @@ Description: This endpoint returns a list of accounts receivables transactions f
 
 Method: GET
 
-URL Structure: 
-```sh 
+URL Structure:
+```sh
 https://tsubaiso.net/ar/list/:year/:month
 ```
 
@@ -194,7 +194,7 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar/destroy/:id 
+https://tsubaiso.net/ar/destroy/:id
 ```
 
 #### Accounts Payables
@@ -205,7 +205,7 @@ Description: Returns a list of accounts payables transactions for a particular m
 
 Method: GET
 
-URL Structure: 
+URL Structure:
 ``` sh
 https://tsubaiso.net/ap_payments/list/:year/:month
 ```
@@ -582,7 +582,7 @@ Parameter | Necessity | Type | Description
 `accountant_email` | *optional* | String | Accountant's email address. Invoices will be emailed to this address.
 `dept_code` | *optional* | String | Code of department.
 `tax_type_for_remittance_charge` | *required* | Integer | Tax on transaction fees. 3: Taxed, 0: Non-taxed.
-`sender_name` | *optional* | String | Keyword to use when applying receipts(limit: 40 characters) 
+`sender_name` | *optional* | String | Keyword to use when applying receipts(limit: 40 characters)
 `locale` | *optional* | String | Language for invoice. "ja-JP": Japanese, "en": English.
 `foreign_currency` | *optional* | Integer | Foreign currency transactions. 0: No, 1: Yes.
 `used_in_ar` | *required* | Integer | Receivables classification. 0: No AR, 1: Accounts Receivable, 2: Non-trade Receivables.
@@ -847,6 +847,93 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/staff_data/destroy/:id 
+https://tsubaiso.net/staff_data/destroy/:id
 ```
 
+#### Staff Datum Master
+
+**/staff_datum_masters/list/**
+
+Description: Returns the entire list of staff datum masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staff_datum_masters/list
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/staff_datum_masters/list
+```
+
+Sample JSON Response:
+```
+[
+    {
+      "code": "BIRTH_YMD"
+      "created_at": "2016/01/22 13:46:05 +0900"
+      "default": null
+      "editable_domains": null
+      "id": 201083078
+      "input_type": "ymd"
+      "interval": 0
+      "lock_version": 0
+      "memo": null
+      "multiple": 0
+      "name": "生年月日"
+      "regexp": "^[0-9]{4}[\-/][0-9]{2}[\-/][0-9]{2}$"
+      "regexp_description": "xxxx/xx/xx"
+      "regist_user_code": null
+      "segment": "general"
+      "tab": null
+      "update_user_code": null
+      "updated_at": "2016/01/22 13:46:05 +0900"
+      "viewable_domains": null
+    },
+    ...    
+]
+```
+
+**/staff_datum_masters/show/**
+
+Description: Returns a particular data entry for a staff datum master. Either an ID must be sent in the URL or code must be sent in the body of the request.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/staff_datum_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staff_datum_masters/show/1234
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"code": "BIRTH_YMD"}'  https://tsubaiso.net/staff_datum_masters/show
+```
+
+Sample JSON Response:
+```
+{
+  "code": "BIRTH_YMD"
+  "created_at": "2016/01/22 13:46:05 +0900"
+  "default": null
+  "editable_domains": null
+  "id": 201083078
+  "input_type": "ymd"
+  "interval": 0
+  "lock_version": 0
+  "memo": null
+  "multiple": 0
+  "name": "生年月日"
+  "regexp": "^[0-9]{4}[\-/][0-9]{2}[\-/][0-9]{2}$"
+  "regexp_description": "xxxx/xx/xx"
+  "regist_user_code": null
+  "segment": "general"
+  "tab": null
+  "update_user_code": null
+  "updated_at": "2016/01/22 13:46:05 +0900"
+  "viewable_domains": null
+}    
+```
