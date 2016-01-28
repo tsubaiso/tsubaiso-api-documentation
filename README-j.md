@@ -851,3 +851,91 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/staff_data/destroy/:id
 ```
+
+#### Staff Datum Master
+
+**/staff_datum_masters/list/**
+
+説明: このエンドポイントは社員情報マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staff_datum_masters/list
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/staff_datum_masters/list
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+      "code": "BIRTH_YMD"
+      "created_at": "2016/01/22 13:46:05 +0900"
+      "default": null
+      "editable_domains": null
+      "id": 201083078
+      "input_type": "ymd"
+      "interval": 0
+      "lock_version": 0
+      "memo": null
+      "multiple": 0
+      "name": "生年月日"
+      "regexp": "^[0-9]{4}[\-/][0-9]{2}[\-/][0-9]{2}$"
+      "regexp_description": "xxxx/xx/xx"
+      "regist_user_code": null
+      "segment": "general"
+      "tab": null
+      "update_user_code": null
+      "updated_at": "2016/01/22 13:46:05 +0900"
+      "viewable_domains": null
+    },
+    ...    
+]
+```
+
+**/staff_datum_masters/show/**
+
+説明: このエンドポイントは特定の社員情報マスタのデータを返します。IDをURLに入れるか、コードをリクエストボディに入れる必要があります。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/staff_datum_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/staff_datum_masters/show/1234
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"code": "BIRTH_YMD"}'  https://tsubaiso.net/staff_datum_masters/show
+```
+
+JSON レスポンスの例:
+```
+{
+  "code": "BIRTH_YMD"
+  "created_at": "2016/01/22 13:46:05 +0900"
+  "default": null
+  "editable_domains": null
+  "id": 201083078
+  "input_type": "ymd"
+  "interval": 0
+  "lock_version": 0
+  "memo": null
+  "multiple": 0
+  "name": "生年月日"
+  "regexp": "^[0-9]{4}[\-/][0-9]{2}[\-/][0-9]{2}$"
+  "regexp_description": "xxxx/xx/xx"
+  "regist_user_code": null
+  "segment": "general"
+  "tab": null
+  "update_user_code": null
+  "updated_at": "2016/01/22 13:46:05 +0900"
+  "viewable_domains": null
+}    
+```
