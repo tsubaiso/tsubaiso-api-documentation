@@ -636,7 +636,7 @@ URL 構成例:
 https://tsubaiso.net/customer_masters/destroy/:id
 ```
 
-#### Staff
+#### 社員
 
 **/staffs/list/**
 
@@ -716,7 +716,7 @@ JSON レスポンスの例:
 }
 ```
 
-#### Staff Data
+#### 社員基本情報
 
 **/staff_data/list/**
 
@@ -852,7 +852,7 @@ URL 構成例:
 https://tsubaiso.net/staff_data/destroy/:id
 ```
 
-#### Staff Datum Master
+#### 社員基本情報マスター
 
 **/staff_datum_masters/list/**
 
