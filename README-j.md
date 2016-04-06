@@ -939,3 +939,171 @@ JSON レスポンスの例:
   "viewable_domains": null
 }    
 ```
+
+#### マニュアル仕訳
+
+**/manual_journals/list/:year/:month**
+
+説明: このエンドポイントは特定の年月のマニュアル仕訳の一覧を返します。年月パラメータが指定されなかった場合、現在の月の仕訳が返されます。
+
+HTTP メソッド: GET
+
+URL 構成例:
+
+```sh
+https://tsubaiso.net/manual_journals/list/:year/:month
+```
+
+JSON レスポンスの例:
+``` 
+[
+  {"id":29068,"journal_timestamp":"2016/04/01 00:00:00 +0900",
+    "journal_dcs": [
+      {
+        "debit":{
+          "account_code":"100","tax_type":0,"price_including_tax":10000,"sales_tax":0
+        },
+        "credit":{
+          "account_code":"130","tax_type":0,"price_including_tax":10000,"sales_tax":0
+        },
+        "dept_code":"COMMON","memo":""
+      }
+    ]
+  },
+  {"id":29069,"journal_timestamp":"2016/04/01 00:00:00 +0900",
+    "journal_dcs": [
+      {
+        "debit":{
+          "account_code":"110","tax_type":0,"price_including_tax":500000,"sales_tax":0
+        },
+        "credit":{
+          "account_code":"330","tax_type":0,"price_including_tax":1000000,"sales_tax":0
+        },
+        "dept_code":"COMMON","memo":""
+      },
+      {
+        "debit":{
+          "account_code":"100","tax_type":0,"price_including_tax":500000,"sales_tax":0
+        },
+        "credit":{
+          "account_code":null,"tax_type":null,"price_including_tax":null,"sales_tax":null
+        },
+        "dept_code":"COMMON","memo":""
+      }
+    ]
+  }
+]
+```
+
+**/manual_journals/show/:id**
+
+説明: このエンドポイントは単一のマニュアル仕訳を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/ar/show/:id
+```
+
+JSON レスポンスの例:
+
+```
+{"id":29069,"journal_timestamp":"2016/04/01 00:00:00 +0900",
+  "journal_dcs": [
+    {
+      "debit":{
+        "account_code":"110","tax_type":0,"price_including_tax":500000,"sales_tax":0
+      },
+      "credit":{
+        "account_code":"330","tax_type":0,"price_including_tax":1000000,"sales_tax":0
+      },
+      "dept_code":"COMMON","memo":""
+    },
+    {
+      "debit":{
+        "account_code":"100","tax_type":0,"price_including_tax":500000,"sales_tax":0
+      },
+      "credit":{
+        "account_code":null,"tax_type":null,"price_including_tax":null,"sales_tax":null
+      },
+      "dept_code":"COMMON","memo":""
+    }
+  ]
+}
+```
+
+**/manual_journals/create**
+
+説明: マニュアル仕訳を新規作成します。作成に成功した場合、新規作成された仕訳が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/manual_journals/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
+`journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。
+
+  jouranal_dcsは配列で指定します。(1つの場合でも要素は省略できません)
+  1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。
+  *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
+
+*journal_dcs*
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`debit` | *optional* | Object | 借方情報。
+`credit` | *optional* | Object | 貸方情報。
+`dept_code` | *optional* | String | 部門コード。
+`memo` | *optional* | String | メモ。
+
+*debit and credit*
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`account_code` | *required* | String | 勘定科目コード。
+`tax_type` | *required* | Integer | 税区分。
+`price_including_tax` | *required* | Integer | 税込金額。
+`sales_tax` | *optional* | Integer | 税額。(入力が省略された場合は、税区分と税込金額から自動で計算します。)
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST \
+     -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}'\
+     https://tsubaiso.net/manual_journals/create
+```
+
+**/manual_journals/update/:id**
+
+説明: 指定された id のマニュアル仕訳を更新します。更新に成功した場合、更新された仕訳が JSON として返されます。       　    
+  **journal_dcsを指定した場合はその内容で更新され、更新前のjournal_dcsは全て削除されます。**
+
+HTTP メソッド: POST
+
+URL 構成例:
+
+```sh
+https://tsubaiso.net/manual_journals/update/:id
+```
+
+リクエスト例:
+
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' \
+     https://tsubaiso.net/manual_journals/update/29072
+```
+
+**/manual_journals/destroy/:id**
+
+説明: 指定された id のマニュアル仕訳を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/manual_journals/destroy/:id
+```
