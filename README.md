@@ -1069,6 +1069,7 @@ Parameter | Necessity | Type | Description
 `journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
 
 *journal_dcs*
+
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `debit` | *optional* | Object | Debit information.
@@ -1077,6 +1078,7 @@ Parameter | Necessity | Type | Description
 `memo` | *optional* | String | Memo for the manual journal.
 
 *debit and credit*
+
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `account_code` | *required* | String | Account code for the journal entry.
