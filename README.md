@@ -937,3 +937,182 @@ Sample JSON Response:
   "viewable_domains": null
 }    
 ```
+
+#### Manual Journals
+
+**/manual_journals/list/:year/:month**
+
+Description: This endpoint returns a list of manual journal entries for a particular month. If no year and month parameters are provided, it returns the entries for the current month.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/list/:year/:month
+```
+
+Sample JSON response:
+```
+[
+    {
+        "id":29068,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"130",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON","memo":""
+            }
+        ]
+    },
+    {
+        "id":29069,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"110",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"330",
+                    "tax_type":0,
+                    "price_including_tax":1000000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON","memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":null,
+                    "tax_type":null,
+                    "price_including_tax":null,
+                    "sales_tax":null
+                },
+                "dept_code":"COMMON","memo":""
+            }
+        ]
+    }
+]
+```
+
+**/manual_journals/show/:id**
+
+Description: This endpoint returns a single manual journal entry.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/manual_journals/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id":29068,
+    "journal_timestamp":"2016/04/01 00:00:00 0900",
+    "journal_dcs": [
+        {
+            "debit":{
+                "account_code":"100",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "credit":{
+                "account_code":"130",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "dept_code":"COMMON","memo":""
+        }
+    ]
+}
+```
+
+**/manual_journals/create**
+
+Description: Creates a new manual journal entry. The created entry will be sent back as JSON.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | Journal entry date. Format must be "YYYY-MM-DD"
+`journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
+
+*journal_dcs*
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`debit` | *optional* | Object | Debit information.
+`credit` | *optional* | Object | Credit information.
+`dept_code` | *optional* | String | Code of the internal department involved.
+`memo` | *optional* | String | Memo for the manual journal.
+
+*debit and credit*
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`account_code` | *required* | String | Account code for the journal entry.
+`tax_type` | *required* | Integer | Tax type of the transaction.
+`price_including_tax` | *required* | String | Amount of debit or credit including tax.
+`sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}' https://tsubaiso.net/manual_journals/create
+```
+
+**/manual_journals/update/:id**
+
+Description: Updates a manual journal entry. The updated entry will be sent back as JSON if successful. **If journal_dcs are specified, the old journal_dcs will be deleted and replaced with the new journal_dcs**
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' https://tsubaiso.net/manual_journals/update/29072
+```
+
+**/manual_journals/destroy/:id**
+
+Description: Deletes the manual journal entry specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/destroy/:id
+```
+
