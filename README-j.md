@@ -939,3 +939,146 @@ JSON レスポンスの例:
   "viewable_domains": null
 }    
 ```
+
+
+#### 部門管理
+
+**/depts/list/**
+
+説明: このエンドポイントは部門の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/list
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "ccode"      : 3 ,
+    "code"       : "SETSURITSU" ,
+    "color"      : "#f00" ,
+    "finish_date": "2017/02/17" ,
+    "memo"       : "" ,
+    "name"       : "会社設立事業部" ,
+    "name_abbr"  : "設立" ,
+    "start_date" : "2016/02/17",
+    "created_at" : "2016/02/17",
+    "updated_at" : "2016/02/17",
+    "regist_user_code" : "hiro",
+    "update_user_code" : "fuji" 
+ } ,
+  ...
+]
+```
+
+**/depts/show/:id**
+
+説明: このエンドポイントは特定の部門のデータを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/depts/show/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "SETSURITSU" ,
+ "color"      : "#f00" ,
+ "finish_date": "2017/02/17" ,
+ "memo"       : "" ,
+ "name"       : "会社設立事業部" ,
+ "name_abbr"  : "設立" ,
+ "start_date" : "2016/02/17",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/create**
+
+説明: 部門を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | 部門コード *半角英数字及びハイフン、アンダーバー、ピリオド16文字以内
+`name` | *required* | String | 部門名 *32文字以内
+`name_abbr` | *optional* | String | 部門名(略称) *16文字以内
+`color` | *optional* | String | 識別色 (HTMLカラーコード形式)
+`memo`| *optional* | String | メモ *40文字以内
+`start_date` | *required* | String | 開始日 "YYYY/MM/DD"形式
+`finish_date` | *optional* | String | 終了日 "YYYY/MM/DD"形式
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "API_TEST" ,
+ "color"      : "#ffffff" ,
+ "finish_date": "" ,
+ "memo"       : "" ,
+ "name"       : "api_test" ,
+ "name_abbr"  : "AT" ,
+ "start_date" : "2016/04/01",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/update/:id**
+
+説明: 部門を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/update/:id
+
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
+```
+
+**/depts/destroy/:id**
+
+説明: 指定された id の部門を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/depts/destroy/:id
+```
