@@ -992,7 +992,8 @@ Sample JSON response:
                     "price_including_tax":1000000,
                     "sales_tax":0
                 },
-                "dept_code":"COMMON","memo":""
+                "dept_code":"COMMON",
+                "memo":""
             },
             {
                 "debit":{
@@ -1007,7 +1008,8 @@ Sample JSON response:
                     "price_including_tax":null,
                     "sales_tax":null
                 },
-                "dept_code":"COMMON","memo":""
+                "dept_code":"COMMON",
+                "memo":""
             }
         ]
     }
@@ -1044,7 +1046,8 @@ Sample JSON response:
                 "price_including_tax":10000,
                 "sales_tax":0
             },
-            "dept_code":"COMMON","memo":""
+            "dept_code":"COMMON",
+            "memo":""
         }
     ]
 }
@@ -1066,7 +1069,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | Journal entry date. Format must be "YYYY-MM-DD"
-`journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
+`journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and/or one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
 
 *journal_dcs*
 
