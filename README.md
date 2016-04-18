@@ -971,7 +971,8 @@ Sample JSON response:
                     "price_including_tax":10000,
                     "sales_tax":0
                 },
-                "dept_code":"COMMON","memo":""
+                "dept_code":"COMMON",
+                "memo":""
             }
         ]
     },
