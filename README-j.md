@@ -939,3 +939,128 @@ JSON レスポンスの例:
   "viewable_domains": null
 }    
 ```
+
+#### 旅費・経費精算
+
+**/reimbursements/list/:year/:month**
+
+説明: 旅費・経費精算 申請書一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursements/list/:year/:month
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        id: 212
+        applicant: "ヤマカワ"
+        applicant_staff_code: "EP0001"
+        application_term: "2007-07-01 00:00:00"
+        owner_user_code: "clientuser"
+        reimbursement_transactions_count: 0
+        dept_code: "COMMON"
+        memo: "Everythings is ok"
+        journal: 0
+        start_timestamp: "2007-07-01 00:00:00"
+        finish_timestamp: "2007-07-31 00:00:00"
+    }, {
+        id: 213
+        applicant: "タカシ"
+        applicant_staff_code: "EP0002"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+    }
+]
+```
+
+**/reimbursements/show/:id**
+
+説明: 単一の旅費・経費精算 申請書のデータを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursements/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+        id: 213
+        applicant: "タカシ"
+        applicant_staff_code: "EP0002"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+説明: 旅費・経費精算 申請書を新規作成します。作成に成功した場合は、新規作成された明細が JSON として返されます。
+
+HTTP メッソド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`application_term` | *required* | String | 申請書作成月。 "YYYY-MM-DD"形式
+`applicant` | *required-optional* | String | 申請者名 (20字まで)。applicant_staff_codeが存在しない場合、申請者名は必須です。
+`applicant_staff_code` | *optional* | String | スタッフコード
+`dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
+`memo` | *optional* | String | メモ (30字まで)。
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+説明: 旅費・経費精算 申請書を更新します。更新に成功した場合、更新された明細がJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/update/:id
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+説明: 指定されたidの旅費・経費精算 申請書を削除します。 成功した場合、 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/destroy/:id
+```
