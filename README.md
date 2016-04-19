@@ -1122,6 +1122,128 @@ URL Structure:
 https://tsubaiso.net/manual_journals/destroy/:id
 ```
 
+#### Reimbursements
+
+**/reimbursements/list/:year/:month**
+
+Description: Returns the entire list of reimbursements.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursements/list/:year/:month
+```
+
+Sample JSON Response:
+```
+[
+    {
+        id: 212
+        applicant: "ヤマカワ"
+        application_term: "2007-07-01 00:00:00"
+        owner_user_code: "clientuser"
+        reimbursement_transactions_count: 0
+        dept_code: "COMMON"
+        memo: "Everythings is ok"
+        journal: 0
+        start_timestamp: "2007-07-01 00:00:00"
+        finish_timestamp: "2007-07-31 00:00:00"
+    }, {
+        id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+    }
+]
+```
+
+**/reimbursements/show/:id**
+
+Description: Returns a single of Reimbursements.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursements/show/:id
+```
+
+Sample JSON response:
+```
+{
+    id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
+`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if staff_code doesn't exist.
+`staff_code` | *optional* | String | Code of Staff.
+`dept_code` | *optional* | String | Dept code which the default is "COMMON".
+`memo` | *optional* | String | Memo for a reimbursement.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/update/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/destroy/:id
+```
+
 #### Departments
 
 **/depts/list/**
