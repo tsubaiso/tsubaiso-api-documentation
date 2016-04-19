@@ -1142,6 +1142,7 @@ Sample JSON Response:
         id: 212
         applicant: "ヤマカワ"
         application_term: "2007-07-01 00:00:00"
+        applicant_staff_code: "EP0001"
         owner_user_code: "clientuser"
         reimbursement_transactions_count: 0
         dept_code: "COMMON"
@@ -1153,6 +1154,7 @@ Sample JSON Response:
         id: 213
         applicant: "タカシ"
         application_term: "2008-02-01 00:00:00"
+        applicant_staff_code: "EP0002"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
         dept_code: "SETSURITSU"
@@ -1207,14 +1209,14 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
-`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if staff_code doesn't exist.
-`staff_code` | *optional* | String | Code of Staff.
+`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
+`applicant_staff_code` | *optional* | String | Code of Staff.
 `dept_code` | *optional* | String | Dept code which the default is "COMMON".
 `memo` | *optional* | String | Memo for a reimbursement.
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
 ```
 
 **/reimbursements/update/:id**
