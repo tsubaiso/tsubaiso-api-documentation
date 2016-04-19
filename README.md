@@ -1122,15 +1122,24 @@ URL Structure:
 https://tsubaiso.net/manual_journals/destroy/:id
 ```
 
+<<<<<<< HEAD
 #### Reimbursements
 
 **/reimbursements/list/:year/:month**
 
 Description: Returns the entire list of reimbursements by specific year and month.
+=======
+#### Departments
+
+**/depts/list/**
+
+Description: This endpoint returns a list of departments.
+>>>>>>> master
 
 Method: GET
 
 URL Structure:
+<<<<<<< HEAD
 ``` sh
 https://tsubaiso.net/reimbursements/list/:year/:month
 ```
@@ -1169,17 +1178,57 @@ Sample JSON Response:
 **/reimbursements/show/:id**
 
 Description: Returns a single Reimbursement.
+=======
+```sh
+https://tsubaiso.net/depts/list
+```
+
+Sample JSON response:
+```
+[
+  {
+    "ccode"      : 3 ,
+    "code"       : "SETSURITSU" ,
+    "color"      : "#f00" ,
+    "finish_date": "2017/02/17" ,
+    "memo"       : "" ,
+    "name"       : "会社設立事業部" ,
+    "name_abbr"  : "設立" ,
+    "start_date" : "2016/02/17",
+    "created_at" : "2016/02/17",
+    "updated_at" : "2016/02/17",
+    "regist_user_code" : "hiro",
+    "update_user_code" : "fuji"
+ } ,
+  ...
+]
+```
+
+**/depts/show/:id**
+
+Description: This endpoint returns a single department.
+>>>>>>> master
 
 Method: GET
 
 URL Structure:
 ``` sh
+<<<<<<< HEAD
 https://tsubaiso.net/reimbursements/show/:id
+=======
+https://tsubaiso.net/depts/show/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+>>>>>>> master
 ```
 
 Sample JSON response:
 ```
 {
+<<<<<<< HEAD
     id: 213
     applicant: "タカシ"
     applicant_staff_code: "EP4321",
@@ -1197,18 +1246,43 @@ Sample JSON response:
 **/reimbursements/create**
 
 Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
+=======
+ "ccode"      : 3 ,
+ "code"       : "SETSURITSU" ,
+ "color"      : "#f00" ,
+ "finish_date": "2017/02/17" ,
+ "memo"       : "" ,
+ "name"       : "会社設立事業部" ,
+ "name_abbr"  : "設立" ,
+ "start_date" : "2016/02/17",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/create**
+
+Description: Create a new department. The created department will be sent back as JSON if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
 https://tsubaiso.net/reimbursements/create
+=======
+https://tsubaiso.net/depts/create
+>>>>>>> master
 ```
 
 Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+<<<<<<< HEAD
 `application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
 `applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
 `applicant_staff_code` | *optional* | String | Code of Staff.
@@ -1223,27 +1297,82 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 **/reimbursements/update/:id**
 
 Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
+=======
+`code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
+`name` | *required* | String | Department name. Up to 32 characters.
+`name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
+`color` | *optional* | String | Color. (HTML Color Codes)
+`memo`| *optional* | String | Memo. Up to 40 characters.
+`start_date` | *required* | String | Start date. Format must be "YYYY/MM/DD".
+`finish_date` | *optional* | String | Finish date. Format must be ""YYYY/MM/DD".
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
+```
+
+Sample JSON response:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "API_TEST" ,
+ "color"      : "#ffffff" ,
+ "finish_date": "" ,
+ "memo"       : "" ,
+ "name"       : "api_test" ,
+ "name_abbr"  : "AT" ,
+ "start_date" : "2016/04/01",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/update/:id**
+
+Description: Update a department. The updated department will be sent back as JSON if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
 https://tsubaiso.net/reimbursements/update/:id
+=======
+https://tsubaiso.net/depts/update/:id
+
+>>>>>>> master
 ```
 
 Sample Request:
 ``` sh
+<<<<<<< HEAD
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
 ```
 
 **/reimbursements/destroy/:id**
 
 Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
+=======
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
+```
+
+**/depts/destroy/:id**
+
+Description: Deletes the department with the specified id. Will return 204 No Content if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
 https://tsubaiso.net/reimbursements/destroy/:id
 ```
 
+=======
+https://tsubaiso.net/customer_masters/depts/destroy/:id
+```
+>>>>>>> master
