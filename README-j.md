@@ -959,6 +959,7 @@ JSON レスポンスの例:
     {
         id: 212
         applicant: "ヤマカワ"
+        applicant_staff_code: "EP0001"
         application_term: "2007-07-01 00:00:00"
         owner_user_code: "clientuser"
         reimbursement_transactions_count: 0
@@ -970,6 +971,7 @@ JSON レスポンスの例:
     }, {
         id: 213
         applicant: "タカシ"
+        applicant_staff_code: "EP0002"
         application_term: "2008-02-01 00:00:00"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
@@ -998,6 +1000,7 @@ JSON レスポンスの例:
 {
         id: 213
         applicant: "タカシ"
+        applicant_staff_code: "EP0002"
         application_term: "2008-02-01 00:00:00"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
@@ -1026,13 +1029,13 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `application_term` | *required* | String | 申請書作成月。 "YYYY-MM-DD"形式
 `applicant` | *required-optional* | String | 申請者名 (20字まで)。staff_codeが存在しない場合、申請者名は必須です。
-`staff_code` | *optional* | String | スタッフコード
+`applicant_staff_code` | *optional* | String | スタッフコード
 `dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
 `memo` | *optional* | String | メモ (30字まで)。
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
 ```
 
 **/reimbursements/update/:id**
