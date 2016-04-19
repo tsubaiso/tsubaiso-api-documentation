@@ -1122,15 +1122,63 @@ URL Structure:
 https://tsubaiso.net/manual_journals/destroy/:id
 ```
 
+<<<<<<< HEAD
+#### Reimbursements
+
+**/reimbursements/list/:year/:month**
+
+Description: Returns the entire list of reimbursements by specific year and month.
+=======
 #### Departments
 
 **/depts/list/**
 
 Description: This endpoint returns a list of departments.
+>>>>>>> master
 
 Method: GET
 
 URL Structure:
+<<<<<<< HEAD
+``` sh
+https://tsubaiso.net/reimbursements/list/:year/:month
+```
+
+Sample JSON Response:
+```
+[
+    {
+        id: 212,
+        applicant: "ヤマカワ",
+        applicant_staff_code: "EP1234",
+        application_term: "2007-07-01 00:00:00",
+        owner_user_code: "clientuser",
+        reimbursement_transactions_count: 0,
+        dept_code: "COMMON",
+        memo: "Everythings is ok",
+        journal: 0,
+        start_timestamp: "2007-07-01 00:00:00",
+        finish_timestamp: "2007-07-31 00:00:00"
+    }, {
+        id: 213,
+        applicant: "タカシ",
+        applicant_staff_code: "EP4321",
+        application_term: "2008-02-01 00:00:00",
+        owner_user_code: "yamakawa",
+        reimbursement_transactions_count: 1,
+        dept_code: "SETSURITSU",
+        memo: "",
+        journal: 0,
+        start_timestamp: "2008-01-01 00:00:00",
+        finish_timestamp: "2008-01-31 00:00:00"
+    }
+]
+```
+
+**/reimbursements/show/:id**
+
+Description: Returns a single Reimbursement.
+=======
 ```sh
 https://tsubaiso.net/depts/list
 ```
@@ -1159,22 +1207,46 @@ Sample JSON response:
 **/depts/show/:id**
 
 Description: This endpoint returns a single department.
+>>>>>>> master
 
 Method: GET
 
 URL Structure:
 ``` sh
+<<<<<<< HEAD
+https://tsubaiso.net/reimbursements/show/:id
+=======
 https://tsubaiso.net/depts/show/:id
 ```
 
 Sample Request:
 ```sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+>>>>>>> master
 ```
 
 Sample JSON response:
 ```
 {
+<<<<<<< HEAD
+    id: 213
+    applicant: "タカシ"
+    applicant_staff_code: "EP4321",
+    application_term: "2008-02-01 00:00:00",
+    owner_user_code: "yamakawa",
+    reimbursement_transactions_count: 1,
+    dept_code: "SETSURITSU",
+    memo: "",
+    journal: 0,
+    start_timestamp: "2008-01-01 00:00:00",
+    finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
+=======
  "ccode"      : 3 ,
  "code"       : "SETSURITSU" ,
  "color"      : "#f00" ,
@@ -1193,18 +1265,39 @@ Sample JSON response:
 **/depts/create**
 
 Description: Create a new department. The created department will be sent back as JSON if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
+https://tsubaiso.net/reimbursements/create
+=======
 https://tsubaiso.net/depts/create
+>>>>>>> master
 ```
 
 Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+<<<<<<< HEAD
+`application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
+`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
+`applicant_staff_code` | *optional* | String | Code of Staff.
+`dept_code` | *optional* | String | Dept code which the default is "COMMON".
+`memo` | *optional* | String | Memo for a reimbursement.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
+=======
 `code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
 `name` | *required* | String | Department name. Up to 32 characters.
 `name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
@@ -1239,27 +1332,47 @@ Sample JSON response:
 **/depts/update/:id**
 
 Description: Update a department. The updated department will be sent back as JSON if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
+https://tsubaiso.net/reimbursements/update/:id
+=======
 https://tsubaiso.net/depts/update/:id
 
+>>>>>>> master
 ```
 
 Sample Request:
 ``` sh
+<<<<<<< HEAD
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
+=======
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
 ```
 
 **/depts/destroy/:id**
 
 Description: Deletes the department with the specified id. Will return 204 No Content if successful.
+>>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
+<<<<<<< HEAD
+https://tsubaiso.net/reimbursements/destroy/:id
+```
+
+=======
 https://tsubaiso.net/customer_masters/depts/destroy/:id
 ```
+>>>>>>> master
