@@ -1028,7 +1028,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `application_term` | *required* | String | 申請書作成月。 "YYYY-MM-DD"形式
-`applicant` | *required-optional* | String | 申請者名 (20字まで)。staff_codeが存在しない場合、申請者名は必須です。
+`applicant` | *required-optional* | String | 申請者名 (20字まで)。applicant_staff_codeが存在しない場合、申請者名は必須です。
 `applicant_staff_code` | *optional* | String | スタッフコード
 `dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
 `memo` | *optional* | String | メモ (30字まで)。
