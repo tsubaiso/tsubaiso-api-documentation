@@ -946,10 +946,6 @@ JSON レスポンスの例:
 
 説明: このエンドポイントは特定の年月のマニュアル仕訳の一覧を返します。年月パラメータが指定されなかった場合、現在の月の仕訳が返されます。
 
-HTTP メソッド: GET
-
-URL 構成例:
-
 ```sh
 https://tsubaiso.net/manual_journals/list/:year/:month
 ```
@@ -1127,4 +1123,271 @@ HTTP メソッド: POST
 URL 構成例:
 ```sh
 https://tsubaiso.net/manual_journals/destroy/:id
+```
+
+#### 旅費・経費精算
+
+**/reimbursements/list/:year/:month**
+
+説明: 旅費・経費精算 申請書一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursements/list/:year/:month
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        id: 212
+        applicant: "ヤマカワ"
+        applicant_staff_code: "EP0001"
+        application_term: "2007-07-01 00:00:00"
+        owner_user_code: "clientuser"
+        reimbursement_transactions_count: 0
+        dept_code: "COMMON"
+        memo: "Everythings is ok"
+        journal: 0
+        start_timestamp: "2007-07-01 00:00:00"
+        finish_timestamp: "2007-07-31 00:00:00"
+    }, {
+        id: 213
+        applicant: "タカシ"
+        applicant_staff_code: "EP0002"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+    }
+]
+```
+
+**/reimbursements/show/:id**
+
+説明: 単一の旅費・経費精算 申請書のデータを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursements/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+        id: 213
+        applicant: "タカシ"
+        applicant_staff_code: "EP0002"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+説明: 旅費・経費精算 申請書を新規作成します。作成に成功した場合は、新規作成された明細が JSON として返されます。
+
+HTTP メッソド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`application_term` | *required* | String | 申請書作成月。 "YYYY-MM-DD"形式
+`applicant` | *required-optional* | String | 申請者名 (20字まで)。applicant_staff_codeが存在しない場合、申請者名は必須です。
+`applicant_staff_code` | *optional* | String | スタッフコード
+`dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
+`memo` | *optional* | String | メモ (30字まで)。
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+説明: 旅費・経費精算 申請書を更新します。更新に成功した場合、更新された明細がJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/update/:id
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+説明: 指定されたidの旅費・経費精算 申請書を削除します。 成功した場合、 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursements/destroy/:id
+```
+
+#### 部門管理
+
+**/depts/list/**
+
+説明: このエンドポイントは部門の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/list
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "ccode"      : 3 ,
+    "code"       : "SETSURITSU" ,
+    "color"      : "#f00" ,
+    "finish_date": "2017/02/17" ,
+    "memo"       : "" ,
+    "name"       : "会社設立事業部" ,
+    "name_abbr"  : "設立" ,
+    "start_date" : "2016/02/17",
+    "created_at" : "2016/02/17",
+    "updated_at" : "2016/02/17",
+    "regist_user_code" : "hiro",
+    "update_user_code" : "fuji" 
+ } ,
+  ...
+]
+```
+
+**/depts/show/:id**
+
+説明: このエンドポイントは特定の部門のデータを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/depts/show/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "SETSURITSU" ,
+ "color"      : "#f00" ,
+ "finish_date": "2017/02/17" ,
+ "memo"       : "" ,
+ "name"       : "会社設立事業部" ,
+ "name_abbr"  : "設立" ,
+ "start_date" : "2016/02/17",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/create**
+
+説明: 部門を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | 部門コード *半角英数字及びハイフン、アンダーバー、ピリオド16文字以内
+`name` | *required* | String | 部門名 *32文字以内
+`name_abbr` | *optional* | String | 部門名(略称) *16文字以内
+`color` | *optional* | String | 識別色 (HTMLカラーコード形式)
+`memo`| *optional* | String | メモ *40文字以内
+`start_date` | *required* | String | 開始日 "YYYY/MM/DD"形式
+`finish_date` | *optional* | String | 終了日 "YYYY/MM/DD"形式
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "API_TEST" ,
+ "color"      : "#ffffff" ,
+ "finish_date": "" ,
+ "memo"       : "" ,
+ "name"       : "api_test" ,
+ "name_abbr"  : "AT" ,
+ "start_date" : "2016/04/01",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/update/:id**
+
+説明: 部門を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/update/:id
+
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
+```
+
+**/depts/destroy/:id**
+
+説明: 指定された id の部門を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/depts/destroy/:id
 ```

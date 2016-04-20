@@ -937,3 +937,453 @@ Sample JSON Response:
   "viewable_domains": null
 }    
 ```
+
+#### Manual Journals
+
+**/manual_journals/list/:year/:month**
+
+Description: This endpoint returns a list of manual journal entries for a particular month. If no year and month parameters are provided, it returns the entries for the current month.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/list/:year/:month
+```
+
+Sample JSON response:
+```
+[
+    {
+        "id":29068,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"130",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    },
+    {
+        "id":29069,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"110",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"330",
+                    "tax_type":0,
+                    "price_including_tax":1000000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":null,
+                    "tax_type":null,
+                    "price_including_tax":null,
+                    "sales_tax":null
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    }
+]
+```
+
+**/manual_journals/show/:id**
+
+Description: This endpoint returns a single manual journal entry.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/manual_journals/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id":29068,
+    "journal_timestamp":"2016/04/01 00:00:00 0900",
+    "journal_dcs": [
+        {
+            "debit":{
+                "account_code":"100",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "credit":{
+                "account_code":"130",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "dept_code":"COMMON",
+            "memo":""
+        }
+    ]
+}
+```
+
+**/manual_journals/create**
+
+Description: Creates a new manual journal entry. The created entry will be sent back as JSON.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | Journal entry date. Format must be "YYYY-MM-DD"
+`journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and/or one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
+
+*journal_dcs*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`debit` | *optional* | Object | Debit information.
+`credit` | *optional* | Object | Credit information.
+`dept_code` | *optional* | String | Code of the internal department involved.
+`memo` | *optional* | String | Memo for the manual journal.
+
+*debit and credit*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`account_code` | *required* | String | Account code for the journal entry.
+`tax_type` | *required* | Integer | Tax type of the transaction.
+`price_including_tax` | *required* | String | Amount of debit or credit including tax.
+`sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}' https://tsubaiso.net/manual_journals/create
+```
+
+**/manual_journals/update/:id**
+
+Description: Updates a manual journal entry. The updated entry will be sent back as JSON if successful. **If journal_dcs are specified, the old journal_dcs will be deleted and replaced with the new journal_dcs**
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' https://tsubaiso.net/manual_journals/update/29072
+```
+
+**/manual_journals/destroy/:id**
+
+Description: Deletes the manual journal entry specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/manual_journals/destroy/:id
+```
+
+#### Reimbursements
+
+**/reimbursements/list/:year/:month**
+
+Description: Returns the entire list of reimbursements.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursements/list/:year/:month
+```
+
+Sample JSON Response:
+```
+[
+    {
+        id: 212
+        applicant: "ヤマカワ"
+        application_term: "2007-07-01 00:00:00"
+        applicant_staff_code: "EP0001"
+        owner_user_code: "clientuser"
+        reimbursement_transactions_count: 0
+        dept_code: "COMMON"
+        memo: "Everythings is ok"
+        journal: 0
+        start_timestamp: "2007-07-01 00:00:00"
+        finish_timestamp: "2007-07-31 00:00:00"
+    }, {
+        id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        applicant_staff_code: "EP0002"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+    }
+]
+```
+
+**/reimbursements/show/:id**
+
+Description: Returns a single of Reimbursements.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursements/show/:id
+```
+
+Sample JSON response:
+```
+{
+    id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
+`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
+`applicant_staff_code` | *optional* | String | Code of Staff.
+`dept_code` | *optional* | String | Dept code which the default is "COMMON".
+`memo` | *optional* | String | Memo for a reimbursement.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/update/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/destroy/:id
+```
+
+#### Departments
+
+**/depts/list/**
+
+Description: This endpoint returns a list of departments.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/depts/list
+```
+
+Sample JSON response:
+```
+[
+  {
+    "ccode"      : 3 ,
+    "code"       : "SETSURITSU" ,
+    "color"      : "#f00" ,
+    "finish_date": "2017/02/17" ,
+    "memo"       : "" ,
+    "name"       : "会社設立事業部" ,
+    "name_abbr"  : "設立" ,
+    "start_date" : "2016/02/17",
+    "created_at" : "2016/02/17",
+    "updated_at" : "2016/02/17",
+    "regist_user_code" : "hiro",
+    "update_user_code" : "fuji"
+ } ,
+  ...
+]
+```
+
+**/depts/show/:id**
+
+Description: This endpoint returns a single department.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/depts/show/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+```
+
+Sample JSON response:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "SETSURITSU" ,
+ "color"      : "#f00" ,
+ "finish_date": "2017/02/17" ,
+ "memo"       : "" ,
+ "name"       : "会社設立事業部" ,
+ "name_abbr"  : "設立" ,
+ "start_date" : "2016/02/17",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/create**
+
+Description: Create a new department. The created department will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/depts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
+`name` | *required* | String | Department name. Up to 32 characters.
+`name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
+`color` | *optional* | String | Color. (HTML Color Codes)
+`memo`| *optional* | String | Memo. Up to 40 characters.
+`start_date` | *required* | String | Start date. Format must be "YYYY/MM/DD".
+`finish_date` | *optional* | String | Finish date. Format must be ""YYYY/MM/DD".
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
+```
+
+Sample JSON response:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "API_TEST" ,
+ "color"      : "#ffffff" ,
+ "finish_date": "" ,
+ "memo"       : "" ,
+ "name"       : "api_test" ,
+ "name_abbr"  : "AT" ,
+ "start_date" : "2016/04/01",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji" 
+}
+```
+
+**/depts/update/:id**
+
+Description: Update a department. The updated department will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/depts/update/:id
+
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
+```
+
+**/depts/destroy/:id**
+
+Description: Deletes the department with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/customer_masters/depts/destroy/:id
+```
