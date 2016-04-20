@@ -957,41 +957,66 @@ https://tsubaiso.net/manual_journals/list/:year/:month
 JSON レスポンスの例:
 ``` 
 [
-  {"id":29068,"journal_timestamp":"2016/04/01 00:00:00 +0900",
-    "journal_dcs": [
-      {
-        "debit":{
-          "account_code":"100","tax_type":0,"price_including_tax":10000,"sales_tax":0
-        },
-        "credit":{
-          "account_code":"130","tax_type":0,"price_including_tax":10000,"sales_tax":0
-        },
-        "dept_code":"COMMON","memo":""
-      }
-    ]
-  },
-  {"id":29069,"journal_timestamp":"2016/04/01 00:00:00 +0900",
-    "journal_dcs": [
-      {
-        "debit":{
-          "account_code":"110","tax_type":0,"price_including_tax":500000,"sales_tax":0
-        },
-        "credit":{
-          "account_code":"330","tax_type":0,"price_including_tax":1000000,"sales_tax":0
-        },
-        "dept_code":"COMMON","memo":""
-      },
-      {
-        "debit":{
-          "account_code":"100","tax_type":0,"price_including_tax":500000,"sales_tax":0
-        },
-        "credit":{
-          "account_code":null,"tax_type":null,"price_including_tax":null,"sales_tax":null
-        },
-        "dept_code":"COMMON","memo":""
-      }
-    ]
-  }
+    {
+        "id":29068,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"130",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    },
+    {
+        "id":29069,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"110",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"330",
+                    "tax_type":0,
+                    "price_including_tax":1000000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":null,
+                    "tax_type":null,
+                    "price_including_tax":null,
+                    "sales_tax":null
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    }
 ]
 ```
 
@@ -1003,33 +1028,33 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ar/show/:id
+https://tsubaiso.net/manual_journals/show/:id
 ```
 
 JSON レスポンスの例:
 
 ```
-{"id":29069,"journal_timestamp":"2016/04/01 00:00:00 +0900",
-  "journal_dcs": [
-    {
-      "debit":{
-        "account_code":"110","tax_type":0,"price_including_tax":500000,"sales_tax":0
-      },
-      "credit":{
-        "account_code":"330","tax_type":0,"price_including_tax":1000000,"sales_tax":0
-      },
-      "dept_code":"COMMON","memo":""
-    },
-    {
-      "debit":{
-        "account_code":"100","tax_type":0,"price_including_tax":500000,"sales_tax":0
-      },
-      "credit":{
-        "account_code":null,"tax_type":null,"price_including_tax":null,"sales_tax":null
-      },
-      "dept_code":"COMMON","memo":""
-    }
-  ]
+{
+    "id":29068,
+    "journal_timestamp":"2016/04/01 00:00:00 0900",
+    "journal_dcs": [
+        {
+            "debit":{
+                "account_code":"100",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "credit":{
+                "account_code":"130",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "dept_code":"COMMON",
+            "memo":""
+        }
+    ]
 }
 ```
 
@@ -1056,6 +1081,7 @@ Parameter | Necessity | Type | Description
   *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
 
 *journal_dcs*
+
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `debit` | *optional* | Object | 借方情報。
@@ -1064,17 +1090,17 @@ Parameter | Necessity | Type | Description
 `memo` | *optional* | String | メモ。
 
 *debit and credit*
+
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `account_code` | *required* | String | 勘定科目コード。
 `tax_type` | *required* | Integer | 税区分。
 `price_including_tax` | *required* | Integer | 税込金額。
 `sales_tax` | *optional* | Integer | 税額。(入力が省略された場合は、税区分と税込金額から自動で計算します。)
+
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST \
-     -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}'\
-     https://tsubaiso.net/manual_journals/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}' https://tsubaiso.net/manual_journals/create
 ```
 
 **/manual_journals/update/:id**
@@ -1093,8 +1119,7 @@ https://tsubaiso.net/manual_journals/update/:id
 リクエスト例:
 
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' \
-     https://tsubaiso.net/manual_journals/update/29072
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' https://tsubaiso.net/manual_journals/update/29072
 ```
 
 **/manual_journals/destroy/:id**
