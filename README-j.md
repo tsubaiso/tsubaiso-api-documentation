@@ -1074,11 +1074,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
-`journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。
-
-  jouranal_dcsは配列で指定します。(1つの場合でも要素は省略できません)
-  1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。
-  *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
+`journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。jouranal_dcsは配列で指定します。(2つの場合でも要素は省略できません) 1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。 *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
 
 *journal_dcs*
 
