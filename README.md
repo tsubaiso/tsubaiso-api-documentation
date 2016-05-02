@@ -70,6 +70,7 @@ Sample JSON response:
         "account_code": "501",
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
+        "tag_list": ["Payment", "Foreign"],
         "sales_tax": 400,
         "tax_code": 18,
         "customer_master_code": 101,
@@ -92,6 +93,7 @@ Sample JSON response:
         "account_code": "500",
         "price_including_tax": 10800,
         "price_excluding_tax": 10000,
+        "tag_list": ["Payment", "Foreign"],
         "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 895820,
@@ -131,6 +133,7 @@ Sample JSON response:
     "account_code": "501",
     "price_including_tax": 5400,
     "price_excluding_tax": 5000,
+    "tag_list": ["Payment", "Foreign"],
     "sales_tax": 400,
     "tax_code": 18,
     "customer_master_code": 101,
@@ -164,10 +167,11 @@ Parameter | Necessity | Type | Description
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
+`tag_list` | *optional* | String | Optional tags.
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Banana,Foreign", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar_receipts/update/:id**
@@ -236,6 +240,7 @@ Sample JSON response:
         "account_code": "604",
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
+        "tag_list": ["Payment", "Foreign"],
         "buying_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
@@ -263,6 +268,7 @@ Sample JSON response:
         "account_code": "604",
         "price_including_tax": 10800
         "price_excluding_tax": 10000,
+        "tag_list": ["Payment", "Foreign"],
         "buying_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
@@ -307,6 +313,7 @@ Sample JSON response:
     "account_code": "604",
     "price_including_tax": 5400
     "price_excluding_tax": 5000,
+    "tag_list": ["Payment", "Foreign"],
     "buying_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
@@ -345,10 +352,11 @@ Parameter | Necessity | Type | Description
 `preset_withholding_tax_amount` | *optional* | Integer | Withholding tax amount
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
+`tag_list` | *optional* | String | Optional tags.
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Banana,Foreign" }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
