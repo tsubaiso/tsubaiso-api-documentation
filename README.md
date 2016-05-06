@@ -1246,6 +1246,143 @@ URL Structure:
 https://tsubaiso.net/reimbursements/destroy/:id
 ```
 
+#### Reimbursement Transaction
+
+**/reimbursement_transactions/list/:reimbursement_id**
+
+Description: This endpoint returns a list of reimbursement transactions from a specific reimbursement.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/list/:reimbursement_id
+```
+
+Sample JSON response:
+```
+[
+    {
+        "id" : 12370123,
+        "reimbursement_id": 123,
+        "journal_dc_id": 321,
+        "slip_no": "S230_0291",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 400000,
+        "tax_type": 0,
+        "transaction_timestamp": "2016-01-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "c"
+    }, {
+        "id" : 123456789,
+        "reimbursement_id": 333,
+        "journal_dc_id": 444,
+        "slip_no": "S230_1234",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 10000,
+        "tax_type": 10,
+        "transaction_timestamp": "2016-02-01",
+       "memo": "good",
+        "port_type": 1,
+        "dc": "d"
+    },
+    ...
+]
+```
+
+**/reimbursement_transactions/show/:id**
+
+Description: This endpoint returns a single reimbursement transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursement_transactions/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id" : 123456789,
+    "reimbursement_id": 123,
+    "journal_dc_id": 321,
+    "slip_no": "S230_0291",
+    "reason_code": "SUPPLIES",
+    "tag_list": "Education,Japan",
+    "brief": "everything ok",
+    "price_value": 400000,
+    "tax_type": 0,
+    "transaction_timestamp": "2016-01-01",
+    "memo": "good",
+    "port_type": 1,
+    "dc": "c"
+}
+```
+
+**/reimbursement_transactions/create**
+
+Description: Creates a new reimbursement transaction. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reimbursement_id` | *required* | Integer | Targeted reimbursement which is represented by reimbursement id.
+`transaction_timestamp` | *required* | String | Actual date of the transaction. Format must be "YYYY-MM-DD"
+`price_value` | *required* | Integer | Price value of a reimbursement transaction.
+`reason_code` | *required* | String | Reason of the transaction.
+`port_type` | *optional* | Integer | default port_type is 1.
+`dc` | *optional* | String | debit or credit. default value is 'c' which represent of credit.
+`brief` | *optional* | String| Brief for the transaction.
+`memo` | *optional* | String | Memo for the transaction.
+`tag_list` | *optional* | String | Tags of a transaction.
+`tax_code` | *optional* | String | Tax type of the transaction. 
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 123, "transaction_timestamp": "2016-01-01", "price_value": 10000, "reason_code": "SUPPLIES" }' https://tsubaiso.net/reimbursement_transactions/create
+```
+
+**/reimbursement_transactions/update/:id**
+
+Description: Updates a reimbursement transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/reimbursement_transactions/destroy/:id**
+
+Description: Destroys the reimbursement transaction specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/destroy/:id
+```
+
 #### Departments
 
 **/depts/list/**
