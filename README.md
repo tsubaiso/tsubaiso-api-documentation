@@ -1287,7 +1287,7 @@ Sample JSON response:
         "price_value": 10000,
         "tax_type": 10,
         "transaction_timestamp": "2016-02-01",
-       "memo": "good",
+        "memo": "good",
         "port_type": 1,
         "dc": "d"
     },
@@ -1344,16 +1344,16 @@ Parameter | Necessity | Type | Description
 `transaction_timestamp` | *required* | String | Actual date of the transaction. Format must be "YYYY-MM-DD"
 `price_value` | *required* | Integer | Price value of a reimbursement transaction.
 `reason_code` | *required* | String | Reason of the transaction.
-`port_type` | *optional* | Integer | default port_type is 1.
-`dc` | *optional* | String | debit or credit. default value is 'c' which represent of credit.
-`brief` | *optional* | String| Brief for the transaction.
+`port_type` | *optional* | Integer | 1 for domestic transaction. 2 for foreign transaction.
+`dc` | *optional* | String | Debit or credit. Default value is 'c' which represents credit.
+`brief` | *optional* | String| Summary of the transaction.
 `memo` | *optional* | String | Memo for the transaction.
-`tag_list` | *optional* | String | Tags of a transaction.
-`tax_code` | *optional* | String | Tax type of the transaction. 
+`tag_list` | *optional* | String | Tags for the transaction.
+`tax_type` | *optional* | String | Tax type of the transaction. 
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 123, "transaction_timestamp": "2016-01-01", "price_value": 10000, "reason_code": "SUPPLIES" }' https://tsubaiso.net/reimbursement_transactions/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 106, "transaction_timestamp": "2016-05-01", "price_value": 10000, "reason_code": "SUPPLIES", "port_type": 1, "dc": "c", "brief": "test brief", "memo": "test memo", "tag_list": "Education,Japan", "tax_type": "1003"}' https://tsubaiso.net/reimbursement_transactions/create
 ```
 
 **/reimbursement_transactions/update/:id**
