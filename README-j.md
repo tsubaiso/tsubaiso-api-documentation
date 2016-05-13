@@ -1250,11 +1250,11 @@ URL 構成例:
 https://tsubaiso.net/reimbursements/destroy/:id
 ```
 
-#### 旅費経費精算明細
+#### 旅費・経費精算明細
 
 **/reimbursement_transactions/list/:reimbursement_id**
 
-説明: このエンドポイントは特定の旅費経費精算明細の一覧を返します。
+説明: このエンドポイントは特定の旅費・経費精算明細の一覧を返します。
 
 HTTP メソッド: GET
 
@@ -1301,7 +1301,7 @@ JSON レスポンスの例:
 
 **/reimbursement_transactions/show/:id**
 
-説明: このエンドポイントは単一の旅費経費精算明細を返します。
+説明: このエンドポイントは単一の旅費・経費精算明細を返します。
 
 HTTP メソッド: GET
 
@@ -1331,7 +1331,7 @@ JSON レスポンスの例:
 
 **/reimbursement_transactions/create**
 
-説明: 旅費経費精算明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+説明: 旅費・経費精算明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
 
 HTTP メソッド: POST
 
@@ -1344,7 +1344,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reimbursement_id` | *required* | Integer | 対象となる旅費経費精算のID
+`reimbursement_id` | *required* | Integer | 対象となる旅費・経費精算のID
 `transaction_timestamp` | *required* | String | 支払日。"YYYY-MM-DD"形式
 `price_value` | *required* | Integer | 金額
 `reason_code` | *required* | String | 原因
@@ -1362,7 +1362,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/reimbursement_transactions/update/:id**
 
-説明: 指定された id の旅費経費明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+説明: 指定された id の旅費・経費精算明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
 
 HTTP メソッド: POST
 
@@ -1378,7 +1378,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/reimbursement_transactions/destroy/:id**
 
-説明: 指定された id の旅費経費明細を削除します。成功した場合 204 No Content が返ります。
+説明: 指定された id の旅費・経費精算明細を削除します。成功した場合 204 No Content が返ります。
 
 HTTP メソッド: POST
 
