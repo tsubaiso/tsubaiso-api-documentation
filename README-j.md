@@ -754,7 +754,7 @@ JSON レスポンスの例:
         "updated_at": "2009/04/28 06:40:51 +0900",
         "value": "1950/01/01"
     },
-    ...    
+    ...
 ]
 ```
 
@@ -794,7 +794,7 @@ JSON レスポンスの例:
     "update_user_code": null,
     "updated_at": "2009/04/28 06:40:51 +0900",
     "value": "TOEIC"
-}    
+}
 ```
 
 **/staff_data/create**
@@ -894,7 +894,7 @@ JSON レスポンスの例:
       "updated_at": "2016/01/22 13:46:05 +0900"
       "viewable_domains": null
     },
-    ...    
+    ...
 ]
 ```
 
@@ -937,7 +937,7 @@ JSON レスポンスの例:
   "update_user_code": null
   "updated_at": "2016/01/22 13:46:05 +0900"
   "viewable_domains": null
-}    
+}
 ```
 
 #### マニュアル仕訳
@@ -951,7 +951,7 @@ https://tsubaiso.net/manual_journals/list/:year/:month
 ```
 
 JSON レスポンスの例:
-``` 
+```
 [
     {
         "id":29068,
@@ -1097,7 +1097,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/manual_journals/update/:id**
 
-説明: 指定された id のマニュアル仕訳を更新します。更新に成功した場合、更新された仕訳が JSON として返されます。       　    
+説明: 指定された id のマニュアル仕訳を更新します。更新に成功した場合、更新された仕訳が JSON として返されます。       　
   **journal_dcsを指定した場合はその内容で更新され、更新前のjournal_dcsは全て削除されます。**
 
 HTTP メソッド: POST
@@ -1250,6 +1250,143 @@ URL 構成例:
 https://tsubaiso.net/reimbursements/destroy/:id
 ```
 
+#### 旅費・経費精算明細
+
+**/reimbursement_transactions/list/:reimbursement_id**
+
+説明: このエンドポイントは特定の旅費・経費精算明細の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/list/:reimbursement_id
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "id" : 12370123,
+        "reimbursement_id": 123,
+        "journal_dc_id": 321,
+        "slip_no": "S230_0291",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 400000,
+        "tax_type": 0,
+        "transaction_timestamp": "2016-01-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "c"
+    }, {
+        "id" : 123456789,
+        "reimbursement_id": 333,
+        "journal_dc_id": 444,
+        "slip_no": "S230_1234",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 10000,
+        "tax_type": 10,
+        "transaction_timestamp": "2016-02-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "d"
+    },
+    ...
+]
+```
+
+**/reimbursement_transactions/show/:id**
+
+説明: このエンドポイントは単一の旅費・経費精算明細を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursement_transactions/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+    "id" : 123456789,
+    "reimbursement_id": 123,
+    "journal_dc_id": 321,
+    "slip_no": "S230_0291",
+    "reason_code": "SUPPLIES",
+    "tag_list": "Education,Japan",
+    "brief": "everything ok",
+    "price_value": 400000,
+    "tax_type": 0,
+    "transaction_timestamp": "2016-01-01",
+    "memo": "good",
+    "port_type": 1,
+    "dc": "c"
+}
+```
+
+**/reimbursement_transactions/create**
+
+説明: 旅費・経費精算明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reimbursement_id` | *required* | Integer | 対象となる旅費・経費精算のID
+`transaction_timestamp` | *required* | String | 支払日。"YYYY-MM-DD"形式
+`price_value` | *required* | Integer | 金額
+`reason_code` | *required* | String | 原因
+`port_type` | *optional* | Integer | エリア区分。1: 国内 2: 国外
+`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
+`brief` | *optional* | String| 摘要
+`memo` | *optional* | String | メモ
+`tag_list` | *optional* | String | タグ
+`tax_type` | *optional* | String | 課税区分コード
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 106, "transaction_timestamp": "2016-05-01", "price_value": 10000, "reason_code": "SUPPLIES", "port_type": 1, "dc": "c", "brief": "test brief", "memo": "test memo", "tag_list": "Education,Japan", "tax_type": "1003"}' https://tsubaiso.net/reimbursement_transactions/create
+```
+
+**/reimbursement_transactions/update/:id**
+
+説明: 指定された id の旅費・経費精算明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/reimbursement_transactions/destroy/:id**
+
+説明: 指定された id の旅費・経費精算明細を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/destroy/:id
+```
+
 #### 部門管理
 
 **/depts/list/**
@@ -1278,7 +1415,7 @@ JSON レスポンスの例:
     "created_at" : "2016/02/17",
     "updated_at" : "2016/02/17",
     "regist_user_code" : "hiro",
-    "update_user_code" : "fuji" 
+    "update_user_code" : "fuji"
  } ,
   ...
 ]
@@ -1314,7 +1451,7 @@ JSON レスポンスの例:
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
@@ -1360,7 +1497,7 @@ JSON レスポンスの例:
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
