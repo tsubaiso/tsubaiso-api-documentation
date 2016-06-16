@@ -595,11 +595,11 @@ Parameter | Necessity | Type | Description
 `foreign_currency` | *optional* | Integer | Foreign currency transactions. 0: No, 1: Yes.
 `used_in_ar` | *required* | Integer | Receivables classification. 0: No AR, 1: Accounts Receivable, 2: Non-trade Receivables.
 `receive_closing_schedule` | *optional* | String | Invoice cut-off day for AR. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
-`receive_sight` | *optional* | String | Payment deadline for AR. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`receive_sight` | *optional* | String | Payment deadline for AR. "": No setting, "0": Upon receipt, "1m12": 12th of cut-off month, "1m18": 18th of cut-off month, "1m20": 20th of cut-off month, "1m22": 22th of cut-off month, "1m26": 26th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m12": 12th of month, "2m15": 15th of following month, "2m18": 18th of following month, "2m20": 20th of following month, "2m22": 22th of following month, "2m25": 25th of following month, "2m26": 26th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m12": 12th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m18": 18th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m22": 22th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m26": 26th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m12": 12th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "4m18": 18th of three months after cut-off month, "4m22": 22th of three months after cut-off month, "4m26": 26th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
 `bill_detail_round_rule` | *optional* | Integer | Rounding setting for quotes and invoices. 1: Round-down, 2: Round-up, 3: Round.
 `used_in_ap` | *required* | Integer | Payables classification. 0: No AP, 1: Non-trade Payables, 2: Accounts Payable.
 `pay_closing_schedule` | *optional* | String | Invoice cut-off day for AP. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
-`pay_sight` | *optional* | String | Payment deadline for AP. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`pay_sight` | *optional* | String | Payment deadline for AP. "": No setting, "0": Upon receipt, "1m12": 12th of cut-off month, "1m18": 18th of cut-off month, "1m20": 20th of cut-off month, "1m22": 22th of cut-off month, "1m26": 26th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m12": 12th of month, "2m15": 15th of following month, "2m18": 18th of following month, "2m20": 20th of following month, "2m22": 22th of following month, "2m25": 25th of following month, "2m26": 26th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m12": 12th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m18": 18th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m22": 22th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m26": 26th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m12": 12th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "4m18": 18th of three months after cut-off month, "4m22": 22th of three months after cut-off month, "4m26": 26th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
 `need_tax_deductions` | *optional* | String | Perform tax withholding or not. "0": No withholding, "1": Withholding.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm).
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
@@ -760,7 +760,7 @@ Sample JSON Response:
         "updated_at": "2009/04/28 06:40:51 +0900",
         "value": "1950/01/01"
     },
-    ...    
+    ...
 ]
 ```
 
@@ -800,7 +800,7 @@ Sample JSON Response:
     "update_user_code": null,
     "updated_at": "2009/04/28 06:40:51 +0900",
     "value": "TOEIC"
-}    
+}
 ```
 
 **/staff_data/create**
@@ -900,7 +900,7 @@ Sample JSON Response:
       "updated_at": "2016/01/22 13:46:05 +0900"
       "viewable_domains": null
     },
-    ...    
+    ...
 ]
 ```
 
@@ -943,7 +943,7 @@ Sample JSON Response:
   "update_user_code": null
   "updated_at": "2016/01/22 13:46:05 +0900"
   "viewable_domains": null
-}    
+}
 ```
 
 #### Manual Journals
@@ -1357,7 +1357,7 @@ Parameter | Necessity | Type | Description
 `brief` | *optional* | String| Summary of the transaction.
 `memo` | *optional* | String | Memo for the transaction.
 `tag_list` | *optional* | String | Tags for the transaction.
-`tax_type` | *optional* | String | Tax type of the transaction. 
+`tax_type` | *optional* | String | Tax type of the transaction.
 
 Sample Request:
 ```sh
@@ -1455,7 +1455,7 @@ Sample JSON response:
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
@@ -1501,7 +1501,7 @@ Sample JSON response:
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
