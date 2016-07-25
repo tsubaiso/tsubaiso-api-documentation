@@ -589,11 +589,11 @@ Parameter | Necessity | Type | Description
 `foreign_currency` | *optional* | Integer | 外貨取引の有無。0:無（外貨での請求書なし）、1: 「有（外貨での請求書あり）」
 `used_in_ar` | *required* | Integer | 販売管理の債権区分。0: 使用しない、 1: 主に売掛金（売上代金の入金先）として使用する、2: 主に未収入金（売上代金以外の入金先）として使用する
 `receive_closing_schedule` | *optional* | String | 請求締日。 "":未設定、"0": 即日、 1: 月初、5: 5日、10: 10日、15: 15日、20: 20日、25: 25日、-1: 月末
-`receive_sight` | *optional* | String | 入金サイト。 "": 未設定、"0": 即日払、"1m20": 締月20日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m15": 締月翌月15日払、"2m20": 締月翌月20日払、"2m25": 締月翌月25日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m15": 締月翌々月15日払、"3m20": 締月翌々月20日払、"3m25": 締月翌々月25日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m15": 締月翌々々月15日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
+`receive_sight` | *optional* | String | 入金サイト。 "": 未設定、"0": 即日払、"1m12": 締月12日払、"1m18": 締月18日払、"1m20": 締月20日払、"1m22": 締月22日払、"1m26": 締月26日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m12": 締月翌月12日払、"2m15": 締月翌月15日払、"2m18": 締月翌月18日払、"2m20": 締月翌月20日払、"2m22": 締月翌月22日払、"2m25": 締月翌月25日払、"2m26": 締月翌月26日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m12": 締月翌々月12日払、"3m15": 締月翌々月15日払、"3m18": 締月翌々月18日払、"3m20": 締月翌々月20日払、"3m22": 締月翌々月22日払、"3m25": 締月翌々月25日払、"3m26": 締月翌々月26日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m12": 締月翌々々月12日払、"4m15": 締月翌々々月15日払、"4m18": 締月翌々々月18日払、"4m22": 締月翌々々月22日払、"4m26": 締月翌々々月26日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
 `bill_detail_round_rule` | *optional* | Integer | 見積書・請求書の明細の端数処理設定。 1: 切り捨て、2: 切り上げ、3: 四捨五入
 `used_in_ap` | *required* | Integer | 購買管理の債務区分。0: 使用しない、1: 主に未払金（仕入代金以外の支払い先）として使用する、2: 主に買掛金（仕入代金の支払い先）として使用する
 `pay_closing_schedule` | *optional* | String | 支払締日。 "": 未設定、"0": 即日、 "1": 月初、"5": 5日、"10": 10日、"15": 15日、"20": 20日、"25": 25日、"-1": 月末
-`pay_sight` | *optional* | String | 支払サイト。"": 未設定、"0": 即日払、"1m20": 締月20日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m15": 締月翌月15日払、"2m20": 締月翌月20日払、"2m25": 締月翌月25日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m15": 締月翌々月15日払、"3m20": 締月翌々月20日払、"3m25": 締月翌々月25日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m15": 締月翌々々月15日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
+`pay_sight` | *optional* | String | 支払サイト。"": 未設定、"0": 即日払、"1m12": 締月12日払、"1m18": 締月18日払、"1m20": 締月20日払、"1m22": 締月22日払、"1m26": 締月26日払、"1m27": 締月27日払、"1m-1": 締月末払、"2m5": 締月翌月5日払、"2m10": 締月翌月10日払、"2m12": 締月翌月12日払、"2m15": 締月翌月15日払、"2m18": 締月翌月18日払、"2m20": 締月翌月20日払、"2m22": 締月翌月22日払、"2m25": 締月翌月25日払、"2m26": 締月翌月26日払、"2m27": 締月翌月27日払、"2m-1": 締月翌月末払、"3m5": 締月翌々月5日払、"3m10": 締月翌々月10日払、"3m12": 締月翌々月12日払、"3m15": 締月翌々月15日払、"3m18": 締月翌々月18日払、"3m20": 締月翌々月20日払、"3m22": 締月翌々月22日払、"3m25": 締月翌々月25日払、"3m26": 締月翌々月26日払、"3m-1": 締月翌々月末払、"4m5": 締月翌々々月5日払、"4m10": 締月翌々々月10日払、"4m12": 締月翌々々月12日払、"4m15": 締月翌々々月15日払、"4m18": 締月翌々々月18日払、"4m22": 締月翌々々月22日払、"4m26": 締月翌々々月26日払、"-1m20": 締月前月20日払、"-1m-1": 締月前月末払
 `need_tax_deductions` | *optional* | String | 源泉徴収を行うか否か。 "0": 行わない、"1": 行う
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分。  例："nta2795"  値については、[国税庁の源泉徴収分類コード](https://www.nta.go.jp/taxanswer/gensen/gensen35.htm)を参照ください。
 `withholding_tax_base` | *optional* | Integer | 源泉徴収基準額。1: 消費税込額、2: 消費税抜額
@@ -754,7 +754,7 @@ JSON レスポンスの例:
         "updated_at": "2009/04/28 06:40:51 +0900",
         "value": "1950/01/01"
     },
-    ...    
+    ...
 ]
 ```
 
@@ -794,7 +794,7 @@ JSON レスポンスの例:
     "update_user_code": null,
     "updated_at": "2009/04/28 06:40:51 +0900",
     "value": "TOEIC"
-}    
+}
 ```
 
 **/staff_data/create**
@@ -894,7 +894,7 @@ JSON レスポンスの例:
       "updated_at": "2016/01/22 13:46:05 +0900"
       "viewable_domains": null
     },
-    ...    
+    ...
 ]
 ```
 
@@ -937,7 +937,192 @@ JSON レスポンスの例:
   "update_user_code": null
   "updated_at": "2016/01/22 13:46:05 +0900"
   "viewable_domains": null
-}    
+}
+```
+
+#### マニュアル仕訳
+
+**/manual_journals/list/:year/:month**
+
+説明: このエンドポイントは特定の年月のマニュアル仕訳の一覧を返します。年月パラメータが指定されなかった場合、現在の月の仕訳が返されます。
+
+```sh
+https://tsubaiso.net/manual_journals/list/:year/:month
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "id":29068,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"130",
+                    "tax_type":0,
+                    "price_including_tax":10000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    },
+    {
+        "id":29069,
+        "journal_timestamp":"2016/04/01 00:00:00 0900",
+        "journal_dcs": [
+            {
+                "debit":{
+                    "account_code":"110",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"330",
+                    "tax_type":0,
+                    "price_including_tax":1000000,
+                    "sales_tax":0
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"100",
+                    "tax_type":0,
+                    "price_including_tax":500000,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":null,
+                    "tax_type":null,
+                    "price_including_tax":null,
+                    "sales_tax":null
+                },
+                "dept_code":"COMMON",
+                "memo":""
+            }
+        ]
+    }
+]
+```
+
+**/manual_journals/show/:id**
+
+説明: このエンドポイントは単一のマニュアル仕訳を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/manual_journals/show/:id
+```
+
+JSON レスポンスの例:
+
+```
+{
+    "id":29068,
+    "journal_timestamp":"2016/04/01 00:00:00 0900",
+    "journal_dcs": [
+        {
+            "debit":{
+                "account_code":"100",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "credit":{
+                "account_code":"130",
+                "tax_type":0,
+                "price_including_tax":10000,
+                "sales_tax":0
+            },
+            "dept_code":"COMMON",
+            "memo":""
+        }
+    ]
+}
+```
+
+**/manual_journals/create**
+
+説明: マニュアル仕訳を新規作成します。作成に成功した場合、新規作成された仕訳が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/manual_journals/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
+`journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。jouranal_dcsは配列で指定します。(2つの場合でも要素は省略できません) 1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。 *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
+
+*journal_dcs*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`debit` | *optional* | Object | 借方情報。
+`credit` | *optional* | Object | 貸方情報。
+`dept_code` | *optional* | String | 部門コード。
+`memo` | *optional* | String | メモ。
+
+*debit and credit*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`account_code` | *required* | String | 勘定科目コード。
+`tax_type` | *required* | Integer | 税区分。
+`price_including_tax` | *required* | Integer | 税込金額。
+`sales_tax` | *optional* | Integer | 税額。(入力が省略された場合は、税区分と税込金額から自動で計算します。)
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-04-01", "journal_dcs" : [{"debit" : {"account_code" : "110", "price_including_tax" : 100000, "tax_type" : 0}, "credit" : {"account_code" : "100", "price_including_tax" : 100000, "tax_type" : 0}}]}' https://tsubaiso.net/manual_journals/create
+```
+
+**/manual_journals/update/:id**
+
+説明: 指定された id のマニュアル仕訳を更新します。更新に成功した場合、更新された仕訳が JSON として返されます。       　
+  **journal_dcsを指定した場合はその内容で更新され、更新前のjournal_dcsは全て削除されます。**
+
+HTTP メソッド: POST
+
+URL 構成例:
+
+```sh
+https://tsubaiso.net/manual_journals/update/:id
+```
+
+リクエスト例:
+
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2016-05-01"}' https://tsubaiso.net/manual_journals/update/29072
+```
+
+**/manual_journals/destroy/:id**
+
+説明: 指定された id のマニュアル仕訳を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/manual_journals/destroy/:id
 ```
 
 #### 旅費・経費精算
@@ -1063,4 +1248,283 @@ HTTP メソッド: POST
 URL 構成例:
 ```sh
 https://tsubaiso.net/reimbursements/destroy/:id
+```
+
+#### 旅費・経費精算明細
+
+**/reimbursement_transactions/list/:reimbursement_id**
+
+説明: このエンドポイントは特定の旅費・経費精算明細の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/list/:reimbursement_id
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "id" : 12370123,
+        "reimbursement_id": 123,
+        "journal_dc_id": 321,
+        "slip_no": "S230_0291",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 400000,
+        "tax_type": 0,
+        "transaction_timestamp": "2016-01-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "c"
+    }, {
+        "id" : 123456789,
+        "reimbursement_id": 333,
+        "journal_dc_id": 444,
+        "slip_no": "S230_1234",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 10000,
+        "tax_type": 10,
+        "transaction_timestamp": "2016-02-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "d"
+    },
+    ...
+]
+```
+
+**/reimbursement_transactions/show/:id**
+
+説明: このエンドポイントは単一の旅費・経費精算明細を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursement_transactions/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+    "id" : 123456789,
+    "reimbursement_id": 123,
+    "journal_dc_id": 321,
+    "slip_no": "S230_0291",
+    "reason_code": "SUPPLIES",
+    "tag_list": "Education,Japan",
+    "brief": "everything ok",
+    "price_value": 400000,
+    "tax_type": 0,
+    "transaction_timestamp": "2016-01-01",
+    "memo": "good",
+    "port_type": 1,
+    "dc": "c"
+}
+```
+
+**/reimbursement_transactions/create**
+
+説明: 旅費・経費精算明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reimbursement_id` | *required* | Integer | 対象となる旅費・経費精算のID
+`transaction_timestamp` | *required* | String | 支払日。"YYYY-MM-DD"形式
+`price_value` | *required* | Integer | 金額
+`reason_code` | *required* | String | 原因
+`port_type` | *optional* | Integer | エリア区分。1: 国内 2: 国外
+`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
+`brief` | *optional* | String| 摘要
+`memo` | *optional* | String | メモ
+`tag_list` | *optional* | String | タグ
+`tax_type` | *optional* | String | 課税区分コード
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 106, "transaction_timestamp": "2016-05-01", "price_value": 10000, "reason_code": "SUPPLIES", "port_type": 1, "dc": "c", "brief": "test brief", "memo": "test memo", "tag_list": "Education,Japan", "tax_type": "1003"}' https://tsubaiso.net/reimbursement_transactions/create
+```
+
+**/reimbursement_transactions/update/:id**
+
+説明: 指定された id の旅費・経費精算明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/reimbursement_transactions/destroy/:id**
+
+説明: 指定された id の旅費・経費精算明細を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/reimbursement_transactions/destroy/:id
+```
+
+#### 部門管理
+
+**/depts/list/**
+
+説明: このエンドポイントは部門の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/list
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "ccode"      : 3 ,
+    "code"       : "SETSURITSU" ,
+    "color"      : "#f00" ,
+    "finish_date": "2017/02/17" ,
+    "memo"       : "" ,
+    "name"       : "会社設立事業部" ,
+    "name_abbr"  : "設立" ,
+    "start_date" : "2016/02/17",
+    "created_at" : "2016/02/17",
+    "updated_at" : "2016/02/17",
+    "regist_user_code" : "hiro",
+    "update_user_code" : "fuji"
+ } ,
+  ...
+]
+```
+
+**/depts/show/:id**
+
+説明: このエンドポイントは特定の部門のデータを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/depts/show/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "SETSURITSU" ,
+ "color"      : "#f00" ,
+ "finish_date": "2017/02/17" ,
+ "memo"       : "" ,
+ "name"       : "会社設立事業部" ,
+ "name_abbr"  : "設立" ,
+ "start_date" : "2016/02/17",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji"
+}
+```
+
+**/depts/create**
+
+説明: 部門を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | 部門コード *半角英数字及びハイフン、アンダーバー、ピリオド16文字以内
+`name` | *required* | String | 部門名 *32文字以内
+`name_abbr` | *optional* | String | 部門名(略称) *16文字以内
+`color` | *optional* | String | 識別色 (HTMLカラーコード形式)
+`memo`| *optional* | String | メモ *40文字以内
+`start_date` | *required* | String | 開始日 "YYYY/MM/DD"形式
+`finish_date` | *optional* | String | 終了日 "YYYY/MM/DD"形式
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
+```
+
+JSON レスポンスの例:
+```
+{
+ "ccode"      : 3 ,
+ "code"       : "API_TEST" ,
+ "color"      : "#ffffff" ,
+ "finish_date": "" ,
+ "memo"       : "" ,
+ "name"       : "api_test" ,
+ "name_abbr"  : "AT" ,
+ "start_date" : "2016/04/01",
+ "created_at" : "2016/02/17",
+ "updated_at" : "2016/02/17",
+ "regist_user_code" : "hiro",
+ "update_user_code" : "fuji"
+}
+```
+
+**/depts/update/:id**
+
+説明: 部門を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/depts/update/:id
+
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
+```
+
+**/depts/destroy/:id**
+
+説明: 指定された id の部門を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/customer_masters/depts/destroy/:id
 ```

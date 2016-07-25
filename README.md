@@ -70,6 +70,7 @@ Sample JSON response:
         "account_code": "501",
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
+        "tag_list": ["Payment", "Foreign"],
         "sales_tax": 400,
         "tax_code": 18,
         "customer_master_code": 101,
@@ -92,6 +93,7 @@ Sample JSON response:
         "account_code": "500",
         "price_including_tax": 10800,
         "price_excluding_tax": 10000,
+        "tag_list": ["Payment", "Foreign"],
         "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 895820,
@@ -131,6 +133,7 @@ Sample JSON response:
     "account_code": "501",
     "price_including_tax": 5400,
     "price_excluding_tax": 5000,
+    "tag_list": ["Payment", "Foreign"],
     "sales_tax": 400,
     "tax_code": 18,
     "customer_master_code": 101,
@@ -164,10 +167,11 @@ Parameter | Necessity | Type | Description
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
+`tag_list` | *optional* | String | Optional tags.
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0}' https://tsubaiso.net/ar/create
 ```
 
 **/ar_receipts/update/:id**
@@ -236,6 +240,7 @@ Sample JSON response:
         "account_code": "604",
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
+        "tag_list": ["Payment", "Foreign"],
         "buying_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
@@ -263,6 +268,7 @@ Sample JSON response:
         "account_code": "604",
         "price_including_tax": 10800
         "price_excluding_tax": 10000,
+        "tag_list": ["Payment", "Foreign"],
         "buying_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
@@ -307,6 +313,7 @@ Sample JSON response:
     "account_code": "604",
     "price_including_tax": 5400
     "price_excluding_tax": 5000,
+    "tag_list": ["Payment", "Foreign"],
     "buying_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
@@ -345,10 +352,11 @@ Parameter | Necessity | Type | Description
 `preset_withholding_tax_amount` | *optional* | Integer | Withholding tax amount
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
+`tag_list` | *optional* | String | Optional tags.
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign" }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
@@ -587,11 +595,11 @@ Parameter | Necessity | Type | Description
 `foreign_currency` | *optional* | Integer | Foreign currency transactions. 0: No, 1: Yes.
 `used_in_ar` | *required* | Integer | Receivables classification. 0: No AR, 1: Accounts Receivable, 2: Non-trade Receivables.
 `receive_closing_schedule` | *optional* | String | Invoice cut-off day for AR. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
-`receive_sight` | *optional* | String | Payment deadline for AR. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`receive_sight` | *optional* | String | Payment deadline for AR. "": No setting, "0": Upon receipt, "1m12": 12th of cut-off month, "1m18": 18th of cut-off month, "1m20": 20th of cut-off month, "1m22": 22th of cut-off month, "1m26": 26th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m12": 12th of month, "2m15": 15th of following month, "2m18": 18th of following month, "2m20": 20th of following month, "2m22": 22th of following month, "2m25": 25th of following month, "2m26": 26th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m12": 12th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m18": 18th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m22": 22th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m26": 26th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m12": 12th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "4m18": 18th of three months after cut-off month, "4m22": 22th of three months after cut-off month, "4m26": 26th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
 `bill_detail_round_rule` | *optional* | Integer | Rounding setting for quotes and invoices. 1: Round-down, 2: Round-up, 3: Round.
 `used_in_ap` | *required* | Integer | Payables classification. 0: No AP, 1: Non-trade Payables, 2: Accounts Payable.
 `pay_closing_schedule` | *optional* | String | Invoice cut-off day for AP. "": No setting, "0": Upon Receipt, "1": Beginning of month, "5": 5th of each month, "10": 10th of each month, "15": 15th of each month, "20": 20th of each month, "25": 25th of each month, "-1": End of month.
-`pay_sight` | *optional* | String | Payment deadline for AP. "": No setting, "0": Upon receipt, "1m20": 20th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m15": 15th of following month, "2m20": 20th of following month, "2m25": 25th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
+`pay_sight` | *optional* | String | Payment deadline for AP. "": No setting, "0": Upon receipt, "1m12": 12th of cut-off month, "1m18": 18th of cut-off month, "1m20": 20th of cut-off month, "1m22": 22th of cut-off month, "1m26": 26th of cut-off month, "1m27": 27th of cut-off month, "1m-1": End of cut-off month, "2m5": 5th of following month, "2m10": 10th of month, "2m12": 12th of month, "2m15": 15th of following month, "2m18": 18th of following month, "2m20": 20th of following month, "2m22": 22th of following month, "2m25": 25th of following month, "2m26": 26th of following month, "2m27": 27th of following month, "2m-1": End of following month, "3m5": 5th day of two months after cut-off month, "3m10": 10th day of two months after cut-off month, "3m12": 12th day of two months after cut-off month, "3m15": 15th day of two months after cut-off month, "3m18": 18th day of two months after cut-off month, "3m20": 20th day of two months after cut-off month, "3m22": 22th day of two months after cut-off month, "3m25": 25th day of two months after cut-off month, "3m26": 26th day of two months after cut-off month, "3m-1": End of two months after cut-off month, "4m5": 5th of three months after cut-off month, "4m10": 10th of three months after cut-off month, "4m12": 12th of three months after cut-off month, "4m15": 15th of three months after cut-off month, "4m18": 18th of three months after cut-off month, "4m22": 22th of three months after cut-off month, "4m26": 26th of three months after cut-off month, "-1m20": 20th of preceding month, "-1m-1": End of preceding month.
 `need_tax_deductions` | *optional* | String | Perform tax withholding or not. "0": No withholding, "1": Withholding.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm).
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
@@ -752,7 +760,7 @@ Sample JSON Response:
         "updated_at": "2009/04/28 06:40:51 +0900",
         "value": "1950/01/01"
     },
-    ...    
+    ...
 ]
 ```
 
@@ -792,7 +800,7 @@ Sample JSON Response:
     "update_user_code": null,
     "updated_at": "2009/04/28 06:40:51 +0900",
     "value": "TOEIC"
-}    
+}
 ```
 
 **/staff_data/create**
@@ -892,7 +900,7 @@ Sample JSON Response:
       "updated_at": "2016/01/22 13:46:05 +0900"
       "viewable_domains": null
     },
-    ...    
+    ...
 ]
 ```
 
@@ -935,7 +943,7 @@ Sample JSON Response:
   "update_user_code": null
   "updated_at": "2016/01/22 13:46:05 +0900"
   "viewable_domains": null
-}    
+}
 ```
 
 #### Manual Journals
@@ -1122,24 +1130,15 @@ URL Structure:
 https://tsubaiso.net/manual_journals/destroy/:id
 ```
 
-<<<<<<< HEAD
 #### Reimbursements
 
 **/reimbursements/list/:year/:month**
 
 Description: Returns the entire list of reimbursements by specific year and month.
-=======
-#### Departments
-
-**/depts/list/**
-
-Description: This endpoint returns a list of departments.
->>>>>>> master
 
 Method: GET
 
 URL Structure:
-<<<<<<< HEAD
 ``` sh
 https://tsubaiso.net/reimbursements/list/:year/:month
 ```
@@ -1148,28 +1147,28 @@ Sample JSON Response:
 ```
 [
     {
-        id: 212,
-        applicant: "ヤマカワ",
-        applicant_staff_code: "EP1234",
-        application_term: "2007-07-01 00:00:00",
-        owner_user_code: "clientuser",
-        reimbursement_transactions_count: 0,
-        dept_code: "COMMON",
-        memo: "Everythings is ok",
-        journal: 0,
-        start_timestamp: "2007-07-01 00:00:00",
+        id: 212
+        applicant: "ヤマカワ"
+        application_term: "2007-07-01 00:00:00"
+        applicant_staff_code: "EP0001"
+        owner_user_code: "clientuser"
+        reimbursement_transactions_count: 0
+        dept_code: "COMMON"
+        memo: "Everythings is ok"
+        journal: 0
+        start_timestamp: "2007-07-01 00:00:00"
         finish_timestamp: "2007-07-31 00:00:00"
     }, {
-        id: 213,
-        applicant: "タカシ",
-        applicant_staff_code: "EP4321",
-        application_term: "2008-02-01 00:00:00",
-        owner_user_code: "yamakawa",
-        reimbursement_transactions_count: 1,
-        dept_code: "SETSURITSU",
-        memo: "",
-        journal: 0,
-        start_timestamp: "2008-01-01 00:00:00",
+        id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        applicant_staff_code: "EP0002"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
         finish_timestamp: "2008-01-31 00:00:00"
     }
 ]
@@ -1177,8 +1176,230 @@ Sample JSON Response:
 
 **/reimbursements/show/:id**
 
-Description: Returns a single Reimbursement.
-=======
+Description: Returns a single reimbursement.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursements/show/:id
+```
+
+Sample JSON response:
+```
+{
+    id: 213
+        applicant: "タカシ"
+        application_term: "2008-02-01 00:00:00"
+        owner_user_code: "yamakawa"
+        reimbursement_transactions_count: 1
+        dept_code: "SETSURITSU"
+        memo: ""
+        journal: 0
+        start_timestamp: "2008-01-01 00:00:00"
+        finish_timestamp: "2008-01-31 00:00:00"
+}
+```
+
+**/reimbursements/create**
+
+Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
+`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
+`applicant_staff_code` | *optional* | String | Code of Staff.
+`dept_code` | *optional* | String | Dept code which the default is "COMMON".
+`memo` | *optional* | String | Memo for a reimbursement.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+```
+
+**/reimbursements/update/:id**
+
+Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/update/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+```
+
+**/reimbursements/destroy/:id**
+
+Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursements/destroy/:id
+```
+
+#### Reimbursement Transaction
+
+**/reimbursement_transactions/list/:reimbursement_id**
+
+Description: This endpoint returns a list of reimbursement transactions from a specific reimbursement.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/list/:reimbursement_id
+```
+
+Sample JSON response:
+```
+[
+    {
+        "id" : 12370123,
+        "reimbursement_id": 123,
+        "journal_dc_id": 321,
+        "slip_no": "S230_0291",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 400000,
+        "tax_type": 0,
+        "transaction_timestamp": "2016-01-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "c"
+    }, {
+        "id" : 123456789,
+        "reimbursement_id": 333,
+        "journal_dc_id": 444,
+        "slip_no": "S230_1234",
+        "reason_code": "SUPPLIES",
+        "tag_list": "Education,Japan",
+        "brief": "everything ok",
+        "price_value": 10000,
+        "tax_type": 10,
+        "transaction_timestamp": "2016-02-01",
+        "memo": "good",
+        "port_type": 1,
+        "dc": "d"
+    },
+    ...
+]
+```
+
+**/reimbursement_transactions/show/:id**
+
+Description: This endpoint returns a single reimbursement transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursement_transactions/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id" : 123456789,
+    "reimbursement_id": 123,
+    "journal_dc_id": 321,
+    "slip_no": "S230_0291",
+    "reason_code": "SUPPLIES",
+    "tag_list": "Education,Japan",
+    "brief": "everything ok",
+    "price_value": 400000,
+    "tax_type": 0,
+    "transaction_timestamp": "2016-01-01",
+    "memo": "good",
+    "port_type": 1,
+    "dc": "c"
+}
+```
+
+**/reimbursement_transactions/create**
+
+Description: Creates a new reimbursement transaction. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reimbursement_id` | *required* | Integer | Targeted reimbursement which is represented by reimbursement id.
+`transaction_timestamp` | *required* | String | Actual date of the transaction. Format must be "YYYY-MM-DD"
+`price_value` | *required* | Integer | Price value of a reimbursement transaction.
+`reason_code` | *required* | String | Reason of the transaction.
+`port_type` | *optional* | Integer | 1 for domestic transaction. 2 for foreign transaction.
+`dc` | *optional* | String | Debit or credit. Default value is 'c' which represents credit.
+`brief` | *optional* | String| Summary of the transaction.
+`memo` | *optional* | String | Memo for the transaction.
+`tag_list` | *optional* | String | Tags for the transaction.
+`tax_type` | *optional* | String | Tax type of the transaction.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"reimbursement_id": 106, "transaction_timestamp": "2016-05-01", "price_value": 10000, "reason_code": "SUPPLIES", "port_type": 1, "dc": "c", "brief": "test brief", "memo": "test memo", "tag_list": "Education,Japan", "tax_type": "1003"}' https://tsubaiso.net/reimbursement_transactions/create
+```
+
+**/reimbursement_transactions/update/:id**
+
+Description: Updates a reimbursement transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/reimbursement_transactions/destroy/:id**
+
+Description: Destroys the reimbursement transaction specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/reimbursement_transactions/destroy/:id
+```
+
+#### Departments
+
+**/depts/list/**
+
+Description: This endpoint returns a list of departments.
+
+Method: GET
+
+URL Structure:
 ```sh
 https://tsubaiso.net/depts/list
 ```
@@ -1207,46 +1428,22 @@ Sample JSON response:
 **/depts/show/:id**
 
 Description: This endpoint returns a single department.
->>>>>>> master
 
 Method: GET
 
 URL Structure:
 ``` sh
-<<<<<<< HEAD
-https://tsubaiso.net/reimbursements/show/:id
-=======
 https://tsubaiso.net/depts/show/:id
 ```
 
 Sample Request:
 ```sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/depts/show/1
->>>>>>> master
 ```
 
 Sample JSON response:
 ```
 {
-<<<<<<< HEAD
-    id: 213
-    applicant: "タカシ"
-    applicant_staff_code: "EP4321",
-    application_term: "2008-02-01 00:00:00",
-    owner_user_code: "yamakawa",
-    reimbursement_transactions_count: 1,
-    dept_code: "SETSURITSU",
-    memo: "",
-    journal: 0,
-    start_timestamp: "2008-01-01 00:00:00",
-    finish_timestamp: "2008-01-31 00:00:00"
-}
-```
-
-**/reimbursements/create**
-
-Description: Create a new reimbursement. The created transaction will be sent back as JSON if successful.
-=======
  "ccode"      : 3 ,
  "code"       : "SETSURITSU" ,
  "color"      : "#f00" ,
@@ -1258,46 +1455,21 @@ Description: Create a new reimbursement. The created transaction will be sent ba
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
 **/depts/create**
 
 Description: Create a new department. The created department will be sent back as JSON if successful.
->>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
-<<<<<<< HEAD
-https://tsubaiso.net/reimbursements/create
-=======
 https://tsubaiso.net/depts/create
->>>>>>> master
 ```
 
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
-<<<<<<< HEAD
-`application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
-`applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
-`applicant_staff_code` | *optional* | String | Code of Staff.
-`dept_code` | *optional* | String | Dept code which the default is "COMMON".
-`memo` | *optional* | String | Memo for a reimbursement.
-
-Sample Request:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
-```
-
-**/reimbursements/update/:id**
-
-Description: Updates a reimbursement. The updated transaction will be sent back as JSON if successful.
-=======
 `code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
 `name` | *required* | String | Department name. Up to 32 characters.
 `name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
@@ -1325,54 +1497,35 @@ Sample JSON response:
  "created_at" : "2016/02/17",
  "updated_at" : "2016/02/17",
  "regist_user_code" : "hiro",
- "update_user_code" : "fuji" 
+ "update_user_code" : "fuji"
 }
 ```
 
 **/depts/update/:id**
 
 Description: Update a department. The updated department will be sent back as JSON if successful.
->>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
-<<<<<<< HEAD
-https://tsubaiso.net/reimbursements/update/:id
-=======
 https://tsubaiso.net/depts/update/:id
 
->>>>>>> master
 ```
 
 Sample Request:
 ``` sh
-<<<<<<< HEAD
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
-```
-
-**/reimbursements/destroy/:id**
-
-Description: Deletes the reimbursement with the specified id. Will return 204 No Content if successful.
-=======
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "アップデート"}' https://tsubaiso.net/depts/update/1
 ```
 
 **/depts/destroy/:id**
 
 Description: Deletes the department with the specified id. Will return 204 No Content if successful.
->>>>>>> master
 
 Method: POST
 
 URL Structure:
 ```sh
-<<<<<<< HEAD
-https://tsubaiso.net/reimbursements/destroy/:id
+https://tsubaiso.net/depts/destroy/:id
 ```
 
-=======
-https://tsubaiso.net/customer_masters/depts/destroy/:id
-```
->>>>>>> master
