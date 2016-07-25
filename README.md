@@ -1134,7 +1134,7 @@ https://tsubaiso.net/manual_journals/destroy/:id
 
 **/reimbursements/list/:year/:month**
 
-Description: Returns the entire list of reimbursements.
+Description: Returns the entire list of reimbursements by specific year and month.
 
 Method: GET
 
@@ -1176,7 +1176,7 @@ Sample JSON Response:
 
 **/reimbursements/show/:id**
 
-Description: Returns a single of Reimbursements.
+Description: Returns a single reimbursement.
 
 Method: GET
 
@@ -1470,10 +1470,6 @@ URL Structure:
 https://tsubaiso.net/depts/create
 ```
 
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
 `code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
 `name` | *required* | String | Department name. Up to 32 characters.
 `name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
@@ -1530,5 +1526,6 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/customer_masters/depts/destroy/:id
+https://tsubaiso.net/depts/destroy/:id
 ```
+
