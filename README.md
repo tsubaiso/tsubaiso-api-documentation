@@ -1539,7 +1539,7 @@ Method: GET
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar/list/:year/:month
+https://tsubaiso.net/tags/list
 ```
 
 Sample JSON response:
@@ -1630,34 +1630,32 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0}' https://tsubaiso.net/ar/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/create
 ```
 
-**/ar_receipts/update/:id**
+**/tags/update/:id**
 
-Description: Updates an accounts receivables transaction. The updated transaction will be sent back as JSON if successful.
+Description: Updates a tag. The updated tag will be sent back as JSON if successful.
 
 Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar_receipts/update/:id
+https://tsubaiso.net/tags/update/:id
 ```
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800 }'  https://tsubaiso.net/ar_receipts/update/8833
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X PUT -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST2","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/update/4789
 ```
 
-**/ar/destroy/:id**
+**/tags/destroy/:id**
 
-Description: Destroys the accounts receivable transaction specified as the id. Returns a status of 204 No Content.
+Description: Destroys the tag by id. Returns a status of 204 No Content.
 
 Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar/destroy/:id
+https://tsubaiso.net/tags/destroy/:id
 ```
-
-
