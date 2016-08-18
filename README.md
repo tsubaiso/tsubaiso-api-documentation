@@ -1529,3 +1529,135 @@ URL Structure:
 https://tsubaiso.net/depts/destroy/:id
 ```
 
+#### Tags Master
+
+**/tags/list**
+
+Description: Returns list of tags base on the user's ccode. The tags will be grouped by projects
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar/list/:year/:month
+```
+
+Sample JSON response:
+```
+{
+    "DEFAULT": [{
+        "id": 2,
+        "ccode": 3,
+        "code": "BANANA",
+        "name": "Banana",
+        "sort_no": 1,
+        "tag_group_id": 1,
+        "start_ymd": "2000-01-01T00:00:00.000+09:00",
+        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+        "lock_version": 0,
+        "regist_user_code": null,
+        "update_user_code": null,
+        "created_at": "2016-08-04T15:08:45.000+09:00",
+        "updated_at": "2016-08-04T15:08:45.000+09:00"
+    }, {
+        "id": 3,
+        "ccode": 3,
+        "code": "CANADA",
+        "name": "Canada",
+        "sort_no": 2,
+        "tag_group_id": 1,
+        "start_ymd": "2000-01-01T00:00:00.000+09:00",
+        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+        "lock_version": 0,
+        "regist_user_code": null,
+        "update_user_code": null,
+        "created_at": "2016-08-04T15:08:45.000+09:00",
+        "updated_at": "2016-08-04T15:08:45.000+09:00"
+    }]
+}
+```
+
+**/tags/show/:id**
+
+Description: This endpoint returns a single tag information.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/tags/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id": 2,
+    "ccode": 3,
+    "code": "BANANA",
+    "name": "Banana",
+    "sort_no": 1,
+    "tag_group_id": 1,
+    "start_ymd": "2000-01-01T00:00:00.000+09:00",
+    "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+    "lock_version": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2016-08-04T15:08:45.000+09:00",
+    "updated_at": "2016-08-04T15:08:45.000+09:00"
+}
+```
+
+**/tags/create**
+
+Description: Creates a new tag. The created tag will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/tags/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | Integer | Tag Code.
+`name` | *required* | String | Actual Name of Tag"
+`tag_group_code` | *required* | String | What Tag Group should it belong to.
+`start_ymd` | *required* | Datetime | Start date.
+`finish_ymd` | *optional* | Datetime | End date.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0}' https://tsubaiso.net/ar/create
+```
+
+**/ar_receipts/update/:id**
+
+Description: Updates an accounts receivables transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_receipts/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800 }'  https://tsubaiso.net/ar_receipts/update/8833
+```
+
+**/ar/destroy/:id**
+
+Description: Destroys the accounts receivable transaction specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar/destroy/:id
+```
+
+
