@@ -1622,12 +1622,12 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`code` | *required* | String | Tag Code.
-`name` | *required* | String | Actual Name of Tag.
-`sort_no` | *required* | Integer | Order to be displayed.
-`tag_group_code` | *required* | String | What Tag Group should it belong to.
-`start_ymd` | *required* | Datetime | Start date.
-`finish_ymd` | *optional* | Datetime | End date.
+`code` | *required* | String | 半角英数字及びハイフン、アンダーバー50文字以内
+`name` | *required* | String | 32文字以内
+`sort_no` | *required* | Integer | 並び順
+`tag_group_code` | *required* | String | グループ
+`start_ymd` | *required* | Datetime | 開始日 "YYYY/MM/DD"形式
+`finish_ymd` | *optional* | Datetime | 終了日 "YYYY/MM/DD"形式
 
 リクエストの例:
 ```sh
