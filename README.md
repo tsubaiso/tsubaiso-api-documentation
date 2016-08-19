@@ -1623,7 +1623,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`code` | *required* | String | 半角英数字及びハイフン、アンダーバー50文字以内 Alphanumeric , underscore ,hyphen ,50 chars below
+`code` | *required* | String | Alphanumeric , underscore ,hyphen ,50 chars below
 `name` | *required* | String | Actual Name of Tag
 `sort_no` | *required* | Integer | Order 
 `tag_group_code` | *required* | String | Group 
