@@ -1528,3 +1528,135 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/customer_masters/depts/destroy/:id
 ```
+
+#### タグス　マスター
+
+**/tags/list**
+
+説明: このエンドポイントは部門のタグス一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tags/list
+```
+
+JSON レスポンスの例:
+```
+{
+    "DEFAULT": [{
+        "id": 2,
+        "ccode": 3,
+        "code": "BANANA",
+        "name": "Banana",
+        "sort_no": 1,
+        "tag_group_id": 1,
+        "start_ymd": "2000-01-01T00:00:00.000+09:00",
+        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+        "lock_version": 0,
+        "regist_user_code": null,
+        "update_user_code": null,
+        "created_at": "2016-08-04T15:08:45.000+09:00",
+        "updated_at": "2016-08-04T15:08:45.000+09:00"
+    }, {
+        "id": 3,
+        "ccode": 3,
+        "code": "CANADA",
+        "name": "Canada",
+        "sort_no": 2,
+        "tag_group_id": 1,
+        "start_ymd": "2000-01-01T00:00:00.000+09:00",
+        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+        "lock_version": 0,
+        "regist_user_code": null,
+        "update_user_code": null,
+        "created_at": "2016-08-04T15:08:45.000+09:00",
+        "updated_at": "2016-08-04T15:08:45.000+09:00"
+    }]
+}
+```
+
+**/tags/show/:id**
+
+説明: このエンドポイントは特定のタグスを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/tags/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+    "id": 2,
+    "ccode": 3,
+    "code": "BANANA",
+    "name": "Banana",
+    "sort_no": 1,
+    "tag_group_id": 1,
+    "start_ymd": "2000-01-01T00:00:00.000+09:00",
+    "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+    "lock_version": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2016-08-04T15:08:45.000+09:00",
+    "updated_at": "2016-08-04T15:08:45.000+09:00"
+}
+```
+
+**/tags/create**
+
+説明: タグスを作成します。作成に成功した場合、作成されたタグスの明細がJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tags/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | Tag Code.
+`name` | *required* | String | Actual Name of Tag.
+`sort_no` | *required* | Integer | Order to be displayed.
+`tag_group_code` | *required* | String | What Tag Group should it belong to.
+`start_ymd` | *required* | Datetime | Start date.
+`finish_ymd` | *optional* | Datetime | End date.
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/create
+```
+
+**/tags/update/:id**
+
+説明: タグス明細を更新します. 更新に成功した場合は更新された明細がJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tags/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X PUT -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST2","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/update/4789
+```
+
+**/tags/destroy/:id**
+
+説明: 設定されたidのタグスを削除します。 削除に成功したら204のコードが返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tags/destroy/:id
+```
