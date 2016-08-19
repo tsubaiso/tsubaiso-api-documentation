@@ -1622,8 +1622,9 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`code` | *required* | Integer | Tag Code.
-`name` | *required* | String | Actual Name of Tag"
+`code` | *required* | String | Tag Code.
+`name` | *required* | String | Actual Name of Tag.
+`sort_no` | *required* | Integer | Order to be displayed.
 `tag_group_code` | *required* | String | What Tag Group should it belong to.
 `start_ymd` | *required* | Datetime | Start date.
 `finish_ymd` | *optional* | Datetime | End date.
