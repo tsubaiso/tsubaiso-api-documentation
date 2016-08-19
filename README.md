@@ -1470,6 +1470,7 @@ URL Structure:
 https://tsubaiso.net/depts/create
 ```
 
+```
 `code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
 `name` | *required* | String | Department name. Up to 32 characters.
 `name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
@@ -1477,7 +1478,7 @@ https://tsubaiso.net/depts/create
 `memo`| *optional* | String | Memo. Up to 40 characters.
 `start_date` | *required* | String | Start date. Format must be "YYYY/MM/DD".
 `finish_date` | *optional* | String | Finish date. Format must be ""YYYY/MM/DD".
-
+```
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code":"API_TEST", "name":"api_test","name_abbr": "AT", "start_date":"2016/04/01","color": "#ffffff"}' http://tsubaiso.net/depts/create
