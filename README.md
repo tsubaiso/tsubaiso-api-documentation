@@ -946,6 +946,181 @@ Sample JSON Response:
 }
 ```
 
+#### Journals
+
+**/journals/list**
+
+Description: This endpoint returns searches journal entries based on search criteria in the request body. The default amount of records is 20.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/journals/list
+```
+
+Parameters:
+
+Parameter | Description
+--- | ---
+`id` | Search using the journal id directly.
+`price` | Search for journals with the specified amount. Matching journals will be returned if either its price excluding tax or sales tax price match the specified price.
+`memo` | Search journals that contain the specified keywords in their memo.
+`dept_code` | Search journals that belong to the specified department.
+`tag_list` | Search for journals that have the specified tag.
+`start_date` | Search for journals that have a journal date after the specified date. Format needs to be "YYYY-MM-DD".
+`finish_date` | Search for journals that have a journal date before the specified date. Format needs to be "YYYY-MM-DD".
+`start_created_at` | Search for journals that have a create date after the specified date. Format needs to be "YYYY-MM-DD".
+`finish_created_at` | Search for journals that have a create date before the specified date. Format needs to be "YYYY-MM-DD".
+`account_code` | Search for journals that are using the specified account code.
+`timestamp_order` | Specify the order in which the journals are displayed. "desc" for descending journal date order or "asc" for ascending. Default is descending.
+`per_page` | Specify the amount of records to be returned. Default amount is 20 if there are more than 20 records. Maximum amount the can be returned per request is 200.
+`page` | Specify which page of records to return. Default page is 1.
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_code": "500", "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
+```
+
+Sample JSON Response:
+```
+{
+    "records":[
+        {
+            "id":2707,
+            "journal_timestamp":"2014/06/01 00:00:00 +0900",
+            "journal_dcs":[
+                {
+                    "debit":{
+                        "account_code":"135~0",
+                        "tax_type":0,
+                        "price_excluding_tax":2160,
+                        "price_including_tax":2160,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":1000,
+                        "price_including_tax":1080,
+                        "sales_tax":80
+                    },
+                "dept_code":null,
+                "memo":""
+                },
+                {
+                    "debit":{
+                        "account_code":"",
+                        "tax_type":0,
+                        "price_excluding_tax":0,
+                        "price_including_tax":0,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":1000,
+                        "price_including_tax":1080,
+                        "sales_tax":80
+                    },
+                    "dept_code":null,
+                    "memo":""
+                }
+            ]
+        },
+        {
+            "id":2689,
+            "journal_timestamp":"2014/04/30 00:00:00 +0900",
+            "journal_dcs":[
+                {
+                    "debit":{
+                        "account_code":"135~999",
+                        "tax_type":0,
+                        "price_excluding_tax":263500000,
+                        "price_including_tax":263500000,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":243981482,
+                        "price_including_tax":263500000,
+                        "sales_tax":19518518
+                    },
+                    "dept_code":null,
+                    "memo":"4-2014 huge sale"
+                }
+            ]
+        }
+    ],
+    "metadata":{
+        "page":1,
+        "per_page":2,
+        "total_pages":5,
+        "total_entries":10
+    }
+}
+```
+
+**/journals/show/:id**
+
+Description: This endpoint returns a single journal.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/journals/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "records":{
+        "id":2707,
+        "journal_timestamp":"2014/06/01 00:00:00 +0900",
+        "journal_dcs":[
+            {
+                "debit":{
+                    "account_code":"135~0",
+                    "tax_type":0,
+                    "price_excluding_tax":2160,
+                    "price_including_tax":2160,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"500",
+                    "tax_type":1007,
+                    "price_excluding_tax":1000,
+                    "price_including_tax":1080,
+                    "sales_tax":80
+                },
+                "dept_code":null,
+                "memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"",
+                    "tax_type":0,
+                    "price_excluding_tax":0,
+                    "price_including_tax":0,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"500",
+                    "tax_type":1007,
+                    "price_excluding_tax":1000,
+                    "price_including_tax":1080,
+                    "sales_tax":80
+                },
+                "dept_code":null,
+                "memo":""
+            }
+        ]
+    }
+}
+```
+
 #### Manual Journals
 
 **/manual_journals/list/:year/:month**
@@ -970,12 +1145,14 @@ Sample JSON response:
                 "debit":{
                     "account_code":"100",
                     "tax_type":0,
+                    "price_excluding_tax":10000,
                     "price_including_tax":10000,
                     "sales_tax":0
                 },
                 "credit":{
                     "account_code":"130",
                     "tax_type":0,
+                    "price_excluding_tax":10000,
                     "price_including_tax":10000,
                     "sales_tax":0
                 },
@@ -992,12 +1169,14 @@ Sample JSON response:
                 "debit":{
                     "account_code":"110",
                     "tax_type":0,
+                    "price_excluding_tax":500000,
                     "price_including_tax":500000,
                     "sales_tax":0
                 },
                 "credit":{
                     "account_code":"330",
                     "tax_type":0,
+                    "price_excluding_tax":1000000,
                     "price_including_tax":1000000,
                     "sales_tax":0
                 },
@@ -1008,12 +1187,14 @@ Sample JSON response:
                 "debit":{
                     "account_code":"100",
                     "tax_type":0,
+                    "price_excluding_tax":500000,
                     "price_including_tax":500000,
                     "sales_tax":0
                 },
                 "credit":{
                     "account_code":null,
                     "tax_type":null,
+                    "price_excluding_tax":null,
                     "price_including_tax":null,
                     "sales_tax":null
                 },
@@ -1046,12 +1227,14 @@ Sample JSON response:
             "debit":{
                 "account_code":"100",
                 "tax_type":0,
+                "price_excluding_tax":10000,
                 "price_including_tax":10000,
                 "sales_tax":0
             },
             "credit":{
                 "account_code":"130",
                 "tax_type":0,
+                "price_excluding_tax":10000,
                 "price_including_tax":10000,
                 "sales_tax":0
             },
@@ -1224,7 +1407,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everything is okay", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
 ```
 
 **/reimbursements/update/:id**
@@ -1530,11 +1713,11 @@ URL Structure:
 https://tsubaiso.net/depts/destroy/:id
 ```
 
-#### Tags Master
+#### Tags
 
 **/tags/list**
 
-Description: Returns list of tags base on the user's ccode. The tags will be grouped by projects
+Description: Returns list of tags based on the user's ccode. The tags will be grouped by tag_groups.
 
 Method: GET
 
@@ -1632,7 +1815,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
 ```
 
 **/tags/update/:id**
@@ -1648,7 +1831,7 @@ https://tsubaiso.net/tags/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X PUT -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST2","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' http://dvorak.bulldogwater.com/tsubaiso.uehara/tags/update/4789
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST2","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/update/4789
 ```
 
 **/tags/destroy/:id**
