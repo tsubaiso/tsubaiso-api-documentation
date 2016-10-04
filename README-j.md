@@ -166,6 +166,8 @@ Parameter | Necessity | Type | Description
 `sales_tax` | *optional* | Integer | 消費税額。指定されなかった場合、自動で計算されます。
 `scheduled_receive_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
+`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。** このオプションはtag_listが存在しない場合にのみ有効です **
 
 リクエストの例:
 ```sh
@@ -347,6 +349,8 @@ Parameter | Necessity | Type | Description
 `preset_withholding_tax_amount` | *optional* | Integer | 事前設定源泉徴収額
 `withholding_tax_base` | *optional* | Integer | 源泉徴収基準額。 1:消費税込額, 2:消費税抜額
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
+`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。** このオプションはtag_listが存在しない場合にのみ有効です **
 
 リクエストの例:
 ``` sh
@@ -1080,6 +1084,8 @@ Parameter | Necessity | Type | Description
 `credit` | *optional* | Object | 貸方情報。
 `dept_code` | *optional* | String | 部門コード。
 `memo` | *optional* | String | メモ。
+`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。** このオプションはtag_listが存在しない場合にのみ有効です **
 
 *debit and credit*
 
@@ -1352,7 +1358,8 @@ Parameter | Necessity | Type | Description
 `dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
 `brief` | *optional* | String| 摘要
 `memo` | *optional* | String | メモ
-`tag_list` | *optional* | String | タグ
+`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)
+`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。** このオプションはtag_listが存在しない場合にのみ有効です **
 `tax_type` | *optional* | String | 課税区分コード
 
 リクエストの例:
