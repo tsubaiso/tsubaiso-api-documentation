@@ -168,7 +168,7 @@ Parameter | Necessity | Type | Description
 `scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
 `tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) ** Only if tag_list is not provided. **
+`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
 
 Sample Request:
 ```sh
@@ -354,7 +354,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) ** Only if tag_list is not provided. **
+`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
 
 Sample Request:
 ``` sh
@@ -1274,7 +1274,7 @@ Parameter | Necessity | Type | Description
 `dept_code` | *optional* | String | Code of the internal department involved.
 `memo` | *optional* | String | Memo for the manual journal.
 `tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) ** Only if tag_list is not provided. **
+`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
 
 *debit and credit*
 
@@ -1544,7 +1544,7 @@ Parameter | Necessity | Type | Description
 `brief` | *optional* | String| Summary of the transaction.
 `memo` | *optional* | String | Memo for the transaction.
 `tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) ** Only if tag_list is not provided. **
+`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
 `tax_type` | *optional* | String | Tax type of the transaction.
 
 Sample Request:
