@@ -1717,7 +1717,7 @@ https://tsubaiso.net/depts/destroy/:id
 
 **/tags/list**
 
-Description: Returns list of tags based on the user's ccode. The tags will be grouped by tag_groups.
+Description: This endpoint returns a list of tags.
 
 Method: GET
 
@@ -1729,35 +1729,38 @@ https://tsubaiso.net/tags/list
 Sample JSON response:
 ```
 {
-    "DEFAULT": [{
-        "id": 2,
-        "ccode": 3,
-        "code": "BANANA",
-        "name": "Banana",
-        "sort_no": 1,
-        "tag_group_id": 1,
-        "start_ymd": "2000-01-01T00:00:00.000+09:00",
-        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
-        "lock_version": 0,
-        "regist_user_code": null,
-        "update_user_code": null,
-        "created_at": "2016-08-04T15:08:45.000+09:00",
-        "updated_at": "2016-08-04T15:08:45.000+09:00"
-    }, {
-        "id": 3,
-        "ccode": 3,
-        "code": "CANADA",
-        "name": "Canada",
-        "sort_no": 2,
-        "tag_group_id": 1,
-        "start_ymd": "2000-01-01T00:00:00.000+09:00",
-        "finish_ymd": "2017-02-17T00:00:00.000+09:00",
-        "lock_version": 0,
-        "regist_user_code": null,
-        "update_user_code": null,
-        "created_at": "2016-08-04T15:08:45.000+09:00",
-        "updated_at": "2016-08-04T15:08:45.000+09:00"
-    }]
+ "DEFAULT": [
+  {
+   "id": 2,
+   "ccode": 3,
+   "code": "BANANA",
+   "name": "Banana",
+   "sort_no": 1,
+   "tag_group_id": 1,
+   "start_ymd": "2000-01-01T00:00:00.000+09:00",
+   "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+   "lock_version": 0,
+   "regist_user_code": null,
+   "update_user_code": null,
+   "created_at": "2016-09-29T17:58:48.000+09:00",
+   "updated_at": "2016-09-29T17:58:48.000+09:00"
+  },
+  {
+   "id": 3,
+   "ccode": 3,
+   "code": "CANADA",
+   "name": "Canada",
+   "sort_no": 2,
+   "tag_group_id": 1,
+   "start_ymd": "2000-01-01T00:00:00.000+09:00",
+   "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+   "lock_version": 0,
+   "regist_user_code": null,
+   "update_user_code": null,
+   "created_at": "2016-09-29T17:58:48.000+09:00",
+   "updated_at": "2016-09-29T17:58:48.000+09:00"
+  }
+ ]
 }
 ```
 
@@ -1772,22 +1775,27 @@ URL Structure:
 https://tsubaiso.net/tags/show/:id
 ```
 
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/tags/show/1
+```
+
 Sample JSON response:
 ```
 {
-    "id": 2,
-    "ccode": 3,
-    "code": "BANANA",
-    "name": "Banana",
-    "sort_no": 1,
-    "tag_group_id": 1,
-    "start_ymd": "2000-01-01T00:00:00.000+09:00",
-    "finish_ymd": "2017-02-17T00:00:00.000+09:00",
-    "lock_version": 0,
-    "regist_user_code": null,
-    "update_user_code": null,
-    "created_at": "2016-08-04T15:08:45.000+09:00",
-    "updated_at": "2016-08-04T15:08:45.000+09:00"
+ "id": 2,
+ "ccode": 3,
+ "code": "BANANA",
+ "name": "Banana",
+ "sort_no": 1,
+ "tag_group_id": 1,
+ "start_ymd": "2000-01-01T00:00:00.000+09:00",
+ "finish_ymd": "2017-02-17T00:00:00.000+09:00",
+ "lock_version": 0,
+ "regist_user_code": null,
+ "update_user_code": null,
+ "created_at": "2016-08-04T15:08:45.000+09:00",
+ "updated_at": "2016-08-04T15:08:45.000+09:00"
 }
 ```
 
@@ -1806,16 +1814,16 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`code` | *required* | String | Alphanumeric , underscore ,hyphen ,50 chars below
-`name` | *required* | String | Actual Name of Tag
-`sort_no` | *required* | Integer | Order 
-`tag_group_code` | *required* | String | Group 
+`code` | *required* | String | Identification code. Alphanumeric, underscore, hyphen, 50 chars below
+`name` | *required* | String | Tag name. Actual Name of Tag
+`sort_no` | *required* | Integer | Order
+`tag_group_code` | *required* | String | Tag Group Identification code
 `start_ymd` | *required* | Datetime | Start date "YYYY/MM/DD" format
 `finish_ymd` | *optional* | Datetime | End date "YYYY/MM/DD" format
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
 ```
 
 **/tags/update/:id**
@@ -1831,7 +1839,7 @@ https://tsubaiso.net/tags/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"JOHJIAPITEST","name":"JOHJIAPITEST2","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/update/4789
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_update_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/update/4789
 ```
 
 **/tags/destroy/:id**
