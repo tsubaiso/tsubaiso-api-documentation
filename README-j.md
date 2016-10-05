@@ -940,6 +940,181 @@ JSON レスポンスの例:
 }
 ```
 
+#### 仕訳帳
+
+**/journals/list**
+
+説明: このエンドポイントは仕訳帳の検索結果を返します。デフォルトで返却されるレコード数は20です。
+
+HTTPメソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/journals/list
+```
+
+Parameters:
+
+Parameter | Description
+--- | ---
+`id` | idで検索します。
+`price` | 金額で検索します。税抜き金額か税込金額のどちらかに一致したレコードを返します。
+`memo` | メモに書かれてある内容で部分検索します。
+`dept_code` | 部門コードで検索します。
+`tag_list` | タグで検索します。
+`start_date` | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
+`finish_date` | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
+`start_created_at` | 登録日の開始日で検索します。形式は"YYYY-MM-DD"です。
+`finish_created_at` | 登録日の終了日で検索します。形式は"YYYY-MM-DD"です。
+`account_code` | 勘定科目コードで検索します。
+`timestamp_order` | 返却されるレコードの、日付の並びを指定します。"desc"を指定すると降順になり、"asc"を指定すると昇順になります。デフォルトは降順です。
+`per_page` | 1回の検索で取得するレコード数を設定します。デフォルトでは20件で、最大200までの設定が可能です。
+`page` | どのページの検索結果を取得するか設定します。デフォルトでは1ページ目です。
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_code": "500", "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
+```
+
+JSON レスポンスの例:
+```
+{
+    "records":[
+        {
+            "id":2707,
+            "journal_timestamp":"2014/06/01 00:00:00 +0900",
+            "journal_dcs":[
+                {
+                    "debit":{
+                        "account_code":"135~0",
+                        "tax_type":0,
+                        "price_excluding_tax":2160,
+                        "price_including_tax":2160,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":1000,
+                        "price_including_tax":1080,
+                        "sales_tax":80
+                    },
+                "dept_code":null,
+                "memo":""
+                },
+                {
+                    "debit":{
+                        "account_code":"",
+                        "tax_type":0,
+                        "price_excluding_tax":0,
+                        "price_including_tax":0,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":1000,
+                        "price_including_tax":1080,
+                        "sales_tax":80
+                    },
+                    "dept_code":null,
+                    "memo":""
+                }
+            ]
+        },
+        {
+            "id":2689,
+            "journal_timestamp":"2014/04/30 00:00:00 +0900",
+            "journal_dcs":[
+                {
+                    "debit":{
+                        "account_code":"135~999",
+                        "tax_type":0,
+                        "price_excluding_tax":263500000,
+                        "price_including_tax":263500000,
+                        "sales_tax":0
+                    },
+                    "credit":{
+                        "account_code":"500",
+                        "tax_type":1007,
+                        "price_excluding_tax":243981482,
+                        "price_including_tax":263500000,
+                        "sales_tax":19518518
+                    },
+                    "dept_code":null,
+                    "memo":"4-2014 huge sale"
+                }
+            ]
+        }
+    ],
+    "metadata":{
+        "page":1,
+        "per_page":2,
+        "total_pages":5,
+        "total_entries":10
+    }
+}
+```
+
+**/journals/show/:id**
+
+説明: 1レコードの仕訳を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/journals/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+    "records":{
+        "id":2707,
+        "journal_timestamp":"2014/06/01 00:00:00 +0900",
+        "journal_dcs":[
+            {
+                "debit":{
+                    "account_code":"135~0",
+                    "tax_type":0,
+                    "price_excluding_tax":2160,
+                    "price_including_tax":2160,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"500",
+                    "tax_type":1007,
+                    "price_excluding_tax":1000,
+                    "price_including_tax":1080,
+                    "sales_tax":80
+                },
+                "dept_code":null,
+                "memo":""
+            },
+            {
+                "debit":{
+                    "account_code":"",
+                    "tax_type":0,
+                    "price_excluding_tax":0,
+                    "price_including_tax":0,
+                    "sales_tax":0
+                },
+                "credit":{
+                    "account_code":"500",
+                    "tax_type":1007,
+                    "price_excluding_tax":1000,
+                    "price_including_tax":1080,
+                    "sales_tax":80
+                },
+                "dept_code":null,
+                "memo":""
+            }
+        ]
+    }
+}
+```
+
 #### マニュアル仕訳
 
 **/manual_journals/list/:year/:month**
