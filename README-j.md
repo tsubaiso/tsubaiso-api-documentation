@@ -1639,7 +1639,7 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18","finish_ymd":"2016/08/23"}' https://tsubaiso.net/tags/create
 ```
 
 **/tags/update/:id**
@@ -1655,7 +1655,7 @@ https://tsubaiso.net/tags/update/:id
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_update","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_update","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18","finish_ymd":"2016/08/23"}' https://tsubaiso.net/tags/create
 ```
 
 **/tags/destroy/:id**

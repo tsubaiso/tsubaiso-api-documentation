@@ -1766,7 +1766,7 @@ Sample JSON response:
 
 **/tags/show/:id**
 
-Description: This endpoint returns a single tag information.
+Description: This endpoint returns information for a single tag.
 
 Method: GET
 
@@ -1816,14 +1816,14 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `code` | *required* | String | Identification code. Alphanumeric, underscore, hyphen, 50 chars below
 `name` | *required* | String | Tag name. Actual Name of Tag
-`sort_no` | *required* | Integer | Order
+`sort_no` | *required* | Integer | Sort Order
 `tag_group_code` | *required* | String | Tag Group Identification code
 `start_ymd` | *required* | Datetime | Start date "YYYY/MM/DD" format
 `finish_ymd` | *optional* | Datetime | End date "YYYY/MM/DD" format
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18","finish_ymd":"2016/08/23"}' https://tsubaiso.net/tags/create
 ```
 
 **/tags/update/:id**
@@ -1839,7 +1839,7 @@ https://tsubaiso.net/tags/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_update_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18 13:48:34 +0900","finish_ymd":"2016/08/23 13:48:34 +0900"}' https://tsubaiso.net/tags/update/4789
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{"code":"APITEST_code","name":"APITEST_update_name","sort_no":"919","tag_group_code":"PROJECT","start_ymd":"2016/08/18","finish_ymd":"2016/08/23"}' https://tsubaiso.net/tags/update/4789
 ```
 
 **/tags/destroy/:id**
