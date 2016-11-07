@@ -167,8 +167,8 @@ Parameter | Necessity | Type | Description
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
-`tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+`tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 
 Sample Request:
 ```sh
@@ -353,8 +353,8 @@ Parameter | Necessity | Type | Description
 `preset_withholding_tax_amount` | *optional* | Integer | Withholding tax amount
 `withholding_tax_base` | *optional* | Integer | 1 if withholding tax includes sales tax, 2 if it does not.
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
-`tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+`tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 
 Sample Request:
 ``` sh
@@ -969,7 +969,7 @@ Parameter | Description
 `price` | Search for journals with the specified amount. Matching journals will be returned if either its price excluding tax or sales tax price match the specified price.
 `memo` | Search journals that contain the specified keywords in their memo.
 `dept_code` | Search journals that belong to the specified department.
-`tag_list` | Search for journals that have the specified tag.
+`tag_list` | Search for journals that have the specified segment(formerly tag).
 `start_date` | Search for journals that have a journal date after the specified date. Format needs to be "YYYY-MM-DD".
 `finish_date` | Search for journals that have a journal date before the specified date. Format needs to be "YYYY-MM-DD".
 `start_created_at` | Search for journals that have a create date after the specified date. Format needs to be "YYYY-MM-DD".
@@ -1273,8 +1273,8 @@ Parameter | Necessity | Type | Description
 `credit` | *optional* | Object | Credit information.
 `dept_code` | *optional* | String | Code of the internal department involved.
 `memo` | *optional* | String | Memo for the manual journal.
-`tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+`tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 
 *debit and credit*
 
@@ -1543,8 +1543,8 @@ Parameter | Necessity | Type | Description
 `dc` | *optional* | String | Debit or credit. Default value is 'c' which represents credit.
 `brief` | *optional* | String| Summary of the transaction.
 `memo` | *optional* | String | Memo for the transaction.
-`tag_list` | *optional* | String | Optional tag code string.(Comma-separated)
-`tag_name_list` | *optional* | String | Optional tag name string.(Comma-separated) **Only if tag_list is not provided.**
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+`tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 `tax_type` | *optional* | String | Tax type of the transaction.
 
 Sample Request:
@@ -1722,7 +1722,7 @@ https://tsubaiso.net/depts/destroy/:id
 
 **/tags/list**
 
-Description: This endpoint returns a list of tags.
+Description: Returns list of segments(formerly tags) based on the user's ccode. The segments(formerly tags) will be grouped by tag_groups.
 
 Method: GET
 
@@ -1771,7 +1771,7 @@ Sample JSON response:
 
 **/tags/show/:id**
 
-Description: This endpoint returns information for a single tag.
+Description: This endpoint returns a single segment(formerly tag) information.
 
 Method: GET
 
@@ -1806,7 +1806,7 @@ Sample JSON response:
 
 **/tags/create**
 
-Description: Creates a new tag. The created tag will be sent back as JSON if successful.
+Description: Creates a new segment(formerly tag). The created segment(formerly tag) will be sent back as JSON if successful.
 
 Method: POST
 
@@ -1820,9 +1820,9 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `code` | *required* | String | Identification code. Alphanumeric, underscore, hyphen, 50 chars below
-`name` | *required* | String | Tag name. Actual Name of Tag
+`name` | *required* | String | Tag name. Actual Name of Segment(formerly Tag)
 `sort_no` | *required* | Integer | Sort Order
-`tag_group_code` | *required* | String | Tag Group Identification code
+`tag_group_code` | *required* | String | Segment(formerly Tag) Group Identification code
 `start_ymd` | *required* | Datetime | Start date "YYYY/MM/DD" format
 `finish_ymd` | *optional* | Datetime | End date "YYYY/MM/DD" format
 
@@ -1833,7 +1833,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/tags/update/:id**
 
-Description: Updates a tag. The updated tag will be sent back as JSON if successful.
+Description: Updates a segment(formerly tag). The updated segment(formerly tag) will be sent back as JSON if successful.
 
 Method: POST
 
@@ -1849,7 +1849,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/tags/destroy/:id**
 
-Description: Destroys the tag by id. Returns a status of 204 No Content.
+Description: Destroys the segment(formerly tag) by id. Returns a status of 204 No Content.
 
 Method: POST
 
