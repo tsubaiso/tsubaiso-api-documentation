@@ -1722,7 +1722,7 @@ https://tsubaiso.net/depts/destroy/:id
 
 **/tags/list**
 
-Description: Returns list of segments(formerly tags) based on the user's ccode. The segments(formerly tags) will be grouped by tag_groups.
+Description: This endpoint returns a list of segments(formerly tags).
 
 Method: GET
 
@@ -1771,7 +1771,7 @@ Sample JSON response:
 
 **/tags/show/:id**
 
-Description: This endpoint returns a single segment(formerly tag) information.
+Description: This endpoint returns information for a single segment(formerly tag).
 
 Method: GET
 
