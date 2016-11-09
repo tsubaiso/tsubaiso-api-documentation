@@ -1820,7 +1820,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `code` | *required* | String | Identification code. Alphanumeric, underscore, hyphen, 50 chars below
-`name` | *required* | String | Tag name. Actual Name of Segment(formerly Tag)
+`name` | *required* | String | Segment(formerly Tag) name. Actual Name of Segment(formerly Tag)
 `sort_no` | *required* | Integer | Sort Order
 `tag_group_code` | *required* | String | Segment(formerly Tag) Group Identification code
 `start_ymd` | *required* | Datetime | Start date "YYYY/MM/DD" format
