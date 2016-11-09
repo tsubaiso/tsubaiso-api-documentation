@@ -166,8 +166,8 @@ Parameter | Necessity | Type | Description
 `sales_tax` | *optional* | Integer | 消費税額。指定されなかった場合、自動で計算されます。
 `scheduled_receive_timestamp` | *optional* | String | 入金予定日。 “YYYY-MM-DD”形式
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
-`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
-`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 
 リクエストの例:
 ```sh
@@ -349,8 +349,8 @@ Parameter | Necessity | Type | Description
 `preset_withholding_tax_amount` | *optional* | Integer | 事前設定源泉徴収額
 `withholding_tax_base` | *optional* | Integer | 源泉徴収基準額。 1:消費税込額, 2:消費税抜額
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
-`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
-`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 
 リクエストの例:
 ``` sh
@@ -965,7 +965,7 @@ Parameter | Description
 `price` | 金額で検索します。税抜き金額か税込金額のどちらかに一致したレコードを返します。
 `memo` | メモに書かれてある内容で部分検索します。
 `dept_code` | 部門コードで検索します。
-`tag_list` | タグで検索します。
+`tag_list` | セグメント(旧タグ)で検索します。
 `start_date` | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
 `finish_date` | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
 `start_created_at` | 登録日の開始日で検索します。形式は"YYYY-MM-DD"です。
@@ -1259,8 +1259,8 @@ Parameter | Necessity | Type | Description
 `credit` | *optional* | Object | 貸方情報。
 `dept_code` | *optional* | String | 部門コード。
 `memo` | *optional* | String | メモ。
-`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)。
-`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
+`tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 
 *debit and credit*
 
@@ -1533,8 +1533,8 @@ Parameter | Necessity | Type | Description
 `dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
 `brief` | *optional* | String| 摘要
 `memo` | *optional* | String | メモ
-`tag_list` | *optional* | String | タグ識別コード文字列(カンマ区切り)
-`tag_name_list` | *optional* | String | タグ名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
+`tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 `tax_type` | *optional* | String | 課税区分コード
 
 リクエストの例:
@@ -1711,11 +1711,11 @@ URL 構成例:
 https://tsubaiso.net/customer_masters/depts/destroy/:id
 ```
 
-#### タグマスタ
+#### セグメント(旧タグ)マスタ
 
 **/tags/list**
 
-説明: このエンドポイントはタグの一覧を返します。
+説明: このエンドポイントはセグメント(旧タグ)の一覧を返します。
 
 HTTP メソッド: GET
 
@@ -1764,7 +1764,7 @@ JSON レスポンスの例:
 
 **/tags/show/:id**
 
-説明: このエンドポイントはidで指定したタグを返します。
+説明: このエンドポイントはidで指定したのセグメント(旧タグ)を返します。
 
 HTTP メソッド: GET
 
@@ -1799,7 +1799,7 @@ JSON レスポンスの例:
 
 **/tags/create**
 
-説明: タグを作成します。作成に成功した場合、作成されたタグがJSONとして返されます。
+説明: セグメント(旧タグ)を作成します。作成に成功した場合、作成されたセグメント(旧タグ)がJSONとして返されます。
 
 HTTP メソッド: POST
 
@@ -1812,10 +1812,10 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`code` | *required* | String | 識別コード。半角英数字及びハイフン、アンダーバー50文字以内
-`name` | *required* | String | 名前。32文字以内
+`code` | *required* | String | セグメント(旧タグ)識別コード。半角英数字及びハイフン、アンダーバー50文字以内
+`name` | *required* | String | セグメント(旧タグ)名称。32文字以内
 `sort_no` | *required* | Integer | 並び順
-`tag_group_code` | *required* | String | タググループの識別コード
+`tag_group_code` | *required* | String | セグメント(旧タグ)グループの識別コード
 `start_ymd` | *required* | Datetime | 開始日。 "YYYY/MM/DD"形式
 `finish_ymd` | *optional* | Datetime | 終了日。 "YYYY/MM/DD"形式
 
@@ -1826,7 +1826,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/tags/update/:id**
 
-説明: idで指定したタグを更新します。更新に成功した場合は更新された明細がJSONとして返されます。
+説明: idで指定したセグメント(旧タグ)を更新します。更新に成功した場合は更新されたセグメント(旧タグ)がJSONとして返されます。
 
 HTTP メソッド: POST
 
@@ -1842,7 +1842,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/tags/destroy/:id**
 
-説明: 設定されたidのタグスを削除します。 成功した場合 204 No Content が返ります。
+説明: 設定されたidのセグメント(旧タグ)を削除します。 成功した場合 204 No Content が返ります。
 
 HTTP メソッド: POST
 
