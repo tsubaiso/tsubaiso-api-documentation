@@ -1598,6 +1598,7 @@ Sample JSON response:
   {
     "ccode"      : 3 ,
     "code"       : "SETSURITSU" ,
+    "sort_no"    : 1 ,
     "color"      : "#f00" ,
     "finish_date": "2017/02/17" ,
     "memo"       : "" ,
@@ -1634,6 +1635,7 @@ Sample JSON response:
 {
  "ccode"      : 3 ,
  "code"       : "SETSURITSU" ,
+ "sort_no"    : 1 ,
  "color"      : "#f00" ,
  "finish_date": "2017/02/17" ,
  "memo"       : "" ,
@@ -1661,6 +1663,7 @@ https://tsubaiso.net/depts/create
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `code` | *required* | String | Department code. Up to 16 single-byte characters, hyphens, underscores or periods.
+`sort_no` | *optional* | Integer | Sort Order
 `name` | *required* | String | Department name. Up to 32 characters.
 `name_abbr` | *optional* | String | Abbreviation. Up to 16 characters.
 `color` | *optional* | String | Color. (HTML Color Codes)
@@ -1678,6 +1681,7 @@ Sample JSON response:
 {
  "ccode"      : 3 ,
  "code"       : "API_TEST" ,
+ "sort_no"    : 1 ,
  "color"      : "#ffffff" ,
  "finish_date": "" ,
  "memo"       : "" ,

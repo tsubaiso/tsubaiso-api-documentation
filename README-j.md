@@ -1588,6 +1588,7 @@ JSON レスポンスの例:
   {
     "ccode"      : 3 ,
     "code"       : "SETSURITSU" ,
+    "sort_no"    : null,
     "color"      : "#f00" ,
     "finish_date": "2017/02/17" ,
     "memo"       : "" ,
@@ -1624,6 +1625,7 @@ JSON レスポンスの例:
 {
  "ccode"      : 3 ,
  "code"       : "SETSURITSU" ,
+ "sort_no"    : 1 ,
  "color"      : "#f00" ,
  "finish_date": "2017/02/17" ,
  "memo"       : "" ,
@@ -1653,6 +1655,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `code` | *required* | String | 部門コード *半角英数字及びハイフン、アンダーバー、ピリオド16文字以内
+`sort_no` | *optional* | Integer | 並び順
 `name` | *required* | String | 部門名 *32文字以内
 `name_abbr` | *optional* | String | 部門名(略称) *16文字以内
 `color` | *optional* | String | 識別色 (HTMLカラーコード形式)
@@ -1670,6 +1673,7 @@ JSON レスポンスの例:
 {
  "ccode"      : 3 ,
  "code"       : "API_TEST" ,
+ "sort_no"    : 1 ,
  "color"      : "#ffffff" ,
  "finish_date": "" ,
  "memo"       : "" ,
