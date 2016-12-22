@@ -1967,3 +1967,124 @@ Sample JSON Response:
     }
 }
 ```
+
+#### Ar Reason Masters
+
+**/ar_reason_masters/list/**
+
+Description: Returns the entire list of ar reason masters
+
+Method: GET
+
+URL Structure:
+
+```sh
+https://tsubaiso.net/ar_reason_masters/list/
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reason_masters/list
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "account_code": "500",
+    "ccode": 3,
+    "dc": "d",
+    "id": 606428701,
+    "is_valid": 1,
+    "memo": "幡ヶ谷建設用",
+    "reason_code": "SUPER_URIAGEDAKA",
+    "reason_name": "(幡ヶ谷建設)売上高",
+    "sort_number": 25,
+    "ar_reason_taxes": [
+
+    ]
+  },
+  {
+    "account_code": "500",
+    "ccode": 3,
+    "dc": "d",
+    "id": 339216794,
+    "is_valid": 1,
+    "memo": "MEMO",
+    "reason_code": "SALES",
+    "reason_name": "課税売上高",
+    "sort_number": 30,
+    "ar_reason_taxes": [
+      {
+        "is_default": 1,
+        "sales_tax_system": 7,
+        "sort_no": 10,
+        "tax_master_id": 7
+      },
+      {
+        "is_default": 1,
+        "sales_tax_system": 7,
+        "sort_no": 0,
+        "tax_master_id": 1007
+      }
+    ]
+  }
+]
+```
+
+**/ar_reason_masters/show/**
+
+Description: Returns a single ar reason masters
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_reason_masters/show/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" http://tsubaiso.net/ar_reason_masters/show/1
+```
+
+Sample JSON Response:
+```
+{
+   "account_code": "500",
+   "ccode": null,
+   "dc": "d",
+   "id": 1,
+   "is_valid": 1,
+   "memo": "主たる営業活動である商品の販売やサービスの提供などにより獲得した収益に使用します。※税率5％の課税売上げ取引に使用してください。",
+   "reason_code": "SALES",
+   "reason_name": "課税売上高",
+   "sort_number": 30,
+   "ar_reason_taxes": [
+      {
+         "is_default": 1,
+         "sales_tax_system": 7,
+         "sort_no": 10,
+         "tax_master_id": 7
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 4,
+         "sort_no": 0,
+         "tax_master_id": 7
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 7,
+         "sort_no": 110,
+         "tax_master_id": 1007
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 4,
+         "sort_no": 100,
+         "tax_master_id": 1007
+      }
+   ]
+}
+```
