@@ -1967,3 +1967,280 @@ Sample JSON Response:
     }
 }
 ```
+
+#### Bonuses
+
+**/bonuses/list/:bonus_no/:target_year**
+
+Description: This endpoint returns list of bonuses from given bonus_no(sequence number or bonus) and target_year(year of payment) parameters. If no bonus_no or target_year parameters provided, it will raise an error.
+
+Method: GET
+
+URL Structure:
+
+```sh
+https://tsubaiso.net/bonuses/list/:bonus_no/:target_year
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bonuses/list/1/2016
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "bal_1": 740000,
+    "bal_10": nil,
+    "bal_11": nil,
+    "bal_12": nil,
+    "bal_13": nil,
+    "bal_14": nil,
+    "bal_15": nil,
+    "bal_16": nil,
+    "bal_17": 0,
+    "bal_18": nil,
+    "bal_19": nil,
+    "bal_2": nil,
+    "bal_20": nil,
+    "bal_21": 740000,
+    "bal_22": 740000,
+    "bal_23": 740000,
+    "bal_24": nil,
+    "bal_25": nil,
+    "bal_26": nil,
+    "bal_27": nil,
+    "bal_28": nil,
+    "bal_29": nil,
+    "bal_3": nil,
+    "bal_30": 740000,
+    "bal_4": nil,
+    "bal_5": nil,
+    "bal_6": nil,
+    "bal_7": nil,
+    "bal_8": nil,
+    "bal_9": nil,
+    "balance_amount": nil,
+    "bde_1": 30340,
+    "bde_10": nil,
+    "bde_11": nil,
+    "bde_12": nil,
+    "bde_13": nil,
+    "bde_14": nil,
+    "bde_15": nil,
+    "bde_16": nil,
+    "bde_17": nil,
+    "bde_18": 0,
+    "bde_19": 0,
+    "bde_2": 0,
+    "bde_20": 0,
+    "bde_21": 0,
+    "bde_22": nil,
+    "bde_23": nil,
+    "bde_24": 88097,
+    "bde_25": 6660,
+    "bde_26": nil,
+    "bde_27": nil,
+    "bde_28": 648425,
+    "bde_29": nil,
+    "bde_3": 56795,
+    "bde_30": 149910,
+    "bde_4": 15473,
+    "bde_5": 4440,
+    "bde_6": 51874,
+    "bde_7": nil,
+    "bde_8": -1238,
+    "bde_9": nil,
+    "ccode": 3,
+    "created_at": "2016-12-01 11:40:12 +0900",
+    "group_code": nil,
+    "id": 650504937,
+    "is_closed": 0,
+    "is_ok": 0,
+    "log": nil,
+    "memo": nil,
+    "no": 1,
+    "regist_user_code": nil,
+    "staff_id": 2001,
+    "target_year": 2016,
+    "update_user_code": nil,
+    "updated_at": "2016-12-01 11:40:12 +0900"
+  },
+  {
+    "bal_1": 740000,
+    "bal_10": nil,
+    "bal_11": nil,
+    "bal_12": nil,
+    "bal_13": nil,
+    "bal_14": nil,
+    "bal_15": nil,
+    "bal_16": nil,
+    "bal_17": 0,
+    "bal_18": nil,
+    "bal_19": nil,
+    "bal_2": nil,
+    "bal_20": nil,
+    "bal_21": 740000,
+    "bal_22": 740000,
+    "bal_23": 740000,
+    "bal_24": nil,
+    "bal_25": nil,
+    "bal_26": nil,
+    "bal_27": nil,
+    "bal_28": nil,
+    "bal_29": nil,
+    "bal_3": nil,
+    "bal_30": 740000,
+    "bal_4": nil,
+    "bal_5": nil,
+    "bal_6": nil,
+    "bal_7": nil,
+    "bal_8": nil,
+    "bal_9": nil,
+    "balance_amount": nil,
+    "bde_1": 30340,
+    "bde_10": nil,
+    "bde_11": nil,
+    "bde_12": nil,
+    "bde_13": nil,
+    "bde_14": nil,
+    "bde_15": nil,
+    "bde_16": nil,
+    "bde_17": nil,
+    "bde_18": 0,
+    "bde_19": 0,
+    "bde_2": 0,
+    "bde_20": 0,
+    "bde_21": 0,
+    "bde_22": nil,
+    "bde_23": nil,
+    "bde_24": 88097,
+    "bde_25": 6660,
+    "bde_26": nil,
+    "bde_27": nil,
+    "bde_28": 648425,
+    "bde_29": nil,
+    "bde_3": 56795,
+    "bde_30": 149910,
+    "bde_4": 15473,
+    "bde_5": 4440,
+    "bde_6": 51874,
+    "bde_7": nil,
+    "bde_8": -1238,
+    "bde_9": nil,
+    "ccode": 3,
+    "created_at": "2016-12-01 11:40:12 +0900",
+    "group_code": nil,
+    "id": 927467588,
+    "is_closed": 0,
+    "is_ok": 0,
+    "log": nil,
+    "memo": nil,
+    "no": 1,
+    "regist_user_code": nil,
+    "staff_id": 2000,
+    "target_year": 2016,
+    "update_user_code": nil,
+    "updated_at": "2016-12-01 11:40:12 +0900"
+  }
+]
+
+```
+
+**/bonuses/show/**
+
+Description: Returns a single bonuses member
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bonuses/show/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bonuses/show/650504937
+```
+
+Sample JSON Response:
+```
+{
+  "bal_1": 740000,
+  "bal_10": nil,
+  "bal_11": nil,
+  "bal_12": nil,
+  "bal_13": nil,
+  "bal_14": nil,
+  "bal_15": nil,
+  "bal_16": nil,
+  "bal_17": 0,
+  "bal_18": nil,
+  "bal_19": nil,
+  "bal_2": nil,
+  "bal_20": nil,
+  "bal_21": 740000,
+  "bal_22": 740000,
+  "bal_23": 740000,
+  "bal_24": nil,
+  "bal_25": nil,
+  "bal_26": nil,
+  "bal_27": nil,
+  "bal_28": nil,
+  "bal_29": nil,
+  "bal_3": nil,
+  "bal_30": 740000,
+  "bal_4": nil,
+  "bal_5": nil,
+  "bal_6": nil,
+  "bal_7": nil,
+  "bal_8": nil,
+  "bal_9": nil,
+  "balance_amount": nil,
+  "bde_1": 30340,
+  "bde_10": nil,
+  "bde_11": nil,
+  "bde_12": nil,
+  "bde_13": nil,
+  "bde_14": nil,
+  "bde_15": nil,
+  "bde_16": nil,
+  "bde_17": nil,
+  "bde_18": 0,
+  "bde_19": 0,
+  "bde_2": 0,
+  "bde_20": 0,
+  "bde_21": 0,
+  "bde_22": nil,
+  "bde_23": nil,
+  "bde_24": 88097,
+  "bde_25": 6660,
+  "bde_26": nil,
+  "bde_27": nil,
+  "bde_28": 648425,
+  "bde_29": nil,
+  "bde_3": 56795,
+  "bde_30": 149910,
+  "bde_4": 15473,
+  "bde_5": 4440,
+  "bde_6": 51874,
+  "bde_7": nil,
+  "bde_8": -1238,
+  "bde_9": nil,
+  "ccode": 3,
+  "created_at": "2016-12-01 11:40:12 +0900",
+  "group_code": nil,
+  "id": 650504937,
+  "is_closed": 0,
+  "is_ok": 0,
+  "log": nil,
+  "memo": nil,
+  "no": 1,
+  "regist_user_code": nil,
+  "staff_id": 2001,
+  "target_year": 2016,
+  "update_user_code": nil,
+  "updated_at": "2016-12-01 11:40:12 +0900"
+}
+```
