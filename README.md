@@ -2,6 +2,27 @@
 
 This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables, accounts payable transactions, customer management and staff/staff data management. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
 
+##Table Of Contents
+
+ - [Root Endpoint](#root-endpoint)
+ - [Request Format](#request-format)
+ - [Authentication](#authentication)
+ - [Response Codes and Error Handling](#response-codes-and-error-handling)
+ - [Resources](#resources)
+	 - [Accounts Receivables](#accounts-receivables)
+	 - [Accounts Payables](#accounts-payables)
+	 - [Customers](#customers)
+	 - [Staff](#staff)
+	 - [Staff Data](#staff-data)
+	 - [Staff Datum Master](#staff-datum-master)
+	 - [Journals](#journals)
+	 - [Manual Journals](#manual-journals)
+	 - [Reimbursements](#reimbursements)
+	 - [Reimbursement Transaction](#reimbursement-transaction)
+	 - [Departments](#departments)
+	 - [Tags](#tags)
+	 - [Reimbursement Reason Masters](#reimbursement-reason-masters)
+
 ## Root Endpoint
 
 ```sh
