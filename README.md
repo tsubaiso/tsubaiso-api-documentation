@@ -1862,3 +1862,108 @@ URL Structure:
 ```sh
 https://tsubaiso.net/tags/destroy/:id
 ```
+
+#### Reimbursement Reason Masters
+
+**/reimbursement_reason_masters/list/**
+
+Description: Returns the entire list of reimbursement reason masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursement_reason_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/reimbursement_reason_masters/list
+```
+
+Sample JSON Response:
+```
+[
+    {
+        "ccode": XX,
+        "id": "XXXXX",
+        "sort_number": XX,
+        "reason_code": XXX,
+        "reason_name": "XXXX",
+        "dc": 'c',
+        "account_code": "XXX~XX",
+        "port_type": X,
+        "is_valid": X,
+        "memo": "XXXXX",
+	    "reimbursement_reason_taxes": [
+	      {
+	        "is_default":1,
+            "port_type":1,
+            "sales_tax_system":4,
+            "sort_no":1,
+            "tax_master_id":3 
+          }
+      },
+      {
+        "ccode": XX,
+        "id": "XXXXX",
+        "sort_number": XX,
+        "reason_code": XXX,
+        "reason_name": "XXXX",
+        "dc": 'c',
+        "account_code": "XXX~XX",
+        "port_type": X,
+        "is_valid": X,
+        "memo": "XXXXX",
+	    "reimbursement_reason_taxes": [
+	      {
+	        "is_default":1,
+            "port_type":1,
+            "sales_tax_system":4,
+            "sort_no":1,
+            "tax_master_id":3 
+          }
+      },
+      .....
+]
+```
+
+**/reimbursement_reason_masters/show/**
+
+Description: Returns a single reimbursement reason masters member.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/reimbursement_reason_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/reimbursement_reason_masters/show/1
+```
+
+Sample JSON Response:
+```
+{
+  "ccode": XX,
+  "id": "XXXXX",
+  "sort_number": XX,
+  "reason_code": XXX,
+  "reason_name": "XXXX",
+  "dc": 'c',
+  "account_code": "XXX~XX",
+  "port_type": X,
+  "is_valid": X,
+  "memo": "XXXXX",
+  "reimbursement_reason_taxes": [
+    {
+	  "is_default":1,
+      "port_type":1,
+      "sales_tax_system":4,
+      "sort_no":1,
+      "tax_master_id":3 
+    }
+}
+```
