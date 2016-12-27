@@ -856,7 +856,7 @@ URL 構成例:
 https://tsubaiso.net/staff_data/destroy/:id
 ```
 
-#### 社員基本情報マスター
+#### 社員基本情報マスタ
 
 **/staff_datum_masters/list/**
 
@@ -1768,7 +1768,7 @@ JSON レスポンスの例:
 
 **/tags/show/:id**
 
-説明: このエンドポイントはidで指定したのセグメント(旧タグ)を返します。
+説明: このエンドポイントはidで指定したセグメント(旧タグ)を返します。
 
 HTTP メソッド: GET
 
@@ -1853,4 +1853,109 @@ HTTP メソッド: POST
 URL 構成例:
 ```sh
 https://tsubaiso.net/tags/destroy/:id
+```
+
+#### 経費精算原因マスタ
+
+**/reimbursement_reason_masters/list/**
+
+説明: このエンドポイントは経費精算原因マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursement_reason_masters/list/
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/reimbursement_reason_masters/list
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "ccode": XX,
+        "id": "XXXXX",
+        "sort_number": XX,
+        "reason_code": XXX,
+        "reason_name": "XXXX",
+        "dc": 'c',
+        "account_code": "XXX~XX",
+        "port_type": X,
+        "is_valid": X,
+        "memo": "XXXXX",
+	    "reimbursement_reason_taxes": [
+	      {
+	        "is_default":1,
+            "port_type":1,
+            "sales_tax_system":4,
+            "sort_no":1,
+            "tax_master_id":3 
+          }
+      },
+      {
+        "ccode": XX,
+        "id": "XXXXX",
+        "sort_number": XX,
+        "reason_code": XXX,
+        "reason_name": "XXXX",
+        "dc": 'c',
+        "account_code": "XXX~XX",
+        "port_type": X,
+        "is_valid": X,
+        "memo": "XXXXX",
+	    "reimbursement_reason_taxes": [
+	      {
+	        "is_default":1,
+            "port_type":1,
+            "sales_tax_system":4,
+            "sort_no":1,
+            "tax_master_id":3 
+          }
+      },
+      .....
+]
+```
+
+**/reimbursement_reason_masters/show/**
+
+説明: このエンドポイントはidで指定した経費精算原因マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/reimbursement_reason_masters/show/:id
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/reimbursement_reason_masters/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+  "ccode": XX,
+  "id": "XXXXX",
+  "sort_number": XX,
+  "reason_code": XXX,
+  "reason_name": "XXXX",
+  "dc": 'c',
+  "account_code": "XXX~XX",
+  "port_type": X,
+  "is_valid": X,
+  "memo": "XXXXX",
+  "reimbursement_reason_taxes": [
+    {
+	  "is_default":1,
+      "port_type":1,
+      "sales_tax_system":4,
+      "sort_no":1,
+      "tax_master_id":3 
+    }
+}
 ```
