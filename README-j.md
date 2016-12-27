@@ -1855,11 +1855,10 @@ URL 構成例:
 https://tsubaiso.net/tags/destroy/:id
 ```
 
-#### Ap Reason Masters
-
+#### 購買原因マスタ
 **/ap_reason_masters/list**
 
-説明: このエンドポイントはidで指定したのAP Reason Masterを返します。
+説明: このエンドポイントはidで指定したの購買原因マスタ返します。
 
 HTTP メソッド: GET
 
@@ -1912,20 +1911,7 @@ JSON レスポンスの例:
         "personal_id": null,
         "port_type": null,
         "sales_tax_system": 0
-      },
-      {
-        "updated_at": "2016/12/07 17:24:39 +0900",
-        "tax_master_id": 0,
-        "sort_no": 0,
-        "ap_reason_master_id": 10002,
-        "created_at": "2016/12/07 17:24:39 +0900",
-        "description": "test1",
-        "id": 126,
-        "is_default": 0,
-        "personal_id": null,
-        "port_type": null,
-        "sales_tax_system": 0
-      }
+      }    
     ],
     "updated_at": "2016/12/07 17:24:53 +0900",
     "update_user_code": null,
@@ -1962,103 +1948,13 @@ JSON レスポンスの例:
     "release_version": 0,
     "sales_tax_system": null,
     "sort_number": 15
-  },
-  {
-    "ap_reason_taxes": [],
-    "updated_at": "2016/12/07 17:24:53 +0900",
-    "update_user_code": null,
-    "is_valid": 1,
-    "id": 387793984,
-    "expense_mode": 0,
-    "dc": "d",
-    "created_at": "2016/12/07 17:24:53 +0900",
-    "ccode": 3,
-    "allowed_domains": null,
-    "account_code": "100",
-    "memo": null,
-    "port_type": null,
-    "reason_code": "TEST_CASH_HATAGAYA",
-    "reason_name": "小口現金",
-    "regist_user_code": null,
-    "release_version": 0,
-    "sales_tax_system": null,
-    "sort_number": 100
-  },
-  {
-    "ap_reason_taxes": [],
-    "updated_at": "2016/12/07 17:24:53 +0900",
-    "update_user_code": null,
-    "is_valid": 1,
-    "id": 20160405,
-    "expense_mode": 1,
-    "dc": "c",
-    "created_at": "2016/12/07 17:24:53 +0900",
-    "ccode": 3,
-    "allowed_domains": null,
-    "account_code": "760",
-    "memo": null,
-    "port_type": null,
-    "reason_code": "VEHICLE_EXPENSES",
-    "reason_name": "車両費",
-    "regist_user_code": null,
-    "release_version": 0,
-    "sales_tax_system": null,
-    "sort_number": 310
-  },
-  {
-    "ap_reason_taxes": [
-      {
-        "updated_at": "2016/12/07 17:24:39 +0900",
-        "tax_master_id": 0,
-        "sort_no": 0,
-        "ap_reason_master_id": 10001,
-        "created_at": "2016/12/07 17:24:39 +0900",
-        "description": "test1",
-        "id": 36,
-        "is_default": 0,
-        "personal_id": null,
-        "port_type": null,
-        "sales_tax_system": 0
-      },
-      {
-        "updated_at": "2016/12/07 17:24:39 +0900",
-        "tax_master_id": 0,
-        "sort_no": 0,
-        "ap_reason_master_id": 10001,
-        "created_at": "2016/12/07 17:24:39 +0900",
-        "description": "test1",
-        "id": 65,
-        "is_default": 0,
-        "personal_id": null,
-        "port_type": null,
-        "sales_tax_system": 0
-      }
-    ],
-    "updated_at": "2016/12/07 17:24:53 +0900",
-    "update_user_code": null,
-    "is_valid": 1,
-    "id": 10001,
-    "expense_mode": 0,
-    "dc": "d",
-    "created_at": "2016/12/07 17:24:53 +0900",
-    "ccode": 3,
-    "allowed_domains": null,
-    "account_code": "612",
-    "memo": "幡ヶ谷建設用\n",
-    "port_type": null,
-    "reason_code": "SUPER_BUYING_IN_REBATE",
-    "reason_name": "(幡ヶ谷建設)仕入値引き及び戻し高",
-    "regist_user_code": null,
-    "release_version": 0,
-    "sales_tax_system": null,
-    "sort_number": 365
   }
 ]
 ```
 
 **/ap_reason_masters/show/:id**
 
-説明: このエンドポイントはidで指定したのAP Reason Mastersを返します。
+説明: このエンドポイントはidで指定したの購買原因マスタを返します。
 
 HTTP メソッド: GET
 
@@ -2100,7 +1996,7 @@ JSON レスポンスの例:
   "ccode": null,
   "allowed_domains": null,
   "account_code": "604",
-  "memo": "仕入高とは、商品や原材料の仕入、外注費等、会社の主たる営業活動にかかわる費用をいいます。売上高と直接対応する費用である点が特徴です。\r\n仕入高の計上時期は、検収日とするのが一般的です。\r\n\r\n（付随費用について）\r\n仕入に付随して発生した費用は、仕入高として計上しなければなりません。\r\n\r\n付随費用の例\r\n(1)　買入事務、検収、整理、選別、手入れ等に要した費用の額\r\n(2)　販売所等から販売所等へ移管するために要した運賃、荷造費等の費用の額\r\n(3)　特別の時期に販売するなどのため、長期にわたって保管するために要した費用の額\r\n\r\n但し、これらの費用の額の合計額が少額（当該棚卸資産の購入の代価のおおむね3%以内の金額）である場合には、その取得価額に算入しないことができます。\r\n\r\n以下の費用は、付随費用であっても仕入高に含めなくてもよいとされています。\r\n(1)　不動産取得税の額\r\n\r\n(2)　地価税の額\r\n\r\n(3)　固定資産税及び都市計画税の額\r\n\r\n(4)　特別土地保有税の額\r\n\r\n(5)　登録免許税その他登記又は登録のために要する費用の額\r\n\r\n(6)　借入金の利子の額\r\n",
+  "memo": "仕入高とは、商品や原材料の仕入、外注費等、会社の主たる営業活動にかかわる費用をいいます。売上高と直接対応する費用である点が特徴です。",
   "port_type": null,
   "reason_code": "BUYING_IN",
   "reason_name": "仕入高",
