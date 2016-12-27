@@ -1960,11 +1960,11 @@ JSON レスポンスの例:
 }
 ```
 
-#### 購買原因マスタ
+#### 販売原因マスタ
 
 **/ar_reason_masters/list/**
 
-説明: このエンドポイントは購買算原因マスタの一覧を返します。
+説明: このエンドポイントは販売算原因マスタの一覧を返します。
 
 HTTP メソッド: GET
 
@@ -2028,8 +2028,7 @@ JSON レスポンスの例:
 
 **/ar_reason_masters/show/**
 
-説明: このエンドポイントはidで指定した原因マスタを返します。
-
+説明: このエンドポイントはidで指定した販売原因マスタを返します。
 
 HTTP メソッド: GET
 
@@ -2046,7 +2045,6 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 ```
 
 JSON レスポンスの例:
-
 ```
 {
    "account_code": "500",
