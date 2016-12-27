@@ -1967,3 +1967,202 @@ Sample JSON Response:
     }
 }
 ```
+
+#### Payrolls
+
+**/payrolls/list/**
+
+Description: Returns the entire list of payrolls based year and month.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/payrolls/list/:year/:month
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/payrolls/list/2016/11
+```
+
+Sample JSON Response:
+```
+[
+    {
+        "id": 1071569834,
+        "ccode": 3,
+        "staff_id": 2001,
+	    "group_code: nil,
+	    "target_ym": "2016-11-01 00:00:00",
+	    "al_1": 440000, 
+	    "al_2": 0, 
+	    "al_3": 0,
+	    "al_4": nil, 
+	    "al_5": nil,
+	    "al_6": nil, 
+	    "al_7": nil, 
+	    "al_8": nil, 
+	    "al_9": nil, 
+	    "al_10": nil, 
+	    "al_11": nil, 
+	    "al_12": nil, 
+	    "al_13": nil, 
+	    "al_14": nil, 
+	    "al_15": nil, 
+	    "al_16": nil, 
+	    "al_17": nil, 
+	    "al_18": nil, 
+	    "al_19": 0, 
+	    "al_20": 0, 
+	    "al_21": 440000, 
+	    "al_22": 440000, 
+	    "al_23": 440000, 
+	    "al_24": nil, 
+	    "al_25": nil, 
+	    "al_26": nil, 
+	    "al_27": nil, 
+	    "al_28": nil, 
+	    "al_29": nil, 
+	    "al_30": 440000, 
+	    "de_1": 18040, 
+	    "de_2": 0, 
+	    "de_3": 33770, 
+	    "de_4": nil, 
+	    "de_5": 2640, 
+	    "de_6": 6800, 
+	    "de_7": 5200, 
+	    "de_8": nil, 
+	    "de_9": nil, 
+	    "de_10": nil, 
+	    "de_11": nil, 
+	    "de_12": nil, 
+	    "de_13": nil, 
+	    "de_14": nil, 
+	    "de_15": 0, 
+	    "de_16": nil,
+	    "de_17": nil, 
+	    "de_18": 0, 
+	    "de_19": 0, 
+	    "de_20": 0, 
+	    "de_21": 0, 
+	    "de_22": nil, 
+	    "de_23": nil, 
+	    "de_24": nil, 
+	    "de_25": 3960, 
+	    "de_26": 0, 
+	    "de_27": nil, 
+	    "de_28": 385550, 
+	    "de_29": nil, 
+	    "de_30": 66450, 
+	    "balance_amount": nil, 
+	    "log": nil, 
+	    "is_ok": 0, 
+	    "is_closed": 0, 
+	    "regist_user_code": nil, 
+	    "update_user_code": nil, 
+	    "calculated_at": nil, 
+	    "calc_user_code": nil, 
+	    "created_at": "2016-12-19 14:16:28", 
+	    "updated_at": "2016-12-19 14:16:28"
+      },
+      .....
+]
+```
+
+**/payrolls/show/**
+
+Description: Returns a single payrolls member.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/payrolls/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/payrolls/show/1071569834
+```
+
+Sample JSON Response:
+```
+     {
+        "id": 1071569834,
+        "ccode": 3,
+        "staff_id": 2001,
+	    "group_code: nil,
+	    "target_ym": "2016-11-01 00:00:00",
+	    "al_1": 440000, 
+	    "al_2": 0, 
+	    "al_3": 0,
+	    "al_4": nil, 
+	    "al_5": nil,
+	    "al_6": nil, 
+	    "al_7": nil, 
+	    "al_8": nil, 
+	    "al_9": nil, 
+	    "al_10": nil, 
+	    "al_11": nil, 
+	    "al_12": nil, 
+	    "al_13": nil, 
+	    "al_14": nil, 
+	    "al_15": nil, 
+	    "al_16": nil, 
+	    "al_17": nil, 
+	    "al_18": nil, 
+	    "al_19": 0, 
+	    "al_20": 0, 
+	    "al_21": 440000, 
+	    "al_22": 440000, 
+	    "al_23": 440000, 
+	    "al_24": nil, 
+	    "al_25": nil, 
+	    "al_26": nil, 
+	    "al_27": nil, 
+	    "al_28": nil, 
+	    "al_29": nil, 
+	    "al_30": 440000, 
+	    "de_1": 18040, 
+	    "de_2": 0, 
+	    "de_3": 33770, 
+	    "de_4": nil, 
+	    "de_5": 2640, 
+	    "de_6": 6800, 
+	    "de_7": 5200, 
+	    "de_8": nil, 
+	    "de_9": nil, 
+	    "de_10": nil, 
+	    "de_11": nil, 
+	    "de_12": nil, 
+	    "de_13": nil, 
+	    "de_14": nil, 
+	    "de_15": 0, 
+	    "de_16": nil,
+	    "de_17": nil, 
+	    "de_18": 0, 
+	    "de_19": 0, 
+	    "de_20": 0, 
+	    "de_21": 0, 
+	    "de_22": nil, 
+	    "de_23": nil, 
+	    "de_24": nil, 
+	    "de_25": 3960, 
+	    "de_26": 0, 
+	    "de_27": nil, 
+	    "de_28": 385550, 
+	    "de_29": nil, 
+	    "de_30": 66450, 
+	    "balance_amount": nil, 
+	    "log": nil, 
+	    "is_ok": 0, 
+	    "is_closed": 0, 
+	    "regist_user_code": nil, 
+	    "update_user_code": nil, 
+	    "calculated_at": nil, 
+	    "calc_user_code": nil, 
+	    "created_at": "2016-12-19 14:16:28", 
+	    "updated_at": "2016-12-19 14:16:28"
+    }
+```
