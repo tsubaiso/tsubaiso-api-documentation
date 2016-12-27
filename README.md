@@ -2,6 +2,27 @@
 
 This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables, accounts payable transactions, customer management and staff/staff data management. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
 
+##Table Of Contents
+
+ - [Root Endpoint](#root-endpoint)
+ - [Request Format](#request-format)
+ - [Authentication](#authentication)
+ - [Response Codes and Error Handling](#response-codes-and-error-handling)
+ - [Resources](#resources)
+	 - [Accounts Receivables](#accounts-receivables)
+	 - [Accounts Payables](#accounts-payables)
+	 - [Customers](#customers)
+	 - [Staff](#staff)
+	 - [Staff Data](#staff-data)
+	 - [Staff Datum Master](#staff-datum-master)
+	 - [Journals](#journals)
+	 - [Manual Journals](#manual-journals)
+	 - [Reimbursements](#reimbursements)
+	 - [Reimbursement Transaction](#reimbursement-transaction)
+	 - [Departments](#departments)
+	 - [Tags](#tags)
+	 - [Reimbursement Reason Masters](#reimbursement-reason-masters)
+
 ## Root Endpoint
 
 ```sh
@@ -1965,6 +1986,127 @@ Sample JSON Response:
       "sort_no":1,
       "tax_master_id":3 
     }
+}
+```
+
+#### Ar Reason Masters
+
+**/ar_reason_masters/list/**
+
+Description: Returns the entire list of ar reason masters
+
+Method: GET
+
+URL Structure:
+
+```sh
+https://tsubaiso.net/ar_reason_masters/list/
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reason_masters/list
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "account_code": "500",
+    "ccode": 3,
+    "dc": "d",
+    "id": 606428701,
+    "is_valid": 1,
+    "memo": "幡ヶ谷建設用",
+    "reason_code": "SUPER_URIAGEDAKA",
+    "reason_name": "(幡ヶ谷建設)売上高",
+    "sort_number": 25,
+    "ar_reason_taxes": [
+
+    ]
+  },
+  {
+    "account_code": "500",
+    "ccode": 3,
+    "dc": "d",
+    "id": 339216794,
+    "is_valid": 1,
+    "memo": "MEMO",
+    "reason_code": "SALES",
+    "reason_name": "課税売上高",
+    "sort_number": 30,
+    "ar_reason_taxes": [
+      {
+        "is_default": 1,
+        "sales_tax_system": 7,
+        "sort_no": 10,
+        "tax_master_id": 7
+      },
+      {
+        "is_default": 1,
+        "sales_tax_system": 7,
+        "sort_no": 0,
+        "tax_master_id": 1007
+      }
+    ]
+  }
+]
+```
+
+**/ar_reason_masters/show/**
+
+Description: Returns a single ar reason masters
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_reason_masters/show/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" http://tsubaiso.net/ar_reason_masters/show/1
+```
+
+Sample JSON Response:
+```
+{
+   "account_code": "500",
+   "ccode": null,
+   "dc": "d",
+   "id": 1,
+   "is_valid": 1,
+   "memo": "主たる営業活動である商品の販売やサービスの提供などにより獲得した収益に使用します。※税率5％の課税売上げ取引に使用してください。",
+   "reason_code": "SALES",
+   "reason_name": "課税売上高",
+   "sort_number": 30,
+   "ar_reason_taxes": [
+      {
+         "is_default": 1,
+         "sales_tax_system": 7,
+         "sort_no": 10,
+         "tax_master_id": 7
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 4,
+         "sort_no": 0,
+         "tax_master_id": 7
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 7,
+         "sort_no": 110,
+         "tax_master_id": 1007
+      },
+      {
+         "is_default": 1,
+         "sales_tax_system": 4,
+         "sort_no": 100,
+         "tax_master_id": 1007
+      }
+   ]
 }
 ```
 
