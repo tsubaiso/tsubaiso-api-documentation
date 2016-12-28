@@ -2108,7 +2108,7 @@ JSON レスポンスの例:
 
 #### 賞与データ
 
-**/bonuses/list/:bonus_no/:target_year**
+**/bonuses/list/**
 
 説明: このエンドポイントは bonus_no (賞与の回数番号)と target_year (対象年)で指定された賞与データの一覧を返します。もしこれらのパラメータが与えられなかったら、エラーが発生します。
 
@@ -2117,12 +2117,12 @@ HTTP メソッド: GET
 URL 構成例:
 
 ```sh
-https://tsubaiso.net/bonuses/list/:bonus_no/:target_year
+https://tsubaiso.net/bonuses/list/
 ```
 
 リクエスト例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bonuses/list/1/2016
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"bonus_no": 1, "target_year": "2016" }' https://tsubaiso.net/bonuses/list/
 ```
 
 JSON レスポンス例:
@@ -2196,7 +2196,6 @@ JSON レスポンス例:
     "id": 650504937,
     "is_closed": 0,
     "is_ok": 0,
-    "log": nil,
     "memo": nil,
     "no": 1,
     "regist_user_code": nil,
@@ -2273,7 +2272,6 @@ JSON レスポンス例:
     "id": 927467588,
     "is_closed": 0,
     "is_ok": 0,
-    "log": nil,
     "memo": nil,
     "no": 1,
     "regist_user_code": nil,
@@ -2372,7 +2370,6 @@ JSON レスポンスの例:
   "id": 650504937,
   "is_closed": 0,
   "is_ok": 0,
-  "log": nil,
   "memo": nil,
   "no": 1,
   "regist_user_code": nil,

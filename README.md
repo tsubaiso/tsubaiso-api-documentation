@@ -2114,7 +2114,7 @@ Sample JSON Response:
 
 #### Bonuses
 
-**/bonuses/list/:bonus_no/:target_year**
+**/bonuses/list/**
 
 Description: This endpoint returns list of bonuses from given bonus_no(sequence number or bonus) and target_year(year of payment) parameters. If no bonus_no or target_year parameters provided, it will raise an error.
 
@@ -2123,12 +2123,12 @@ Method: GET
 URL Structure:
 
 ```sh
-https://tsubaiso.net/bonuses/list/:bonus_no/:target_year
+https://tsubaiso.net/bonuses/list/
 ```
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bonuses/list/1/2016
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"bonus_no": 1, "target_year": "2016" }' https://tsubaiso.net/bonuses/list/
 ```
 
 Sample JSON Response:
@@ -2202,7 +2202,6 @@ Sample JSON Response:
     "id": 650504937,
     "is_closed": 0,
     "is_ok": 0,
-    "log": nil,
     "memo": nil,
     "no": 1,
     "regist_user_code": nil,
@@ -2279,7 +2278,6 @@ Sample JSON Response:
     "id": 927467588,
     "is_closed": 0,
     "is_ok": 0,
-    "log": nil,
     "memo": nil,
     "no": 1,
     "regist_user_code": nil,
@@ -2378,7 +2376,6 @@ Sample JSON Response:
   "id": 650504937,
   "is_closed": 0,
   "is_ok": 0,
-  "log": nil,
   "memo": nil,
   "no": 1,
   "regist_user_code": nil,
