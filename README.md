@@ -23,6 +23,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
 	 - [Tags](#tags)
 	 - [Reimbursement Reason Masters](#reimbursement-reason-masters)
      - [Ar Reason Masters](#ar-reason-masters)
+	 - [Ap Reason Masters](#ap-reason-masters)
      - [Bonuses](#bonuses)
 	 - [Payrolls](#payrolls)
 
@@ -2113,6 +2114,164 @@ Sample JSON Response:
 }
 ```
 
+#### Ap Reason Masters
+
+**/ap_reason_masters/list**
+
+Description: This endpoint returns a list of ap reason masters.
+
+Method: GET
+
+URL Structure:
+
+```sh
+https://tsubaiso.net/ap_reason_masters/list
+```
+
+Sample Request:
+
+```sh
+ +curl -H "Content-Type: application/json" -H "Accept: application/json" -H"Access-Token: XXXXXXXXXX" http://tsubaiso.net/ap_reason_masters/list
+```
+
+Sample JSON response:
+
+```
+[
+  {
+    "ap_reason_taxes": [],
+    "updated_at": "2016/12/19 23:13:11 +0900",
+    "update_user_code": "yamakawe",
+    "is_valid": 1,
+    "id": 1044389493,
+    "expense_mode": 1,
+    "dc": "c",
+    "created_at": "2016/12/07 17:24:53 +0900",
+    "ccode": 3,
+    "allowed_domains": null,
+    "account_code": "604",
+    "memo": "",
+    "port_type": 1,
+    "reason_code": "BUYING_IN2",
+    "reason_name": "仕入高",
+    "regist_user_code": null,
+    "release_version": 0,
+    "sales_tax_system": 7,
+    "sort_number": 10
+  },
+  {
+    "ap_reason_taxes": [
+      {
+        "updated_at": "2016/12/07 17:24:39 +0900",
+        "tax_master_id": 0,
+        "sort_no": 0,
+        "ap_reason_master_id": 10002,
+        "created_at": "2016/12/07 17:24:39 +0900",
+        "description": "test1",
+        "id": 41,
+        "is_default": 0,
+        "personal_id": null,
+        "port_type": null,
+        "sales_tax_system": 0
+      }
+    ],
+    "updated_at": "2016/12/07 17:24:53 +0900",
+    "update_user_code": null,
+    "is_valid": 1,
+    "id": 10002,
+    "expense_mode": 0,
+    "dc": "c",
+    "created_at": "2016/12/07 17:24:53 +0900",
+    "ccode": 3,
+    "allowed_domains": [
+      "CL_ADMIN",
+      "CL_BANK_MGR",
+      "CL_REIM_MGR",
+      "CL_CASH_MGR",
+      "CL_SALES_MGR",
+      "CL_BUYING_MGR",
+      "CL_INVENTORY_MGR",
+      "CL_MOVEMENT_MGR",
+      "CL_POTPOURRI_MGR",
+      "CL_JOURNAL_MGR",
+      "CL_DIRECT_DEBIT_MASTER_MGR",
+      "CL_DIRECT_DEBIT_MGR",
+      "CL_HR_MGR",
+      "CL_PAYROLL_MGR",
+      "BW_ADMIN",
+      "BW_STAFF"
+    ],
+    "account_code": "604",
+    "memo": "幡ヶ谷建設・マネージャのみ\n",
+    "port_type": null,
+    "reason_code": "SUPER_BUYING_IN",
+    "reason_name": "(幡ヶ谷建設・マネージャのみ)仕入高",
+    "regist_user_code": null,
+    "release_version": 0,
+    "sales_tax_system": null,
+    "sort_number": 15
+  }
+]
+```
+
+**/ap_reason_masters/show/:id**
+
+Description: This endpoint returns information for a single ap reason masters.
+
+Method: GET
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ap_reason_masters/show/:id
+```
+
+Sample Request:
+
+```sh
+ +curl -H "Content-Type: application/json" -H "Accept: application/json" -H"Access-Token: XXXXXXXXXX" http://tsubaiso.net/ap_reason_masters/show/1
+```
+
+Sample JSON response:
+
+```
+{
+  "ap_reason_taxes": [
+    {
+      "updated_at": "2016/12/07 17:24:39 +0900",
+      "tax_master_id": 2,
+      "sort_no": 20,
+      "ap_reason_master_id": 1,
+      "created_at": "2016/12/07 17:24:39 +0900",
+      "description": null,
+      "id": 1,
+      "is_default": 0,
+      "personal_id": null,
+      "port_type": 1,
+      "sales_tax_system": 7
+    }
+  ],
+  "updated_at": "2016/12/07 17:24:53 +0900",
+  "update_user_code": null,
+  "is_valid": 1,
+  "id": 1,
+  "expense_mode": 0,
+  "dc": "c",
+  "created_at": "2016/12/07 17:24:53 +0900",
+  "ccode": null,
+  "allowed_domains": null,
+  "account_code": "604",
+ +  "memo": "仕入高とは、商品や原材料の仕入、外注費等、会社の主たる営業活動にかかわる費用をいいます。売上高と直接対応する費用である点が特徴です。",
+  "port_type": null,
+  "reason_code": "BUYING_IN",
+  "reason_name": "仕入高",
+  "regist_user_code": null,
+  "release_version": 0,
+  "sales_tax_system": null,
+  "sort_number": 10
+}
+```
+
 #### Bonuses
 
 **/bonuses/list/**
@@ -2584,148 +2743,4 @@ Sample JSON Response:
 	    "created_at": "2016-12-19 14:16:28", 
 	    "updated_at": "2016-12-19 14:16:28"
     }
-```
-
-#### Ap Reason Masters
-
-**/ap_reason_masters/list**
-
-Description: This endpoint returns a list of ap reason masters.
-
-Method: GET
-
-URL Structure:
-```sh
-https://tsubaiso.net/ap_reason_masters/list
-```
-Sample Request:
-```sh
- +curl -H "Content-Type: application/json" -H "Accept: application/json" -H"Access-Token: XXXXXXXXXX" http://tsubaiso.net/ap_reason_masters/list
-```
-Sample JSON response:
-```
-[
-  {
-    "ap_reason_taxes": [],
-    "updated_at": "2016/12/19 23:13:11 +0900",
-    "update_user_code": "yamakawe",
-    "is_valid": 1,
-    "id": 1044389493,
-    "expense_mode": 1,
-    "dc": "c",
-    "created_at": "2016/12/07 17:24:53 +0900",
-    "ccode": 3,
-    "allowed_domains": null,
-    "account_code": "604",
-    "memo": "",
-    "port_type": 1,
-    "reason_code": "BUYING_IN2",
-    "reason_name": "仕入高",
-    "regist_user_code": null,
-    "release_version": 0,
-    "sales_tax_system": 7,
-    "sort_number": 10
-  },
-  {
-    "ap_reason_taxes": [
-      {
-        "updated_at": "2016/12/07 17:24:39 +0900",
-        "tax_master_id": 0,
-        "sort_no": 0,
-        "ap_reason_master_id": 10002,
-        "created_at": "2016/12/07 17:24:39 +0900",
-        "description": "test1",
-        "id": 41,
-        "is_default": 0,
-        "personal_id": null,
-        "port_type": null,
-        "sales_tax_system": 0
-      }
-    ],
-    "updated_at": "2016/12/07 17:24:53 +0900",
-    "update_user_code": null,
-    "is_valid": 1,
-    "id": 10002,
-    "expense_mode": 0,
-    "dc": "c",
-    "created_at": "2016/12/07 17:24:53 +0900",
-    "ccode": 3,
-    "allowed_domains": [
-      "CL_ADMIN",
-      "CL_BANK_MGR",
-      "CL_REIM_MGR",
-      "CL_CASH_MGR",
-      "CL_SALES_MGR",
-      "CL_BUYING_MGR",
-      "CL_INVENTORY_MGR",
-      "CL_MOVEMENT_MGR",
-      "CL_POTPOURRI_MGR",
-      "CL_JOURNAL_MGR",
-      "CL_DIRECT_DEBIT_MASTER_MGR",
-      "CL_DIRECT_DEBIT_MGR",
-      "CL_HR_MGR",
-      "CL_PAYROLL_MGR",
-      "BW_ADMIN",
-      "BW_STAFF"
-    ],
-    "account_code": "604",
-    "memo": "幡ヶ谷建設・マネージャのみ\n",
-    "port_type": null,
-    "reason_code": "SUPER_BUYING_IN",
-    "reason_name": "(幡ヶ谷建設・マネージャのみ)仕入高",
-    "regist_user_code": null,
-    "release_version": 0,
-    "sales_tax_system": null,
-    "sort_number": 15
-  }
-]
-```
-**/ap_reason_masters/show/:id**
-Description: This endpoint returns information for a single ap reason masters.
-Method: GET
-URL Structure:
-``` sh
-https://tsubaiso.net/ap_reason_masters/show/:id
-```
-Sample Request:
-```sh
- +curl -H "Content-Type: application/json" -H "Accept: application/json" -H"Access-Token: XXXXXXXXXX" http://tsubaiso.net/ap_reason_masters/show/1
-```
-Sample JSON response:
-```
-{
-  "ap_reason_taxes": [
-    {
-      "updated_at": "2016/12/07 17:24:39 +0900",
-      "tax_master_id": 2,
-      "sort_no": 20,
-      "ap_reason_master_id": 1,
-      "created_at": "2016/12/07 17:24:39 +0900",
-      "description": null,
-      "id": 1,
-      "is_default": 0,
-      "personal_id": null,
-      "port_type": 1,
-      "sales_tax_system": 7
-    }
-  ],
-  "updated_at": "2016/12/07 17:24:53 +0900",
-  "update_user_code": null,
-  "is_valid": 1,
-  "id": 1,
-  "expense_mode": 0,
-  "dc": "c",
-  "created_at": "2016/12/07 17:24:53 +0900",
-  "ccode": null,
-  "allowed_domains": null,
-  "account_code": "604",
- +  "memo": "仕入高とは、商品や原材料の仕入、外注費等、会社の主たる営業活動にかかわる費用をいいます。売上高と直接対応する費用である点が特徴です。",
-  "port_type": null,
-  "reason_code": "BUYING_IN",
-  "reason_name": "仕入高",
-  "regist_user_code": null,
-  "release_version": 0,
-  "sales_tax_system": null,
-  "sort_number": 10
-}
 ```
