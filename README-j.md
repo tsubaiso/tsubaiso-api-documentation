@@ -983,25 +983,25 @@ https://tsubaiso.net/journals/list
 
 Parameters:
 
-Parameter | Description
---- | ---
-`id` | idで検索します。
-`price` | 金額で検索します。税抜き金額か税込金額のどちらかに一致したレコードを返します。
-`memo` | メモに書かれてある内容で部分検索します。
-`dept_code` | 部門コードで検索します。
-`tag_list` | セグメント(旧タグ)で検索します。
-`start_date` | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
-`finish_date` | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
-`start_created_at` | 登録日の開始日で検索します。形式は"YYYY-MM-DD"です。
-`finish_created_at` | 登録日の終了日で検索します。形式は"YYYY-MM-DD"です。
-`account_code` | 勘定科目コードで検索します。
-`timestamp_order` | 返却されるレコードの、日付の並びを指定します。"desc"を指定すると降順になり、"asc"を指定すると昇順になります。デフォルトは降順です。
-`per_page` | 1回の検索で取得するレコード数を設定します。デフォルトでは20件で、最大200までの設定が可能です。
-`page` | どのページの検索結果を取得するか設定します。デフォルトでは1ページ目です。
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`id` | *optional* | String | idで検索します。
+`price` | *optional* | String | 金額で検索します。税抜き金額か税込金額のどちらかに一致したレコードを返します。
+`memo` | *optional* | String | メモに書かれてある内容で部分検索します。
+`dept_code` | *optional* | String | 部門コードで検索します。
+`tag_list` | *optional* | String | セグメント(旧タグ)で検索します。
+`start_date` | *optional* | String | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
+`finish_date` | *optional* | String | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
+`start_created_at` | *optional* | String | 登録日の開始日で検索します。形式は"YYYY-MM-DD"です。
+`finish_created_at` | *optional* | String | 登録日の終了日で検索します。形式は"YYYY-MM-DD"です。
+`account_codes` | *optional* | Array | 勘定科目コードで検索します。
+`timestamp_order` | *optional* | String | 返却されるレコードの、日付の並びを指定します。"desc"を指定すると降順になり、"asc"を指定すると昇順になります。デフォルトは降順です。
+`per_page` | *optional* | String | 1回の検索で取得するレコード数を設定します。デフォルトでは20件で、最大200までの設定が可能です。
+`page` | *optional* | String | どのページの検索結果を取得するか設定します。デフォルトでは1ページ目です。
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_code": "500", "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_codes": "500", "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
 ```
 
 JSON レスポンスの例:

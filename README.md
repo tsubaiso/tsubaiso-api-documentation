@@ -988,25 +988,25 @@ https://tsubaiso.net/journals/list
 
 Parameters:
 
-Parameter | Description
---- | ---
-`id` | Search using the journal id directly.
-`price` | Search for journals with the specified amount. Matching journals will be returned if either its price excluding tax or sales tax price match the specified price.
-`memo` | Search journals that contain the specified keywords in their memo.
-`dept_code` | Search journals that belong to the specified department.
-`tag_list` | Search for journals that have the specified segment(formerly tag).
-`start_date` | Search for journals that have a journal date after the specified date. Format needs to be "YYYY-MM-DD".
-`finish_date` | Search for journals that have a journal date before the specified date. Format needs to be "YYYY-MM-DD".
-`start_created_at` | Search for journals that have a create date after the specified date. Format needs to be "YYYY-MM-DD".
-`finish_created_at` | Search for journals that have a create date before the specified date. Format needs to be "YYYY-MM-DD".
-`account_code` | Search for journals that are using the specified account code.
-`timestamp_order` | Specify the order in which the journals are displayed. "desc" for descending journal date order or "asc" for ascending. Default is descending.
-`per_page` | Specify the amount of records to be returned. Default amount is 20 if there are more than 20 records. Maximum amount the can be returned per request is 200.
-`page` | Specify which page of records to return. Default page is 1.
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`id` | *optional* | String | Search using the journal id directly.
+`price` | *optional* | String | Search for journals with the specified amount. Matching journals will be returned if either its price excluding tax or sales tax price match the specified price.
+`memo` | *optional* | String | Search journals that contain the specified keywords in their memo.
+`dept_code` | *optional* | String | Search journals that belong to the specified department.
+`tag_list` | *optional* | String | Search for journals that have the specified segment(formerly tag).
+`start_date` | *optional* | String | Search for journals that have a journal date after the specified date. Format needs to be "YYYY-MM-DD".
+`finish_date` | *optional* | String | Search for journals that have a journal date before the specified date. Format needs to be "YYYY-MM-DD".
+`start_created_at` | *optional* | String | Search for journals that have a create date after the specified date. Format needs to be "YYYY-MM-DD".
+`finish_created_at` | *optional* | String | Search for journals that have a create date before the specified date. Format needs to be "YYYY-MM-DD".
+`account_codes` | *optional* | Array | Search for journals that are using the specified account codes.
+`timestamp_order` | *optional* | String | Specify the order in which the journals are displayed. "desc" for descending journal date order or "asc" for ascending. Default is descending.
+`per_page` | *optional* | String | Specify the amount of records to be returned. Default amount is 20 if there are more than 20 records. Maximum amount the can be returned per request is 200.
+`page` | *optional* | String | Specify which page of records to return. Default page is 1.
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_code": "500", "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X GET -d '{"account_codes": ["500"], "start_date": "2014-01-01", "finish_date": "2014-12-31", "per_page": 2}' https://tsubaiso.net/journals/list
 ```
 
 Sample JSON Response:
