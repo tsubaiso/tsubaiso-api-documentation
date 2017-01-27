@@ -193,7 +193,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
-`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
+`data_partner` | *optional* | Object | 詳細は[データパートナー](#データパートナー)を参照。
 
 リクエストの例:
 ```sh
@@ -377,7 +377,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
-`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
+`data_partner` | *optional* | Object | 詳細は[データパートナー](#データパートナー)を参照。
 
 リクエストの例:
 ``` sh
@@ -1276,7 +1276,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
-`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
+`data_partner` | *optional* | Object | 詳細は[データパートナー](#データパートナー)を参照。
 `journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。jouranal_dcsは配列で指定します。(2つの場合でも要素は省略できません) 1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。 *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
 
 *journal_dcs*
@@ -1564,7 +1564,7 @@ Parameter | Necessity | Type | Description
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 `tax_type` | *optional* | String | 課税区分コード
-`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
+`data_partner` | *optional* | Object | 詳細は[データパートナー](#データパートナー)を参照。
 
 リクエストの例:
 ```sh
