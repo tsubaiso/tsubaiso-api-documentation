@@ -27,6 +27,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
 	 - [購買原因マスタ](#購買原因マスタ)
      - [賞与データ](#賞与データ)
 	 - [給与データ](#給与データ)
+ - [データパートナー](#data-partners)
 
 ## Root Endpoint
 
@@ -192,6 +193,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
 
 リクエストの例:
 ```sh
@@ -375,6 +377,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
 
 リクエストの例:
 ``` sh
@@ -1273,6 +1276,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
+`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
 `journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。jouranal_dcsは配列で指定します。(2つの場合でも要素は省略できません) 1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。 *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
 
 *journal_dcs*
@@ -1560,6 +1564,7 @@ Parameter | Necessity | Type | Description
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 `tax_type` | *optional* | String | 課税区分コード
+`data_partner` | *optional* | Object | 詳細は[data partners](#data-partners)を参照。
 
 リクエストの例:
 ```sh
@@ -2739,3 +2744,20 @@ JSON レスポンスの例:
 	    "updated_at": "2016-12-19 14:16:28"
     }
 ```
+
+### データパートナー
+
+Description: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
+
+対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`partner_code` | *optional* | String | パートナーコード。
+`link_url` | *optional* | String | データ連携している外部サービスのURL。
+`editable` | *optional* | Integer | ツバイソでの編集可否。(1: 編集可, 0: マネージャ相当ユーザのみ編集可(Default))
+`deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
+`partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
+`partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
