@@ -27,6 +27,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
 	 - [購買原因マスタ](#購買原因マスタ)
      - [賞与データ](#賞与データ)
 	 - [給与データ](#給与データ)
+ - [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
 
@@ -192,6 +193,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 
 リクエストの例:
 ```sh
@@ -426,6 +428,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 
 リクエストの例:
 ``` sh
@@ -1360,6 +1363,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | 仕訳日。"YYYY-MM-DD" 形式
+`data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 `journal_dcs` | *required* | Array of Object | 仕訳の借方(debit)、貸方(credit)。jouranal_dcsは配列で指定します。(2つの場合でも要素は省略できません) 1つのjournal_dcにつき、"debit", "credit"を最大一つずつ指定できます。 *journal_dc 1つで借方、貸方の金額を合わせる必要はありません。*
 
 *journal_dcs*
@@ -1647,6 +1651,7 @@ Parameter | Necessity | Type | Description
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 `tax_type` | *optional* | String | 課税区分コード
+`data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 
 リクエストの例:
 ```sh
@@ -2004,7 +2009,7 @@ JSON レスポンスの例:
             "port_type":1,
             "sales_tax_system":4,
             "sort_no":1,
-            "tax_master_id":3 
+            "tax_master_id":3
           }
       },
       {
@@ -2024,7 +2029,7 @@ JSON レスポンスの例:
             "port_type":1,
             "sales_tax_system":4,
             "sort_no":1,
-            "tax_master_id":3 
+            "tax_master_id":3
           }
       },
       .....
@@ -2066,7 +2071,7 @@ JSON レスポンスの例:
       "port_type":1,
       "sales_tax_system":4,
       "sort_no":1,
-      "tax_master_id":3 
+      "tax_master_id":3
     }
 }
 ```
@@ -2255,7 +2260,7 @@ JSON レスポンスの例:
        "personal_id": null,
        "port_type": null,
        "sales_tax_system": 0
-     }    
+     }
    ],
    "updated_at": "2016/12/07 17:24:53 +0900",
    "update_user_code": null,
@@ -2312,7 +2317,7 @@ https://tsubaiso.net/ap_reason_masters/show/:id
 
 ```sh
  curl -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" http:/tsubaiso.net/ap_reason_masters/show/1
-``` 
+```
 
 JSON レスポンスの例:
 
@@ -2655,75 +2660,75 @@ JSON レスポンス例:
         "staff_id": 2001,
 	    "group_code: nil,
 	    "target_ym": "2016-11-01 00:00:00",
-	    "al_1": 440000, 
-	    "al_2": 0, 
+	    "al_1": 440000,
+	    "al_2": 0,
 	    "al_3": 0,
-	    "al_4": nil, 
+	    "al_4": nil,
 	    "al_5": nil,
-	    "al_6": nil, 
-	    "al_7": nil, 
-	    "al_8": nil, 
-	    "al_9": nil, 
-	    "al_10": nil, 
-	    "al_11": nil, 
-	    "al_12": nil, 
-	    "al_13": nil, 
-	    "al_14": nil, 
-	    "al_15": nil, 
-	    "al_16": nil, 
-	    "al_17": nil, 
-	    "al_18": nil, 
-	    "al_19": 0, 
-	    "al_20": 0, 
-	    "al_21": 440000, 
-	    "al_22": 440000, 
-	    "al_23": 440000, 
-	    "al_24": nil, 
-	    "al_25": nil, 
-	    "al_26": nil, 
-	    "al_27": nil, 
-	    "al_28": nil, 
-	    "al_29": nil, 
-	    "al_30": 440000, 
-	    "de_1": 18040, 
-	    "de_2": 0, 
-	    "de_3": 33770, 
-	    "de_4": nil, 
-	    "de_5": 2640, 
-	    "de_6": 6800, 
-	    "de_7": 5200, 
-	    "de_8": nil, 
-	    "de_9": nil, 
-	    "de_10": nil, 
-	    "de_11": nil, 
-	    "de_12": nil, 
-	    "de_13": nil, 
-	    "de_14": nil, 
-	    "de_15": 0, 
+	    "al_6": nil,
+	    "al_7": nil,
+	    "al_8": nil,
+	    "al_9": nil,
+	    "al_10": nil,
+	    "al_11": nil,
+	    "al_12": nil,
+	    "al_13": nil,
+	    "al_14": nil,
+	    "al_15": nil,
+	    "al_16": nil,
+	    "al_17": nil,
+	    "al_18": nil,
+	    "al_19": 0,
+	    "al_20": 0,
+	    "al_21": 440000,
+	    "al_22": 440000,
+	    "al_23": 440000,
+	    "al_24": nil,
+	    "al_25": nil,
+	    "al_26": nil,
+	    "al_27": nil,
+	    "al_28": nil,
+	    "al_29": nil,
+	    "al_30": 440000,
+	    "de_1": 18040,
+	    "de_2": 0,
+	    "de_3": 33770,
+	    "de_4": nil,
+	    "de_5": 2640,
+	    "de_6": 6800,
+	    "de_7": 5200,
+	    "de_8": nil,
+	    "de_9": nil,
+	    "de_10": nil,
+	    "de_11": nil,
+	    "de_12": nil,
+	    "de_13": nil,
+	    "de_14": nil,
+	    "de_15": 0,
 	    "de_16": nil,
-	    "de_17": nil, 
-	    "de_18": 0, 
-	    "de_19": 0, 
-	    "de_20": 0, 
-	    "de_21": 0, 
-	    "de_22": nil, 
-	    "de_23": nil, 
-	    "de_24": nil, 
-	    "de_25": 3960, 
-	    "de_26": 0, 
-	    "de_27": nil, 
-	    "de_28": 385550, 
-	    "de_29": nil, 
-	    "de_30": 66450, 
-	    "balance_amount": nil, 
-	    "log": nil, 
-	    "is_ok": 0, 
-	    "is_closed": 0, 
-	    "regist_user_code": nil, 
-	    "update_user_code": nil, 
-	    "calculated_at": nil, 
-	    "calc_user_code": nil, 
-	    "created_at": "2016-12-19 14:16:28", 
+	    "de_17": nil,
+	    "de_18": 0,
+	    "de_19": 0,
+	    "de_20": 0,
+	    "de_21": 0,
+	    "de_22": nil,
+	    "de_23": nil,
+	    "de_24": nil,
+	    "de_25": 3960,
+	    "de_26": 0,
+	    "de_27": nil,
+	    "de_28": 385550,
+	    "de_29": nil,
+	    "de_30": 66450,
+	    "balance_amount": nil,
+	    "log": nil,
+	    "is_ok": 0,
+	    "is_closed": 0,
+	    "regist_user_code": nil,
+	    "update_user_code": nil,
+	    "calculated_at": nil,
+	    "calc_user_code": nil,
+	    "created_at": "2016-12-19 14:16:28",
 	    "updated_at": "2016-12-19 14:16:28"
       },
       .....
@@ -2754,75 +2759,92 @@ JSON レスポンスの例:
         "staff_id": 2001,
 	    "group_code: nil,
 	    "target_ym": "2016-11-01 00:00:00",
-	    "al_1": 440000, 
-	    "al_2": 0, 
+	    "al_1": 440000,
+	    "al_2": 0,
 	    "al_3": 0,
-	    "al_4": nil, 
+	    "al_4": nil,
 	    "al_5": nil,
-	    "al_6": nil, 
-	    "al_7": nil, 
-	    "al_8": nil, 
-	    "al_9": nil, 
-	    "al_10": nil, 
-	    "al_11": nil, 
-	    "al_12": nil, 
-	    "al_13": nil, 
-	    "al_14": nil, 
-	    "al_15": nil, 
-	    "al_16": nil, 
-	    "al_17": nil, 
-	    "al_18": nil, 
-	    "al_19": 0, 
-	    "al_20": 0, 
-	    "al_21": 440000, 
-	    "al_22": 440000, 
-	    "al_23": 440000, 
-	    "al_24": nil, 
-	    "al_25": nil, 
-	    "al_26": nil, 
-	    "al_27": nil, 
-	    "al_28": nil, 
-	    "al_29": nil, 
-	    "al_30": 440000, 
-	    "de_1": 18040, 
-	    "de_2": 0, 
-	    "de_3": 33770, 
-	    "de_4": nil, 
-	    "de_5": 2640, 
-	    "de_6": 6800, 
-	    "de_7": 5200, 
-	    "de_8": nil, 
-	    "de_9": nil, 
-	    "de_10": nil, 
-	    "de_11": nil, 
-	    "de_12": nil, 
-	    "de_13": nil, 
-	    "de_14": nil, 
-	    "de_15": 0, 
+	    "al_6": nil,
+	    "al_7": nil,
+	    "al_8": nil,
+	    "al_9": nil,
+	    "al_10": nil,
+	    "al_11": nil,
+	    "al_12": nil,
+	    "al_13": nil,
+	    "al_14": nil,
+	    "al_15": nil,
+	    "al_16": nil,
+	    "al_17": nil,
+	    "al_18": nil,
+	    "al_19": 0,
+	    "al_20": 0,
+	    "al_21": 440000,
+	    "al_22": 440000,
+	    "al_23": 440000,
+	    "al_24": nil,
+	    "al_25": nil,
+	    "al_26": nil,
+	    "al_27": nil,
+	    "al_28": nil,
+	    "al_29": nil,
+	    "al_30": 440000,
+	    "de_1": 18040,
+	    "de_2": 0,
+	    "de_3": 33770,
+	    "de_4": nil,
+	    "de_5": 2640,
+	    "de_6": 6800,
+	    "de_7": 5200,
+	    "de_8": nil,
+	    "de_9": nil,
+	    "de_10": nil,
+	    "de_11": nil,
+	    "de_12": nil,
+	    "de_13": nil,
+	    "de_14": nil,
+	    "de_15": 0,
 	    "de_16": nil,
-	    "de_17": nil, 
-	    "de_18": 0, 
-	    "de_19": 0, 
-	    "de_20": 0, 
-	    "de_21": 0, 
-	    "de_22": nil, 
-	    "de_23": nil, 
-	    "de_24": nil, 
-	    "de_25": 3960, 
-	    "de_26": 0, 
-	    "de_27": nil, 
-	    "de_28": 385550, 
-	    "de_29": nil, 
-	    "de_30": 66450, 
-	    "balance_amount": nil, 
-	    "log": nil, 
-	    "is_ok": 0, 
-	    "is_closed": 0, 
-	    "regist_user_code": nil, 
-	    "update_user_code": nil, 
-	    "calculated_at": nil, 
-	    "calc_user_code": nil, 
-	    "created_at": "2016-12-19 14:16:28", 
+	    "de_17": nil,
+	    "de_18": 0,
+	    "de_19": 0,
+	    "de_20": 0,
+	    "de_21": 0,
+	    "de_22": nil,
+	    "de_23": nil,
+	    "de_24": nil,
+	    "de_25": 3960,
+	    "de_26": 0,
+	    "de_27": nil,
+	    "de_28": 385550,
+	    "de_29": nil,
+	    "de_30": 66450,
+	    "balance_amount": nil,
+	    "log": nil,
+	    "is_ok": 0,
+	    "is_closed": 0,
+	    "regist_user_code": nil,
+	    "update_user_code": nil,
+	    "calculated_at": nil,
+	    "calc_user_code": nil,
+	    "created_at": "2016-12-19 14:16:28",
 	    "updated_at": "2016-12-19 14:16:28"
     }
 ```
+
+### 外部連携機能
+
+説明: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
+
+対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`partner_code` | *optional* | String | パートナーコード。
+`link_url` | *optional* | String | データ連携している外部サービスのURL。
+`editable` | *optional* | Integer | ツバイソでの編集可否。(1: 編集可, 0: マネージャ相当ユーザのみ編集可(Default))
+`deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
+`partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
+`partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)

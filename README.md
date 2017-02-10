@@ -26,6 +26,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
 	 - [Ap Reason Masters](#ap-reason-masters)
      - [Bonuses](#bonuses)
 	 - [Payrolls](#payrolls)
+ - [Data Partners](#data-partners)
 
 ## Root Endpoint
 
@@ -194,6 +195,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
+`data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 
 Sample Request:
 ```sh
@@ -431,6 +433,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
+`data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 
 Sample Request:
 ``` sh
@@ -1375,6 +1378,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `journal_timestamp` | *required* | String | Journal entry date. Format must be "YYYY-MM-DD"
+`data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 `journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and/or one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
 
 *journal_dcs*
@@ -1658,6 +1662,7 @@ Parameter | Necessity | Type | Description
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 `tax_type` | *optional* | String | Tax type of the transaction.
+`data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 
 Sample Request:
 ```sh
@@ -2831,3 +2836,20 @@ Sample JSON Response:
 	    "updated_at": "2016-12-19 14:16:28"
     }
 ```
+
+### Data Partners
+
+Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
+
+Applicable resources: Accounts Receivables, Accounts Payables, Reimbursement Transactions, Manual Journals
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`partner_code` | *optional* | String | Reference code for the connected transaction.
+`link_url` | *optional* | String | URL where the connected transaction can be accessed from.
+`editable` | *optional* | Integer | 1 if you want the transaction to be editable by users who are below manager level. (Default is 0)
+`deletable` | *optional* | Integer | 1 if you want the transaction to be deletable by users who are below manager level. (Default is 0)
+`partner_editable` | *optional* | Integer | 1 if you want the transaction to be editable via API requests. (Default is 1)
+`partner_deletable` | *optional* | Integer | 1 if you want the transaction to be deletable via API requests. (Default is 1)
