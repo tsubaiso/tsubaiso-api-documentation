@@ -227,6 +227,57 @@ URL 構成例:
 https://tsubaiso.net/ar/destroy/:id
 ```
 
+**/ar_receipts/balance/:year/:month**
+
+説明: このエンドポイントは特定の年月の取引先の売上明細の一覧を返します。年月パラメータが指定されなかった場合、現在の月の明細が返されます。
+
+HTTPメソッド: GET
+
+URL 構成例:
+
+``` sh
+https://tsubaiso.net/ar_receipts/balance/:year/:month
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_receipts/balance/2017/1
+```
+
+JSON レスポンス例:
+``` sh
+[
+  {
+    "ym": "2017-01",
+    "customer_master_id": 0,
+    "ar_segment": 1,
+    "start_balance": 262510800,
+    "finish_balance": 262510800,
+    "received_amount": 0,
+    "sales": 0,
+    "tax": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0,
+    "memo": null,
+    "created_at": null
+  },
+  {
+    "ym": "2017-01",
+    "customer_master_id": 101,
+    "ar_segment": 1,
+    "start_balance": 10000,
+    "finish_balance": 10000,
+    "received_amount": 0,
+    "sales": 0,
+    "tax": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0,
+    "memo": null,
+    "created_at": null
+  }
+]
+```
+
 #### 仕入・経費明細
 
 **/ap_payments/list/:year/:month**
@@ -409,6 +460,42 @@ HTTP メソッド: POST
 URL 構成例:
 ```sh
 https://tsubaiso.net/ap/destroy/:id
+```
+
+**/ap_payments/balance/:year/:month**
+
+説明: このエンドポイントは特定の年月の取引先の仕入・経費明細の一覧を返します。年月パラメータが指定されなかった場合、現在の月の明細が返されます。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/ap_payments/balance/:year/:month
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_payments/balance/2017/1
+```
+
+JSON レスポンス:
+``` sh
+[
+  {
+    "created_at": null,
+    "customer_master_id": 105,
+    "finish_balance": 197149998,
+    "memo": null,
+    "ym": "2017-01",
+    "ap_segment": 2,
+    "start_balance": 197149998,
+    "paid_amount": 0,
+    "buying_amount": 0,
+    "tax_buying_amount": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0
+  }
+]
 ```
 
 #### 取引先

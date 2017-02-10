@@ -229,6 +229,57 @@ URL Structure:
 https://tsubaiso.net/ar/destroy/:id
 ```
 
+**/ar_receipts/balance/:year/:month**
+
+Description: This endpoint returns list of customer's account receivable amount from given year and month parameters. If no year and month parameters are provided, it returns the list for the current month.
+
+Method: GET
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ar_receipts/balance/:year/:month
+```
+
+Sample Request :
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_receipts/balance/2017/1
+```
+
+Sample JSON Response:
+``` sh
+[
+  {
+    "ym": "2017-01",
+    "customer_master_id": 0,
+    "ar_segment": 1,
+    "start_balance": 262510800,
+    "finish_balance": 262510800,
+    "received_amount": 0,
+    "sales": 0,
+    "tax": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0,
+    "memo": null,
+    "created_at": null
+  },
+  {
+    "ym": "2017-01",
+    "customer_master_id": 101,
+    "ar_segment": 1,
+    "start_balance": 10000,
+    "finish_balance": 10000,
+    "received_amount": 0,
+    "sales": 0,
+    "tax": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0,
+    "memo": null,
+    "created_at": null
+  }
+]
+```
+
 #### Accounts Payables
 
 **/ap_payments/list/:year/:month**
@@ -414,6 +465,42 @@ Method: POST
 URL Structure:
 ```sh
 https://tsubaiso.net/ap/destroy/:id
+```
+
+**/ap_payments/balance/:year/:month**
+
+Description: This endpoint returns list of customer's account payable amount from given year and month parameters. If no year and month parameters are provided, it returns the list for the current month.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/ap_payments/balance/:year/:month
+```
+
+Sample Request :
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_payments/balance/2017/1
+```
+
+Sample JSON Response :
+``` sh
+[
+  {
+    "created_at": null,
+    "customer_master_id": 105,
+    "finish_balance": 197149998,
+    "memo": null,
+    "ym": "2017-01",
+    "ap_segment": 2,
+    "start_balance": 197149998,
+    "paid_amount": 0,
+    "buying_amount": 0,
+    "tax_buying_amount": 0,
+    "remittance_charge": 0,
+    "exchange_gain_and_loss": 0
+  }
+]
 ```
 
 #### Customers
