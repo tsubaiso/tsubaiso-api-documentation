@@ -251,7 +251,7 @@ Sample JSON Response:
 [
   {
     "ym": "2017-01",
-    "customer_master_id": 0,
+    "customer_master_code": "0",
     "ar_segment": 1,
     "start_balance": 262510800,
     "finish_balance": 262510800,
@@ -265,7 +265,7 @@ Sample JSON Response:
   },
   {
     "ym": "2017-01",
-    "customer_master_id": 101,
+    "customer_master_code": "101",
     "ar_segment": 1,
     "start_balance": 10000,
     "finish_balance": 10000,
