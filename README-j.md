@@ -2832,6 +2832,58 @@ JSON レスポンスの例:
     }
 ```
 
+#### 仕訳配賦
+
+**/journal_distributions/create**
+
+説明: 仕訳配賦は選択された配賦に基づいて新しいを作成します。配賦の配分は、部門かセグメントの比率から計算されます。新規作成された配賦が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/journal_distributions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`start_date` | *required* | String | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
+`finish_date` | *required* | String | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
+`account_codes` | *required* | Array of String | 勘定科目コードで検索します。
+`dept_code` | *optional*\*| String | 部門コードで検索します。
+`tag_list` | *optional*\*| String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
+`target_timestamp` | *required* | String | 配賦対象の日。形式は"YYYY-MM-DD"です。
+`memo` | *optional* | String | メモに書かれてある内容で部分検索します。
+`criteria` | *required* | String | 配賦基準。部門かセグメントを指定します。指定した基準で配賦されます。
+`distribution_condition` | *required* | String | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。
+
+\*dept_code　か　tag_list　いずれか指定することが必要です。
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -d '{ "search_conditions": { "start_date": "2016-09-01", "finish_date": "2016-09-30", "accou\
+nt_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.n\
+et/journal_distributions/create
+```
+
+**/journal_distribution/destroy/:id**
+
+説明:指定された id の配賦を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+
+URL 構成例:
+```sh
+https://tsubaiso.net/journal_distributions/destroy/:id
+```
+
+
+
+
+
 ### 外部連携機能
 
 説明: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
@@ -2848,3 +2900,4 @@ Parameter | Necessity | Type | Description
 `deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
 `partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
 `partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
+
