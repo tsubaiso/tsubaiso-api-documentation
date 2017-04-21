@@ -2859,6 +2859,7 @@ Parameter | Necessity | Type | Description
 `criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Only available options are "dept" for departments ot "segment" for segments.
 `distribution_conditions` | *required* | String | Departments or segments to be allocated within journal distribution.
 `memo` | *optional* | String | Memo for the entry.
+`search_conditions` | *required* | Object | See below.
 
 *search_conditions*
 

@@ -2849,15 +2849,21 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`target_timestamp` | *required* | String | 配賦対象の日。形式は"YYYY-MM-DD"です。
+`criteria` | *required* | String | 配賦基準。部門かセグメントを指定します。指定した基準で配賦されます。Only available options are "dept" for departments ot "segment" for segments.
+`distribution_conditions` | *required* | String | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。
+`memo` | *optional* | String | メモに書かれてある内容で部分検索します。
+`search_conditions` | *required* | Object | See below.
+
+*search_conditions*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
 `start_date` | *required* | String | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
 `finish_date` | *required* | String | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
 `account_codes` | *required* | Array of String | 勘定科目コードで検索します。
 `dept_code` | *optional*\*| String | 部門コードで検索します。
 `tag_list` | *optional*\*| String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
-`target_timestamp` | *required* | String | 配賦対象の日。形式は"YYYY-MM-DD"です。
-`memo` | *optional* | String | メモに書かれてある内容で部分検索します。
-`criteria` | *required* | String | 配賦基準。部門かセグメントを指定します。指定した基準で配賦されます。
-`distribution_condition` | *required* | String | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。
 
 \*dept_code　か　tag_list　いずれか指定することが必要です。
 
