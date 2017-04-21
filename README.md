@@ -2,7 +2,7 @@
 
 This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables, accounts payable transactions, customer management and staff/staff data management. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
 
-##Table Of Contents
+## Table Of Contents
 
  - [Root Endpoint](#root-endpoint)
  - [Request Format](#request-format)
@@ -2855,15 +2855,20 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`target_timestamp` | *required* | String | Target date of the journal distribution. Format must be "YYYY-MM-DD".
+`criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Only available options are "dept" for departments ot "segment" for segments.
+`distribution_conditions` | *required* | String | Departments or segments to be allocated within journal distribution.
+`memo` | *optional* | String | Memo for the entry.
+
+*search_conditions*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
 `start_date` | *required* | String | Start date of journal timestamp to be searched. Format must be "YYYY-MM-DD".
 `finish_date` | *required* | String | Finish date of journal timestamp to be searched. Format must be "YYYY-MM-DD".
 `account_codes` | *required* | Array of String | Search for journals that are using the specified account code.
 `dept_code` | *optional*\*| String | Code of the internal department involved.
 `tag_list` | *optional*\*| String | Segment(formerly tag) code string.(Comma-separated).
-`target_timestamp` | *required* | String | Target date of the journal distribution. Format must be "YYYY-MM-DD".
-`memo` | *optional* | String | Memo for the entry.
-`criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Journal distribution can be distributed over departments or segments criteria.
-`distribution_condition` | *required* | String | Departments or segments to be allocated within journal distribution.
 
 \*Either one of dept_code or tag_list must be provided.
 
