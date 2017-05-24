@@ -421,8 +421,8 @@ Parameter | Necessity | Type | Description
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
 `dc` | *required* | String | 'd' if the transaction was a debit to AP, 'c' if it was a credit.
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
-`tax_code` | *required* | Integer | Tax code for the transaction.
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction.
+`tax_code` | *optional* | Integer | Tax code for the transaction. (If this parameter omitted, use tax_code associated by reason_master_code.)
 `dept_code` | *optional* | String | Code of the internal department involved.
 `buying_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_pay_timestamp` | *optional* | String | Date of payment. Format must be "YYYY-MM-DD".
