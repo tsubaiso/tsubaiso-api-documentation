@@ -416,8 +416,8 @@ Parameter | Necessity | Type | Description
 `reason_master_code` | *required* | String | 明細の原因コード。仕訳を作成するために使われます。
 `dc` | *required* | String | 原因区分。 'd' は「減少」に、'c' は「増加」になります。
 `memo` | *required* | String | メモ。値は空文字でも構いませんが必須項目です。
-`tax_code` | *required* | Integer | 税区分コード
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」
+`tax_code` | *optional* | Integer | 税区分コード (省略された場合、原因コードのデフォルト税区分が使用されます。)
 `dept_code` | *optional* | String | 部門コード
 `buying_tax` | *optional* | Integer | 消費税額。省略された場合は自動で計算されます。
 `scheduled_pay_timestamp` | *optional* | String | 支払予定日。  "YYYY-MM-DD" 形式
