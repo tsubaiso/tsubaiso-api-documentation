@@ -9,24 +9,25 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
  - [Authentication](#authentication)
  - [Response Codes and Error Handling](#response-codes-and-error-handling)
  - [Resources](#resources)
-	 - [Accounts Receivables](#accounts-receivables)
-	 - [Accounts Payables](#accounts-payables)
-	 - [Customers](#customers)
-	 - [Staff](#staff)
-	 - [Staff Data](#staff-data)
-	 - [Staff Datum Master](#staff-datum-master)
-	 - [Journals](#journals)
-	 - [Manual Journals](#manual-journals)
-	 - [Reimbursements](#reimbursements)
-	 - [Reimbursement Transaction](#reimbursement-transaction)
-	 - [Departments](#departments)
-	 - [Tags](#tags)
-	 - [Reimbursement Reason Masters](#reimbursement-reason-masters)
-     - [Ar Reason Masters](#ar-reason-masters)
-	 - [Ap Reason Masters](#ap-reason-masters)
-     - [Bonuses](#bonuses)
-	 - [Payrolls](#payrolls)
- - [Data Partners](#data-partners)
+   - [Accounts Receivables](#accounts-receivables)
+   - [Accounts Payables](#accounts-payables)
+   - [Customers](#customers)
+   - [Staff](#staff)
+   - [Staff Data](#staff-data)
+   - [Staff Datum Master](#staff-datum-master)
+   - [Journals](#journals)
+   - [Manual Journals](#manual-journals)
+   - [Reimbursements](#reimbursements)
+   - [Reimbursement Transaction](#reimbursement-transaction)
+   - [Departments](#departments)
+   - [Tags](#tags)
+   - [Reimbursement Reason Masters](#reimbursement-reason-masters)
+   - [Ar Reason Masters](#ar-reason-masters)
+   - [Ap Reason Masters](#ap-reason-masters)
+   - [Bonuses](#bonuses)
+   - [Payrolls](#payrolls)
+   - [Journal Distributions](#journal-distributions)
+- [Data Partners](#data-partners)
 
 ## Root Endpoint
 
@@ -2018,7 +2019,7 @@ Sample JSON Response:
             "port_type":1,
             "sales_tax_system":4,
             "sort_no":1,
-            "tax_master_id":3 
+            "tax_master_id":3
           }
       },
       {
@@ -2038,7 +2039,7 @@ Sample JSON Response:
             "port_type":1,
             "sales_tax_system":4,
             "sort_no":1,
-            "tax_master_id":3 
+            "tax_master_id":3
           }
       },
       .....
@@ -2080,7 +2081,7 @@ Sample JSON Response:
       "port_type":1,
       "sales_tax_system":4,
       "sort_no":1,
-      "tax_master_id":3 
+      "tax_master_id":3
     }
 }
 ```
@@ -2665,75 +2666,75 @@ Sample JSON Response:
         "staff_id": 2001,
 	    "group_code: nil,
 	    "target_ym": "2016-11-01 00:00:00",
-	    "al_1": 440000, 
-	    "al_2": 0, 
+	    "al_1": 440000,
+	    "al_2": 0,
 	    "al_3": 0,
-	    "al_4": nil, 
+	    "al_4": nil,
 	    "al_5": nil,
-	    "al_6": nil, 
-	    "al_7": nil, 
-	    "al_8": nil, 
-	    "al_9": nil, 
-	    "al_10": nil, 
-	    "al_11": nil, 
-	    "al_12": nil, 
-	    "al_13": nil, 
-	    "al_14": nil, 
-	    "al_15": nil, 
-	    "al_16": nil, 
-	    "al_17": nil, 
-	    "al_18": nil, 
-	    "al_19": 0, 
-	    "al_20": 0, 
-	    "al_21": 440000, 
-	    "al_22": 440000, 
-	    "al_23": 440000, 
-	    "al_24": nil, 
-	    "al_25": nil, 
-	    "al_26": nil, 
-	    "al_27": nil, 
-	    "al_28": nil, 
-	    "al_29": nil, 
-	    "al_30": 440000, 
-	    "de_1": 18040, 
-	    "de_2": 0, 
-	    "de_3": 33770, 
-	    "de_4": nil, 
-	    "de_5": 2640, 
-	    "de_6": 6800, 
-	    "de_7": 5200, 
-	    "de_8": nil, 
-	    "de_9": nil, 
-	    "de_10": nil, 
-	    "de_11": nil, 
-	    "de_12": nil, 
-	    "de_13": nil, 
-	    "de_14": nil, 
-	    "de_15": 0, 
+	    "al_6": nil,
+	    "al_7": nil,
+	    "al_8": nil,
+	    "al_9": nil,
+	    "al_10": nil,
+	    "al_11": nil,
+	    "al_12": nil,
+	    "al_13": nil,
+	    "al_14": nil,
+	    "al_15": nil,
+	    "al_16": nil,
+	    "al_17": nil,
+	    "al_18": nil,
+	    "al_19": 0,
+	    "al_20": 0,
+	    "al_21": 440000,
+	    "al_22": 440000,
+	    "al_23": 440000,
+	    "al_24": nil,
+	    "al_25": nil,
+	    "al_26": nil,
+	    "al_27": nil,
+	    "al_28": nil,
+	    "al_29": nil,
+	    "al_30": 440000,
+	    "de_1": 18040,
+	    "de_2": 0,
+	    "de_3": 33770,
+	    "de_4": nil,
+	    "de_5": 2640,
+	    "de_6": 6800,
+	    "de_7": 5200,
+	    "de_8": nil,
+	    "de_9": nil,
+	    "de_10": nil,
+	    "de_11": nil,
+	    "de_12": nil,
+	    "de_13": nil,
+	    "de_14": nil,
+	    "de_15": 0,
 	    "de_16": nil,
-	    "de_17": nil, 
-	    "de_18": 0, 
-	    "de_19": 0, 
-	    "de_20": 0, 
-	    "de_21": 0, 
-	    "de_22": nil, 
-	    "de_23": nil, 
-	    "de_24": nil, 
-	    "de_25": 3960, 
-	    "de_26": 0, 
-	    "de_27": nil, 
-	    "de_28": 385550, 
-	    "de_29": nil, 
-	    "de_30": 66450, 
-	    "balance_amount": nil, 
-	    "log": nil, 
-	    "is_ok": 0, 
-	    "is_closed": 0, 
-	    "regist_user_code": nil, 
-	    "update_user_code": nil, 
-	    "calculated_at": nil, 
-	    "calc_user_code": nil, 
-	    "created_at": "2016-12-19 14:16:28", 
+	    "de_17": nil,
+	    "de_18": 0,
+	    "de_19": 0,
+	    "de_20": 0,
+	    "de_21": 0,
+	    "de_22": nil,
+	    "de_23": nil,
+	    "de_24": nil,
+	    "de_25": 3960,
+	    "de_26": 0,
+	    "de_27": nil,
+	    "de_28": 385550,
+	    "de_29": nil,
+	    "de_30": 66450,
+	    "balance_amount": nil,
+	    "log": nil,
+	    "is_ok": 0,
+	    "is_closed": 0,
+	    "regist_user_code": nil,
+	    "update_user_code": nil,
+	    "calculated_at": nil,
+	    "calc_user_code": nil,
+	    "created_at": "2016-12-19 14:16:28",
 	    "updated_at": "2016-12-19 14:16:28"
       },
       .....
@@ -2764,77 +2765,128 @@ Sample JSON Response:
         "staff_id": 2001,
 	    "group_code: nil,
 	    "target_ym": "2016-11-01 00:00:00",
-	    "al_1": 440000, 
-	    "al_2": 0, 
+	    "al_1": 440000,
+	    "al_2": 0,
 	    "al_3": 0,
-	    "al_4": nil, 
+	    "al_4": nil,
 	    "al_5": nil,
-	    "al_6": nil, 
-	    "al_7": nil, 
-	    "al_8": nil, 
-	    "al_9": nil, 
-	    "al_10": nil, 
-	    "al_11": nil, 
-	    "al_12": nil, 
-	    "al_13": nil, 
-	    "al_14": nil, 
-	    "al_15": nil, 
-	    "al_16": nil, 
-	    "al_17": nil, 
-	    "al_18": nil, 
-	    "al_19": 0, 
-	    "al_20": 0, 
-	    "al_21": 440000, 
-	    "al_22": 440000, 
-	    "al_23": 440000, 
-	    "al_24": nil, 
-	    "al_25": nil, 
-	    "al_26": nil, 
-	    "al_27": nil, 
-	    "al_28": nil, 
-	    "al_29": nil, 
-	    "al_30": 440000, 
-	    "de_1": 18040, 
-	    "de_2": 0, 
-	    "de_3": 33770, 
-	    "de_4": nil, 
-	    "de_5": 2640, 
-	    "de_6": 6800, 
-	    "de_7": 5200, 
-	    "de_8": nil, 
-	    "de_9": nil, 
-	    "de_10": nil, 
-	    "de_11": nil, 
-	    "de_12": nil, 
-	    "de_13": nil, 
-	    "de_14": nil, 
-	    "de_15": 0, 
+	    "al_6": nil,
+	    "al_7": nil,
+	    "al_8": nil,
+	    "al_9": nil,
+	    "al_10": nil,
+	    "al_11": nil,
+	    "al_12": nil,
+	    "al_13": nil,
+	    "al_14": nil,
+	    "al_15": nil,
+	    "al_16": nil,
+	    "al_17": nil,
+	    "al_18": nil,
+	    "al_19": 0,
+	    "al_20": 0,
+	    "al_21": 440000,
+	    "al_22": 440000,
+	    "al_23": 440000,
+	    "al_24": nil,
+	    "al_25": nil,
+	    "al_26": nil,
+	    "al_27": nil,
+	    "al_28": nil,
+	    "al_29": nil,
+	    "al_30": 440000,
+	    "de_1": 18040,
+	    "de_2": 0,
+	    "de_3": 33770,
+	    "de_4": nil,
+	    "de_5": 2640,
+	    "de_6": 6800,
+	    "de_7": 5200,
+	    "de_8": nil,
+	    "de_9": nil,
+	    "de_10": nil,
+	    "de_11": nil,
+	    "de_12": nil,
+	    "de_13": nil,
+	    "de_14": nil,
+	    "de_15": 0,
 	    "de_16": nil,
-	    "de_17": nil, 
-	    "de_18": 0, 
-	    "de_19": 0, 
-	    "de_20": 0, 
-	    "de_21": 0, 
-	    "de_22": nil, 
-	    "de_23": nil, 
-	    "de_24": nil, 
-	    "de_25": 3960, 
-	    "de_26": 0, 
-	    "de_27": nil, 
-	    "de_28": 385550, 
-	    "de_29": nil, 
-	    "de_30": 66450, 
-	    "balance_amount": nil, 
-	    "log": nil, 
-	    "is_ok": 0, 
-	    "is_closed": 0, 
-	    "regist_user_code": nil, 
-	    "update_user_code": nil, 
-	    "calculated_at": nil, 
-	    "calc_user_code": nil, 
-	    "created_at": "2016-12-19 14:16:28", 
+	    "de_17": nil,
+	    "de_18": 0,
+	    "de_19": 0,
+	    "de_20": 0,
+	    "de_21": 0,
+	    "de_22": nil,
+	    "de_23": nil,
+	    "de_24": nil,
+	    "de_25": 3960,
+	    "de_26": 0,
+	    "de_27": nil,
+	    "de_28": 385550,
+	    "de_29": nil,
+	    "de_30": 66450,
+	    "balance_amount": nil,
+	    "log": nil,
+	    "is_ok": 0,
+	    "is_closed": 0,
+	    "regist_user_code": nil,
+	    "update_user_code": nil,
+	    "calculated_at": nil,
+	    "calc_user_code": nil,
+	    "created_at": "2016-12-19 14:16:28",
 	    "updated_at": "2016-12-19 14:16:28"
     }
+```
+
+#### Journal Distributions
+
+**/journal_distributions/create**
+
+Descripion: Create a new journal distribution entry based on journals that have been created previously. Journal distribution created by distributing price over selected departments or segments. The created entry will be sent back as JSON.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/journal_distributions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`target_timestamp` | *required* | String | Target date of the journal distribution. Format must be "YYYY-MM-DD".
+`criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Only available options are "dept" for departments ot "segment" for segments.
+`distribution_conditions` | *required* | Object | Departments or segments to be allocated within journal distribution. ``` {dept_code1 : ratio, dept_code2 : ratio,...} or {segment_code1 : ratio, segment_code2 : ratio,...} ```
+`memo` | *optional* | String | Memo for the entry.
+`search_conditions` | *required* | Object | See below.
+
+*search_conditions*
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`start_date` | *required* | String | Start date of journal timestamp to be searched. Format must be "YYYY-MM-DD".
+`finish_date` | *required* | String | Finish date of journal timestamp to be searched. Format must be "YYYY-MM-DD".
+`account_codes` | *required* | Array of String | Search for journals that are using the specified account code.
+`dept_code` | *optional*\*| String | Code of the internal department involved.
+`tag_list` | *optional*\*| String | Segment(formerly tag) code string.(Comma-separated).
+
+\*Either one of dept_code or tag_list must be provided.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -d '{ "search_conditions": { "start_date": "2016-09-01", "finish_date": "2016-09-30", "account_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.net/journal_distributions/create
+```
+
+**/journal_distribution/destroy/:id**
+
+Description: Destroy the journal distribution specified as the id. Returns a status of 204 No Content
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/journal_distributions/destroy/:id
 ```
 
 ### Data Partners
