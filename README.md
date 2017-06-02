@@ -189,7 +189,7 @@ Parameter | Necessity | Type | Description
 `reason_master_code` | *required* | String | Reason of the transaction. This is used to create the journal entry.
 `dc` | *required* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
 `memo` | *required* | String | Memo for the transaction. Can be blank but must be provided.
-`tax_code` | *required* | Integer | Tax code for the transaction.
+`tax_code` | *optional* | Integer | Tax code for the transaction. (If this parameter is omitted, it will use the tax_code associated with the reason_master_code.)
 `dept_code` | *optional* | String | Code of the internal department involved.
 `sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_receive_timestamp` | *optional* | String | Date of receipt. Format must be “YYYY-MM-DD”.
