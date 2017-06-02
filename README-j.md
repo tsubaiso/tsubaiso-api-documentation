@@ -2852,7 +2852,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `target_timestamp` | *required* | String | 配賦対象日。形式は"YYYY-MM-DD"です。
 `criteria` | *required* | String | 配賦基準。"dept"(部門)か"segment"(セグメント)のいずれかを文字列で指定します。
-`distribution_conditions` | *required* | Object | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。{ 部門コード1 : 配賦率, 部門コード2 : 配賦率,...} or { セグメントコード1 : 配賦率, セグメントコード2 : 配賦率,...}
+`distribution_conditions` | *required* | Object | 配賦比率。criteria で指定した基準で、それぞれへの配賦比率を指定します。 ``` { 部門コード1 : 配賦率, 部門コード2 : 配賦率,...} or { セグメントコード1 : 配賦率, セグメントコード2 : 配賦率,...} ```
 `memo` | *optional* | String | メモに書かれてある内容で部分検索します。
 `search_conditions` | *required* | Object | 配賦対象条件。
 
