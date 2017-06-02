@@ -2836,7 +2836,7 @@ JSON レスポンスの例:
 
 **/journal_distributions/create**
 
-説明: 仕訳配賦は選択された配賦に基づいて新しいを作成します。配賦の配分は、部門かセグメントの比率から計算されます。新規作成された配賦が JSON として返されます。
+説明: このエンドポイントは、指定された配賦対象条件に基づいて按分し、仕訳を作成します。配賦基準は部門かセグメントです。新規作成された配賦が JSON 形式で返ります。
 
 HTTP メソッド: POST
 
@@ -2849,23 +2849,23 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`target_timestamp` | *required* | String | 配賦対象の日。形式は"YYYY-MM-DD"です。
-`criteria` | *required* | String | 配賦基準。部門かセグメントを指定します。指定した基準で配賦されます。Only available options are "dept" for departments ot "segment" for segments.
-`distribution_conditions` | *required* | String | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。
+`target_timestamp` | *required* | String | 配賦対象日。形式は"YYYY-MM-DD"です。
+`criteria` | *required* | String | 配賦基準。"dept"(部門)か"segment"(セグメント)のいずれかを文字列で指定します。
+`distribution_conditions` | *required* | Object | 配賦条件。criteria で指定した基準で、それぞれへの配賦比率を指定します。{ 部門コード1 : 配賦率, 部門コード2 : 配賦率,...} or { セグメントコード1 : 配賦率, セグメントコード2 : 配賦率,...}
 `memo` | *optional* | String | メモに書かれてある内容で部分検索します。
-`search_conditions` | *required* | Object | See below.
+`search_conditions` | *required* | Object | 配賦対象条件。
 
 *search_conditions*
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`start_date` | *required* | String | 期間の開始日で検索します。形式は"YYYY-MM-DD"です。
-`finish_date` | *required* | String | 期間の終了日で検索します。形式は"YYYY-MM-DD"です。
-`account_codes` | *required* | Array of String | 勘定科目コードで検索します。
-`dept_code` | *optional*\*| String | 部門コードで検索します。
-`tag_list` | *optional*\*| String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
+`start_date` | *required* | String | 配賦検索の開始日。形式は"YYYY-MM-DD"です。
+`finish_date` | *required* | String | 配賦検索の終了日。形式は"YYYY-MM-DD"です。
+`account_codes` | *required* | Array of String | 勘定科目コード。(複数指定可)
+`dept_code` | *optional*\*| String | 部門コード。tag_listと同時に指定できません。
+`tag_list` | *optional*\*| String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。dept_codeと同時に指定できません。
 
-\*dept_code　か　tag_list　いずれか指定することが必要です。
+\*dept_code か tag_list のいずれかの指定が必要です。
 
 リクエストの例:
 ```sh
