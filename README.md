@@ -2857,7 +2857,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `target_timestamp` | *required* | String | Target date of the journal distribution. Format must be "YYYY-MM-DD".
 `criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Only available options are "dept" for departments ot "segment" for segments.
-`distribution_conditions` | *required* | String | Departments or segments to be allocated within journal distribution.
+`distribution_conditions` | *required* | Object | Departments or segments to be allocated within journal distribution. ``` {dept_code1 : ratio, dept_code2 : ratio,...} or {segment_code1 : ratio, segment_code2 : ratio,...} ```
 `memo` | *optional* | String | Memo for the entry.
 `search_conditions` | *required* | Object | See below.
 
