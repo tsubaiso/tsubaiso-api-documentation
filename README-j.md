@@ -28,6 +28,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [賞与データ](#賞与データ)
    - [給与データ](#給与データ)
    - [仕訳配賦](#仕訳配賦)
+   - [月次推移表](#月次推移表)
 - [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
@@ -2888,7 +2889,98 @@ https://tsubaiso.net/journal_distributions/destroy/:id
 ```
 
 
+#### 月次推移表
 
+**/balances/list**
+
+説明: このエンドポイントは、指定された年月を最終月として設定し、そこから過去へ遡る形で指定月数分の月次推移表を返却します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/balances/list
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`year` | *required* | String | 年(最終)。
+`month` | *required* | String | 月(最終)。
+`m_span` | *optional* | Object | 取得月数。`year`, `month` で指定された年月から過去に遡ります。指定されなければ 12ヶ月になります。
+`dept_code` | *optional* | String | 対象の部門を指定します。指定されなければ全部門になります。
+
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X GET -d '{ "year" : 2017, "month" : 11, "m_span" : 12, "dept_code" : "SALES" }'  https://tsubaiso.net/balances/list
+```
+
+JSON レスポンスの例:
+```
+{
+  "bs" : {
+           [
+             { "type" : "account",
+               "acount_master" : { "id" => 12345,
+                                   "personal_id" => 3,
+                                   "account_code" => "1",
+                                   "account_name" => "テスト勘定科目",
+                                   "account_short_name" => 'TEST_ACCOUNT',
+                                   "account_kana" => "テストカンジョウカモク",
+                                   "dc" => "d",
+                                   "bspl"=>"bs",
+                                   "tax_type"=>nil,
+                                   "vat_io"=>nil,
+                                   "brief"=>"-",
+                                   "regist_user_code"=>nil,
+                                   "update_user_code"=>nil,
+                                   "summary_account_id"=>1,
+                                   "use_in_balance"=>1,
+                                   "use_in_statement"=>1,
+                                   "status"=>100,
+                                   "minus"=>0,
+                                   "inputtable"=>1,
+                                   "created_at"=>"2017/11/08 15:09:14 +0900",
+                                   "updated_at"=>"2017/11/08 15:09:14 +0900" },
+                 "sub_account_masters"=>[],
+                 "amounts"=> [177776, 177776, 177776, 177776, 177776, 177776, 177776, 0, 177776, 1034320, 2513078, 2868630],
+                 "total"=>2868630
+             },
+             { "type"=>"summary",
+               "summary_account"=> { "id"=>134409808,
+                                     "ccode"=>3,
+                                     "sum_no"=>1,
+                                     "sort_no"=>1,
+                                     "name"=>"現金計",
+                                     "dc"=>"d",
+                                     "bspl"=>"bs",
+                                     "selectable"=>1,
+                                     "name_as_statement"=>nil,
+                                     "invert"=>nil,
+                                     "add_summary_account"=>nil,
+                                     "subtract_summary_account"=>nil,
+                                     "use_in_statement"=>0,
+                                     "bracket_in_statement"=>nil,
+                                     "brief"=>nil,
+                                     "created_at"=>"2017/11/08 15:09:14 +0900",
+                                     "updated_at"=>"2017/11/08 15:09:14 +0900",
+                                     "use_in_balance"=>1 },
+               "amounts"=> [8464, 8464, 8464, 8464, 8464, 8464, 8464, 0, 0, 678768, 1316642, 1316642],
+               "total"=>1316642},
+             },
+           ],
+         },
+  "pl" : {
+           ...
+         },
+  "pc" : {
+           ...
+         },
+  "dept_code" : "SALES"
+}
+```
 
 
 ### 外部連携機能
