@@ -27,6 +27,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Bonuses](#bonuses)
    - [Payrolls](#payrolls)
    - [Journal Distributions](#journal-distributions)
+   - [Monthly Balances](#monthly-balances)
 - [Data Partners](#data-partners)
 
 ## Root Endpoint
@@ -2887,6 +2888,99 @@ Method: POST
 URL Structure:
 ```sh
 https://tsubaiso.net/journal_distributions/destroy/:id
+```
+
+#### Monthly Balances
+
+**/balances/list**
+
+Description: This endpoint shows the company wide or department filtered monthly balances for a specified timespan.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/balances/list
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`year` | *required* | String | Year (last).
+`month` | *required* | String | Month (last).
+`m_span` | *optional* | Object | Number of prior months balances to show preceding the specified `year` and `month`. Default: 12
+`dept_code` | *optional* | String | Department code. Default: Company wide balances.
+
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -X GET -d '{ "year" : 2017, "month" : 11, "m_span" : 12, "dept_code" : "SALES" }'  https://tsubaiso.net/balances/list
+```
+
+Sample JSON Response:
+```
+{
+  "bs" : {
+           [
+             { "type" : "account",
+               "acount_master" : { "id" => 12345,
+                                   "personal_id" => 3,
+                                   "account_code" => "1",
+                                   "account_name" => "テスト勘定科目",
+                                   "account_short_name" => 'TEST_ACCOUNT',
+                                   "account_kana" => "テストカンジョウカモク",
+                                   "dc" => "d",
+                                   "bspl"=>"bs",
+                                   "tax_type"=>nil,
+                                   "vat_io"=>nil,
+                                   "brief"=>"-",
+                                   "regist_user_code"=>nil,
+                                   "update_user_code"=>nil,
+                                   "summary_account_id"=>1,
+                                   "use_in_balance"=>1,
+                                   "use_in_statement"=>1,
+                                   "status"=>100,
+                                   "minus"=>0,
+                                   "inputtable"=>1,
+                                   "created_at"=>"2017/11/08 15:09:14 +0900",
+                                   "updated_at"=>"2017/11/08 15:09:14 +0900" },
+                 "sub_account_masters"=>[],
+                 "amounts"=> [177776, 177776, 177776, 177776, 177776, 177776, 177776, 0, 177776, 1034320, 2513078, 2868630],
+                 "total"=>2868630
+             },
+             { "type"=>"summary",
+               "summary_account"=> { "id"=>134409808,
+                                     "ccode"=>3,
+                                     "sum_no"=>1,
+                                     "sort_no"=>1,
+                                     "name"=>"現金計",
+                                     "dc"=>"d",
+                                     "bspl"=>"bs",
+                                     "selectable"=>1,
+                                     "name_as_statement"=>nil,
+                                     "invert"=>nil,
+                                     "add_summary_account"=>nil,
+                                     "subtract_summary_account"=>nil,
+                                     "use_in_statement"=>0,
+                                     "bracket_in_statement"=>nil,
+                                     "brief"=>nil,
+                                     "created_at"=>"2017/11/08 15:09:14 +0900",
+                                     "updated_at"=>"2017/11/08 15:09:14 +0900",
+                                     "use_in_balance"=>1 },
+               "amounts"=> [8464, 8464, 8464, 8464, 8464, 8464, 8464, 0, 0, 678768, 1316642, 1316642],
+               "total"=>1316642},
+             },
+           ],
+         },
+  "pl" : {
+           ...
+         },
+  "pc" : {
+           ...
+         },
+  "dept_code" : "SALES"
+}
 ```
 
 ### Data Partners
