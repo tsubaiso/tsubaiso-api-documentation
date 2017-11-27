@@ -2894,7 +2894,7 @@ https://tsubaiso.net/journal_distributions/destroy/:id
 
 **/balances/list**
 
-Description: このエンドポイントは、指定された年月を最終月として設定し、そこから過去へ遡る形で指定月数分の月次推移表を返却します。
+Description: This endpoint shows the company wide or department filtered monthly balances for a specified timespan.
 
 Method: GET
 
@@ -2909,8 +2909,8 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `year` | *required* | String | Year (last).
 `month` | *required* | String | Month (last).
-`m_span` | *optional* | Object | Months acquired. Go back to the past from `year`, `month`. Default: 12
-`dept_code` | *optional* | String | Code of department. Default: All departments.
+`m_span` | *optional* | Object | Number of prior months balances to show preceding the specified `year` and `month`. Default: 12
+`dept_code` | *optional* | String | Department code. Default: Company wide balances.
 
 
 Sample Request:
