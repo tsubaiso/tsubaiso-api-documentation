@@ -792,7 +792,9 @@ Sample JSON Response:
         "update_user_code": null,
         "updated_at": "2015/12/07 16:48:10 +0900",
         "visibility": 0,
-        "login": "XXXXX"
+        "login": "XXXXX",
+        "seimei": "税務 太郎",
+        "seimei_furigana": "ゼイム タロウ"
     },
     {
         "ccode": XX,
@@ -804,7 +806,9 @@ Sample JSON Response:
         "update_user_code": null,
         "updated_at": "2015/12/07 16:48:10 +0900",
         "visibility": 0,
-        "login": "YYYYY"
+        "login": "YYYYY",
+        "seimei": "",
+        "seimei_furigana": ""
     }
 ]
 ```
@@ -837,7 +841,9 @@ Sample JSON Response:
     "update_user_code": null,
     "updated_at": "2015/12/07 16:48:10 +0900",
     "visibility": 0,
-    "login": "XXXXX"
+    "login": "XXXXX",
+    "seimei": "税務 太郎",
+    "seimei_furigana": "ゼイム タロウ"
 }
 ```
 
