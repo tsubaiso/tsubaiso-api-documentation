@@ -2989,6 +2989,122 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行口座
+
+**/bank_accounts/list**
+
+説明: 銀行口座の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_accounts/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+  {
+    "id": 1,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+]
+```
+
+**/bank_accounts/show/:id**
+
+説明: 1レコードの銀行口座を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_accounts/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/show/0
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "bank_account_master_id": 0,
+  "is_closed": 0,
+  "is_ok": 0,
+  "start_timestamp": "2008/07/01 00:00:00 +0900",
+  "finish_timestamp": "2020/01/31 00:00:00 +0900",
+  "start_balance_fixed": null,
+  "start_balance": null,
+  "finish_balance": xxxxx,
+  "start_balance_cache": xxxxx,
+  "finish_balance_cache": xxxxx,
+  "is_balanced": true,
+  "bank_account_transactions_count": 0,
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_balance_cache_fc": null,
+  "finish_balance_cache_fc": null,
+  "start_balance_fixed_fc": null,
+  "finish_balance_fc": null,
+  "exchange_gl_journal_id": null,
+  "created_at": "2017/12/11 17:20:38 +0900",
+  "updated_at": "2017/12/11 17:20:38 +0900"
+}
+```
+
 #### 銀行原因マスタ
 
 **/bank_reason_masters/list**
