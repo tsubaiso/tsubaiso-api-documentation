@@ -3105,6 +3105,113 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行口座マスタ
+
+**/bank_account_masters/list**
+
+説明: 銀行口座マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  },
+  {
+    "id": 1,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  }
+]
+```
+
+**/bank_account_masters/show/:id**
+
+説明: 1レコードの銀行口座マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/show/0
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "name": "xxxxx",
+  "account_type": "1",
+  "account_number": "xxxxx",
+  "nominee": "xxxxx",
+  "account_code": "111",
+  "zengin_bank_code": "0000",
+  "zengin_branch_code": "0000",
+  "dept_code": "HEAD",
+  "memo": "xxxxx",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_ymd": "2001/01/01",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": null,
+  "currency_code": null,
+  "currency_rate_master_id": null,
+  "created_at": "2017/12/11 17:21:03 +0900",
+  "updated_at": "2017/12/11 17:21:03 +0900"
+}
+```
+
 #### 銀行原因マスタ
 
 **/bank_reason_masters/list**
