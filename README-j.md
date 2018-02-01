@@ -2988,6 +2988,97 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行原因マスタ
+
+**/bank_reason_masters/list**
+
+説明: 銀行原因マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_reason_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  },
+  {
+    "id": 101,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  }
+]
+```
+
+**/bank_reason_masters/show/:id**
+
+説明: 1レコードの銀行原因マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_reason_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/100
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 100,
+  "ccode": 1,
+  "allowed_domains": null,
+  "sort_number": 0,
+  "reason_code": "xxxx",
+  "reason_name": "xxxx",
+  "dc": "d",
+  "account_code": "500",
+  "is_valid": 1,
+  "memo": "xxxx",
+  "created_at": "2017/12/11 17:20:48 +0900",
+  "regist_user_code": null,
+  "updated_at": "2017/12/11 17:20:48 +0900",
+  "update_user_code": null
+}
+```
 
 ### 外部連携機能
 
@@ -3005,4 +3096,3 @@ Parameter | Necessity | Type | Description
 `deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
 `partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
 `partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
-
