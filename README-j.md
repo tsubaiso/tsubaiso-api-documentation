@@ -32,6 +32,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [銀行口座](#銀行口座)
    - [銀行口座マスタ](#銀行口座マスタ)
    - [銀行原因マスタ](#銀行原因マスタ)
+   - [銀行口座明細](#銀行口座明細)
 - [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
@@ -3305,6 +3306,158 @@ JSON レスポンスの例:
   "update_user_code": null
 }
 ```
+
+#### 銀行口座明細
+
+**/bank_account_transactions/index/**
+
+説明: このエンドポイントは特定の銀行口座明細の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_transactions/index?bamid=:bamid&month=:month&year=:year
+```
+
+JSON レスポンスの例:
+```
+[
+    {
+        "id":288,
+        "personal_id":3,
+        "serial_no":1,
+        "journal_dc_id":23072,
+        "bank_account_id":1064278031,
+        "bank_reason_master_id":30001,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"memo.",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:33 +0900",
+        "updated_at":"2018/02/01 19:16:33 +0900",
+        "reason_code":"AR_RECEIPT",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112,
+        "price_value_fc":null,
+        "exchange_rate":null
+    }, {
+        "id":289,
+        "personal_id":3,
+        "serial_no":2,
+        "journal_dc_id":23073,
+        "bank_account_id":1064278031,
+        "bank_reason_master_id":104,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:45 +0900",
+        "updated_at":"2018/02/01 19:16:45 +0900",
+        "reason_code":"INTEREST",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1",
+        "GROUP2_2"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112998,
+        "price_value_fc":null,
+        "exchange_rate":null
+    }, 
+    ...
+]
+```
+
+**/bank_account_transactions/show/:id**
+
+説明: このエンドポイントは単一の銀行口座明細を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_transactions/show/:id
+```
+
+JSON レスポンスの例:
+```
+{
+    "id":288,
+    "personal_id":3,
+    "serial_no":1,
+    "journal_dc_id":23072,
+    "bank_account_id":1064278031,
+    "bank_reason_master_id":30001,
+    "dc":"d",
+    "brief":"brief text.",
+    "memo":"memo text.",
+    "regist_user_code":"yamakawa",
+    "update_user_code":null,
+    "created_at":"2018/02/01 19:16:33 +0900",
+    "updated_at":"2018/02/01 19:16:33 +0900",
+    "reason_code":"AR_RECEIPT",
+    "journal_timestamp":"2018/02/01 00:00:00 +0900",
+    "tag_list":["GROUP3_1"],
+    "dept_code":"NEVER_ENDING",
+    "price_value":112,
+    "price_value_fc":null,
+    "exchange_rate":null
+}
+```
+
+**/bank_account_transactions/create/:bank_account_id**
+
+説明: 銀行口座明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_transactions/create/:bank_account_id
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | 入金・出金日。"YYYY-MM-DD"形式
+`price_value` | *required* | Integer | 金額
+`reason_code` | *required* | String | 原因
+`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
+`brief` | *optional* | String| 摘要
+`memo` | *optional* | String | メモ
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
+`dept_code` | *optional* | String | 部門コード
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
+```
+
+**/bank_account_transactions/update/:id**
+
+説明: 指定された id の銀行口座明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_transactions/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/bank_account_transactions/destroy/:id**
+
+説明: 指定された id の銀行口座明細を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
 
 ### 外部連携機能
 
