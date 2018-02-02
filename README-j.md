@@ -29,6 +29,9 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [給与データ](#給与データ)
    - [仕訳配賦](#仕訳配賦)
    - [月次推移表](#月次推移表)
+   - [銀行口座](#銀行口座)
+   - [銀行口座マスタ](#銀行口座マスタ)
+   - [銀行原因マスタ](#銀行原因マスタ)
 - [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
@@ -2988,6 +2991,320 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行口座
+
+**/bank_accounts/list**
+
+説明: 銀行口座の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_accounts/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+  {
+    "id": 1,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+]
+```
+
+**/bank_accounts/show/:id**
+
+説明: 1レコードの銀行口座を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_accounts/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/show/0
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "bank_account_master_id": 0,
+  "is_closed": 0,
+  "is_ok": 0,
+  "start_timestamp": "2008/07/01 00:00:00 +0900",
+  "finish_timestamp": "2020/01/31 00:00:00 +0900",
+  "start_balance_fixed": null,
+  "start_balance": null,
+  "finish_balance": xxxxx,
+  "start_balance_cache": xxxxx,
+  "finish_balance_cache": xxxxx,
+  "is_balanced": true,
+  "bank_account_transactions_count": 0,
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_balance_cache_fc": null,
+  "finish_balance_cache_fc": null,
+  "start_balance_fixed_fc": null,
+  "finish_balance_fc": null,
+  "exchange_gl_journal_id": null,
+  "created_at": "2017/12/11 17:20:38 +0900",
+  "updated_at": "2017/12/11 17:20:38 +0900"
+}
+```
+
+#### 銀行口座マスタ
+
+**/bank_account_masters/list**
+
+説明: 銀行口座マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  },
+  {
+    "id": 1,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  }
+]
+```
+
+**/bank_account_masters/show/:id**
+
+説明: 1レコードの銀行口座マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/show/0
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "name": "xxxxx",
+  "account_type": "1",
+  "account_number": "xxxxx",
+  "nominee": "xxxxx",
+  "account_code": "111",
+  "zengin_bank_code": "0000",
+  "zengin_branch_code": "0000",
+  "dept_code": "HEAD",
+  "memo": "xxxxx",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_ymd": "2001/01/01",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": null,
+  "currency_code": null,
+  "currency_rate_master_id": null,
+  "created_at": "2017/12/11 17:21:03 +0900",
+  "updated_at": "2017/12/11 17:21:03 +0900"
+}
+```
+
+#### 銀行原因マスタ
+
+**/bank_reason_masters/list**
+
+説明: 銀行原因マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_reason_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  },
+  {
+    "id": 101,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  }
+]
+```
+
+**/bank_reason_masters/show/:id**
+
+説明: 1レコードの銀行原因マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_reason_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/100
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 100,
+  "ccode": 1,
+  "allowed_domains": null,
+  "sort_number": 0,
+  "reason_code": "xxxx",
+  "reason_name": "xxxx",
+  "dc": "d",
+  "account_code": "500",
+  "is_valid": 1,
+  "memo": "xxxx",
+  "created_at": "2017/12/11 17:20:48 +0900",
+  "regist_user_code": null,
+  "updated_at": "2017/12/11 17:20:48 +0900",
+  "update_user_code": null
+}
+```
 
 ### 外部連携機能
 
@@ -3005,4 +3322,3 @@ Parameter | Necessity | Type | Description
 `deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
 `partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
 `partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
-
