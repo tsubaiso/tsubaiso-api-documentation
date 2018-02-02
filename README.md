@@ -28,6 +28,9 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Payrolls](#payrolls)
    - [Journal Distributions](#journal-distributions)
    - [Monthly Balances](#monthly-balances)
+   - [Bank Accounts](#bank-accounts)
+   - [Bank Account Masters](#bank-account-masters)
+   - [Bank Reason Masters](#bank-reason-masters)
 - [Data Partners](#data-partners)
 
 ## Root Endpoint
@@ -2986,6 +2989,320 @@ Sample JSON Response:
            ...
          },
   "dept_code" : "SALES"
+}
+```
+
+#### Bank Account Masters
+
+**/bank_account_masters/list**
+
+Description: Returns the entire list of bank account masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_account_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/list/
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 0,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  },
+  {
+    "id": 1,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  }
+]
+```
+
+**/bank_account_masters/show/:id**
+
+Description: Returns a single bank account master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_account_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/show/0
+```
+
+Sample JSON Response:
+```
+{
+  "id": 0,
+  "name": "xxxxx",
+  "account_type": "1",
+  "account_number": "xxxxx",
+  "nominee": "xxxxx",
+  "account_code": "111",
+  "zengin_bank_code": "0000",
+  "zengin_branch_code": "0000",
+  "dept_code": "HEAD",
+  "memo": "xxxxx",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_ymd": "2001/01/01",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": null,
+  "currency_code": null,
+  "currency_rate_master_id": null,
+  "created_at": "2017/12/11 17:21:03 +0900",
+  "updated_at": "2017/12/11 17:21:03 +0900"
+}
+```
+
+#### Bank Accounts
+
+**/bank_accounts/list**
+
+Description: Returns the entire list of bank accounts.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_accounts/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 0,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+  {
+    "id": 1,
+    "bank_account_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "start_balance": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "is_balanced": true,
+    "bank_account_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_balance_cache_fc": null,
+    "finish_balance_cache_fc": null,
+    "start_balance_fixed_fc": null,
+    "finish_balance_fc": null,
+    "exchange_gl_journal_id": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+]
+```
+
+**/bank_accounts/show/:id**
+
+Description: Returns a single bank account.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_accounts/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/show/0
+```
+
+Sample JSON Response:
+```
+{
+  "id": 0,
+  "bank_account_master_id": 0,
+  "is_closed": 0,
+  "is_ok": 0,
+  "start_timestamp": "2008/07/01 00:00:00 +0900",
+  "finish_timestamp": "2020/01/31 00:00:00 +0900",
+  "start_balance_fixed": null,
+  "start_balance": null,
+  "finish_balance": xxxxx,
+  "start_balance_cache": xxxxx,
+  "finish_balance_cache": xxxxx,
+  "is_balanced": true,
+  "bank_account_transactions_count": 0,
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_balance_cache_fc": null,
+  "finish_balance_cache_fc": null,
+  "start_balance_fixed_fc": null,
+  "finish_balance_fc": null,
+  "exchange_gl_journal_id": null,
+  "created_at": "2017/12/11 17:20:38 +0900",
+  "updated_at": "2017/12/11 17:20:38 +0900"
+}
+```
+#### Bank Reason Masters
+
+**/bank_reason_masters/list**
+
+Description: Returns the entire list of bank reason masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_reason_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  },
+  {
+    "id": "xxxx",
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  }
+]
+```
+
+**/bank_reason_masters/show/:id**
+
+Description: Returns a single bank reason master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/0
+```
+
+Sample JSON Response:
+```
+{
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
 }
 ```
 
