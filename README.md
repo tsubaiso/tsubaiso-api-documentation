@@ -3306,6 +3306,99 @@ Sample JSON Response:
 }
 ```
 
+#### Bank Account Transaction
+
+**/bank_account_transactions/index/**
+
+Description: This endpoint returns a list of bank account transactions.
+
+
+Description: Returns a single bank account transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_account_transactions/show/:id
+```
+
+Sample JSON response:
+```
+{
+    "id":288,
+    "personal_id":3,
+    "serial_no":1,
+    "journal_dc_id":23072,
+    "bank_account_id":1064278031,
+    "bank_reason_master_id":30001,
+    "dc":"d",
+    "brief":"brief text.",
+    "memo":"memo text.",
+    "regist_user_code":"yamakawa",
+    "update_user_code":null,
+    "created_at":"2018/02/01 19:16:33 +0900",
+    "updated_at":"2018/02/01 19:16:33 +0900",
+    "reason_code":"AR_RECEIPT",
+    "journal_timestamp":"2018/02/01 00:00:00 +0900",
+    "tag_list":["GROUP3_1"],
+    "dept_code":"NEVER_ENDING",
+    "price_value":112,
+    "price_value_fc":null,
+    "exchange_rate":null
+}
+```
+
+**/bank_account_transactions/create/:bank_account_id**
+
+Description: Create a bank account transaction. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_account_transactions/create/:bank_account_id
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`journal_timestamp` | *required* | String | Date of journal. Format must be “YYYY-MM-DD”.
+`price_value` | *required* | Integer | Price value of a bank account transaction.
+`reason_code` | *required* | String | Reason of the transaction.
+`dc` | *optional* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
+`brief` | *optional* | String| Summary of the transaction.
+        `memo` | *optional* | String | Memo for the transaction.
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+        `dept_code` | *optional* | String | Code of the internal department involved.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
+```
+
+**/bank_account_transactions/update/:id**
+
+Description: Updates a bank account transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_account_transactions/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/reimbursement_transactions/update/8833
+```
+
+**/bank_account_transactions/destroy/:id**
+
+Description: Destroys the bank account transaction specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
 ### Data Partners
 
 Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
