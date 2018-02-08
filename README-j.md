@@ -25,13 +25,13 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [経費精算原因マスタ](#経費精算原因マスタ)
    - [販売原因マスタ](#販売原因マスタ)
    - [購買原因マスタ](#購買原因マスタ)
+   - [銀行原因マスタ](#銀行原因マスタ)
    - [賞与データ](#賞与データ)
    - [給与データ](#給与データ)
    - [仕訳配賦](#仕訳配賦)
    - [月次推移表](#月次推移表)
-   - [銀行口座](#銀行口座)
    - [銀行口座マスタ](#銀行口座マスタ)
-   - [銀行原因マスタ](#銀行原因マスタ)
+   - [銀行口座](#銀行口座)
    - [銀行口座明細](#銀行口座明細)
 - [外部連携機能](#外部連携機能)
 
@@ -2371,6 +2371,98 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行原因マスタ
+
+**/bank_reason_masters/list**
+
+説明: 銀行原因マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_reason_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  },
+  {
+    "id": 101,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  }
+]
+```
+
+**/bank_reason_masters/show/:id**
+
+説明: 1レコードの銀行原因マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_reason_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/100
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 100,
+  "ccode": 1,
+  "allowed_domains": null,
+  "sort_number": 0,
+  "reason_code": "xxxx",
+  "reason_name": "xxxx",
+  "dc": "d",
+  "account_code": "500",
+  "is_valid": 1,
+  "memo": "xxxx",
+  "created_at": "2017/12/11 17:20:48 +0900",
+  "regist_user_code": null,
+  "updated_at": "2017/12/11 17:20:48 +0900",
+  "update_user_code": null
+}
+```
+
 #### 賞与データ
 
 **/bonuses/list/**
@@ -2992,6 +3084,113 @@ JSON レスポンスの例:
 }
 ```
 
+#### 銀行口座マスタ
+
+**/bank_account_masters/list**
+
+説明: 銀行口座マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  },
+  {
+    "id": 1,
+    "name": "xxxxx",
+    "account_type": "1",
+    "account_number": "xxxxx",
+    "nominee": "xxxxx",
+    "account_code": "111",
+    "zengin_bank_code": "0000",
+    "zengin_branch_code": "0000",
+    "dept_code": "HEAD",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": null,
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  }
+]
+```
+
+**/bank_account_masters/show/:id**
+
+説明: 1レコードの銀行口座マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/show/0
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "name": "xxxxx",
+  "account_type": "1",
+  "account_number": "xxxxx",
+  "nominee": "xxxxx",
+  "account_code": "111",
+  "zengin_bank_code": "0000",
+  "zengin_branch_code": "0000",
+  "dept_code": "HEAD",
+  "memo": "xxxxx",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "start_ymd": "2001/01/01",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": null,
+  "currency_code": null,
+  "currency_rate_master_id": null,
+  "created_at": "2017/12/11 17:21:03 +0900",
+  "updated_at": "2017/12/11 17:21:03 +0900"
+}
+```
+
 #### 銀行口座
 
 **/bank_accounts/list**
@@ -3108,208 +3307,33 @@ JSON レスポンスの例:
 }
 ```
 
-#### 銀行口座マスタ
+**/bank_accounts/create**
 
-**/bank_account_masters/list**
+説明: 銀行口座を新規作成します。作成に成功した場合、新規作成された銀行口座が JSON として返されます。
 
-説明: 銀行口座マスタの一覧を返します。
-
-HTTP メソッド: GET
-
-URL 構成例:
-``` sh
-https://tsubaiso.net/bank_account_masters/list/
-```
-
-リクエストの例:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/list/
-```
-
-JSON レスポンスの例:
-```
-[
-  {
-    "id": 0,
-    "name": "xxxxx",
-    "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
-    "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
-    "dept_code": "HEAD",
-    "memo": "xxxxx",
-    "regist_user_code": null,
-    "update_user_code": null,
-    "start_ymd": "2001/01/01",
-    "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
-    "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
-  },
-  {
-    "id": 1,
-    "name": "xxxxx",
-    "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
-    "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
-    "dept_code": "HEAD",
-    "memo": "xxxxx",
-    "regist_user_code": null,
-    "update_user_code": null,
-    "start_ymd": "2001/01/01",
-    "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
-    "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
-  }
-]
-```
-
-**/bank_account_masters/show/:id**
-
-説明: 1レコードの銀行口座マスタを返します。
-
-HTTP メソッド: GET
+HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/bank_account_masters/show/:id
+https://tsubaiso.net/bank_accounts/create
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`bank_account_master_id` | *required* | Integer | 銀行口座マスタID。
+`year` | *required* | Integer | 年。
+`month` | *required* | Integer | 月。
 
 リクエストの例:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_account_masters/show/0
-```
-
-JSON レスポンスの例:
-```
-{
-  "id": 0,
-  "name": "xxxxx",
-  "account_type": "1",
-  "account_number": "xxxxx",
-  "nominee": "xxxxx",
-  "account_code": "111",
-  "zengin_bank_code": "0000",
-  "zengin_branch_code": "0000",
-  "dept_code": "HEAD",
-  "memo": "xxxxx",
-  "regist_user_code": null,
-  "update_user_code": null,
-  "start_ymd": "2001/01/01",
-  "finish_ymd": null,
-  "zengin_client_code_sogo": null,
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2017/12/11 17:21:03 +0900",
-  "updated_at": "2017/12/11 17:21:03 +0900"
-}
-```
-
-#### 銀行原因マスタ
-
-**/bank_reason_masters/list**
-
-説明: 銀行原因マスタの一覧を返します。
-
-HTTP メソッド: GET
-
-URL 構成例:
-``` sh
-https://tsubaiso.net/bank_reason_masters/list/
-```
-
-リクエストの例:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
-```
-
-JSON レスポンスの例:
-```
-[
-  {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  },
-  {
-    "id": 101,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  }
-]
-```
-
-**/bank_reason_masters/show/:id**
-
-説明: 1レコードの銀行原因マスタを返します。
-
-HTTP メソッド: GET
-
-URL 構成例:
 ```sh
-https://tsubaiso.net/bank_reason_masters/show/:id
-```
-
-リクエストの例:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/100
-```
-
-JSON レスポンスの例:
-```
-{
-  "id": 100,
-  "ccode": 1,
-  "allowed_domains": null,
-  "sort_number": 0,
-  "reason_code": "xxxx",
-  "reason_name": "xxxx",
-  "dc": "d",
-  "account_code": "500",
-  "is_valid": 1,
-  "memo": "xxxx",
-  "created_at": "2017/12/11 17:20:48 +0900",
-  "regist_user_code": null,
-  "updated_at": "2017/12/11 17:20:48 +0900",
-  "update_user_code": null
-}
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"bank_account_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
 ```
 
 #### 銀行口座明細
 
-**/bank_account_transactions/index/**
+**/bank_account_transactions/list?bank_account_id=:bank_account_id**
 
 説明: このエンドポイントは特定の銀行口座明細の一覧を返します。
 
@@ -3317,7 +3341,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/bank_account_transactions/index?bamid=:bamid&month=:month&year=:year
+https://tsubaiso.net/bank_account_transactions/list?bank_account_id=1
 ```
 
 JSON レスポンスの例:
@@ -3379,7 +3403,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/bank_account_transactions/show/:id
+https://tsubaiso.net/bank_account_transactions/show/1
 ```
 
 JSON レスポンスの例:
@@ -3408,7 +3432,7 @@ JSON レスポンスの例:
 }
 ```
 
-**/bank_account_transactions/create/:bank_account_id**
+**/bank_account_transactions/create**
 
 説明: 銀行口座明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
 
@@ -3416,25 +3440,26 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/bank_account_transactions/create/:bank_account_id
+https://tsubaiso.net/bank_account_transactions/create
 ```
 
 Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`bank_account_id` | *required* | Integer | 銀行口座ID。
 `journal_timestamp` | *required* | String | 入金・出金日。"YYYY-MM-DD"形式
 `price_value` | *required* | Integer | 金額
 `reason_code` | *required* | String | 原因
+`brief` | *required* | String| 摘要
 `dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
-`brief` | *optional* | String| 摘要
 `memo` | *optional* | String | メモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `dept_code` | *optional* | String | 部門コード
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"bank_account_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
 ```
 
 **/bank_account_transactions/update/:id**
