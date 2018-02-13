@@ -3201,12 +3201,12 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/bank_accounts/list/
+https://tsubaiso.net/bank_accounts/list/:year/:month
 ```
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/2008/7
 ```
 
 JSON レスポンスの例:
@@ -3218,7 +3218,7 @@ JSON レスポンスの例:
     "is_closed": 0,
     "is_ok": 0,
     "start_timestamp": "2008/07/01 00:00:00 +0900",
-    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "finish_timestamp": "2008/07/31 00:00:00 +0900",
     "start_balance_fixed": null,
     "start_balance": null,
     "finish_balance": xxxxx,
@@ -3238,11 +3238,11 @@ JSON レスポンスの例:
   },
   {
     "id": 1,
-    "bank_account_master_id": 0,
+    "bank_account_master_id": 1,
     "is_closed": 0,
     "is_ok": 0,
     "start_timestamp": "2008/07/01 00:00:00 +0900",
-    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "finish_timestamp": "2008/07/31 00:00:00 +0900",
     "start_balance_fixed": null,
     "start_balance": null,
     "finish_balance": xxxxx,
@@ -3287,7 +3287,7 @@ JSON レスポンスの例:
   "is_closed": 0,
   "is_ok": 0,
   "start_timestamp": "2008/07/01 00:00:00 +0900",
-  "finish_timestamp": "2020/01/31 00:00:00 +0900",
+  "finish_timestamp": "2008/07/31 00:00:00 +0900",
   "start_balance_fixed": null,
   "start_balance": null,
   "finish_balance": xxxxx,
@@ -3481,6 +3481,206 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 **/bank_account_transactions/destroy/:id**
 
 説明: 指定された id の銀行口座明細を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+#### 現金出納帳マスタ
+
+**/petty_cash_masters/list**
+
+説明: 現金出納帳マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/petty_cash_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_masters/list/
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+**/petty_cash_masters/show/:id**
+
+説明: 1レコードの現金出納帳マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_masters/show/0
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+#### 現金出納帳
+
+**/petty_cashes/list**
+
+説明: 現金出納帳の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/petty_cashes/list/:year/:month
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/list/2018/2
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+**/petty_cashes/show/:id**
+
+説明: 1レコードの現金出納帳を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cashes/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/show/0
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+**/petty_cashes/create**
+
+説明: 現金出納帳の期間を追加します。作成に成功した場合、新規作成された現金出納帳の期間が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cashes/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`petty_cash_master_id` | *required* | Integer | 現金出納帳マスタID。
+`start_ymd` | *required* | Date | 開始日。 "YYYY-MM-DD"形式
+`finish_ymd` | *optional* | Date | 終了日。 "YYYY-MM-DD"形式
+`start_balance_fixed` | *optional* | Integer | 開始日残高。*通常は自動計算されますので空欄にしてください。一番最初の期間のみ設定可能です。*
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"petty_cash_master_id" : 1, "start_timestamp" : "2018-02-01", "finish_timestamp" : "2018-02-28"}' https://tsubaiso.net/petty_cashes/create
+```
+
+#### 現金出納帳明細
+
+**/petty_cash_transactions/list?petty_cash_id=:petty_cash_id**
+
+説明: このエンドポイントは特定の現金出納帳明細の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_transactions/list?petty_cash_id=1
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+**/petty_cash_transactions/show/:id**
+
+説明: このエンドポイントは単一の現金出納帳明細を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/petty_cash_transactions/show/1
+```
+
+JSON レスポンスの例:
+```
+T.B.D.
+```
+
+**/petty_cash_transactions/create**
+
+説明: 現金出納帳明細を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`petty_cash_id` | *required* | Integer | 現金出納帳ID。
+`journal_timestamp` | *required* | Date | 入金・出金日。"YYYY-MM-DD"形式
+`price_value` | *required* | Integer | 金額
+`reason_code` | *required* | String | 原因コード
+`tax_type` | *optional* | Integer | 税区分コード
+`brief` | *optional* | String| 摘要
+`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
+`memo` | *optional* | String | メモ
+`tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
+`dept_code` | *optional* | String | 部門コード
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"petty_cash_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/petty_cash_transactions/create
+```
+
+**/petty_cash_transactions/update/:id**
+
+説明: 指定された id の現金出納帳明細を更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_transactions/update/:id
+```
+
+リクエスト例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/petty_cash_transactions/update/8833
+```
+
+**/petty_cash_transactions/destroy/:id**
+
+説明: 指定された id の現金出納帳明細を削除します。成功した場合 204 No Content が返ります。
 
 HTTP メソッド: POST
 
