@@ -3351,7 +3351,7 @@ JSON レスポンスの例:
         "id":288,
         "personal_id":3,
         "serial_no":1,
-        "journal_dc_id":23072,
+        "reconciliation_id":23072,
         "bank_account_id":1064278031,
         "bank_reason_master_id":30001,
         "dc":"d",
@@ -3372,7 +3372,7 @@ JSON レスポンスの例:
         "id":289,
         "personal_id":3,
         "serial_no":2,
-        "journal_dc_id":23073,
+        "reconciliation_id":23073,
         "bank_account_id":1064278031,
         "bank_reason_master_id":104,
         "dc":"d",
@@ -3403,7 +3403,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/bank_account_transactions/show/1
+https://tsubaiso.net/bank_account_transactions/show/288
 ```
 
 JSON レスポンスの例:
@@ -3412,7 +3412,7 @@ JSON レスポンスの例:
     "id":288,
     "personal_id":3,
     "serial_no":1,
-    "journal_dc_id":23072,
+    "reconciliation_id":23072,
     "bank_account_id":1064278031,
     "bank_reason_master_id":30001,
     "dc":"d",
@@ -3450,9 +3450,11 @@ Parameter | Necessity | Type | Description
 `bank_account_id` | *required* | Integer | 銀行口座ID。
 `journal_timestamp` | *required* | String | 入金・出金日。"YYYY-MM-DD"形式
 `price_value` | *required* | Integer | 金額
+`price_value_fc` | *optional* | Integer | 金額(外貨)
+`exchange_rate` | *optional* | Integer | 為替レート
 `reason_code` | *required* | String | 原因
+`dc` | *required* | String | 入出金区分。d: 入金 c: 出金。
 `brief` | *required* | String| 摘要
-`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
 `memo` | *optional* | String | メモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `dept_code` | *optional* | String | 部門コード
@@ -3650,9 +3652,9 @@ Parameter | Necessity | Type | Description
 `journal_timestamp` | *required* | Date | 入金・出金日。"YYYY-MM-DD"形式
 `price_value` | *required* | Integer | 金額
 `reason_code` | *required* | String | 原因コード
+`dc` | *required* | String | 入出金区分。d: 入金 c: 出金。
 `tax_type` | *optional* | Integer | 税区分コード
 `brief` | *optional* | String| 摘要
-`dc` | *optional* | String | 入出金区分。d: 入金 c: 出金。省略すると'c'となります。
 `memo` | *optional* | String | メモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)
 `dept_code` | *optional* | String | 部門コード

@@ -24,13 +24,13 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Reimbursement Reason Masters](#reimbursement-reason-masters)
    - [Ar Reason Masters](#ar-reason-masters)
    - [Ap Reason Masters](#ap-reason-masters)
+   - [Bank Reason Masters](#bank-reason-masters)
    - [Bonuses](#bonuses)
    - [Payrolls](#payrolls)
    - [Journal Distributions](#journal-distributions)
    - [Monthly Balances](#monthly-balances)
    - [Bank Accounts](#bank-accounts)
    - [Bank Account Masters](#bank-account-masters)
-   - [Bank Reason Masters](#bank-reason-masters)
 - [Data Partners](#data-partners)
 
 ## Root Endpoint
@@ -2375,6 +2375,98 @@ Sample JSON response:
 }
 ```
 
+#### Bank Reason Masters
+
+**/bank_reason_masters/list**
+
+Description: Returns the entire list of bank reason masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_reason_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  },
+  {
+    "id": "xxxx",
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+  }
+]
+```
+
+**/bank_reason_masters/show/:id**
+
+Description: Returns a single bank reason master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/0
+```
+
+Sample JSON Response:
+```
+{
+    "id": 100,
+    "ccode": 1,
+    "allowed_domains": null,
+    "sort_number": 0,
+    "reason_code": "xxxx",
+    "reason_name": "xxxx",
+    "dc": "d",
+    "account_code": "500",
+    "is_valid": 1,
+    "memo": "xxxx",
+    "created_at": "2017/12/11 17:20:48 +0900",
+    "regist_user_code": null,
+    "updated_at": "2017/12/11 17:20:48 +0900",
+    "update_user_code": null
+}
+```
+
 #### Bonuses
 
 **/bonuses/list/**
@@ -3214,104 +3306,72 @@ Sample JSON Response:
   "updated_at": "2017/12/11 17:20:38 +0900"
 }
 ```
-#### Bank Reason Masters
 
-**/bank_reason_masters/list**
+#### Bank Account Transaction
 
-Description: Returns the entire list of bank reason masters.
+**/bank_account_transactions/list?bank_account_id=:bank_account_id**
+
+Description: This endpoint returns a list of bank account transactions.
 
 Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/bank_reason_masters/list/
-```
-
-Sample Request:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/list/
+https://tsubaiso.net/bank_account_transactions/list?bank_account_id=1
 ```
 
 Sample JSON response:
 ```
 [
-  {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  },
-  {
-    "id": "xxxx",
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  }
+    {
+        "id":288,
+        "personal_id":3,
+        "serial_no":1,
+        "reconciliation_id":23072,
+        "bank_account_id":1064278031,
+        "bank_reason_master_id":30001,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"memo.",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:33 +0900",
+        "updated_at":"2018/02/01 19:16:33 +0900",
+        "reason_code":"AR_RECEIPT",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112,
+        "price_value_fc":null,
+        "exchange_rate":null
+    }, {
+        "id":289,
+        "personal_id":3,
+        "serial_no":2,
+        "reconciliation_id":23073,
+        "bank_account_id":1064278031,
+        "bank_reason_master_id":104,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:45 +0900",
+        "updated_at":"2018/02/01 19:16:45 +0900",
+        "reason_code":"INTEREST",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1",
+        "GROUP2_2"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112998,
+        "price_value_fc":null,
+        "exchange_rate":null
+    }, 
+    ...
 ]
 ```
 
-**/bank_reason_masters/show/:id**
-
-Description: Returns a single bank reason master.
-
-Method: GET
-
-URL Structure:
-```sh
-https://tsubaiso.net/bank_reason_masters/show/:id
-```
-
-Sample Request:
-``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/0
-```
-
-Sample JSON Response:
-```
-{
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-}
-```
-
-#### Bank Account Transaction
-
-**/bank_account_transactions/index/**
-
-Description: This endpoint returns a list of bank account transactions.
-
+**/bank_account_transactions/show/:id**
 
 Description: Returns a single bank account transaction.
 
@@ -3319,7 +3379,7 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/bank_account_transactions/show/:id
+https://tsubaiso.net/bank_account_transactions/show/288
 ```
 
 Sample JSON response:
@@ -3328,12 +3388,12 @@ Sample JSON response:
     "id":288,
     "personal_id":3,
     "serial_no":1,
-    "journal_dc_id":23072,
+    "reconciliation_id":23072,
     "bank_account_id":1064278031,
     "bank_reason_master_id":30001,
     "dc":"d",
-    "brief":"brief text.",
-    "memo":"memo text.",
+    "brief":"aaa",
+    "memo":"memo.",
     "regist_user_code":"yamakawa",
     "update_user_code":null,
     "created_at":"2018/02/01 19:16:33 +0900",
@@ -3348,7 +3408,7 @@ Sample JSON response:
 }
 ```
 
-**/bank_account_transactions/create/:bank_account_id**
+**/bank_account_transactions/create**
 
 Description: Create a bank account transaction. The created transaction will be sent back as JSON if successful.
 
@@ -3356,21 +3416,24 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/bank_account_transactions/create/:bank_account_id
+https://tsubaiso.net/bank_account_transactions/create
 ```
 
 Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`bank_account_id` | *required* | Integer | bank_account ID。
 `journal_timestamp` | *required* | String | Date of journal. Format must be “YYYY-MM-DD”.
-`price_value` | *required* | Integer | Price value of a bank account transaction.
+`price_value` | *required* | Integer | Amount of a bank account transaction.
+`price_value_fc` | *optional* | Integer | Amount of a bank account transaction. (in foreign currency)
+`exchange_rate` | *optional* | Integer | exchange rate.
 `reason_code` | *required* | String | Reason of the transaction.
-`dc` | *optional* | String | 'd' if the transaction was a debit to AR, 'c' if it was a credit.
-`brief` | *optional* | String| Summary of the transaction.
-        `memo` | *optional* | String | Memo for the transaction.
+`dc` | *required* | String | 'd' if the transaction was a debit, 'c' if it was a credit.
+`brief` | *required* | String| Summary of the transaction.
+`memo` | *optional* | String | Memo for the transaction.
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
-        `dept_code` | *optional* | String | Code of the internal department involved.
+`dept_code` | *optional* | String | Code of the internal department involved.
 
 Sample Request:
 ```sh
