@@ -3467,6 +3467,303 @@ URL Structure:
 https://tsubaiso.net/petty_cash_transactions/create
 ```
 
+#### Petty Cash Masters
+
+**/petty_cash_masters/list**
+
+Description: Returns the entire list of petty cash masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_masters/list/
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 0,
+    "name": "xxxxx",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  },
+  {
+    "id": 1,
+    "name": "xxxxx",
+    "memo": "xxxxx",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "created_at": "2017/12/11 17:21:03 +0900",
+    "updated_at": "2017/12/11 17:21:03 +0900"
+  }
+]
+```
+
+**/petty_cash_masters/show/:id**
+
+Description: Returns a single petty cash master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_masters/show/0
+```
+
+Sample JSON response:
+```
+{
+  "id": 0,
+   "name": "xxxxx",
+   "memo": "xxxxx",
+   "regist_user_code": null,
+   "update_user_code": null,
+   "start_ymd": "2001/01/01",
+   "finish_ymd": null,
+   "created_at": "2017/12/11 17:21:03 +0900",
+   "updated_at": "2017/12/11 17:21:03 +0900"
+ }
+```
+
+#### Petty Cash
+
+**/petty_cashes/list**
+
+Description: Returns the entire list of petty cashes.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cashes/list/:year/:month
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/list/2018/2
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "petty_cash_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+       "start_balance": null,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "petty_cash_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+  },
+  {
+    "id": 1,
+    "petty_cash_master_id": 0,
+    "is_closed": 0,
+    "is_ok": 0,
+    "start_timestamp": "2008/07/01 00:00:00 +0900",
+    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "start_balance_fixed": null,
+    "finish_balance": xxxxx,
+    "start_balance_cache": xxxxx,
+    "finish_balance_cache": xxxxx,
+    "petty_cash_transactions_count": 0,
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2017/12/11 17:20:38 +0900",
+    "updated_at": "2017/12/11 17:20:38 +0900"
+   },
+]
+```
+
+**/petty_cashes/show/:id**
+
+Description: Returns a single petty cash.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cashes/show/:id
+```
+
+Sample JSON response:
+```
+ {
+   "id": 0,
+   "petty_cash_master_id": 0,
+   "is_closed": 0,
+   "is_ok": 0,
+   "start_timestamp": "2008/07/01 00:00:00 +0900",
+   "finish_timestamp": "2020/01/31 00:00:00 +0900",
+   "start_balance_fixed": null,
+   "start_balance": null,
+   "start_balance_cache": xxxxx,
+   "finish_balance_cache": xxxxx,
+   "petty_cash_transactions_count": 0,
+   "regist_user_code": null,
+   "update_user_code": null,
+   "created_at": "2017/12/11 17:20:38 +0900",
+   "updated_at": "2017/12/11 17:20:38 +0900"
+ }
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/show/0
+
+**/petty_cashes/create**
+
+Description: Create a new petty cash. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cashes/create
+```
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`petty_cash_master_id` | *required* | Integer | Petty Cash Master ID。
+`start_ymd` | *required* | Date | Start date. Format must be "YYYY/MM/DD".
+`finish_ymd` | *optional* | Date | Finish date. Finish date. Format must be ""YYYY/MM/DD".
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"petty_cash_master_id" : 1, "start_timestamp" : "2018-02-01", "finish_timestamp" :\
+ "2018-02-28"}' https://tsubaiso.net/petty_cashes/create
+```
+
+#### Petty Cash Transactions
+
+**/petty_cash_transactions/list?petty_cash_id=:petty_cash_id**
+
+Description: This endpoint returns a list of petty cahs transactions.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_transactions/list?petty_cash_id=1
+```
+
+Sample JSON response:
+```
+[
+    {
+        "id":288,
+        "serial_no":1,
+        "journal_dc_id":23072,
+        "petty_cash_id":1064278031,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"memo.",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:33 +0900",
+        "updated_at":"2018/02/01 19:16:33 +0900",
+        "reason_code":"AR_RECEIPT",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112,
+        "other_party":null
+    }, {
+        "id":289,
+        "serial_no":2,
+        "journal_dc_id":23073,
+        "petty_cash_id":1064278031,
+        "dc":"d",
+        "brief":"aaa",
+        "memo":"memo.",
+        "regist_user_code":"yamakawa",
+        "update_user_code":null,
+        "created_at":"2018/02/01 19:16:33 +0900",
+        "updated_at":"2018/02/01 19:16:33 +0900",
+        "reason_code":"AR_RECEIPT",
+        "journal_timestamp":"2018/02/01 00:00:00 +0900",
+        "tag_list":["GROUP3_1"],
+        "dept_code":"NEVER_ENDING",
+        "price_value":112,
+        "other_party":null
+    }, 
+    ...
+]
+```
+
+**/petty_cash_transactions/show/:id**
+
+Description: Returns a single petty cash transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_transactions/show/1
+```
+
+Sample JSON response:
+```
+{
+  "id":288,
+  "serial_no":1,
+  "journal_dc_id":23072,
+  "petty_cash_id":1064278031,
+  "dc":"d",
+  "brief":"aaa",
+  "memo":"memo.",
+  "regist_user_code":"yamakawa",
+  "update_user_code":null,
+  "created_at":"2018/02/01 19:16:33 +0900",
+  "updated_at":"2018/02/01 19:16:33 +0900",
+  "reason_code":"AR_RECEIPT",
+  "journal_timestamp":"2018/02/01 00:00:00 +0900",
+  "tag_list":["GROUP3_1"],
+  "dept_code":"NEVER_ENDING",
+  "price_value":112,
+  "other_party":null
+}
+```
+
+**/petty_cash_transactions/create**
+
+Description: Create a petty cash transaction. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_transactions/create
+```
+
 Parameters:
 
 Parameter | Necessity | Type | Description
