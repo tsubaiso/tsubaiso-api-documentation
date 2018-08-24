@@ -3633,6 +3633,7 @@ Sample JSON response:
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/show/0
+```
 
 **/petty_cashes/create**
 
@@ -3650,7 +3651,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `petty_cash_master_id` | *required* | Integer | Petty Cash Master ID。
 `start_ymd` | *required* | Date | Start date. Format must be "YYYY/MM/DD".
-`finish_ymd` | *optional* | Date | Finish date. Finish date. Format must be ""YYYY/MM/DD".
+`finish_ymd` | *optional* | Date | Finish date. Format must be ""YYYY/MM/DD".
 
 Sample Request:
 ```sh
