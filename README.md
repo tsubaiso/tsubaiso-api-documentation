@@ -3462,10 +3462,6 @@ Description: Destroys the bank account transaction specified as the id. Returns 
 
 Method: POST
 
-URL Structure:
-```sh
-https://tsubaiso.net/petty_cash_transactions/create
-```
 
 #### Petty Cash Masters
 
