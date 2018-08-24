@@ -3462,6 +3462,56 @@ Description: Destroys the bank account transaction specified as the id. Returns 
 
 Method: POST
 
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_transactions/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`petty_cash_id` | *required* | Integer | petty_cash ID。
+`journal_timestamp` | *required* | Date | Date of journal. Format must be “YYYY-MM-DD”.
+`price_value` | *required* | Integer | Amount of a petty cash transaction.
+`reason_code` | *required* | String | Reason of the transaction.
+`dc` | *required* | String | 'd' if the transaction was a debit, 'c' if it was a credit.
+`tax_type` | *optional* | Integer | Tax type of the transaction.
+`brief` | *optional* | String| Summary of the transaction.
+`memo` | *optional* | String | Memo for the transaction.
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
+`dept_code` | *optional* | String | Code of the internal department involved.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"petty_cash_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "rea\
+son_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/petty_cash_transactions/create
+```
+
+**/petty_cash_transactions/update/:id**
+
+Description: Updates a petty cash transaction. The updated transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_transactions/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_value": 10800 }'  https://tsubaiso.net/petty_cash_t\
+ransactions/update/8833
+```
+
+**/petty_cash_transactions/destroy/:id**
+
+Description: Destroys the petty cash transaction specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+
 ### Data Partners
 
 Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
