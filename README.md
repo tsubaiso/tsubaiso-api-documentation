@@ -31,6 +31,9 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Monthly Balances](#monthly-balances)
    - [Bank Accounts](#bank-accounts)
    - [Bank Account Masters](#bank-account-masters)
+   - [Petty Cash Masters](#petty-cash-masters)
+   - [Petty Cash](#petty-cash)
+   - [Petty Cash Transaction](#petty-cash-transactions)
 - [Data Partners](#data-partners)
 
 ## Root Endpoint
