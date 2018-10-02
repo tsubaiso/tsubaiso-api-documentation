@@ -691,6 +691,29 @@ Sample JSON response:
 }
 ```
 
+**/customer_masters/show**
+
+Description: Returns a single customer.
+
+Method: GET
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`id` or `code` | *required* | String | ID or code.
+
+
+URL Structure:
+``` sh
+https://tsubaiso.net/customer_masters/show
+```
+
+Sample JSON response: see customer_masters/show
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"code": "100" }' https://tsubaiso.net/customer_masters/show
+```
+
 **/customer_masters/create**
 
 Description: Create a new customer. The created transaction will be sent back as JSON if successful.
@@ -3814,7 +3837,7 @@ Method: POST
 
 Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
 
-Applicable resources: Accounts Receivables, Accounts Payables, Reimbursement Transactions, Manual Journals
+Applicable resources: Accounts Receivables, Accounts Payables, Reimbursement Transactions, Manual Journals, Customers
 
 Parameters:
 
