@@ -687,6 +687,28 @@ JSON レスポンスの例:
 }
 ```
 
+**/customer_masters/show**
+
+説明: このエンドポイントは単一の取引先を返します。
+
+HTTP メソッド: GET
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`id` or `code` | *required* | String | ID か識別コード。
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/customer_masters/show
+```
+
+JSON レスポンスの例: customer_masters/show/:id を参照
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET -d '{"code": "100" }' https://tsubaiso.net/customer_masters/show
+```
+
 **/customer_masters/create**
 
 説明: 取引先を新規作成します。作成に成功した場合、新規作成された明細が JSON として返されます。
@@ -3694,7 +3716,7 @@ HTTP メソッド: POST
 
 説明: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
 
-対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳
+対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳, 取引先
 
 Parameters:
 
