@@ -2957,6 +2957,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `target_timestamp` | *required* | String | 配賦対象日。形式は"YYYY-MM-DD"です。
+`title` | *required* | String | 表題。
 `criteria` | *required* | String | 配賦基準。"dept"(部門)か"segment"(セグメント)のいずれかを文字列で指定します。
 `distribution_conditions` | *required* | Object | 配賦比率。criteria で指定した基準で、それぞれへの配賦比率を指定します。 ``` { 部門コード1 : 配賦率, 部門コード2 : 配賦率,...} or { セグメントコード1 : 配賦率, セグメントコード2 : 配賦率,...} ```
 `memo` | *optional* | String | メモに書かれてある内容で部分検索します。
@@ -2977,7 +2978,7 @@ Parameter | Necessity | Type | Description
 リクエストの例:
 ```sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -d '{ "search_conditions": { "start_date": "2016-09-01", "finish_date": "2016-09-30", "accou\
-nt_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.n\
+nt_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "title": "タイトル", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.n\
 et/journal_distributions/create
 ```
 

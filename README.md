@@ -2961,6 +2961,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `target_timestamp` | *required* | String | Target date of the journal distribution. Format must be "YYYY-MM-DD".
+`title` | *required* | String | Title
 `criteria` | *required* | String | Allocation criteria for journal distribution that being distributed. Only available options are "dept" for departments ot "segment" for segments.
 `distribution_conditions` | *required* | Object | Departments or segments to be allocated within journal distribution. ``` {dept_code1 : ratio, dept_code2 : ratio,...} or {segment_code1 : ratio, segment_code2 : ratio,...} ```
 `memo` | *optional* | String | Memo for the entry.
@@ -2980,7 +2981,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -d '{ "search_conditions": { "start_date": "2016-09-01", "finish_date": "2016-09-30", "account_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.net/journal_distributions/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXXX" -d '{ "search_conditions": { "start_date": "2016-09-01", "finish_date": "2016-09-30", "account_codes": ["135~999","604"], "dept_code": "SHOP" }, "memo": "", "title": "TITLE", "criteria": "dept", "target_timestamp": "2017-02-01", "distribution_conditions": { "SETSURITSU": "1", "HEAD": "1" } }'  https://tsubaiso.net/journal_distributions/create
 ```
 
 **/journal_distribution/destroy/:id**
