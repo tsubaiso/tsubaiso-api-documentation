@@ -568,6 +568,7 @@ Sample JSON Response:
         start_timestamp: null
         tax_type_for_remittance_charge: 3
         tel: "03-1234-5678"
+	memo: "memo1"
         update_user_code: "user"
         updated_at: "2015/11/13 11:14:00 +0900"
         used_in_ap: 1
@@ -616,6 +617,7 @@ Sample JSON Response:
         start_timestamp: null
         tax_type_for_remittance_charge: 1
         tel: null
+	memo: "memo2"
         update_user_code: null
         updated_at: "2015/11/13 18:55:54 +0900"
         used_in_ap: 1
@@ -681,6 +683,7 @@ Sample JSON response:
     start_timestamp: null
     tax_type_for_remittance_charge: 3
     tel: "03-1234-5678"
+    memo: "memo1"
     update_user_code: "user"
     updated_at: "2015/11/13 11:14:00 +0900"
     used_in_ap: 1
@@ -757,7 +760,7 @@ Parameter | Necessity | Type | Description
 `bank_nominee` | *optional* | String | Name on bank account (limit: 30 characters).
 `bank_account_number` | *optional* | String | Bank account number.
 `is_valid` | *required* | Integer | Customer use status. 1: In use, 0: Not in use.
-
+`memo` | *optional* | String | memo
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "テスト株式会社", "name_kana": "テストカブシキガイシャ", "code": "9000", "tax_type_for_remittance_charge": "3", "used_in_ar": 1, "used_in_ap": 1, "is_valid": 1 }' https://tsubaiso.net/customer_masters/create
