@@ -11,7 +11,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
  - [レスポンスコードとエラー処理](#レスポンスコードとエラー処理)
  - [リソース](#リソース)
    - [売上明細](#売上明細)
-   - [入金・消込明細](#入金・消込明細)
+   - [入金・消込明細](#入金消込明細)
    - [仕入・経費明細](#仕入経費明細)
    - [取引先](#取引先)
    - [社員](#社員)
@@ -287,7 +287,7 @@ JSON レスポンス例:
   }
 ]
 ```
-#### 入金・消込明細
+#### 入金消込明細
 
 **/ar_reconciliations/list**
 
@@ -369,7 +369,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:reconciliation_id
+https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
 
 JSON レスポンスの例:
@@ -404,10 +404,10 @@ JSON レスポンスの例:
 
 リクエスト例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:reconciliation_id
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/reconcile**
+**/ar_reconciliations/reconcile/:id**
 
 説明: 入金・消込明細を消込します。消込に成功した場合、作成された明細が JSON として返されます。
 
@@ -424,7 +424,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `reconciliation` | *required* | Integer | 入金額
 `customer_master_code` | *required* | String | 取引先コード
-`memo` | *optional* | String | メモ。
+`memo` | *optional* | String | メモ
 `dept_code` | *optional* | String | 部門コード
 `remittance_charge` | *optional* | Integer | 当方負担送金手数料
 `exchange_gain_and_loss` | *optional* | Integer | 為替差損益
@@ -434,10 +434,10 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/reconcile?reconciliation_id=:reconciliation_id
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/unreconcile**
+**/ar_reconciliations/unreconcile/:id**
 
 説明: 指定された id の入金・消込明細を未消込します。
 
@@ -450,7 +450,7 @@ https://tsubaiso.net/ar_reconciliations/unreconcile
 
 リクエストの例:
 ```sh
- curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/unreconcile?reconciliation_id=:reconciliation_id
+ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/unreconcile?reconciliation_id=:id
 ```
 
 #### 仕入・経費明細
