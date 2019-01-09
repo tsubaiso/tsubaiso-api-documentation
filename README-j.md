@@ -731,6 +731,7 @@ JSON レスポンスの例:
         start_timestamp: null
         tax_type_for_remittance_charge: 3
         tel: "03-1234-5678"
+	memo: "memo1"
         update_user_code: "user"
         updated_at: "2015/11/13 11:14:00 +0900"
         used_in_ap: 1
@@ -779,6 +780,7 @@ JSON レスポンスの例:
         start_timestamp: null
         tax_type_for_remittance_charge: 1
         tel: null
+	memo: "memo2"
         update_user_code: null
         updated_at: "2015/11/13 18:55:54 +0900"
         used_in_ap: 1
@@ -844,6 +846,7 @@ JSON レスポンスの例:
     start_timestamp: null
     tax_type_for_remittance_charge: 3
     tel: "03-1234-5678"
+    memo: "memo1"
     update_user_code: "user"
     updated_at: "2015/11/13 11:14:00 +0900"
     used_in_ap: 1
@@ -919,6 +922,7 @@ Parameter | Necessity | Type | Description
 `bank_nominee` | *optional* | String | 取引先の口座名義（半角カナ30文字以内）
 `bank_account_number` | *optional* | String | 取引先の口座番号
 `is_valid` | *required* | Integer | 取引先ステータス。 1: 使用中、0: 使用停止
+`memo` | *optional* | String | 自由記述欄
 
 リクエストの例:
 ``` sh
