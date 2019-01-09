@@ -760,7 +760,8 @@ Parameter | Necessity | Type | Description
 `bank_nominee` | *optional* | String | Name on bank account (limit: 30 characters).
 `bank_account_number` | *optional* | String | Bank account number.
 `is_valid` | *required* | Integer | Customer use status. 1: In use, 0: Not in use.
-`memo` | *optional* | String | memo
+`memo` | *optional* | String | Memo for the master.
+
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "テスト株式会社", "name_kana": "テストカブシキガイシャ", "code": "9000", "tax_type_for_remittance_charge": "3", "used_in_ar": 1, "used_in_ap": 1, "is_valid": 1 }' https://tsubaiso.net/customer_masters/create
