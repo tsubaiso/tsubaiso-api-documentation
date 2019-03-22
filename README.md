@@ -328,7 +328,7 @@ Sample JSON response:
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
         "tag_list": ["Payment", "Foreign"],
-        "buying_tax": 400,
+        "sales_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
         "reason_master_code": "BUYING_IN"
@@ -356,7 +356,7 @@ Sample JSON response:
         "price_including_tax": 10800
         "price_excluding_tax": 10000,
         "tag_list": ["Payment", "Foreign"],
-        "buying_tax": 800,
+        "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
         "reason_master_code": "BUYING_IN"
@@ -401,7 +401,7 @@ Sample JSON response:
     "price_including_tax": 5400
     "price_excluding_tax": 5000,
     "tag_list": ["Payment", "Foreign"],
-    "buying_tax": 400,
+    "sales_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
     "reason_master_code": "BUYING_IN"
@@ -432,7 +432,7 @@ Parameter | Necessity | Type | Description
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction.
 `tax_code` | *optional* | Integer | Tax code for the transaction. (If this parameter is omitted, it will use the tax_code associated with the reason_master_code.)
 `dept_code` | *optional* | String | Code of the internal department involved.
-`buying_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
+`sales_tax` | *optional* | Integer | Sales tax on the transaction. Is automatically calculated if not provided.
 `scheduled_pay_timestamp` | *optional* | String | Date of payment. Format must be "YYYY-MM-DD".
 `scheduled_memo` | *optional* | String | Optional memo regarding payment of funds.
 `need_tax_deduction` | *optional* | Integer | 1 if tax needs to be withheld. 0 if not necessary.
