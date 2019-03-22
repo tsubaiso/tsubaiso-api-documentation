@@ -493,7 +493,7 @@ JSON レスポンスの例:
         "account_code": "604",
         "price_including_tax": 5400,
         "price_excluding_tax": 5000,
-        "buying_tax": 400,
+        "sales_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
         "reason_master_code": "BUYING_IN"
@@ -520,7 +520,7 @@ JSON レスポンスの例:
         "account_code": "604",
         "price_including_tax": 10800,
         "price_excluding_tax": 10000,
-        "buying_tax": 800,
+        "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
         "reason_master_code": "BUYING_IN"
@@ -564,7 +564,7 @@ JSON レスポンスの例:
     "account_code": "604",
     "price_including_tax": 5400,
     "price_excluding_tax": 5000,
-    "buying_tax": 400,
+    "sales_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
     "reason_master_code": "BUYING_IN"
@@ -595,7 +595,7 @@ Parameter | Necessity | Type | Description
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」
 `tax_code` | *optional* | Integer | 税区分コード (省略された場合、原因コードのデフォルト税区分が使用されます。)
 `dept_code` | *optional* | String | 部門コード
-`buying_tax` | *optional* | Integer | 消費税額。省略された場合は自動で計算されます。
+`sales_tax` | *optional* | Integer | 消費税額。省略された場合は自動で計算されます。
 `scheduled_pay_timestamp` | *optional* | String | 支払予定日。  "YYYY-MM-DD" 形式
 `scheduled_memo` | *optional* | String | 支払いに関する追加のメモ
 `need_tax_deduction` | *optional* | Integer | 源泉徴収の対象とするか否か。 0:しない, 1:する
