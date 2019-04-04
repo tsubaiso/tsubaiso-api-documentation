@@ -37,6 +37,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [現金出納帳マスタ](#現金出納帳マスタ)
    - [現金出納帳](#現金出納帳)
    - [現金出納帳明細](#現金出納帳明細)
+   - [税区分マスタ](#税区分マスタ)
 - [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
@@ -327,7 +328,7 @@ JSON レスポンスの例:
      "memo":"メモ",
      "receipt_amount":123,
      "reconciliation_id":23790,
-     "reconcile_transactions”:[]}, 
+     "reconcile_transactions”:[]},
   {
     "id":3099,
     "serial_no":266,
@@ -482,7 +483,7 @@ JSON レスポンスの例:
         "need_tax_deduction": null,
         "port_type": 1,
         "preset_withholding_tax_amount": null,
-	
+
         "regist_user_code": "sample_user",
         "scheduled_memo": null,
         "scheduled_pay_timestamp": null,
@@ -3587,7 +3588,7 @@ JSON レスポンスの例:
         "price_value":112998,
         "price_value_fc":null,
         "exchange_rate":null
-    }, 
+    },
     ...
 ]
 ```
@@ -3882,6 +3883,90 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 説明: 指定された id の現金出納帳明細を削除します。成功した場合 204 No Content が返ります。
 
 HTTP メソッド: POST
+
+#### 税区分マスタ
+
+**/tax_masters/list**
+
+説明: 税区分マスタをJSON形式で取得します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tax_masters/list
+```
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 0,
+    "code": 0,
+    "name": "対象外又は非課税仕入",
+    "abbr_name": "　",
+    "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
+    "dc": "d",
+    "controll_business_segment": 0,
+    "color": "aaaaaa",
+    "start_timestamp": "1989/04/01 00:00:00 +0900",
+    "finish_timestamp": null,
+    "created_at": "2008/09/29 17:22:11 +0900",
+    "updated_at": "2008/09/29 17:22:11 +0900",
+    "tax_ratio_division_view": "0%",
+    "dc_view": "借方(D)",
+    "taxable_division_view": "その他"
+  },
+  {
+    "id": 1,
+    "code": 1,
+    "name": "課税売上分一般仕入(5%)",
+    "abbr_name": "仕",
+    "description": "税率5％の課税仕入れのうち、課税売上げにのみ対応する取引に使用します。",
+    "dc": "d",
+    "controll_business_segment": 0,
+    "color": "7fff00",
+    "start_timestamp": "1997/04/01 00:00:00 +0900",
+    "finish_timestamp": "2014/03/31 23:59:59 +0900",
+    "created_at": "2008/09/29 17:22:11 +0900",
+    "updated_at": "2008/09/29 17:22:11 +0900",
+    "tax_ratio_division_view": "5%",
+    "dc_view": "借方(D)",
+    "taxable_division_view": "課税仕入"
+  }
+]
+```
+
+**/tax_masters/show/:id**
+
+説明: 単一の税区分マスタをJSON形式で取得します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/tax_masters/show/:id
+```
+JSON レスポンスの例:
+```
+{
+  "id": 0,
+  "code": 0,
+  "name": "対象外又は非課税仕入",
+  "abbr_name": "　",
+  "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
+  "dc": "d",
+  "controll_business_segment": 0,
+  "color": "aaaaaa",
+  "start_timestamp": "1989/04/01 00:00:00 +0900",
+  "finish_timestamp": null,
+  "created_at": "2008/09/29 17:22:11 +0900",
+  "updated_at": "2008/09/29 17:22:11 +0900",
+  "tax_ratio_division_view": "0%",
+  "dc_view": "借方(D)",
+  "taxable_division_view": "その他"
+}
+```
+
 
 ### 外部連携機能
 
