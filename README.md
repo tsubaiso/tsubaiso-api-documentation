@@ -3590,7 +3590,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/list/2018/2
 ```
 
-JSON レスポンスの例:
+Sample JSON Response:
 ```
 [
   {
@@ -3851,7 +3851,12 @@ URL Structure:
 https://tsubaiso.net/tax_masters/list
 ```
 
-Sample JSON responce:
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/list
+```
+
+Sample JSON response:
 ```
 [
   {
@@ -3896,14 +3901,19 @@ Sample JSON responce:
 
 Description: This endpoint returns a single tax_master.
 
-HTTP メソッド: GET
+Method: GET
 
 URL Structure:
 ```sh
 https://tsubaiso.net/tax_masters/show/:id
 ```
 
-Sample JSON responce:
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/show/0
+```
+
+Sample JSON response:
 ```
 {
   "id": 0,

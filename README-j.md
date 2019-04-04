@@ -3896,6 +3896,12 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/tax_masters/list
 ```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/list
+```
+
 JSON レスポンスの例:
 ```
 [
@@ -3946,6 +3952,12 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/tax_masters/show/:id
 ```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/show/0
+```
+
 JSON レスポンスの例:
 ```
 {
