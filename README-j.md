@@ -483,7 +483,6 @@ JSON レスポンスの例:
         "need_tax_deduction": null,
         "port_type": 1,
         "preset_withholding_tax_amount": null,
-
         "regist_user_code": "sample_user",
         "scheduled_memo": null,
         "scheduled_pay_timestamp": null,
