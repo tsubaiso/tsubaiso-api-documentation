@@ -34,6 +34,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Petty Cash Masters](#petty-cash-masters)
    - [Petty Cash](#petty-cash)
    - [Petty Cash Transaction](#petty-cash-transactions)
+   - [Tax Masters](#tax-masters)
 - [Data Partners](#data-partners)
 
 ## Root Endpoint
@@ -3397,7 +3398,7 @@ Sample JSON response:
         "price_value":112998,
         "price_value_fc":null,
         "exchange_rate":null
-    }, 
+    },
     ...
 ]
 ```
@@ -3589,7 +3590,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cashes/list/2018/2
 ```
 
-JSON レスポンスの例:
+Sample JSON Response:
 ```
 [
   {
@@ -3742,7 +3743,7 @@ Sample JSON response:
         "dept_code":"NEVER_ENDING",
         "price_value":112,
         "other_party":null
-    }, 
+    },
     ...
 ]
 ```
@@ -3836,6 +3837,102 @@ Description: Destroys the petty cash transaction specified as the id. Returns a 
 
 Method: POST
 
+
+#### Tax Masters
+
+**/tax_masters/list**
+
+Description: This endpoint returns a list of tax_master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/tax_masters/list
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/list
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id": 0,
+    "code": 0,
+    "name": "対象外又は非課税仕入",
+    "abbr_name": "　",
+    "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
+    "dc": "d",
+    "controll_business_segment": 0,
+    "color": "aaaaaa",
+    "start_timestamp": "1989/04/01 00:00:00 +0900",
+    "finish_timestamp": null,
+    "created_at": "2008/09/29 17:22:11 +0900",
+    "updated_at": "2008/09/29 17:22:11 +0900",
+    "tax_ratio_division_view": "0%",
+    "dc_view": "借方(D)",
+    "taxable_division_view": "その他"
+  },
+  {
+    "id": 1,
+    "code": 1,
+    "name": "課税売上分一般仕入(5%)",
+    "abbr_name": "仕",
+    "description": "税率5％の課税仕入れのうち、課税売上げにのみ対応する取引に使用します。",
+    "dc": "d",
+    "controll_business_segment": 0,
+    "color": "7fff00",
+    "start_timestamp": "1997/04/01 00:00:00 +0900",
+    "finish_timestamp": "2014/03/31 23:59:59 +0900",
+    "created_at": "2008/09/29 17:22:11 +0900",
+    "updated_at": "2008/09/29 17:22:11 +0900",
+    "tax_ratio_division_view": "5%",
+    "dc_view": "借方(D)",
+    "taxable_division_view": "課税仕入"
+  }
+]
+
+```
+
+**/tax_masters/show/:id**
+
+Description: This endpoint returns a single tax_master.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/tax_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/tax_masters/show/0
+```
+
+Sample JSON response:
+```
+{
+  "id": 0,
+  "code": 0,
+  "name": "対象外又は非課税仕入",
+  "abbr_name": "　",
+  "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
+  "dc": "d",
+  "controll_business_segment": 0,
+  "color": "aaaaaa",
+  "start_timestamp": "1989/04/01 00:00:00 +0900",
+  "finish_timestamp": null,
+  "created_at": "2008/09/29 17:22:11 +0900",
+  "updated_at": "2008/09/29 17:22:11 +0900",
+  "tax_ratio_division_view": "0%",
+  "dc_view": "借方(D)",
+  "taxable_division_view": "その他"
+}
+```
 
 ### Data Partners
 
