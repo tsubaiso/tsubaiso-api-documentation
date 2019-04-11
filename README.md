@@ -35,7 +35,8 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Petty Cash](#petty-cash)
    - [Petty Cash Transaction](#petty-cash-transactions)
    - [Tax Masters](#tax-masters)
-- [Data Partners](#data-partners)
+   - [Data Partners](#data-partners)
+   - [Scheduled Dates](#scheduled-dates)
 
 ## Root Endpoint
 
@@ -3950,3 +3951,19 @@ Parameter | Necessity | Type | Description
 `deletable` | *optional* | Integer | 1 if you want the transaction to be deletable by users who are below manager level. (Default is 0)
 `partner_editable` | *optional* | Integer | 1 if you want the transaction to be editable via API requests. (Default is 1)
 `partner_deletable` | *optional* | Integer | 1 if you want the transaction to be deletable via API requests. (Default is 1)
+
+
+### Scheduled Dates
+
+Description: Calculate Scheduled Date from target_date by sight and closing_day.
+
+Access to Tsubaiso resources: -
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`target_date` | *required* | String(with date format ex. ("%Y-%m-%d")) | Specified target date.
+`sight` | *required* | String (Have same rule with CusomerMaster#pay_sight, or receive_sight) | Specified the pattern to collect month and day of scheduled date
+`closing_day` | *required* | String | Closing day of the monthly transaction.
+`shift` | *optional* | String | 0 or 1 (default is 0). If your calculated scheduled date is holiday this parameter will used. Pick 0 if you want scheduled date is working day before of holiday and 1 is your working day is next day of holiday.
