@@ -2675,7 +2675,7 @@ https://tsubaiso.net/petty_cash_reason_masters/list/
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/list/
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/petty_cash_reason_masters/list/
 ```
 
 JSON レスポンスの例:
@@ -2697,21 +2697,37 @@ JSON レスポンスの例:
     "updated_at": "2019/02/25 11:47:31 +0900",
     "port_type": null
   },
-  {
-    "id": 2003,
+{
+    "id": 1000300270,
     "ccode": 3,
-    "sort_number": 40,
-    "reason_code": "HUKURIKOUSEIHI",
-    "reason_name": "福利",
-    "dc": "c",
-    "account_code": "706",
+    "sort_number": 270,
+    "reason_code": "BANK2CASH_",
+    "reason_name": "銀行から小口現金への入金",
+    "dc": "d",
+    "account_code": "190~30",
     "is_valid": 1,
-    "memo": "福利厚生費とは、従業員の福利厚生のために支出する以下のような費用をいいます\r\n\r\n（医療・保健費用）\r\n定期健康診断、予防接種、常備医薬品など\r\n\r\n（厚生施設費用）\r\n社員食堂、体育施設、保養所などに係る費用\r\n\r\n（親睦活動費用）\r\n忘年会、社員旅行、運動会、クラブ活動などの諸費用\r\n\r\n（慶弔費用）\r\n従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金など\r\n\r\n（消耗品の費用）\r\n従業員のための作業服、制服、石けん、トイレットペーパー、お茶、コーヒーなど\r\n\r\n役員のみを対象とした支出は福利厚生費とはなりません。全従業員に一律に支出されることがポイントとなります。役員のみの会社の場合は、残業食事代以外を福利厚生とするのは否認されるリスクがあります。\r\n\r\n【消費税の課税区分についての注意事項】\r\n主な《対象外又は非課税仕入》は以下のとおりです。\r\n\r\n・従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金などの慶弔費用",
+    "memo": "銀行口座から引き出して小口現金に入金した時に選択してください。",
     "regist_user_code": null,
-    "update_user_code": "yamakawa",
-    "created_at": "2019/02/25 11:47:31 +0900",
-    "updated_at": "2019/04/08 16:39:32 +0900",
-    "port_type": 1
+    "update_user_code": null,
+    "created_at": "2019/01/10 17:32:06 +0900",
+    "updated_at": "2019/01/10 17:32:06 +0900",
+    "port_type": 1,
+    "petty_cash_reason_taxes": [
+      {
+        "tax_master_id": 1003,
+        "sales_tax_system": 4,
+        "port_type": 1,
+        "is_default": 1,
+        "sort_no": 101
+      },
+      {
+        "tax_master_id": 1007,
+        "sales_tax_system": 7,
+        "port_type": 2,
+        "is_default": 0,
+        "sort_no": 105
+      }
+    ]
   }
 ]
 ```
@@ -2729,12 +2745,12 @@ https://tsubaiso.net/petty_cash_reason_masters/show/:id
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/show/:id
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/petty_cash_reason_masters/show/:id
 ```
 
 JSON レスポンスの例:
 ```
-  {
+{
   "id": 19992,
   "ccode": 3,
   "sort_number": 20,
@@ -2772,12 +2788,12 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | Text | 入出金区分　d: 入金 c: 出金
 `account_code` | *required* | text | 勘定科目コード
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」、３は「国内・国外」
-`is_vaild` | *required* | Integer | 表示区分 2: マネージャーのみ、1: 表示、0: 非表示
+`is_vaild` | *required* | Integer | 表示区分 1: 表示、0: 非表示
 `memo` | *optional* | Strings | 説明
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" -d '{"petty_cash_reason_master" : { "reason_code" : "tsubaiso test" , "reason_name" : "reason name" , "dc":"d", "account_code":"100", "is_valid":"1" , "memo":"This is Test from API.", "port_type" : "0"}}' https://tsubaiso.net/petty_cash_reason_masters/create/
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" -X POST -d '{"petty_cash_reason_master" : { "reason_code" : "tsubaiso test" , "reason_name" : "reason name" , "dc":"d", "account_code":"100", "is_valid":"1" , "memo":"This is Test from API.", "port_type" : "0"}}' https://tsubaiso.net/petty_cash_reason_masters/create/
 ```
 
 **/petty_cash_reason_masters/update**
@@ -2793,21 +2809,18 @@ https://tsubaiso.net/petty_cash_reason_masters/update/:id
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:  XXXXXXXXXXXXXXX" -d '{"memo":"updating memo", "reason_code":"updating_code"}' https://tsubaiso.net/petty_cash_reason_masters/update/:id
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:  XXXXXXXXXXXXXXX" -X POST -d '{"memo":"updating memo", "reason_code":"updating_code"}' https://tsubaiso.net/petty_cash_reason_masters/update/:id
 ```
 
 **/petty_cash_reason_masters/destroy**
 
 説明: 現金原因マスタを削除します。削除に成功した場合、204 No Content が返ります。
 
+Method: POST
+
 URL 構成例:
 ```sh
 https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
-```
-
-リクエストの例:
-```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
 ```
 
 #### 賞与データ
