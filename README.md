@@ -25,6 +25,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Ar Reason Masters](#ar-reason-masters)
    - [Ap Reason Masters](#ap-reason-masters)
    - [Bank Reason Masters](#bank-reason-masters)
+   - [Petty Cash Reason Masters](#petty-cash-reason-masters)
    - [Bonuses](#bonuses)
    - [Payrolls](#payrolls)
    - [Journal Distributions](#journal-distributions)
@@ -2496,6 +2497,156 @@ Sample JSON Response:
     "updated_at": "2017/12/11 17:20:48 +0900",
     "update_user_code": null
 }
+```
+
+#### Petty Cash Reason Masters
+
+**/petty_cash_reason_masters/list**
+
+Description: Returns the entire list of petty cash reason masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+Sample Json Response:
+```
+[
+  {
+    "id": 19992,
+    "ccode": 3,
+    "sort_number": 20,
+    "reason_code": "SHOUMOUHINHI",
+    "reason_name": "消耗品費",
+    "dc": "c",
+    "account_code": "710",
+    "is_valid": 1,
+    "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2019/02/25 11:47:31 +0900",
+    "updated_at": "2019/02/25 11:47:31 +0900",
+    "port_type": null
+  },
+  {
+    "id": 2003,
+    "ccode": 3,
+    "sort_number": 40,
+    "reason_code": "HUKURIKOUSEIHI",
+    "reason_name": "福利",
+    "dc": "c",
+    "account_code": "706",
+    "is_valid": 1,
+    "memo": "福利厚生費とは、従業員の福利厚生のために支出する以下のような費用をいいます\r\n\r\n（医療・保健費用）\r\n定期健康診断、予防接種、常備医薬品など\r\n\r\n（厚生施設費用）\r\n社員食堂、体育施設、保養所などに係る費用\r\n\r\n（親睦活動費用）\r\n忘年会、社員旅行、運動会、クラブ活動などの諸費用\r\n\r\n（慶弔費用）\r\n従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金など\r\n\r\n（消耗品の費用）\r\n従業員のための作業服、制服、石けん、トイレットペーパー、お茶、コーヒーなど\r\n\r\n役員のみを対象とした支出は福利厚生費とはなりません。全従業員に一律に支出されることがポイントとなります。役員のみの会社の場合は、残業食事代以外を福利厚生とするのは否認されるリスクがあります。\r\n\r\n【消費税の課税区分についての注意事項】\r\n主な《対象外又は非課税仕入》は以下のとおりです。\r\n\r\n・従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金などの慶弔費用",
+    "regist_user_code": null,
+    "update_user_code": "yamakawa",
+    "created_at": "2019/02/25 11:47:31 +0900",
+    "updated_at": "2019/04/08 16:39:32 +0900",
+    "port_type": 1
+  }
+]
+```
+
+**/petty_cash_reason_masters/show/:id**
+
+Description: Returns a petty cash reason master.
+
+Method : GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+Sample Json Resonse:
+```
+  {
+  "id": 19992,
+  "ccode": 3,
+  "sort_number": 20,
+  "reason_code": "SHOUMOUHINHI",
+  "reason_name": "消耗品費",
+  "dc": "c",
+  "account_code": "710",
+  "is_valid": 1,
+  "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "created_at": "2019/02/25 11:47:31 +0900",
+  "updated_at": "2019/02/25 11:47:31 +0900",
+  "port_type": null
+}
+```
+**/petty_cash_reason_masters/create**
+
+Description : Create a petty cash reason master. The created master will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_no` | *optional* | Integer | sort number
+`reason_code` | *required* | String | reason code
+`reason_name` | *required* | String | reason name
+`dc` | *required* | Text | 'd' if the reason was a debit, 'c' if it was a credit.
+`account_code` | *required* | text | account code
+`port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction. 3 for both.
+`is_vaild` | *required* | Integer | Customer use status. 2: Only managers can use, 1: In use, 0: Not in use.
+`memo` | *optional* | Strings | Description
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" -d '{"petty_cash_reason_master" : { "reason_code" : "tsubaiso test" , "reason_name" : "reason name" , "dc":"d", "account_code":"100", "is_valid":"1" , "memo":"This is Test from API.", "port_type" : "0"}}' https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+**/petty_cash_reason_masters/update**
+
+Description: Updates a petty cash reason master. The updated master will be sent back as JSON if successful.
+
+Method : POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:  XXXXXXXXXXXXXXX" -d '{"memo":"updating memo", "reason_code":"updating_code"}' https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+**/petty_cash_reason_masters/destroy**
+
+Description: Deletes the petty cash reason master with the specified id. Will return 204 No Content if successful.
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
 ```
 
 #### Bonuses

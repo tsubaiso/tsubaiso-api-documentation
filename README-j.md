@@ -27,6 +27,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [販売原因マスタ](#販売原因マスタ)
    - [購買原因マスタ](#購買原因マスタ)
    - [銀行原因マスタ](#銀行原因マスタ)
+   - [現金原因マスタ](#現金原因マスタ)
    - [賞与データ](#賞与データ)
    - [給与データ](#給与データ)
    - [仕訳配賦](#仕訳配賦)
@@ -2657,6 +2658,156 @@ JSON レスポンスの例:
   "updated_at": "2017/12/11 17:20:48 +0900",
   "update_user_code": null
 }
+```
+
+#### 現金原因マスタ
+
+**/petty_cash_reason_masters/list**
+
+説明: 現金原因マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 19992,
+    "ccode": 3,
+    "sort_number": 20,
+    "reason_code": "SHOUMOUHINHI",
+    "reason_name": "消耗品費",
+    "dc": "c",
+    "account_code": "710",
+    "is_valid": 1,
+    "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2019/02/25 11:47:31 +0900",
+    "updated_at": "2019/02/25 11:47:31 +0900",
+    "port_type": null
+  },
+  {
+    "id": 2003,
+    "ccode": 3,
+    "sort_number": 40,
+    "reason_code": "HUKURIKOUSEIHI",
+    "reason_name": "福利",
+    "dc": "c",
+    "account_code": "706",
+    "is_valid": 1,
+    "memo": "福利厚生費とは、従業員の福利厚生のために支出する以下のような費用をいいます\r\n\r\n（医療・保健費用）\r\n定期健康診断、予防接種、常備医薬品など\r\n\r\n（厚生施設費用）\r\n社員食堂、体育施設、保養所などに係る費用\r\n\r\n（親睦活動費用）\r\n忘年会、社員旅行、運動会、クラブ活動などの諸費用\r\n\r\n（慶弔費用）\r\n従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金など\r\n\r\n（消耗品の費用）\r\n従業員のための作業服、制服、石けん、トイレットペーパー、お茶、コーヒーなど\r\n\r\n役員のみを対象とした支出は福利厚生費とはなりません。全従業員に一律に支出されることがポイントとなります。役員のみの会社の場合は、残業食事代以外を福利厚生とするのは否認されるリスクがあります。\r\n\r\n【消費税の課税区分についての注意事項】\r\n主な《対象外又は非課税仕入》は以下のとおりです。\r\n\r\n・従業員やその家族に対する結婚祝い、香典、見舞金、お祝い金などの慶弔費用",
+    "regist_user_code": null,
+    "update_user_code": "yamakawa",
+    "created_at": "2019/02/25 11:47:31 +0900",
+    "updated_at": "2019/04/08 16:39:32 +0900",
+    "port_type": 1
+  }
+]
+```
+
+**/petty_cash_reason_masters/show/:id**
+
+説明: 個別の現金原因マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+JSON レスポンスの例:
+```
+  {
+  "id": 19992,
+  "ccode": 3,
+  "sort_number": 20,
+  "reason_code": "SHOUMOUHINHI",
+  "reason_name": "消耗品費",
+  "dc": "c",
+  "account_code": "710",
+  "is_valid": 1,
+  "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "created_at": "2019/02/25 11:47:31 +0900",
+  "updated_at": "2019/02/25 11:47:31 +0900",
+  "port_type": null
+}
+```
+**/petty_cash_reason_masters/create**
+
+説明: 現金原因マスタを作成します。作成に成功した場合、作成された現金原因マスタがJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_no` | *optional* | Integer | 並び順
+`reason_code` | *required* | String | 原因コード
+`reason_name` | *required* | String | 原因名
+`dc` | *required* | Text | 入出金区分　d: 入金 c: 出金
+`account_code` | *required* | text | 勘定科目コード
+`port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」、３は「国内・国外」
+`is_vaild` | *required* | Integer | 表示区分 2: マネージャーのみ、1: 表示、0: 非表示
+`memo` | *optional* | Strings | 説明
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" -d '{"petty_cash_reason_master" : { "reason_code" : "tsubaiso test" , "reason_name" : "reason name" , "dc":"d", "account_code":"100", "is_valid":"1" , "memo":"This is Test from API.", "port_type" : "0"}}' https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+**/petty_cash_reason_masters/update**
+
+説明: 現金原因マスタを更新します。更新に成功した場合、更新された現金原因マスタがJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:  XXXXXXXXXXXXXXX" -d '{"memo":"updating memo", "reason_code":"updating_code"}' https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+**/petty_cash_reason_masters/destroy**
+
+説明: 現金原因マスタを削除します。削除に成功した場合、204 No Content が返ります。
+
+URL 構成例:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
 ```
 
 #### 賞与データ
