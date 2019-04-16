@@ -2697,7 +2697,7 @@ JSON レスポンスの例:
     "updated_at": "2019/02/25 11:47:31 +0900",
     "port_type": null
   },
-{
+  {
     "id": 1000300270,
     "ccode": 3,
     "sort_number": 270,
