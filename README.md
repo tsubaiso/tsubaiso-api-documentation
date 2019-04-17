@@ -3966,4 +3966,4 @@ Parameter | Necessity | Type | Description
 `target_date` | *required* | String(with date format ex. ("%Y-%m-%d")) | Specified target date.
 `sight` | *required* | String (Have same rule with CusomerMaster#pay_sight, or receive_sight) | Specified the pattern to collect month and day of scheduled date
 `closing_day` | *required* | String | Closing day of the monthly transaction.
-`shift` | *optional* | String | 0 or 1 (default is 0). If your calculated scheduled date is holiday this parameter will used. Pick 0 if you want scheduled date is working day before of holiday and 1 is your working day is next day of holiday.
+`shift` | *optional* | String | 'before' or 'after' (default is 'before'). If your calculated scheduled date is holiday this parameter will used. Pick 0 if you want scheduled date is working day before of holiday and 1 is your working day is next day of holiday.
