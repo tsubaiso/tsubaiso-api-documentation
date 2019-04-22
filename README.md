@@ -25,6 +25,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Ar Reason Masters](#ar-reason-masters)
    - [Ap Reason Masters](#ap-reason-masters)
    - [Bank Reason Masters](#bank-reason-masters)
+   - [Petty Cash Reason Masters](#petty-cash-reason-masters)
    - [Bonuses](#bonuses)
    - [Payrolls](#payrolls)
    - [Journal Distributions](#journal-distributions)
@@ -2496,6 +2497,169 @@ Sample JSON Response:
     "updated_at": "2017/12/11 17:20:48 +0900",
     "update_user_code": null
 }
+```
+
+#### Petty Cash Reason Masters
+
+**/petty_cash_reason_masters/list**
+
+Description: This endpoint returns a list of petty cash reason masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/petty_cash_reason_masters/list/
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "id": 19992,
+    "ccode": 3,
+    "sort_number": 20,
+    "reason_code": "SHOUMOUHINHI",
+    "reason_name": "消耗品費",
+    "dc": "c",
+    "account_code": "710",
+    "is_valid": 1,
+    "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2019/02/25 11:47:31 +0900",
+    "updated_at": "2019/02/25 11:47:31 +0900",
+    "port_type": null
+  },
+  {
+    "id": 1000300270,
+    "ccode": 3,
+    "sort_number": 270,
+    "reason_code": "BANK2CASH_",
+    "reason_name": "銀行から小口現金への入金",
+    "dc": "d",
+    "account_code": "190~30",
+    "is_valid": 1,
+    "memo": "銀行口座から引き出して小口現金に入金した時に選択してください。",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "created_at": "2019/01/10 17:32:06 +0900",
+    "updated_at": "2019/01/10 17:32:06 +0900",
+    "port_type": 1,
+    "petty_cash_reason_taxes": [
+      {
+        "tax_master_id": 1003,
+        "sales_tax_system": 4,
+        "port_type": 1,
+        "is_default": 1,
+        "sort_no": 101
+      },
+      {
+        "tax_master_id": 1007,
+        "sales_tax_system": 7,
+        "port_type": 2,
+        "is_default": 0,
+        "sort_no": 105
+      }
+    ]
+  }
+]
+```
+
+**/petty_cash_reason_masters/show/:id**
+
+Description: This endpoint returns a petty cash reason master.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/petty_cash_reason_masters/show/:id
+```
+
+Sample Json Resonse:
+```
+{
+  "id": 19992,
+  "ccode": 3,
+  "sort_number": 20,
+  "reason_code": "SHOUMOUHINHI",
+  "reason_name": "消耗品費",
+  "dc": "c",
+  "account_code": "710",
+  "is_valid": 1,
+  "memo": "消耗品費とは、事務用消耗品や消耗工具器具備品などの購入費用をいいます。事務用消耗品はボールペン、ノートなど事務作業で使用するもので、１回で使い切ってしまうものや長期間繰り返し使用できないものなどです。消耗工具器具備品は事務用机やイス、本棚などで耐用年数が１年未満のものや取得価額が１０万円未満の少額のものなどです。 ",
+  "regist_user_code": null,
+  "update_user_code": null,
+  "created_at": "2019/02/25 11:47:31 +0900",
+  "updated_at": "2019/02/25 11:47:31 +0900",
+  "port_type": null
+}
+```
+**/petty_cash_reason_masters/create**
+
+Description : Create a petty cash reason master. The created master will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_no` | *optional* | Integer | Sort order
+`reason_code` | *required* | String | Reason code used for PettyCashTransaction
+`reason_name` | *required* | String | Reason name used for PettyCashTransaction
+`dc` | *required* | Text | 'd' if the reason was a debit, 'c' if it was a credit
+`account_code` | *required* | text | Account code for the journal entry
+`port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction. 3 for both.
+`is_vaild` | *required* | Integer | PettyCashReasonMaster use status. 1: In use, 0: Not in use.
+`memo` | *optional* | Strings | Memo for PettyCashReasonMaster
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXX" -X POST -d '{"petty_cash_reason_master" : { "reason_code" : "tsubaiso test" , "reason_name" : "reason name" , "dc":"d", "account_code":"100", "is_valid":"1" , "memo":"This is Test from API.", "port_type" : "0"}}' https://tsubaiso.net/petty_cash_reason_masters/create/
+```
+
+**/petty_cash_reason_masters/update**
+
+Description: Updates a petty cash reason master. The updated master will be sent back as JSON if successful.
+
+Method : POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:  XXXXXXXXXXXXXXX" -X POST -d '{"memo":"updating memo", "reason_code":"updating_code"}' https://tsubaiso.net/petty_cash_reason_masters/update/:id
+```
+
+**/petty_cash_reason_masters/destroy**
+
+Description: Deletes the petty cash reason master with the specified id. Will return 204 No Content if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/petty_cash_reason_masters/destroy/:id
 ```
 
 #### Bonuses
