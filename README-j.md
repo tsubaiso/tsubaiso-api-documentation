@@ -40,10 +40,15 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [現金出納帳](#現金出納帳)
    - [現金出納帳明細](#現金出納帳明細)
    - [税区分マスタ](#税区分マスタ)
+<<<<<<< HEAD
    - [棚卸資産マスタ](#棚卸資産マスタ)
    - [API履歴](#API履歴)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
+=======
+   - [API履歴](#api履歴)
+- [外部連携機能](#外部連携機能)
+>>>>>>> add document for api-history
 
 ## Root Endpoint
 
@@ -4283,6 +4288,7 @@ JSON レスポンスの例:
 }
 ```
 
+<<<<<<< HEAD
 #### 棚卸資産マスタ
 
 **/physical_inventory_masters/list**
@@ -4418,6 +4424,9 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 ```
 
 ### API履歴
+=======
+#### API履歴
+>>>>>>> add document for api-history
 
 **/api_histories/list**
 
@@ -4427,12 +4436,20 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
+<<<<<<< HEAD
 https://tsubaiso.net/api_histories/list/:month/:year
+=======
+https://tsubaiso.net/api_histories/list?month&=:month&year=:year
+>>>>>>> add document for api-history
 ```
 
 リクエスト例:
 ``` sh
+<<<<<<< HEAD
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/api_histories/list/api_histories/list/2019/5
+=======
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXX" -X GET -d '{"month": "4", "year": "2019"}' https://tsubaiso.net/api_histories/list/api_histories/list
+>>>>>>> add document for api-history
 ```
 
 JSON レスポンスの例:
