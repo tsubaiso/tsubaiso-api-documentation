@@ -12,6 +12,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
  - [リソース](#リソース)
    - [売上明細](#売上明細)
    - [入金・消込明細](#入金消込明細)
+   - [支払・消込明細](#支払消込明細)
    - [仕入・経費明細](#仕入経費明細)
    - [取引先](#取引先)
    - [社員](#社員)
@@ -456,7 +457,144 @@ https://tsubaiso.net/ar_reconciliations/unreconcile
  curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/unreconcile?reconciliation_id=:id
 ```
 
-#### 仕入・経費明細
+#### 支払消込明細
+
+**/ap_reconciliations/list**
+
+説明: このエンドポイントは現在の年月の支払・消込明細の一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/ap_reconciliations/list
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "journal_timestamp": "2019/04/22 00:00:00 +0900",
+    "brief": "テスト",
+    "memo": "",
+    "payment_amount": 100,
+    "reconciliation_id": 23328,
+    "reconcile_transactions": [
+      {
+        "id": 643,
+        "serial_no": 15,
+        "customer_master_id": 123,
+        "dept_code": "NEVER_ENDING",
+        "memo": "",
+        "dc": "c",
+        "payment_journal_dc_id": 23328,
+        "transfer_journal_id": 22973,
+        "regist_user_code": "yamakawa",
+        "update_user_code": null,
+        "created_at": "2019/04/22 16:48:10 +0900",
+        "updated_at": "2019/04/22 16:48:11 +0900",
+        "tag_list": [],
+        "reconciliation": 100,
+        "withholding_tax": null,
+        "exchange_gain_and_loss": null,
+        "remittance_charge_inclusive": null,
+        "data_partner": {}
+      }
+    ]
+  },
+  {
+    "journal_timestamp": "2019/04/22 00:00:00 +0900",
+    "brief": "memo",
+    "memo": "",
+    "payment_amount": 9999,
+    "reconciliation_id": 23332,
+    "reconcile_transactions": []
+  }
+]
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list
+```
+
+**/ap_reconciliations/show/:id**
+
+説明: このエンドポイントは単一の支払・消込明細を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
+```
+
+JSON レスポンスの例:
+```
+{
+  "journal_timestamp": "2019/04/22 00:00:00 +0900",
+  "brief": "memo",
+  "memo": "",
+  "payment_amount": 9999,
+  "reconciliation_id": 23332,
+  "reconcile_transactions": []
+}
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
+```
+
+**/ap_reconciliations/reconcile/:id**
+
+説明: 支払・消込明細を消込します。消込に成功した場合、作成された明細が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/ap_reconciliations/reconcile
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`customer_master_id` | *required* | Integer | 消込先
+`withholding_tax` | *optional* | Integer | 源泉徴収額
+`withholding_tax` | *optional* | Integer | 為替差損益
+`exchange_gain_and_loss` | *optional* | Integer | 為替差損益
+`remittance_charge_inclusive` | *optional* | Integer | 支払手数料(支払先負担額)
+`reconciliation` | *required* | Integer | 支払額
+`dept_code` | *optional* | String | 部門
+`tag_list` | *optional* | Integer | セグメント
+`memo` | *optional* | String | メモ
+`data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
+
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}]}' https://tsubaiso.net/eap/ap_reconciliations/reconcile?reconciliation_id=:id
+```
+
+**/ar_reconciliations/unreconcile/:id**
+
+説明: 指定された id の支払・消込明細を未消込します。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/ap_reconciliations/unreconcile
+```
+
+リクエストの例:
+```sh
+ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  https://tsubaiso.net/ar_reconciliations/unreconcile?reconciliation_id=:id
+```
+
+#### 仕入経費明細
 
 **/ap_payments/list/:year/:month**
 
