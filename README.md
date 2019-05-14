@@ -11,6 +11,8 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
  - [Resources](#resources)
    - [Accounts Receivables](#accounts-receivables)
    - [Accounts Payables](#accounts-payables)
+   - [Ar Reconciliations](#ar-reconcilations)
+   - [Ap Reconciliations](#ap-reconcilations)
    - [Customers](#customers)
    - [Staff](#staff)
    - [Staff Data](#staff-data)
@@ -514,6 +516,306 @@ Sample JSON Response :
 ]
 ```
 
+#### Ar Reconcilations
+
+**/ar_reconciliations/list**
+
+Description: This endpoint returns a list of ar_reconsilations.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_reconciliations/list
+```
+
+Sample JSON response:
+```
+[
+  {
+    "id":3098,
+    "serial_no":265,
+    "customer_master_id":123,
+    "dept_code":"NEVER_ENDING",
+    "memo":"",
+    "dc":"d",
+    "receipt_journal_dc_id":23778,
+    "transfer_journal_id":23481,
+    "regist_user_code":"yamakawa",
+    "update_user_code":null,
+    "created_at":"2018/11/13 14:18:28 +0900",
+    "updated_at":"2018/11/13 14:18:28 +0900",
+    "tag_list":[],
+    "reconciliation":123,
+    "exchange_gain_and_loss":null,
+    "remittance_charge_inclusive":null,
+    "data_partner":{}}]},
+    {
+     "journal_timestamp":"2018/11/30 00:00:00 +0900",
+     "brief":"摘要",
+     "memo":"メモ",
+     "receipt_amount":123,
+     "reconciliation_id":23790,
+     "reconcile_transactions”:[]},
+  {
+    "id":3099,
+    "serial_no":266,
+    "customer_master_id":123,
+    "dept_code":"NEVER_ENDING",
+    "memo":"",
+    "dc":"d",
+    "receipt_journal_dc_id":23779,
+    "transfer_journal_id":23482,
+    "regist_user_code":"yamakawa",
+    "update_user_code":null,
+    "created_at":"2018/11/13 14:18:28 +0900",
+    "updated_at":"2018/11/13 14:18:28 +0900",
+    "tag_list":[],
+    "reconciliation":123,
+    "exchange_gain_and_loss":null,
+    "remittance_charge_inclusive":null,
+    "data_partner":{}}]},
+    {
+     "journal_timestamp":"2018/11/30 00:00:00 +0900",
+     "brief":"摘要",
+     "memo":"メモ",
+     "receipt_amount":123,
+     "reconciliation_id":23790,
+     "reconcile_transactions”:[]}
+]
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list
+```
+
+**/ar_reconciliations/show/:id**
+
+Description: This endpoint returns a single ar_reconcilation transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
+```
+
+Sample JSON Response:
+```
+{
+    "id":3098,
+    "serial_no":265,
+    "customer_master_id":123,
+    "dept_code":"NEVER_ENDING",
+    "memo":"",
+    "dc":"d",
+    "receipt_journal_dc_id":23778,
+    "transfer_journal_id":23481,
+    "regist_user_code":"yamakawa",
+    "update_user_code":null,
+    "created_at":"2018/11/13 14:18:28 +0900",
+    "updated_at":"2018/11/13 14:18:28 +0900",
+    "tag_list":[],
+    "reconciliation":123,
+    "exchange_gain_and_loss":null,
+    "remittance_charge_inclusive":null,
+    "data_partner":{}}]},
+    {
+     "journal_timestamp":"2018/11/30 00:00:00 +0900",
+     "brief":"摘要",
+     "memo":"メモ",
+     "receipt_amount":123,
+     "reconciliation_id":23790,
+     "reconcile_transactions”:[]
+}
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
+```
+
+**/ar_reconciliations/reconcile/:id**
+
+Description: This endpoint reconciles single ar_reconcilation transaction which specified by id. The reconciled transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_reconciliations/reconcile
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation` | *required* | Integer | The amount of money recieved.
+`customer_master_code` | *required* | String | Code of the transaction party.
+`memo` | *optional* | String | Memo
+`dept_code` | *optional* | String | Code of department.
+`remittance_charge` | *optional* | Integer | amount of remittance charge you have paied.
+`exchange_gain_and_loss` | *optional* | Integer | amount of exchage gain and loss
+`tag_list` | *optional* | String | Search for journals that have the specified segment(formerly tag).
+`tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
+`data_partner` | *optional* | Object | look [Data Partners](#data-partners)
+
+Sample JSON Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' https://tsubaiso.net/ar_reconciliations/reconcile?reconciliation_id=:id
+```
+
+**/ar_reconciliations/unreconcile/:id**
+
+Description: This endpoint unreconciles single ar_reconcilation transaction which specified by id.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ar_reconciliations/unreconcile
+```
+
+Sample Request:
+```sh
+ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/unreconcile?reconciliation_id=:id
+```
+
+#### Ap Reconcilations
+
+**/ap_reconciliations/list**
+
+Description: This endpoint returns a list of ap_reconsilations.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/ap_reconciliations/list
+```
+
+Sample JSON Resonse:
+```
+[
+  {
+    "journal_timestamp": "2019/04/22 00:00:00 +0900",
+    "brief": "テスト",
+    "memo": "",
+    "payment_amount": 100,
+    "reconciliation_id": 23328,
+    "reconcile_transactions": [
+      {
+        "id": 643,
+        "serial_no": 15,
+        "customer_master_id": 123,
+        "dept_code": "NEVER_ENDING",
+        "memo": "",
+        "dc": "c",
+        "payment_journal_dc_id": 23328,
+        "transfer_journal_id": 22973,
+        "regist_user_code": "yamakawa",
+        "update_user_code": null,
+        "created_at": "2019/04/22 16:48:10 +0900",
+        "updated_at": "2019/04/22 16:48:11 +0900",
+        "tag_list": [],
+        "reconciliation": 100,
+        "withholding_tax": null,
+        "exchange_gain_and_loss": null,
+        "remittance_charge_inclusive": null,
+        "data_partner": {}
+      }
+    ]
+  },
+  {
+    "journal_timestamp": "2019/04/22 00:00:00 +0900",
+    "brief": "memo",
+    "memo": "",
+    "payment_amount": 9999,
+    "reconciliation_id": 23332,
+    "reconcile_transactions": []
+  }
+]
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list
+```
+
+**/ap_reconciliations/show/:id**
+
+Description: This endpoint returns a single ap_reconcilation transaction.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
+```
+
+Sample JSON Response:
+```
+{
+  "journal_timestamp": "2019/04/22 00:00:00 +0900",
+  "brief": "memo",
+  "memo": "",
+  "payment_amount": 9999,
+  "reconciliation_id": 23332,
+  "reconcile_transactions": []
+}
+```
+
+Sample Requrest:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
+```
+
+**/ap_reconciliations/reconcile/:id**
+
+Description: This endpoint reconciles single ap_reconcilation transaction which specified by id. The reconciled transaction will be sent back as JSON if successful.
+
+HTTP Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ap_reconciliations/reconcile
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`customer_master_code` | *required* | Integer | Code of the transaction party.
+`withholding_tax` | *optional* | Integer | Amount of withholding tax
+`exchange_gain_and_loss` | *optional* | Integer | Amount of remittance charge you have paied.
+`remittance_charge_inclusive` | *optional* | Integer | Amount of remittance charge customer have paied.
+`reconciliation` | *required* | Integer | The amount of money paied.
+`dept_code` | *optional* | String | Code of department.
+`tag_list` | *optional* | Integer | Search for journals that have the specified segment(formerly tag).
+`memo` | *optional* | String | Memo
+`data_partner` | *optional* | Object | look [Data Partners](#data-partners)
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}]}' https://tsubaiso.net/eap/ap_reconciliations/reconcile?reconciliation_id=:id
+```
+
+**/ap_reconciliations/unreconcile/:id**
+
+Description: This endpoint unreconciles single ap_reconcilation transaction which specified by id.
+
+HTTP Mehtod: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/ap_reconciliations/unreconcile
+```
+
+Sample Request:
+```sh
+ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXX" -X POST  https://tsubaiso.net/ap_reconciliations/unreconcile?reconciliation_id=:id
+```
 #### Customers
 
 **/customer_masters/list/**
