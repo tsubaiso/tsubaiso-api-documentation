@@ -4405,6 +4405,35 @@ Sample JSON response:
 ```
 #### API History
 
+**/api_histories/index**
+
+Description :This endpoint returnes times APIs are clalled per month.
+
+Method: GET
+
+URL Stracture:
+```sh
+https://tsubaiso.net/api_histories/index
+```
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXX" -X GET  http://tsubaiso.net/api_histories/index
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "ym": "201905",
+    "cnt": 411
+  },
+  {
+    "ym": "201904",
+    "cnt": 805
+  }
+]
+```
+
 **/api_histories/list**
 
 Description :This endpoint returnes a list of API histories.

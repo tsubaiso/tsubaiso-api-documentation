@@ -4428,6 +4428,35 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 #### API履歴
 >>>>>>> add document for api-history
 
+**/api_histories/index**
+
+説明: 月ごとのAPI呼び出し回数をJSON形式で取得します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/api_histories/index
+```
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXX" -X GET  http://tsubaiso.net/api_histories/index
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "ym": "201905",
+    "cnt": 411
+  },
+  {
+    "ym": "201904",
+    "cnt": 805
+  }
+]
+```
+
 **/api_histories/list**
 
 説明: API履歴をJSON形式で取得します。
