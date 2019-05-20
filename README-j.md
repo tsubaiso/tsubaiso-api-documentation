@@ -42,7 +42,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [税区分マスタ](#税区分マスタ)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
-   - [API履歴](#API 履歴)
+   - [API履歴](#API履歴)
 
 ## Root Endpoint
 
@@ -4282,39 +4282,6 @@ JSON レスポンスの例:
 }
 ```
 
-
-### 外部連携機能
-
-説明: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
-
-対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳, 取引先
-
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
-`partner_code` | *optional* | String | パートナーコード。
-`link_url` | *optional* | String | データ連携している外部サービスのURL。
-`editable` | *optional* | Integer | ツバイソでの編集可否。(1: 編集可, 0: マネージャ相当ユーザのみ編集可(Default))
-`deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
-`partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
-`partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
-
-### 予定日
-
-説明: 入金/支払サイトと締日によって、対象の入金/支払予定日を確定して返します。
-
-対象リソース名: -
-
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
-`target_date` | *required* | String(日付 ex. ("%Y-%m-%d")) | 対象日(計上日)
-`sight` | *required* | String (取引先#pay_sight, or receive_sight) | 入金/支払サイト
-`closing_day` | *required* | String (取引先#pay_closing_schedule, or receive_closing_schedule) | 締日
-`shift` | *optional* | String | 予定日が休日と重なった場合に前営業日にするか翌営業日にするかのオプション。('before': 前営業日(default),  'after': 翌営業日)
-
 ### API履歴
 
 **/api_histories/list**
@@ -4360,3 +4327,35 @@ JSON レスポンスの例:
   }
 ]
 ```
+
+### 外部連携機能
+
+説明: リソースが外部サービスと連携していることを示すための、追加のメタデータを付与するオプションです。
+
+対象リソース名: 売上明細, 仕入・経費明細, 旅費・経費精算明細, マニュアル仕訳, 取引先
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`partner_code` | *optional* | String | パートナーコード。
+`link_url` | *optional* | String | データ連携している外部サービスのURL。
+`editable` | *optional* | Integer | ツバイソでの編集可否。(1: 編集可, 0: マネージャ相当ユーザのみ編集可(Default))
+`deletable` | *optional* | Integer | ツバイソでの削除可否。(1: 削除可, 0: マネージャ相当ユーザのみ削除可(Default))
+`partner_editable` | *optional* | Integer | 外部サービスからの編集可否。(1: 編集可(Default), 0: 編集不可)
+`partner_deletable` | *optional* | Integer | 外部サービスからの削除可否。(1: 削除可(Default), 0: 削除不可)
+
+### 予定日
+
+説明: 入金/支払サイトと締日によって、対象の入金/支払予定日を確定して返します。
+
+対象リソース名: -
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`target_date` | *required* | String(日付 ex. ("%Y-%m-%d")) | 対象日(計上日)
+`sight` | *required* | String (取引先#pay_sight, or receive_sight) | 入金/支払サイト
+`closing_day` | *required* | String (取引先#pay_closing_schedule, or receive_closing_schedule) | 締日
+`shift` | *optional* | String | 予定日が休日と重なった場合に前営業日にするか翌営業日にするかのオプション。('before': 前営業日(default),  'after': 翌営業日)

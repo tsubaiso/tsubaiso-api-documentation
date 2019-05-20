@@ -4402,44 +4402,11 @@ Sample JSON response:
 }
 ```
 
-### Data Partners
-
-Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
-
-Applicable resources: Accounts Receivables, Accounts Payables, Reimbursement Transactions, Manual Journals, Customers
-
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
-`partner_code` | *optional* | String | Reference code for the connected transaction.
-`link_url` | *optional* | String | URL where the connected transaction can be accessed from.
-`editable` | *optional* | Integer | 1 if you want the transaction to be editable by users who are below manager level. (Default is 0)
-`deletable` | *optional* | Integer | 1 if you want the transaction to be deletable by users who are below manager level. (Default is 0)
-`partner_editable` | *optional* | Integer | 1 if you want the transaction to be editable via API requests. (Default is 1)
-`partner_deletable` | *optional* | Integer | 1 if you want the transaction to be deletable via API requests. (Default is 1)
-
-
-### Scheduled Dates
-
-Description: Calculate Scheduled Date from target_date by sight and closing_day.
-
-Access to Tsubaiso resources: -
-
-Parameters:
-
-Parameter | Necessity | Type | Description
---- | --- | --- | ---
-`target_date` | *required* | String(with date format ex. ("%Y-%m-%d")) | Specified target date.
-`sight` | *required* | String (Have same rule with CusomerMaster#pay_sight, or receive_sight) | Specified the pattern to collect month and day of scheduled date
-`closing_day` | *required* | String (Have same rule with CusomerMaster#pay_closing_schedule, or receive_closing_schedule) | Closing day of the monthly transaction.
-`shift` | *optional* | String | 'before' or 'after' (default is 'before'). If your calculated scheduled date is holiday this parameter will used. Pick 'before' if you want scheduled date is working day before of holiday and 'after' is your working day is next day of holiday.
-
 ### API History
 
 **/api_histories/list**
 
-Description :This endpoint returns a list of API histories.
+Description: This endpoint returns a list of API histories.
 
 Method: GET
 
@@ -4480,3 +4447,36 @@ Sample JSON Response:
   }
 ]
 ```
+
+### Data Partners
+
+Description: For certain resources, additional metadata can be provided when creating a transaction regarding the data source that the created transaction is connected to.
+
+Applicable resources: Accounts Receivables, Accounts Payables, Reimbursement Transactions, Manual Journals, Customers
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`partner_code` | *optional* | String | Reference code for the connected transaction.
+`link_url` | *optional* | String | URL where the connected transaction can be accessed from.
+`editable` | *optional* | Integer | 1 if you want the transaction to be editable by users who are below manager level. (Default is 0)
+`deletable` | *optional* | Integer | 1 if you want the transaction to be deletable by users who are below manager level. (Default is 0)
+`partner_editable` | *optional* | Integer | 1 if you want the transaction to be editable via API requests. (Default is 1)
+`partner_deletable` | *optional* | Integer | 1 if you want the transaction to be deletable via API requests. (Default is 1)
+
+
+### Scheduled Dates
+
+Description: Calculate Scheduled Date from target_date by sight and closing_day.
+
+Access to Tsubaiso resources: -
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`target_date` | *required* | String(with date format ex. ("%Y-%m-%d")) | Specified target date.
+`sight` | *required* | String (Have same rule with CusomerMaster#pay_sight, or receive_sight) | Specified the pattern to collect month and day of scheduled date
+`closing_day` | *required* | String (Have same rule with CusomerMaster#pay_closing_schedule, or receive_closing_schedule) | Closing day of the monthly transaction.
+`shift` | *optional* | String | 'before' or 'after' (default is 'before'). If your calculated scheduled date is holiday this parameter will used. Pick 'before' if you want scheduled date is working day before of holiday and 'after' is your working day is next day of holiday.
