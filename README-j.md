@@ -42,6 +42,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [税区分マスタ](#税区分マスタ)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
+   - [API履歴](#API 履歴)
 
 ## Root Endpoint
 
@@ -4313,3 +4314,49 @@ Parameter | Necessity | Type | Description
 `sight` | *required* | String (取引先#pay_sight, or receive_sight) | 入金/支払サイト
 `closing_day` | *required* | String (取引先#pay_closing_schedule, or receive_closing_schedule) | 締日
 `shift` | *optional* | String | 予定日が休日と重なった場合に前営業日にするか翌営業日にするかのオプション。('before': 前営業日(default),  'after': 翌営業日)
+
+### API履歴
+
+**/api_histories/list**
+
+説明: API履歴をJSON形式で取得します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/api_histories/list/:month/:year
+```
+
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/api_histories/list/api_histories/list/2019/5
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id": 1211,
+    "access_timestamp": "2019/04/19 15:14:52 +0900",
+    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
+    "access_token": "XXXXXXXXXXXXX",
+    "ccode": 3,
+    "controller": "api_histories",
+    "method": "list",
+    "created_at": "2019/04/19 15:14:52 +0900",
+    "updated_at": "2019/04/19 15:14:52 +0900"
+  },
+  {
+    "id": 1210,
+    "access_timestamp": "2019/04/19 15:14:41 +0900",
+    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
+    "access_token": "XXXXXXXXXXXXX",
+    "ccode": 3,
+    "controller": "api_histories",
+    "method": "list",
+    "created_at": "2019/04/19 15:14:41 +0900",
+    "updated_at": "2019/04/19 15:14:41 +0900"
+  }
+]
+```
