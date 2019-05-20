@@ -40,6 +40,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Tax Masters](#tax-masters)
    - [Data Partners](#data-partners)
    - [Scheduled Dates](#scheduled-dates)
+   - [API History](#api-history)
 
 ## Root Endpoint
 
@@ -4399,6 +4400,52 @@ Sample JSON response:
   "dc_view": "借方(D)",
   "taxable_division_view": "その他"
 }
+```
+
+### API History
+
+**/api_histories/list**
+
+Description: This endpoint returns a list of API histories.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/api_histories/list/:month/:year
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/api_histories/list/api_histories/list/2019/5
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "id": 1211,
+    "access_timestamp": "2019/04/19 15:14:52 +0900",
+    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
+    "access_token": "XXXXXXXXXXXXX",
+    "ccode": 3,
+    "controller": "api_histories",
+    "method": "list",
+    "created_at": "2019/04/19 15:14:52 +0900",
+    "updated_at": "2019/04/19 15:14:52 +0900"
+  },
+  {
+    "id": 1210,
+    "access_timestamp": "2019/04/19 15:14:41 +0900",
+    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
+    "access_token": "XXXXXXXXXXXXX",
+    "ccode": 3,
+    "controller": "api_histories",
+    "method": "list",
+    "created_at": "2019/04/19 15:14:41 +0900",
+    "updated_at": "2019/04/19 15:14:41 +0900"
+  }
+]
 ```
 
 ### Data Partners
