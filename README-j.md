@@ -40,6 +40,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [現金出納帳](#現金出納帳)
    - [現金出納帳明細](#現金出納帳明細)
    - [税区分マスタ](#税区分マスタ)
+   - [棚卸資産マスタ](#棚卸資産マスタ)
    - [API履歴](#API履歴)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
@@ -4280,6 +4281,139 @@ JSON レスポンスの例:
   "dc_view": "借方(D)",
   "taxable_division_view": "その他"
 }
+```
+
+#### 棚卸資産マスタ
+
+**/physical_inventory_masters/index**
+
+説明: 棚卸資産マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/index
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET http://tsubaiso.net/physical_inventory_masters/index
+```
+
+JSONレスポンスの例:
+``` sh
+[
+  {
+    "id": 1,
+    "name": "赤",
+    "memo": "This is test for",
+    "start_ymd": "2010/01/01",
+    "finish_ymd": "2019/11/01",
+    "dept_code": "ETERNAL"
+  },
+  {
+    "id": 99,
+    "name": "削除用倉庫",
+    "memo": "",
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "dept_code": "ETERNAL"
+  },
+  {
+    "id": 170,
+    "name": "Minatomirai",
+    "memo": "",
+    "start_ymd": "2019/04/01",
+    "finish_ymd": null,
+    "dept_code": "NEVER_ENDING"
+  }
+]
+```
+
+**/physical_inventory_masters/show**
+
+説明: idで指定した棚卸資産マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/show/1
+```
+
+JSONレスポンスの例:
+``` sh
+{
+  "id": 1,
+  "name": "赤",
+  "memo": "This is test for",
+  "start_ymd": "2010/01/01",
+  "finish_ymd": "2019/11/01",
+  "dept_code": "ETERNAL"
+}
+```
+
+**/physical_inventory_masters/create**
+
+説明: 保管場所を新規作成します。成功した場合、新規作成された保管場所が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/create
+```
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | 保管場所の名称。最低一文字
+`memo` | *optional* | String | メモ
+`start_ymd` | *required* | Datetime | 開始日。 "YYYY/MM/DD"形式
+`finish_ymd` | *optional* | Datetime | 終了日。 "YYYY/MM/DD"形式
+`dept_code` | *optional* | String| 部門コード
+
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "New Tsubaiso inventory", "memo": "from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-10", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/physical_inventory_masters/create
+```
+
+**/physical_inventory_masters/update/:id**
+
+説明: 指定されたidの保管場所を更新します。更新に成功した場合、更新された保管場所が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/update/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"name": "New Inventory Name", "memo": "Edited from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-04"}' https://tsubaiso.net/physical_inventory_masters/update/:id
+```
+
+**/physical_inventory_masters/destroy/:id**
+
+説明：指定されたidの保管場所を削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/destroy/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
 ```
 
 ### API履歴

@@ -38,6 +38,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Petty Cash](#petty-cash)
    - [Petty Cash Transaction](#petty-cash-transactions)
    - [Tax Masters](#tax-masters)
+   - [Physical Inventory Masters](#physical-inventory-masters)
    - [API History](#api-history)
    - [Data Partners](#data-partners)
    - [Scheduled Dates](#scheduled-dates)
@@ -4400,6 +4401,139 @@ Sample JSON response:
   "dc_view": "借方(D)",
   "taxable_division_view": "その他"
 }
+```
+
+#### Physical Inventory Masters
+
+**/physical_inventory_masters/index**
+
+Description: This endpoint returns the entire list physical inventory masters.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/index
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/index
+```
+
+Sample JSON Response:
+``` sh
+[
+  {
+    "id": 1,
+    "name": "赤",
+    "memo": "This is test for",
+    "start_ymd": "2010/01/01",
+    "finish_ymd": "2019/11/01",
+    "dept_code": "ETERNAL"
+  },
+  {
+    "id": 99,
+    "name": "削除用倉庫",
+    "memo": "",
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "dept_code": "ETERNAL"
+  },
+  {
+    "id": 170,
+    "name": "Minatomirai",
+    "memo": "",
+    "start_ymd": "2019/04/01",
+    "finish_ymd": null,
+    "dept_code": "NEVER_ENDING"
+  }
+]
+```
+
+**/physical_inventory_masters/show**
+
+Description: This endpoint returns information for a single physical inventory master.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/show/1
+```
+
+Sample JSON Response:
+``` sh
+{
+  "id": 1,
+  "name": "赤",
+  "memo": "This is test for",
+  "start_ymd": "2010/01/01",
+  "finish_ymd": "2019/11/01",
+  "dept_code": "ETERNAL"
+}
+```
+
+**/physical_inventory_masters/create**
+
+Description: This endpoint create new entity of the physical inventory master. The created entry will be sent back as JSON if succeed.
+
+Method: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/create
+```
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | The name of this physical inventory master.
+`memo` | *optional* | String | Memo
+`start_ymd` | *required* | Datetime | Start date of this inventory. Format must be "YYYY-MM-DD".
+`finish_ymd` | *optional* | Datetime | Finish date of this inventory. Format must be "YYYY-MM-DD".
+`dept_code` | *optional* | String| Code of the internal department involved.
+
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "New Tsubaiso inventory", "memo": "from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-10", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/physical_inventory_masters/create
+```
+
+**/physical_inventory_masters/update/:id**
+
+Description: This endpoint update information of the physical inventory master with the specified id. The updated entry will be sent back as JSON if succeed.
+
+Method: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/update/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"name": "New Inventory Name", "memo": "Edited from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-04"}' https://tsubaiso.net/physical_inventory_masters/update/:id
+```
+
+**/physical_inventory_masters/destroy/:id**
+
+Description: This endpoint delete the physical inventory master with the specified id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/physical_inventory_masters/destroy/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
 ```
 
 ### API History
