@@ -4298,7 +4298,7 @@ https://tsubaiso.net/physical_inventory_masters/index
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" http://tsubaiso.net/physical_inventory_masters/index
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET http://tsubaiso.net/physical_inventory_masters/index
 ```
 
 JSONレスポンスの例:
@@ -4344,7 +4344,7 @@ https://tsubaiso.net/physical_inventory_masters/show/:id
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/physical_inventory_masters/show/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/show/1
 ```
 
 JSONレスポンスの例:
@@ -4361,7 +4361,7 @@ JSONレスポンスの例:
 
 **/physical_inventory_masters/create**
 
-説明：保管場所を新規作成します。成功した場合、新規作成された保管場所が JSON として返されます。
+説明: 保管場所を新規作成します。成功した場合、新規作成された保管場所が JSON として返されます。
 
 HTTP メソッド: POST
 
@@ -4386,7 +4386,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/physical_inventory_masters/update/:id**
 
-説明：指定されたidの保管場所を更新します。更新に成功した場合、更新された保管場所が JSON として返されます。
+説明: 指定されたidの保管場所を更新します。更新に成功した場合、更新された保管場所が JSON として返されます。
 
 HTTP メソッド: POST
 

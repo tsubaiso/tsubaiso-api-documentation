@@ -4418,7 +4418,7 @@ https://tsubaiso.net/physical_inventory_masters/index
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/physical_inventory_masters/index
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/index
 ```
 
 Sample JSON Response:
@@ -4464,7 +4464,7 @@ https://tsubaiso.net/physical_inventory_masters/show/:id
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/physical_inventory_masters/show/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/show/1
 ```
 
 Sample JSON Response:
