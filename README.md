@@ -38,9 +38,9 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Petty Cash](#petty-cash)
    - [Petty Cash Transaction](#petty-cash-transactions)
    - [Tax Masters](#tax-masters)
+   - [API History](#api-history)
    - [Data Partners](#data-partners)
    - [Scheduled Dates](#scheduled-dates)
-   - [API History](#api-history)
 
 ## Root Endpoint
 
