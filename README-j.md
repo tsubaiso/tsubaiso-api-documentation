@@ -40,15 +40,11 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [現金出納帳](#現金出納帳)
    - [現金出納帳明細](#現金出納帳明細)
    - [税区分マスタ](#税区分マスタ)
-<<<<<<< HEAD
    - [棚卸資産マスタ](#棚卸資産マスタ)
    - [API履歴](#API履歴)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
-=======
-   - [API履歴](#api履歴)
 - [外部連携機能](#外部連携機能)
->>>>>>> add document for api-history
 
 ## Root Endpoint
 
@@ -4288,7 +4284,6 @@ JSON レスポンスの例:
 }
 ```
 
-<<<<<<< HEAD
 #### 棚卸資産マスタ
 
 **/physical_inventory_masters/list**
@@ -4423,10 +4418,7 @@ https://tsubaiso.net/physical_inventory_masters/destroy/:id
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
 ```
 
-### API履歴
-=======
 #### API履歴
->>>>>>> add document for api-history
 
 **/api_histories/index**
 
@@ -4466,45 +4458,45 @@ HTTP メソッド: GET
 URL 構成例:
 ```sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 https://tsubaiso.net/api_histories/list/:month/:year
 =======
 https://tsubaiso.net/api_histories/list?month&=:month&year=:year
 >>>>>>> add document for api-history
+=======
+https://tsubaiso.net/api_histories/list/:year/:month
+>>>>>>> small fix of API history api.
 ```
 
 リクエスト例:
 ``` sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/api_histories/list/api_histories/list/2019/5
 =======
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXX" -X GET -d '{"month": "4", "year": "2019"}' https://tsubaiso.net/api_histories/list/api_histories/list
 >>>>>>> add document for api-history
+=======
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:20oxblkti14xeerdmuc8m1zt4-8piwme30fsqny1cy4evtvo7kr" -X GET  http://lemon.burikama.tech/tsubaiso.sueda/eap/api_histories/list/2015/1
+>>>>>>> small fix of API history api.
 ```
 
 JSON レスポンスの例:
 ```
 [
   {
-    "id": 1211,
-    "access_timestamp": "2019/04/19 15:14:52 +0900",
+    "access_timestamp": "2016/01/23 18:53:21 +0900",
     "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
-    "access_token": "XXXXXXXXXXXXX",
-    "ccode": 3,
-    "controller": "api_histories",
-    "method": "list",
-    "created_at": "2019/04/19 15:14:52 +0900",
-    "updated_at": "2019/04/19 15:14:52 +0900"
+    "access_token": "XXXXXX*****",
+    "controller": "staffs",
+    "method": "list"
   },
   {
-    "id": 1210,
-    "access_timestamp": "2019/04/19 15:14:41 +0900",
-    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
-    "access_token": "XXXXXXXXXXXXX",
-    "ccode": 3,
-    "controller": "api_histories",
-    "method": "list",
-    "created_at": "2019/04/19 15:14:41 +0900",
-    "updated_at": "2019/04/19 15:14:41 +0900"
+    "access_timestamp": "2016/01/23 18:53:21 +0900",
+    "url": "https://tsubaiso.net/staffs/create",
+    "access_token": "XXXXXX*****",
+    "controller": "staffs",
+    "method": "create"
   }
 ]
 ```
