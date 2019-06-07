@@ -4413,40 +4413,39 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/physical_inventory_masters/index
+https://tsubaiso.net/physical_inventory_masters/list
 ```
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/index
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXX" -X GET https://tsubaiso.net/physical_inventory_masters/list
 ```
 
 Sample JSON Response:
 ``` sh
 [
   {
-    "id": 1,
-    "name": "赤",
-    "memo": "This is test for",
-    "start_ymd": "2010/01/01",
-    "finish_ymd": "2019/11/01",
-    "dept_code": "ETERNAL"
+    "id": 212,
+    "name": "Hello",
+    "memo": "",
+    "start_ymd": "2019/06/01",
+    "finish_ymd": null,
+    "dept_code": "NEVER_ENDING",
+    "tag_list": [
+      "GROUP2_2"
+    ]
   },
   {
-    "id": 99,
-    "name": "削除用倉庫",
+    "id": 252,
+    "name": "hirasaki",
     "memo": "",
-    "start_ymd": "2001/01/01",
+    "start_ymd": "2019/06/01",
     "finish_ymd": null,
-    "dept_code": "ETERNAL"
-  },
-  {
-    "id": 170,
-    "name": "Minatomirai",
-    "memo": "",
-    "start_ymd": "2019/04/01",
-    "finish_ymd": null,
-    "dept_code": "NEVER_ENDING"
+    "dept_code": "NEVER_ENDING",
+    "tag_list": [
+      "GROUP2_1",
+      "GROUP3_1"
+    ]
   }
 ]
 ```
@@ -4497,11 +4496,12 @@ Parameter | Necessity | Type | Description
 `start_ymd` | *required* | Datetime | Start date of this inventory. Format must be "YYYY-MM-DD".
 `finish_ymd` | *optional* | Datetime | Finish date of this inventory. Format must be "YYYY-MM-DD".
 `dept_code` | *optional* | String| Code of the internal department involved.
+`tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"name": "New Tsubaiso inventory", "memo": "from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-10", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/physical_inventory_masters/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXX" -X POST -d '{"name": "New Tsubaiso inventory", "memo": "from_API", "start_ymd": "2019-03-03", "finish_ymd": "2019-03-10", "dept_code": "NEVER_ENDING", "tag_list": "GROUP2_1,GROUP3_2"}' https://tsubaiso.net/physical_inventory_masters/create
 ```
 
 **/physical_inventory_masters/update/:id**
