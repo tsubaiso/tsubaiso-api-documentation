@@ -4457,28 +4457,12 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-<<<<<<< HEAD
-<<<<<<< HEAD
 https://tsubaiso.net/api_histories/list/:month/:year
-=======
-https://tsubaiso.net/api_histories/list?month&=:month&year=:year
->>>>>>> add document for api-history
-=======
-https://tsubaiso.net/api_histories/list/:year/:month
->>>>>>> small fix of API history api.
 ```
 
 リクエスト例:
 ``` sh
-<<<<<<< HEAD
-<<<<<<< HEAD
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/api_histories/list/api_histories/list/2019/5
-=======
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXX" -X GET -d '{"month": "4", "year": "2019"}' https://tsubaiso.net/api_histories/list/api_histories/list
->>>>>>> add document for api-history
-=======
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:20oxblkti14xeerdmuc8m1zt4-8piwme30fsqny1cy4evtvo7kr" -X GET  http://lemon.burikama.tech/tsubaiso.sueda/eap/api_histories/list/2015/1
->>>>>>> small fix of API history api.
 ```
 
 JSON レスポンスの例:
