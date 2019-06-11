@@ -44,6 +44,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [API履歴](#API履歴)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
+- [外部連携機能](#外部連携機能)
 
 ## Root Endpoint
 
@@ -4417,7 +4418,36 @@ https://tsubaiso.net/physical_inventory_masters/destroy/:id
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
 ```
 
-### API履歴
+#### API履歴
+
+**/api_histories/index**
+
+説明: 月ごとのAPI呼び出し回数をJSON形式で取得します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/api_histories/index
+```
+リクエスト例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXX" -X GET  http://tsubaiso.net/api_histories/index
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "ym": "201905",
+    "cnt": 411
+  },
+  {
+    "ym": "201904",
+    "cnt": 805
+  }
+]
+```
 
 **/api_histories/list**
 
@@ -4439,26 +4469,18 @@ JSON レスポンスの例:
 ```
 [
   {
-    "id": 1211,
-    "access_timestamp": "2019/04/19 15:14:52 +0900",
+    "access_timestamp": "2016/01/23 18:53:21 +0900",
     "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
-    "access_token": "XXXXXXXXXXXXX",
-    "ccode": 3,
-    "controller": "api_histories",
-    "method": "list",
-    "created_at": "2019/04/19 15:14:52 +0900",
-    "updated_at": "2019/04/19 15:14:52 +0900"
+    "access_token": "XXXXXX*****",
+    "controller": "staffs",
+    "method": "list"
   },
   {
-    "id": 1210,
-    "access_timestamp": "2019/04/19 15:14:41 +0900",
-    "url": "https://tsubaiso.net/api_histories/list/api_histories/list",
-    "access_token": "XXXXXXXXXXXXX",
-    "ccode": 3,
-    "controller": "api_histories",
-    "method": "list",
-    "created_at": "2019/04/19 15:14:41 +0900",
-    "updated_at": "2019/04/19 15:14:41 +0900"
+    "access_timestamp": "2016/01/23 18:53:21 +0900",
+    "url": "https://tsubaiso.net/staffs/create",
+    "access_token": "XXXXXX*****",
+    "controller": "staffs",
+    "method": "create"
   }
 ]
 ```
