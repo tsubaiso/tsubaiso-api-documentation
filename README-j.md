@@ -4457,7 +4457,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/api_histories/list/:month/:year
+https://tsubaiso.net/api_histories/list/:year/:month
 ```
 
 リクエスト例:
