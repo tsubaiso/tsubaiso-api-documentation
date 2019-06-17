@@ -3610,15 +3610,15 @@ JSON レスポンスの例:
 [
   {
     "id": 0,
-    "name": "xxxxx",
+    "name": "テスト銀行",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "テスト（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0001",
+    "zengin_branch_code": "001",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "テストメモ",
     "regist_user_code": null,
     "update_user_code": null,
     "start_ymd": "2001/01/01",
@@ -3626,29 +3626,29 @@ JSON レスポンスの例:
     "zengin_client_code_sogo": null,
     "currency_code": null,
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900"
   },
   {
     "id": 1,
-    "name": "xxxxx",
+    "name": "三菱UFJ銀行青葉台支店",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "入金口座",
     "regist_user_code": null,
     "update_user_code": null,
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
+    "zengin_client_code_sogo": "1234567890",
     "currency_code": null,
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900"
   }
 ]
 ```
@@ -3692,6 +3692,100 @@ JSON レスポンスの例:
   "created_at": "2017/12/11 17:21:03 +0900",
   "updated_at": "2017/12/11 17:21:03 +0900"
 }
+```
+
+**/bank_account_masters/create**
+
+説明: 銀行口座マスタを新規作成します。作成に成功した場合、新規作成された銀行口座が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | 名称(銀行名及び支店名) *20文字以内
+`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動)   ```
+`account_number` | *required* | Integer | 銀行口座番号　*半角数字8桁
+`nominee` | *required* | String | 銀行口座名義 *半角(英数字、カタカナ、記号)30文字以内
+`memo` | *optional* | String | メモ *60文字以内
+`start_ymd` | *optional* | String | 開設日 "YYYY-MM-DD"形式
+`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式
+`zengin_bank_code` | *required* | String | 銀行コード *半角数字4桁
+`zengin_branch_code` | *required* | String | 銀行支店コード　*半角数字3桁
+`zengin_client_code_sogo` | *required* | String | 依頼人コード(総合振込) *半角数字10桁
+`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  ```
+`currency_rate_master_code` | *optional* | Integer | 為替マスタコード *日本円以外の時に使用
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Account" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1" }' https://tsubaiso.net/bank_account_masters/create
+
+```
+
+**/bank_account_masters/update/:id**
+
+説明: 1レコードの銀行口座マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Update" ,  "nominee" : "Tsubaiso Jiro" , "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/139
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 139,
+  "personal_id": 3,
+  "name": "Tsubaiso Bank Update",
+  "account_type": "1",
+  "account_number": "12345678",
+  "nominee": "Tsubaiso Jiro",
+  "account_code": "111",
+  "zengin_bank_code": "0001",
+  "zengin_branch_code": "001",
+  "dept_code": "COMMON",
+  "memo": null,
+  "regist_user_code": "yamakawa",
+  "update_user_code": "yamakawa",
+  "lock_version": 1,
+  "start_ymd": "2019/01/03",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": "1234567891",
+  "zengin_client_code_kyuyo": null,
+  "currency_code": null,
+  "currency_rate_master_id": null,
+  "created_at": "2019/06/17 15:19:53 +0900",
+  "updated_at": "2019/06/17 15:25:39 +0900"
+}
+```
+
+**/bank_account_masters/destroy/:id**
+
+説明：指定されたidの銀行口座マスタを削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_masters/destroy/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/139
 ```
 
 #### 銀行口座
@@ -4457,7 +4551,7 @@ HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/api_histories/list/:month/:year
+https://tsubaiso.net/api_histories/list/:year/:month
 ```
 
 リクエスト例:
