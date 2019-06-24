@@ -2735,36 +2735,64 @@ Sample JSON response:
 ```
 [
   {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
+    "id": 728025315,
+    "ccode": 3,
     "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
+    "reason_code": "keywords",
+    "reason_name": "keywords",
     "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+    "account_code": "1",
+    "is_valid": "表示",
+    "memo": "",
+    "keywords": [
+      {
+        "text": "world"
+      },
+      {
+        "text": "hello"
+      }
+    ],
+    "bank_reason_taxes": [
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルト",
+        "sales_tax_system_view": "免税・簡易・本則",
+        "tax_master_name": "対象外又は非課税仕入"
+      }
+    ]
   },
   {
-    "id": "xxxx",
-    "ccode": 1,
-    "allowed_domains": null,
+    "id": 100,
+    "ccode": 3,
     "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
+    "reason_code": "xxxx_123",
+    "reason_name": "テスト用",
     "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+    "account_code": "999~999",
+    "is_valid": "表示",
+    "memo": "テストメモ",
+    "keywords": [
+      {
+        "text": "keyword2"
+      },
+      {
+        "text": "keyword"
+      }
+    ],
+    "bank_reason_taxes": [
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルトでない",
+        "sales_tax_system_view": "簡易・本則",
+        "tax_master_name": "共通売上分新車購入"
+      },
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルト",
+        "sales_tax_system_view": "免税",
+        "tax_master_name": "共通売上分新車購入"
+      }
+    ]
   }
 ]
 ```
@@ -2788,21 +2816,82 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON Response:
 ```
 {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+  "id": 100,
+  "ccode": 3,
+  "sort_number": 0,
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
+  "dc": "d",
+  "account_code": "999~999",
+  "is_valid": "表示",
+  "memo": "テストメモ",
+  "keywords": [
+    {
+      "text": "keywords2"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
+  "bank_reason_taxes": [
+    {
+      "sort_no": 1,
+      "is_default_view": "デフォルトでない",
+      "sales_tax_system_view": "簡易・本則",
+      "tax_master_name": "共通売上分新車購入"
+    },
+    {
+      "sort_no": 1,
+      "is_default_view": "デフォルト",
+      "sales_tax_system_view": "免税",
+      "tax_master_name": "共通売上分新車購入"
+    }
+  ]
 }
+```
+
+**/bank_reason_masters/create**
+
+Description: Creates a new Bank Reason Master. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_number` | *optional* | String | Sort Number
+`reason_code` | *required* | String | Reason Code
+`reason_name` | *required* | String | Reason of Bank Transaction
+`dc` | *required* | String | 'd' if the transaction was a debit, 'c' if it was a credit.
+`is_valid` | *required* | Integer | Display Status 2:Manager Only　1:able 、0: Disable
+`memo` | *optional* | String | Memo
+`account_code` | *required* | String | account code
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "sort_number" : "0" , "reason_code" : "Test_Reason_code",  "reason_name" : "Tsubaiso_reason" , "dc":"c" , "is_valid": 1, "account_code": "1"}' https://tsubaiso.net/bank_reason_masters/create
+```
+
+**/bank_account_masters/destroy/:id**
+
+Description：Destroys bank reason master specified as the id. Returns a status of 204 No Content.
+
+Mwthod: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_reason_masters/destroy/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/:id
 ```
 
 #### Petty Cash Reason Masters

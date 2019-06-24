@@ -2732,36 +2732,64 @@ JSON レスポンスの例:
 ```
 [
   {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
+    "id": 728025315,
+    "ccode": 3,
     "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
+    "reason_code": "keywords",
+    "reason_name": "keywords",
     "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+    "account_code": "1",
+    "is_valid": "表示",
+    "memo": "",
+    "keywords": [
+      {
+        "text": "world"
+      },
+      {
+        "text": "hello"
+      }
+    ],
+    "bank_reason_taxes": [
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルト",
+        "sales_tax_system_view": "免税・簡易・本則",
+        "tax_master_name": "対象外又は非課税仕入"
+      }
+    ]
   },
   {
-    "id": 101,
-    "ccode": 1,
-    "allowed_domains": null,
+    "id": 100,
+    "ccode": 3,
     "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
+    "reason_code": "xxxx_123",
+    "reason_name": "テスト用",
     "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+    "account_code": "999~999",
+    "is_valid": "表示",
+    "memo": "テストメモ",
+    "keywords": [
+      {
+        "text": "keyword2"
+      },
+      {
+        "text": "keyword"
+      }
+    ],
+    "bank_reason_taxes": [
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルトでない",
+        "sales_tax_system_view": "簡易・本則",
+        "tax_master_name": "共通売上分新車購入"
+      },
+      {
+        "sort_no": 1,
+        "is_default_view": "デフォルト",
+        "sales_tax_system_view": "免税",
+        "tax_master_name": "共通売上分新車購入"
+      }
+    ]
   }
 ]
 ```
@@ -2779,27 +2807,104 @@ https://tsubaiso.net/bank_reason_masters/show/:id
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/100
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_reason_masters/show/:id
 ```
 
 JSON レスポンスの例:
 ```
 {
   "id": 100,
-  "ccode": 1,
-  "allowed_domains": null,
+  "ccode": 3,
   "sort_number": 0,
-  "reason_code": "xxxx",
-  "reason_name": "xxxx",
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
   "dc": "d",
-  "account_code": "500",
-  "is_valid": 1,
-  "memo": "xxxx",
-  "created_at": "2017/12/11 17:20:48 +0900",
-  "regist_user_code": null,
-  "updated_at": "2017/12/11 17:20:48 +0900",
-  "update_user_code": null
+  "account_code": "999~999",
+  "is_valid": "表示",
+  "memo": "テストメモ",
+  "keywords": [
+    {
+      "text": "keywords2"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
+  "bank_reason_taxes": [
+    {
+      "sort_no": 1,
+      "is_default_view": "デフォルトでない",
+      "sales_tax_system_view": "簡易・本則",
+      "tax_master_name": "共通売上分新車購入"
+    },
+    {
+      "sort_no": 1,
+      "is_default_view": "デフォルト",
+      "sales_tax_system_view": "免税",
+      "tax_master_name": "共通売上分新車購入"
+    }
+  ]
 }
+```
+
+**/bank_reason_masters/create**
+
+説明: 銀行原因マスタを新規作成します。作成に成功した場合、新規作成された銀行原因マスタが JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_reason_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_number` | *optional* | String | 並び順
+`reason_code` | *required* | String | 原因コード
+`reason_name` | *required* | String | 原因名
+`dc` | *required* | String | 入出金区分　'd' は debit の意で「増加」に、'c' は credit の意で「減少」になります。
+`is_valid` | *required* | Integer | 表示区分 2:マネージャのみ　1: 表示、0: 非表示
+`memo` | *optional* | String | メモ
+`account_code` | *required* | String | 勘定科目コード
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "sort_number" : "0" , "reason_code" : "Test_Reason_code",  "reason_name" : "Tsubaiso_reason" , "dc":"c" , "is_valid": 1, "account_code": "1"}' https://tsubaiso.net/bank_reason_masters/create
+```
+
+**/bank_account_masters/update/:id**
+
+説明: 1レコードの銀行原因マスタを更新します。更新に成功した場合、更新された銀行原因マスタがJSONとして返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_reason_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "reason_name" : "Tsubaiso Bank Reason Update" ,  "memo" : "Updated_reason_memo"}' https://tsubaiso.net/bank_account_masters/update/:id
+```
+
+**/bank_account_masters/destroy/:id**
+
+説明：指定されたidの銀行原因マスタを削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_reason_masters/destroy/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/:id
 ```
 
 #### 現金原因マスタ
