@@ -3776,7 +3776,6 @@ Sample JSON Response:
   "start_ymd": "2019/01/03",
   "finish_ymd": null,
   "zengin_client_code_sogo": "1234567891",
-  "zengin_client_code_kyuyo": null,
   "currency_code": null,
   "currency_rate_master_id": null,
   "created_at": "2019/06/17 15:19:53 +0900",
