@@ -2733,64 +2733,87 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 Sample JSON response:
 ```
-[
-  {
-    "id": 728025315,
-    "ccode": 3,
-    "sort_number": 0,
-    "reason_code": "keywords",
-    "reason_name": "keywords",
-    "dc": "d",
-    "account_code": "1",
-    "is_valid": 1,
-    "memo": "",
-    "created_at": "2019/06/20 18:07:39 +0900",
-    "regist_user_code": "yamakawa",
-    "updated_at": "2019/06/20 18:07:39 +0900",
-    "update_user_code": null,
-    "keywords": [
-      {
-        "text": "world"
-      },
-      {
-        "text": "hello"
+{
+  "id": 100,
+  "ccode": 3,
+  "sort_number": 0,
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
+  "dc": "d",
+  "account_code": "999~999",
+  "is_valid": 1,
+  "memo": "テストメモ",
+  "created_at": "2019/02/25 11:47:36 +0900",
+  "regist_user_code": null,
+  "updated_at": "2019/02/25 11:47:36 +0900",
+  "update_user_code": null,
+  "keywords": [
+    {
+      "text": "JR"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
+  "bank_reason_taxes": [
+    {
+      "id": 1059893877,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 0,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:39:06 +0900",
+      "updated_at": "2019/06/20 17:39:06 +0900",
+      "is_default_view": "デフォルトでない",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
       }
-    ],
-    "bank_reason_taxes": [
-      {
-        "id": 1059893880,
-        "personal_id": null,
-        "bank_reason_master_id": 728025315,
-        "tax_master_id": 0,
-        "description": null,
-        "sales_tax_system": 7,
-        "is_default": 1,
-        "sort_no": 1,
-        "created_at": "2019/06/21 17:55:19 +0900",
-        "updated_at": "2019/06/21 17:55:19 +0900",
-        "is_default_view": "デフォルト",
-        "sales_tax_system_view": "免税・簡易・本則",
-        "tax_master": {
-          "id": 0,
-          "code": 0,
-          "name": "対象外又は非課税仕入",
-          "abbr_name": "　",
-          "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
-          "tax_ratio_division": 0,
-          "taxable_division": 0,
-          "dc": "d",
-          "controll_business_segment": 0,
-          "color": "aaaaaa",
-          "status": 100,
-          "start_timestamp": "1989/04/01 00:00:00 +0900",
-          "finish_timestamp": null,
-          "created_at": "2008/09/29 17:22:11 +0900",
-          "updated_at": "2008/09/29 17:22:11 +0900"
-        }
+    },
+    {
+      "id": 1059893878,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 1,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:59:08 +0900",
+      "updated_at": "2019/06/20 17:59:08 +0900",
+      "is_default_view": "デフォルト",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
       }
-    ]
-  }
-]
+    }
+  ]
+}
 ```
 
 **/bank_reason_masters/show/:id**
@@ -2812,47 +2835,79 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON Response:
 ```
 {
-  "id": 30001,
+  "id": 100,
   "ccode": 3,
-  "sort_number": 20,
-  "reason_code": "AR_RECEIPT",
-  "reason_name": "売掛金(売上代金)の回収",
+  "sort_number": 0,
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
   "dc": "d",
-  "account_code": "190~910",
+  "account_code": "999~999",
   "is_valid": 1,
-  "memo": "掛売上の売上代金を回収した場合に選択してください。",
+  "memo": "テストメモ",
   "created_at": "2019/02/25 11:47:36 +0900",
   "regist_user_code": null,
   "updated_at": "2019/02/25 11:47:36 +0900",
   "update_user_code": null,
-  "keywords": [],
+  "keywords": [
+    {
+      "text": "JR"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
   "bank_reason_taxes": [
     {
-      "id": 103,
-      "personal_id": 3,
-      "bank_reason_master_id": 30001,
-      "tax_master_id": 0,
+      "id": 1059893877,
+      "personal_id": null,
+      "tax_master_id": 6,
       "description": null,
-      "sales_tax_system": 7,
-      "is_default": 1,
-      "sort_no": 10,
-      "created_at": "2019/02/25 11:47:34 +0900",
-      "updated_at": "2019/02/25 11:47:34 +0900",
-      "is_default_view": "デフォルト",
-      "sales_tax_system_view": "免税・簡易・本則",
+      "is_default": 0,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:39:06 +0900",
+      "updated_at": "2019/06/20 17:39:06 +0900",
+      "is_default_view": "デフォルトでない",
       "tax_master": {
-        "id": 0,
-        "code": 0,
-        "name": "対象外又は非課税仕入",
-        "abbr_name": "　",
-        "description": "消費税の課税対象外の取引や、不課税取引及び非課税仕入れとなる取引に使用します。",
-        "tax_ratio_division": 0,
-        "taxable_division": 0,
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
         "dc": "d",
         "controll_business_segment": 0,
-        "color": "aaaaaa",
-        "status": 100,
-        "start_timestamp": "1989/04/01 00:00:00 +0900",
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
+      }
+    },
+    {
+      "id": 1059893878,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 1,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:59:08 +0900",
+      "updated_at": "2019/06/20 17:59:08 +0900",
+      "is_default_view": "デフォルト",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
         "finish_timestamp": null,
         "created_at": "2008/09/29 17:22:11 +0900",
         "updated_at": "2008/09/29 17:22:11 +0900"
