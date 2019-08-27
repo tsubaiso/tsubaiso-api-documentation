@@ -3720,7 +3720,7 @@ Parameter | Necessity | Type | Description
 `zengin_bank_code` | *required* | String | Bank Code *4 digit number
 `zengin_branch_code` | *required* | String | Bank Branch Code　*3 digit number
 `zengin_client_code_sogo` | *optional* | String | Client Code(bundled payment) *Ten Digit Number
-`currency_code` | *optional* | String | Currency Code *Use only when the currency is not JPY. ``` (Exapmple）EUR,CNY,HKD,USD  ```
+`currency_code` | *optional* | String | Currency Code *Use only when the currency is not JPY. ``` (Exapmple）EUR,CNY,HKD,USD  ```
 `currency_rate_master_code` | *optional* | Integer | Currency Rate Master Code *Use only when the currency is not JPY.
 
 ##### Account Type
