@@ -3713,17 +3713,18 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `name` | *required* | String | 名称(銀行名及び支店名) *20文字以内
-`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動)   入力なき場合デフォルトで普通口座が選択されます。 ```
+`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動) 入力なき場合デフォルトで普通口座が選択されます。 ```
 `account_number` | *required* | Integer | 銀行口座番号　*半角数字8桁
 `nominee` | *required* | String | 銀行口座名義 *半角(英数字、カタカナ、記号)30文字以内
 `start_ymd` | *required* | String | 開設日 "YYYY-MM-DD"形式
-`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式 ```  入力なき場合閉鎖日が設定されません。```
+`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式 ```  入力なき場合閉鎖日が設定されません。```
 `memo` | *optional* | String | メモ *60文字以内
 `zengin_bank_code` | *required* | String | 銀行コード *半角数字4桁
 `zengin_branch_code` | *required* | String | 銀行支店コード　*半角数字3桁
 `zengin_client_code_sogo` | *required* | String | 依頼人コード(総合振込) *半角数字10桁
-`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  入力なき場合デフォルトで円通貨が設定されます。```
+`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  入力なき場合デフォルトで円通貨が設定されます。```
 `currency_rate_master_code` | *optional* | Integer | 為替マスタの識別コード *日本円以外の時に使用``` 為替マスタの登録時に識別コードをします。為替マスタはAPIによる登録ができません。 ```
+
 ```sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "name" : "Bank of Hatagaya" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1","currency_code": "EUR", "currency_rate_master_code": "euro_currency_exchange" }' https://tsubaiso.net/bank_account_masters/create
 ```

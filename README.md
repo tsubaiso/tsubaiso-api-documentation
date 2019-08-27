@@ -3715,7 +3715,7 @@ Parameter | Necessity | Type | Description
 `account_number` | *required* | Integer | Bank Account Number　*8 digit number <br> [See more for details](#####Account-Type)
 `nominee` | *required* | String | Nominee of new Account *(limit: 20 letters)
 `start_ymd` | *optional* | String | Opening Date Formaat: "YYYY-MM-DD"
-`finish_ymd` | *optional* | String | Format: "YYYY-MM-DD"
+`finish_ymd` |　*optional* | String | Format: "YYYY-MM-DD"
 `memo` | *optional* | String | Memo *(limit: 60 letters)
 `zengin_bank_code` | *required* | String | Bank Code *4 digit number
 `zengin_branch_code` | *required* | String | Bank Branch Code　*3 digit number
