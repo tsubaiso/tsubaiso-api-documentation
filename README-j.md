@@ -3718,7 +3718,7 @@ Parameter | Necessity | Type | Description
 `nominee` | *required* | String | 銀行口座名義 *半角(英数字、カタカナ、記号)30文字以内
 `start_ymd` | *required* | String | 開設日 "YYYY-MM-DD"形式
 `finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式 ```  入力なき場合閉鎖日が設定されません。```
-`memo` | *optional* | String | メモ *60文字以内
+`memo` | *optional* | String | メモ *60文字以内
 `zengin_bank_code` | *required* | String | 銀行コード *半角数字4桁
 `zengin_branch_code` | *required* | String | 銀行支店コード　*半角数字3桁
 `zengin_client_code_sogo` | *required* | String | 依頼人コード(総合振込) *半角数字10桁
