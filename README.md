@@ -3607,7 +3607,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON response:
 ```
 [
-  {
+     {
     "id": 0,
     "name": "テスト銀行",
     "account_type": "1",
@@ -3619,14 +3619,15 @@ Sample JSON response:
     "dept_code": "HEAD",
     "memo": "テストメモ",
     "regist_user_code": null,
-    "update_user_code": null,
+    "update_user_code": "yamakawa",
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
+    "zengin_client_code_sogo": "",
+    "currency_code": "EUR",
     "currency_rate_master_id": null,
     "created_at": "2019/02/25 11:47:43 +0900",
-    "updated_at": "2019/02/25 11:47:43 +0900"
+    "updated_at": "2019/08/21 16:59:26 +0900",
+    "currency_rate_master_code": null
   },
   {
     "id": 1,
@@ -3647,7 +3648,8 @@ Sample JSON response:
     "currency_code": null,
     "currency_rate_master_id": null,
     "created_at": "2019/02/25 11:47:43 +0900",
-    "updated_at": "2019/02/25 11:47:43 +0900"
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
   }
 ]
 ```
@@ -3671,25 +3673,26 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON Response:
 ```
 {
-  "id": 1,
-  "name": "三菱UFJ銀行青葉台支店",
-  "account_type": "1",
-  "account_number": "12345678",
-  "nominee": "ブルドッグウォータ（カ",
-  "account_code": "111",
-  "zengin_bank_code": "0005",
-  "zengin_branch_code": "003",
-  "dept_code": "HEAD",
-  "memo": "入金口座",
-  "regist_user_code": null,
-  "update_user_code": null,
-  "start_ymd": "2001/01/01",
-  "finish_ymd": null,
-  "zengin_client_code_sogo": "1234567890",
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2019/02/25 11:47:43 +0900",
-  "updated_at": "2019/02/25 11:47:43 +0900"
+    "id": 1,
+    "name": "三菱UFJ銀行青葉台支店",
+    "account_type": "1",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
+    "account_code": "111",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
+    "dept_code": "HEAD",
+    "memo": "入金口座",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": "1234567890",
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
 }
 ```
 
@@ -3709,21 +3712,19 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `name` | *required* | String | Name of Bank Account Master (limit: 20 letters).
 `account_type` | *optional* | Integer | Account Type (Read below this table)
-`account_number` | *required* | Integer | Bank Account Number　*8 digit number
+`account_number` | *required* | Integer | Bank Account Number　*8 digit number <br> [See more for details](#####Account-Type)
 `nominee` | *required* | String | Nominee of new Account *(limit: 20 letters)
-`memo` | *optional* | String | Memo *(limit: 60 letters)
 `start_ymd` | *optional* | String | Opening Date Formaat: "YYYY-MM-DD"
 `finish_ymd` | *optional* | String | Format: "YYYY-MM-DD"
+`memo` | *optional* | String | Memo *(limit: 60 letters)
 `zengin_bank_code` | *required* | String | Bank Code *4 digit number
 `zengin_branch_code` | *required* | String | Bank Branch Code　*3 digit number
 `zengin_client_code_sogo` | *optional* | String | Client Code(bundled payment) *Ten Digit Number
 `currency_code` | *optional* | String | Currency Code *Use only when the currency is not JPY. ``` (Exapmple）EUR,CNY,HKD,USD  ```
 `currency_rate_master_code` | *optional* | Integer | Currency Rate Master Code *Use only when the currency is not JPY.
 
+##### Account Type
 ```
-
-Account Type:
-
 - 1: nomal
 - 2: current deposit
 - 3: fixed deposit (fix interest rate)
@@ -3731,17 +3732,17 @@ Account Type:
 - 5: installment savings account(fix interest rate)
 - 6: installment savings account(liquid interest rateliquid interest ratev)
 ```
+``` Nomal bank account will be selected as default if user doesn`t specifiy. ```
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Account" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1" }' https://tsubaiso.net/bank_account_masters/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "name" : "Bank of Hatagaya" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1","currency_code": "EUR", "currency_rate_master_code": "euro_currency_exchange" }' https://tsubaiso.net/bank_account_masters/create
 
 ```
 
 **/bank_account_masters/update/:id**
 
 Description : Updates an accounts receivables transaction. The updated transaction will be sent back as JSON if successful.
-
 
 
 Method: GET
@@ -3753,33 +3754,32 @@ https://tsubaiso.net/bank_account_masters/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Update" ,  "nominee" : "Tsubaiso Jiro" , "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/139
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "account_type" : "2", "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/247
 ```
 
 Sample JSON Response:
 ```
 {
-  "id": 139,
-  "personal_id": 3,
-  "name": "Tsubaiso Bank Update",
-  "account_type": "1",
+  "id": 247,
+  "name": "Bank of Hatagaya",
+  "account_type": "2",
   "account_number": "12345678",
-  "nominee": "Tsubaiso Jiro",
-  "account_code": "111",
+  "nominee": "Tsubaiso Taro",
+  "account_code": "110",
   "zengin_bank_code": "0001",
   "zengin_branch_code": "001",
   "dept_code": "COMMON",
   "memo": null,
   "regist_user_code": "yamakawa",
   "update_user_code": "yamakawa",
-  "lock_version": 1,
   "start_ymd": "2019/01/03",
   "finish_ymd": null,
   "zengin_client_code_sogo": "1234567891",
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2019/06/17 15:19:53 +0900",
-  "updated_at": "2019/06/17 15:25:39 +0900"
+  "currency_code": "EUR",
+  "currency_rate_master_id": 6,
+  "created_at": "2019/08/27 10:58:47 +0900",
+  "updated_at": "2019/08/27 11:11:58 +0900",
+  "currency_rate_master_code": "euro_currency_exchange"
 }
 ```
 
