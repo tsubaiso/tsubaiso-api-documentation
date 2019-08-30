@@ -296,6 +296,34 @@ Sample JSON Response:
 ]
 ```
 
+**/ar_receipts/find_or_create**
+
+Description: Find account receivable by data_partner key or create account receivable if account receivable is not found.  This endpoint very useful to prevent create duplicated ERP transaction form third-party platform. This endpoint will return as JSON.
+
+Method: POST
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ar_receipts/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`id_code` | *optional* | String | Reference transaction id from third-party platform.
+`partner_code` | *optional* | String | Reference platform code from third-party platform.
+**/ar/create** parameters | *optional* | Hash | See ar_receipts **/ar/create** parameters definition.
+
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0, "key" : { "id_code": "TESTID", "partner_code": "EXAMPLECODE" }" }'
+```
+
+
 #### Accounts Payables
 
 **/ap_payments/list/:year/:month**
@@ -518,6 +546,34 @@ Sample JSON Response :
   }
 ]
 ```
+
+**/ap_payments/find_or_create**
+
+Description: Find account payable by data_partner key or create account payable if account payable is not found.  This endpoint very useful to prevent create duplicated ERP transaction form third-party platform. This endpoint will return as JSON.
+
+Method: POST
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ap_payments/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`id_code` | *optional* | String | Reference transaction id from third-party platform.
+`partner_code` | *optional* | String | Reference platform code from third-party platform.
+**/ap/create** parameters | *optional* | Hash | See ap_payments **/ap/create** parameters definition.
+
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "key": { "id_code": "TESTID", "partner_code": "EXAMPLE" } }' https://tsubaiso.net/ap_payments/find_or_create
+```
+
 
 #### Ar Reconcilations
 
