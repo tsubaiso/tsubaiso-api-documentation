@@ -3608,7 +3608,7 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 JSON レスポンスの例:
 ```
 [
-  {
+    {
     "id": 0,
     "name": "テスト銀行",
     "account_type": "1",
@@ -3620,14 +3620,15 @@ JSON レスポンスの例:
     "dept_code": "HEAD",
     "memo": "テストメモ",
     "regist_user_code": null,
-    "update_user_code": null,
+    "update_user_code": "yamakawa",
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
+    "zengin_client_code_sogo": "",
+    "currency_code": "EUR",
     "currency_rate_master_id": null,
     "created_at": "2019/02/25 11:47:43 +0900",
-    "updated_at": "2019/02/25 11:47:43 +0900"
+    "updated_at": "2019/08/21 16:59:26 +0900",
+    "currency_rate_master_code": null
   },
   {
     "id": 1,
@@ -3648,7 +3649,8 @@ JSON レスポンスの例:
     "currency_code": null,
     "currency_rate_master_id": null,
     "created_at": "2019/02/25 11:47:43 +0900",
-    "updated_at": "2019/02/25 11:47:43 +0900"
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
   }
 ]
 ```
@@ -3672,25 +3674,26 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 JSON レスポンスの例:
 ```
 {
-  "id": 0,
-  "name": "xxxxx",
-  "account_type": "1",
-  "account_number": "xxxxx",
-  "nominee": "xxxxx",
-  "account_code": "111",
-  "zengin_bank_code": "0000",
-  "zengin_branch_code": "0000",
-  "dept_code": "HEAD",
-  "memo": "xxxxx",
-  "regist_user_code": null,
-  "update_user_code": null,
-  "start_ymd": "2001/01/01",
-  "finish_ymd": null,
-  "zengin_client_code_sogo": null,
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2017/12/11 17:21:03 +0900",
-  "updated_at": "2017/12/11 17:21:03 +0900"
+    "id": 1,
+    "name": "三菱UFJ銀行青葉台支店",
+    "account_type": "1",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
+    "account_code": "111",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
+    "dept_code": "HEAD",
+    "memo": "入金口座",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": "1234567890",
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
 }
 ```
 
@@ -3710,27 +3713,25 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `name` | *required* | String | 名称(銀行名及び支店名) *20文字以内
-`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動)   ```
+`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動) 入力なき場合デフォルトで普通口座が選択されます。 ```
 `account_number` | *required* | Integer | 銀行口座番号　*半角数字8桁
 `nominee` | *required* | String | 銀行口座名義 *半角(英数字、カタカナ、記号)30文字以内
-`memo` | *optional* | String | メモ *60文字以内
-`start_ymd` | *optional* | String | 開設日 "YYYY-MM-DD"形式
-`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式
+`start_ymd` | *required* | String | 開設日 "YYYY-MM-DD"形式
+`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式 ```  入力なき場合閉鎖日が設定されません。```
+`memo` | *optional* | String | メモ *60文字以内
 `zengin_bank_code` | *required* | String | 銀行コード *半角数字4桁
 `zengin_branch_code` | *required* | String | 銀行支店コード　*半角数字3桁
 `zengin_client_code_sogo` | *required* | String | 依頼人コード(総合振込) *半角数字10桁
-`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  ```
-`currency_rate_master_code` | *optional* | Integer | 為替マスタコード *日本円以外の時に使用
+`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  入力なき場合デフォルトで円通貨が設定されます。```
+`currency_rate_master_code` | *optional* | Integer | 為替マスタの識別コード *日本円以外の時に使用``` 為替マスタの登録時に識別コードをします。為替マスタはAPIによる登録ができません。 ```
 
-リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Account" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1" }' https://tsubaiso.net/bank_account_masters/create
-
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "name" : "Bank of Hatagaya" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1","currency_code": "EUR", "currency_rate_master_code": "euro_currency_exchange" }' https://tsubaiso.net/bank_account_masters/create
 ```
 
 **/bank_account_masters/update/:id**
 
-説明: 1レコードの銀行口座マスタを返します。
+説明: 指定された id の銀行口座マスタを更新します。更新に成功した場合、更新された明細が JSON として返されます。
 
 HTTP メソッド: GET
 
@@ -3741,35 +3742,34 @@ https://tsubaiso.net/bank_account_masters/update/:id
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "name" : "Tsubaiso Bank Update" ,  "nominee" : "Tsubaiso Jiro" , "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/139
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "account_type" : "2", "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/247
 ```
 
 JSON レスポンスの例:
 ```
 {
-  "id": 139,
-  "personal_id": 3,
-  "name": "Tsubaiso Bank Update",
-  "account_type": "1",
+  "id": 247,
+  "name": "Bank of Hatagaya",
+  "account_type": "2",
   "account_number": "12345678",
-  "nominee": "Tsubaiso Jiro",
-  "account_code": "111",
+  "nominee": "Tsubaiso Taro",
+  "account_code": "110",
   "zengin_bank_code": "0001",
   "zengin_branch_code": "001",
   "dept_code": "COMMON",
   "memo": null,
   "regist_user_code": "yamakawa",
   "update_user_code": "yamakawa",
-  "lock_version": 1,
   "start_ymd": "2019/01/03",
   "finish_ymd": null,
   "zengin_client_code_sogo": "1234567891",
-  "zengin_client_code_kyuyo": null,
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2019/06/17 15:19:53 +0900",
-  "updated_at": "2019/06/17 15:25:39 +0900"
+  "currency_code": "EUR",
+  "currency_rate_master_id": 6,
+  "created_at": "2019/08/27 10:58:47 +0900",
+  "updated_at": "2019/08/27 11:11:58 +0900",
+  "currency_rate_master_code": "euro_currency_exchange"
 }
+
 ```
 
 **/bank_account_masters/destroy/:id**
