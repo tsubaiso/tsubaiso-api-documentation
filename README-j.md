@@ -3920,12 +3920,12 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `bank_account_master_id` | *required* | Integer | 銀行口座マスタID。
-`year` | *required* | Integer | 年。
-`month` | *required* | Integer | 月。
+`start_timestamp` | *required* | String | 開始日 “YYYY-MM-DD”形式です。
+`finish_timestamp` | *required* | String | 終了日 “YYYY-MM-DD”形式です。
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"bank_account_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXX" -d '{"bank_account_master_id": "129" , "start_timestamp" : "2019-07-31" ,  "finish_timestamp" : "2019-08-30"}' https://tsubaiso.net/bank_accounts/create
 ```
 
 #### 銀行口座明細

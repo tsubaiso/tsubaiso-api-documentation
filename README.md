@@ -3972,6 +3972,31 @@ Sample JSON Response:
 }
 ```
 
+**/bank_accounts/create**
+
+Description: Creates a new bank account. The created bank account will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_accounts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`bank_account_master_id` | *required* | Integer | Bank Account MAster ID
+`start_timestamp` | *required* | Integer | Start date. Format must be “YYYY-MM-DD”.
+`finish_timestamp` | *required* | Integer | Finishi date. Format must be “YYYY-MM-DD”.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXX" -d '{"bank_account_master_id": "129" , "start_timestamp" : "2019-07-31" ,  "finish_timestamp" : "2019-08-30"}' https://tsubaiso.net/bank_accounts/create
+```
+
+
 #### Bank Account Transaction
 
 **/bank_account_transactions/list?bank_account_id=:bank_account_id**
