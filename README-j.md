@@ -3782,47 +3782,49 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 JSON レスポンスの例:
 ```
 [
-  {
+    {
     "id": 0,
-    "name": "xxxxx",
+    "name": "テスト銀行",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "テスト（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0001",
+    "zengin_branch_code": "001",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "テストメモ",
     "regist_user_code": null,
-    "update_user_code": null,
+    "update_user_code": "yamakawa",
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
+    "zengin_client_code_sogo": "",
+    "currency_code": "EUR",
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/08/21 16:59:26 +0900",
+    "currency_rate_master_code": null
   },
   {
     "id": 1,
-    "name": "xxxxx",
+    "name": "三菱UFJ銀行青葉台支店",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "入金口座",
     "regist_user_code": null,
     "update_user_code": null,
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
+    "zengin_client_code_sogo": "1234567890",
     "currency_code": null,
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
   }
 ]
 ```
@@ -3846,26 +3848,118 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 JSON レスポンスの例:
 ```
 {
-  "id": 0,
-  "name": "xxxxx",
-  "account_type": "1",
-  "account_number": "xxxxx",
-  "nominee": "xxxxx",
-  "account_code": "111",
-  "zengin_bank_code": "0000",
-  "zengin_branch_code": "0000",
-  "dept_code": "HEAD",
-  "memo": "xxxxx",
-  "regist_user_code": null,
-  "update_user_code": null,
-  "start_ymd": "2001/01/01",
-  "finish_ymd": null,
-  "zengin_client_code_sogo": null,
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2017/12/11 17:21:03 +0900",
-  "updated_at": "2017/12/11 17:21:03 +0900"
+    "id": 1,
+    "name": "三菱UFJ銀行青葉台支店",
+    "account_type": "1",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
+    "account_code": "111",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
+    "dept_code": "HEAD",
+    "memo": "入金口座",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": "1234567890",
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
 }
+```
+
+**/bank_account_masters/create**
+
+説明: 銀行口座マスタを新規作成します。作成に成功した場合、新規作成された銀行口座が JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | 名称(銀行名及び支店名) *20文字以内
+`account_type` | *optional* | Integer | 口座種別``` 1: 普通 2: 当座 3: 定期預金（固定） 4: 定期預金（流動） 5: 定期積金(固定)  6: 定期積金(流動) 入力なき場合デフォルトで普通口座が選択されます。 ```
+`account_number` | *required* | Integer | 銀行口座番号　*半角数字8桁
+`nominee` | *required* | String | 銀行口座名義 *半角(英数字、カタカナ、記号)30文字以内
+`start_ymd` | *required* | String | 開設日 "YYYY-MM-DD"形式
+`finish_ymd` | *optional* | String | 閉鎖日 "YYYY-MM-DD"形式 ```  入力なき場合閉鎖日が設定されません。```
+`memo` | *optional* | String | メモ *60文字以内
+`zengin_bank_code` | *required* | String | 銀行コード *半角数字4桁
+`zengin_branch_code` | *required* | String | 銀行支店コード　*半角数字3桁
+`zengin_client_code_sogo` | *required* | String | 依頼人コード(総合振込) *半角数字10桁
+`currency_code` | *optional* | String | 通貨コード *日本円以外の時に設定 ``` 例）EUR CNY HKD USD  入力なき場合デフォルトで円通貨が設定されます。```
+`currency_rate_master_code` | *optional* | Integer | 為替マスタの識別コード *日本円以外の時に使用``` 為替マスタの登録時に識別コードをします。為替マスタはAPIによる登録ができません。 ```
+
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "name" : "Bank of Hatagaya" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1","currency_code": "EUR", "currency_rate_master_code": "euro_currency_exchange" }' https://tsubaiso.net/bank_account_masters/create
+```
+
+**/bank_account_masters/update/:id**
+
+説明: 指定された id の銀行口座マスタを更新します。更新に成功した場合、更新された明細が JSON として返されます。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/bank_account_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "account_type" : "2", "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/247
+```
+
+JSON レスポンスの例:
+```
+{
+  "id": 247,
+  "name": "Bank of Hatagaya",
+  "account_type": "2",
+  "account_number": "12345678",
+  "nominee": "Tsubaiso Taro",
+  "account_code": "110",
+  "zengin_bank_code": "0001",
+  "zengin_branch_code": "001",
+  "dept_code": "COMMON",
+  "memo": null,
+  "regist_user_code": "yamakawa",
+  "update_user_code": "yamakawa",
+  "start_ymd": "2019/01/03",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": "1234567891",
+  "currency_code": "EUR",
+  "currency_rate_master_id": 6,
+  "created_at": "2019/08/27 10:58:47 +0900",
+  "updated_at": "2019/08/27 11:11:58 +0900",
+  "currency_rate_master_code": "euro_currency_exchange"
+}
+
+```
+
+**/bank_account_masters/destroy/:id**
+
+説明：指定されたidの銀行口座マスタを削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/bank_account_masters/destroy/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/139
 ```
 
 #### 銀行口座
@@ -4000,12 +4094,12 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `bank_account_master_id` | *required* | Integer | 銀行口座マスタID。
-`year` | *required* | Integer | 年。
-`month` | *required* | Integer | 月。
+`start_timestamp` | *required* | String | 開始日 “YYYY-MM-DD”形式です。
+`finish_timestamp` | *required* | String | 終了日 “YYYY-MM-DD”形式です。
 
 リクエストの例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"bank_account_id" : 1, "journal_timestamp": "2018-02-04", "price_value": 10000, "reason_code": "xxxx_123", "dc": "d", "brief": "test brief", "memo": "test memo", "tag_list": "GROUP3_1, GROUP2_2", "dept_code": "NEVER_ENDING"}' https://tsubaiso.net/bank_account_transactions/create/1000000001
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXX" -d '{"bank_account_master_id": "129" , "start_timestamp" : "2019-07-31" ,  "finish_timestamp" : "2019-08-30"}' https://tsubaiso.net/bank_accounts/create
 ```
 
 #### 銀行口座明細

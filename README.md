@@ -296,6 +296,34 @@ Sample JSON Response:
 ]
 ```
 
+**/ar_receipts/find_or_create**
+
+Description: Find account receivable by data_partner key or create account receivable if account receivable is not found.  This endpoint very useful to prevent create duplicated ERP transaction form third-party platform. This endpoint will return as JSON.
+
+Method: POST
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ar_receipts/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`id_code` | *optional* | String | Reference transaction id from third-party platform.
+`partner_code` | *optional* | String | Reference platform code from third-party platform.
+**/ar/create** parameters | *optional* | Hash | See ar_receipts **/ar/create** parameters definition.
+
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0, "key" : { "id_code": "TESTID", "partner_code": "EXAMPLECODE" }" }'
+```
+
+
 #### Accounts Payables
 
 **/ap_payments/list/:year/:month**
@@ -518,6 +546,34 @@ Sample JSON Response :
   }
 ]
 ```
+
+**/ap_payments/find_or_create**
+
+Description: Find account payable by data_partner key or create account payable if account payable is not found.  This endpoint very useful to prevent create duplicated ERP transaction form third-party platform. This endpoint will return as JSON.
+
+Method: POST
+
+URL Structure:
+
+``` sh
+https://tsubaiso.net/ap_payments/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`id_code` | *optional* | String | Reference transaction id from third-party platform.
+`partner_code` | *optional* | String | Reference platform code from third-party platform.
+**/ap/create** parameters | *optional* | Hash | See ap_payments **/ap/create** parameters definition.
+
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "key": { "id_code": "TESTID", "partner_code": "EXAMPLE" } }' https://tsubaiso.net/ap_payments/find_or_create
+```
+
 
 #### Ar Reconcilations
 
@@ -3763,47 +3819,49 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON response:
 ```
 [
-  {
+     {
     "id": 0,
-    "name": "xxxxx",
+    "name": "テスト銀行",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "テスト（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0001",
+    "zengin_branch_code": "001",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "テストメモ",
     "regist_user_code": null,
-    "update_user_code": null,
+    "update_user_code": "yamakawa",
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
-    "currency_code": null,
+    "zengin_client_code_sogo": "",
+    "currency_code": "EUR",
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/08/21 16:59:26 +0900",
+    "currency_rate_master_code": null
   },
   {
     "id": 1,
-    "name": "xxxxx",
+    "name": "三菱UFJ銀行青葉台支店",
     "account_type": "1",
-    "account_number": "xxxxx",
-    "nominee": "xxxxx",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
     "account_code": "111",
-    "zengin_bank_code": "0000",
-    "zengin_branch_code": "0000",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
     "dept_code": "HEAD",
-    "memo": "xxxxx",
+    "memo": "入金口座",
     "regist_user_code": null,
     "update_user_code": null,
     "start_ymd": "2001/01/01",
     "finish_ymd": null,
-    "zengin_client_code_sogo": null,
+    "zengin_client_code_sogo": "1234567890",
     "currency_code": null,
     "currency_rate_master_id": null,
-    "created_at": "2017/12/11 17:21:03 +0900",
-    "updated_at": "2017/12/11 17:21:03 +0900"
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
   }
 ]
 ```
@@ -3827,27 +3885,132 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON Response:
 ```
 {
-  "id": 0,
-  "name": "xxxxx",
-  "account_type": "1",
-  "account_number": "xxxxx",
-  "nominee": "xxxxx",
-  "account_code": "111",
-  "zengin_bank_code": "0000",
-  "zengin_branch_code": "0000",
-  "dept_code": "HEAD",
-  "memo": "xxxxx",
-  "regist_user_code": null,
-  "update_user_code": null,
-  "start_ymd": "2001/01/01",
-  "finish_ymd": null,
-  "zengin_client_code_sogo": null,
-  "currency_code": null,
-  "currency_rate_master_id": null,
-  "created_at": "2017/12/11 17:21:03 +0900",
-  "updated_at": "2017/12/11 17:21:03 +0900"
+    "id": 1,
+    "name": "三菱UFJ銀行青葉台支店",
+    "account_type": "1",
+    "account_number": "12345678",
+    "nominee": "ブルドッグウォータ（カ",
+    "account_code": "111",
+    "zengin_bank_code": "0005",
+    "zengin_branch_code": "003",
+    "dept_code": "HEAD",
+    "memo": "入金口座",
+    "regist_user_code": null,
+    "update_user_code": null,
+    "start_ymd": "2001/01/01",
+    "finish_ymd": null,
+    "zengin_client_code_sogo": "1234567890",
+    "currency_code": null,
+    "currency_rate_master_id": null,
+    "created_at": "2019/02/25 11:47:43 +0900",
+    "updated_at": "2019/02/25 11:47:43 +0900",
+    "currency_rate_master_code": null
 }
 ```
+
+**/bank_account_masters/create**
+
+Description : Creates a new Bank Account Master. The created transaction will be sent back as JSON if successful.
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_account_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`name` | *required* | String | Name of Bank Account Master (limit: 20 letters).
+`account_type` | *optional* | Integer | Account Type (Read below this table)
+`account_number` | *required* | Integer | Bank Account Number　*8 digit number <br> [See more for details](#####Account-Type)
+`nominee` | *required* | String | Nominee of new Account *(limit: 20 letters)
+`start_ymd` | *required* | String | Opening Date Formaat: "YYYY-MM-DD"
+`finish_ymd` |　*optional* | String | Format: "YYYY-MM-DD"
+`memo` | *optional* | String | Memo *(limit: 60 letters)
+`zengin_bank_code` | *required* | String | Bank Code *4 digit number
+`zengin_branch_code` | *required* | String | Bank Branch Code　*3 digit number
+`zengin_client_code_sogo` | *optional* | String | Client Code(bundled payment) *Ten Digit Number
+`currency_code` | *optional* | String | Currency Code *Use only when the currency is not JPY. ``` (Exapmple）EUR,CNY,HKD,USD  ```
+`currency_rate_master_code` | *optional* | Integer | Currency Rate Master Code *Use only when the currency is not JPY.
+
+##### Account Type
+```
+- 1: nomal
+- 2: current deposit
+- 3: fixed deposit (fix interest rate)
+- 4: fixed deposit（liquid interest rate)
+- 5: installment savings account(fix interest rate)
+- 6: installment savings account(liquid interest rateliquid interest ratev)
+```
+``` Nomal bank account will be selected as default if user doesn`t specifiy. ```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "name" : "Bank of Hatagaya" , "account_number" : 12345678,  "nominee" : "Tsubaiso Taro" , "start_ymd":"2019-03-03" , "zengin_bank_code": "0001" , "zengin_branch_code": "001", "zengin_client_code_sogo": 1234567891,  "account_type": "1","currency_code": "EUR", "currency_rate_master_code": "euro_currency_exchange" }' https://tsubaiso.net/bank_account_masters/create
+
+```
+
+**/bank_account_masters/update/:id**
+
+Description : Updates an accounts receivables transaction. The updated transaction will be sent back as JSON if successful.
+
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_account_masters/update/:id
+```
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXX" -d '{ "account_type" : "2", "start_ymd":"2019-01-03"}' https://tsubaiso.net/bank_account_masters/update/247
+```
+
+Sample JSON Response:
+```
+{
+  "id": 247,
+  "name": "Bank of Hatagaya",
+  "account_type": "2",
+  "account_number": "12345678",
+  "nominee": "Tsubaiso Taro",
+  "account_code": "110",
+  "zengin_bank_code": "0001",
+  "zengin_branch_code": "001",
+  "dept_code": "COMMON",
+  "memo": null,
+  "regist_user_code": "yamakawa",
+  "update_user_code": "yamakawa",
+  "start_ymd": "2019/01/03",
+  "finish_ymd": null,
+  "zengin_client_code_sogo": "1234567891",
+  "currency_code": "EUR",
+  "currency_rate_master_id": 6,
+  "created_at": "2019/08/27 10:58:47 +0900",
+  "updated_at": "2019/08/27 11:11:58 +0900",
+  "currency_rate_master_code": "euro_currency_exchange"
+}
+```
+
+**/bank_account_masters/destroy/:id**
+
+Description: Destroys the bank account master specified as the id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_account_masters/destroy/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/139
+```
+
 
 #### Bank Accounts
 
@@ -3964,6 +4127,31 @@ Sample JSON Response:
   "updated_at": "2017/12/11 17:20:38 +0900"
 }
 ```
+
+**/bank_accounts/create**
+
+Description: Creates a new bank account. The created bank account will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_accounts/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`bank_account_master_id` | *required* | Integer | Bank Account MAster ID
+`start_timestamp` | *required* | Integer | Start date. Format must be “YYYY-MM-DD”.
+`finish_timestamp` | *required* | Integer | Finishi date. Format must be “YYYY-MM-DD”.
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXX" -d '{"bank_account_master_id": "129" , "start_timestamp" : "2019-07-31" ,  "finish_timestamp" : "2019-08-30"}' https://tsubaiso.net/bank_accounts/create
+```
+
 
 #### Bank Account Transaction
 
