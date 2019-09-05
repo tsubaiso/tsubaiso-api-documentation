@@ -2789,40 +2789,87 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 Sample JSON response:
 ```
-[
-  {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  },
-  {
-    "id": "xxxx",
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
-  }
-]
+{
+  "id": 100,
+  "ccode": 3,
+  "sort_number": 0,
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
+  "dc": "d",
+  "account_code": "999~999",
+  "is_valid": 1,
+  "memo": "テストメモ",
+  "created_at": "2019/02/25 11:47:36 +0900",
+  "regist_user_code": null,
+  "updated_at": "2019/02/25 11:47:36 +0900",
+  "update_user_code": null,
+  "keywords": [
+    {
+      "text": "JR"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
+  "bank_reason_taxes": [
+    {
+      "id": 1059893877,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 0,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:39:06 +0900",
+      "updated_at": "2019/06/20 17:39:06 +0900",
+      "is_default_view": "デフォルトでない",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
+      }
+    },
+    {
+      "id": 1059893878,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 1,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:59:08 +0900",
+      "updated_at": "2019/06/20 17:59:08 +0900",
+      "is_default_view": "デフォルト",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
+      }
+    }
+  ]
+}
 ```
 
 **/bank_reason_masters/show/:id**
@@ -2844,21 +2891,146 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 Sample JSON Response:
 ```
 {
-    "id": 100,
-    "ccode": 1,
-    "allowed_domains": null,
-    "sort_number": 0,
-    "reason_code": "xxxx",
-    "reason_name": "xxxx",
-    "dc": "d",
-    "account_code": "500",
-    "is_valid": 1,
-    "memo": "xxxx",
-    "created_at": "2017/12/11 17:20:48 +0900",
-    "regist_user_code": null,
-    "updated_at": "2017/12/11 17:20:48 +0900",
-    "update_user_code": null
+  "id": 100,
+  "ccode": 3,
+  "sort_number": 0,
+  "reason_code": "xxxx_123",
+  "reason_name": "テスト用",
+  "dc": "d",
+  "account_code": "999~999",
+  "is_valid": 1,
+  "memo": "テストメモ",
+  "created_at": "2019/02/25 11:47:36 +0900",
+  "regist_user_code": null,
+  "updated_at": "2019/02/25 11:47:36 +0900",
+  "update_user_code": null,
+  "keywords": [
+    {
+      "text": "JR"
+    },
+    {
+      "text": "keyword"
+    }
+  ],
+  "bank_reason_taxes": [
+    {
+      "id": 1059893877,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 0,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:39:06 +0900",
+      "updated_at": "2019/06/20 17:39:06 +0900",
+      "is_default_view": "デフォルトでない",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
+      }
+    },
+    {
+      "id": 1059893878,
+      "personal_id": null,
+      "tax_master_id": 6,
+      "description": null,
+      "is_default": 1,
+      "sort_no": 1,
+      "created_at": "2019/06/20 17:59:08 +0900",
+      "updated_at": "2019/06/20 17:59:08 +0900",
+      "is_default_view": "デフォルト",
+      "tax_master": {
+        "id": 6,
+        "code": 6,
+        "name": "共通売上分新車購入",
+        "abbr_name": "共",
+        "description": "税率4.5％の課税仕入れ（新車購入）のうち、課税売上げ・非課税売上げに共通する取引に使用します。",
+        "tax_ratio_division": 2,
+        "taxable_division": 1,
+        "dc": "d",
+        "controll_business_segment": 0,
+        "color": "7fffff",
+        "status": 200,
+        "start_timestamp": null,
+        "finish_timestamp": null,
+        "created_at": "2008/09/29 17:22:11 +0900",
+        "updated_at": "2008/09/29 17:22:11 +0900"
+      }
+    }
+  ]
 }
+```
+
+**/bank_reason_masters/create**
+
+Description: Creates a new Bank Reason Master. The created transaction will be sent back as JSON if successful.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`sort_number` | *optional* | String | Sort Number
+`reason_code` | *required* | String | Reason Code
+`reason_name` | *required* | String | Reason of Bank Transaction
+`dc` | *required* | String | 'd' if the transaction was a debit, 'c' if it was a credit.
+`is_valid` | *required* | Integer | Display Status 2:Manager Only　1:able 、0: Disable
+`memo` | *optional* | String | Memo
+`account_code` | *required* | String | account code
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "sort_number" : "0" , "reason_code" : "Test_Reason_code",  "reason_name" : "Tsubaiso_reason" , "dc":"c" , "is_valid": 1, "account_code": "1"}' https://tsubaiso.net/bank_reason_masters/create
+```
+
+**/bank_reason_masters/update/:id**
+
+Description: Update a existed Bank Reason Master and return updated record as JSON if successfully updated.
+
+HTTP Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "reason_name" : "Tsubaiso Bank Reason Update" ,  "memo" : "Updated_reason_memo"}' https://tsubaiso.net/bank_account_masters/update/100
+```
+
+**/bank_reason_masters/destroy/:id**
+
+Description：Destroys bank reason master specified as the id. Returns a status of 204 No Content.
+
+Mwthod: POST
+
+URL Structure:
+``` sh
+https://tsubaiso.net/bank_reason_masters/destroy/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/100
 ```
 
 #### Petty Cash Reason Masters
