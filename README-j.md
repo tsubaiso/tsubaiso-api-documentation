@@ -2944,7 +2944,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "sort_number" : "0" , "reason_code" : "Test_Reason_code",  "reason_name" : "Tsubaiso_reason" , "dc":"c" , "is_valid": 1, "account_code": "1"}' https://tsubaiso.net/bank_reason_masters/create
 ```
 
-**/bank_account_masters/update/:id**
+**/bank_reason_masters/update/:id**
 
 説明: 1レコードの銀行原因マスタを更新します。更新に成功した場合、更新された銀行原因マスタがJSONとして返されます。
 
@@ -2952,7 +2952,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/bank_reason_masters/update/:id
+https://tsubaiso.net/bank_reason_masters/update/:id
 ```
 
 リクエストの例:

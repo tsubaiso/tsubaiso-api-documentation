@@ -3001,7 +3001,23 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "sort_number" : "0" , "reason_code" : "Test_Reason_code",  "reason_name" : "Tsubaiso_reason" , "dc":"c" , "is_valid": 1, "account_code": "1"}' https://tsubaiso.net/bank_reason_masters/create
 ```
 
-**/bank_account_masters/destroy/:id**
+**/bank_reason_masters/update/:id**
+
+Description: Update a existed Bank Reason Master and return updated record as JSON if successfully updated.
+
+HTTP Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/bank_reason_masters/update/:id
+```
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token:XXXXXXXXXXXXXXXXXX" -d '{ "reason_name" : "Tsubaiso Bank Reason Update" ,  "memo" : "Updated_reason_memo"}' https://tsubaiso.net/bank_account_masters/update/100
+```
+
+**/bank_reason_masters/destroy/:id**
 
 Description：Destroys bank reason master specified as the id. Returns a status of 204 No Content.
 
@@ -3014,7 +3030,7 @@ https://tsubaiso.net/bank_reason_masters/destroy/:id
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/:id
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/bank_account_masters/destroy/100
 ```
 
 #### Petty Cash Reason Masters
