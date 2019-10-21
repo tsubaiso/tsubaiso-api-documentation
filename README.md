@@ -63,13 +63,24 @@ The user must provide their access token in order to access the Tsubaiso API.
 $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
 ```
 
+### Client Auth Token
+
+You can add client auth token to your access token.
+If client auth token was set, add client auth token is necessary into HTTP Request Headers.
+
+```
+$ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Client-Auth-Token: yyyyyyyyyyyy" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
+```
+
+DO NOT send client auth token if your access token doesn't have client auth token or it will return an error.
+
 ## Response Codes and Error Handling
 
 Code | Description
 --- | ---
 `200 OK` | A successful request was made. |
 `204 No Content` | A successful request was made but no content is passed back.
-`401 Not Authorized` | The access token was not provided or was incorrect.
+`401 Not Authorized` | The access token was not provided or was incorrect, or The Client Auth Token was incorrect.
 `403 Forbidden` | You do not have the correct privileges to make this request.
 `404 Not found` | Path is incorrect or resource was not found at the specified path.
 `422 Unprocessable Entity` | One or more parameters were incorrect or insufficient. The error message will tell you the reason.
