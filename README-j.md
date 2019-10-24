@@ -65,13 +65,25 @@ Tsubaiso API にアクセスするためには、アクセストークンを取�
 $ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
 ```
 
+### クライアント認証トークン
+
+アクセストークンには、任意のクライアント認証トークンを付加することができます。
+クライアント認証トークンが設定されている場合は、クライアント認証トークンも HTTP リクエストヘッダに付加する必要があります。
+
+```
+$ curl -i -H "Access-Token: xxxxxxxxxxxxxxxxx" -H "Client-Auth-Token: yyyyyyyyyyyy" -H "Accept: application/json" -H "Content-Type: application/json" https://tsubaiso.net/ar/list
+```
+
+なお、クライアント認証トークンを**付加していない**アクセストークンを使用する場合、リクエストヘッダにクライアント認証トークンを付加してリクエストすると認証エラーになります。
+この措置は、クライアント認証トークンを使用する運用を想定しているときに、誤ってクライアント認証トークンの設定をせずに運用を開始してしまうケースを防止するためです。
+
 ## レスポンスコードとエラー処理
 
 Code | Description
 --- | ---
 `200 OK` | リクエスト成功 |
 `204 No Content` | リクエストに成功したが返されるコンテンツはありません。
-`401 Not Authorized` | アクセストークンが送られていないか正しくありません。
+`401 Not Authorized` | アクセストークンが送られていないか正しくありません。もしくはクライアント認証トークンが正しくありません。
 `403 Forbidden` | そのリクエストに必要な権限がありません。
 `404 Not found` | 指定されたパスは正しくないか、リソースが見つかりません。
 `422 Unprocessable Entity` | 1つ以上のパラメータが正しくないか不足しています。エラーメッセージで原因が判別できます。
