@@ -311,7 +311,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`key` | *optional* | Hash | 売上明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
+`key` | *required* | Hash | 売上明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
 `id_code` | *optional* | String | サードパーティー製アプリケーション内で指定されたIDを指定します。
 `partner_code` | *optional* | String |　サードパーティー製アプリケーションをコードを指定します。
 **/ar/create** parameters | *optional* | Hash |  売上明細の作成に指定するパラメータを検索条件に指定できます。詳しくは **/ar/create** の節をご覧ください。
@@ -868,7 +868,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`key` | *optional* | Hash |  仕入経費明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
+`key` | *required* | Hash |  仕入経費明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
 `id_code` | *optional* | String | サードパーティー製アプリケーション内で指定されたIDを指定します。
 `partner_code` | *optional* | String | サードパーティー製アプリケーションをコードを指定します。
 **/ap/create** parameters | *optional* | Hash | 売上明細の作成に指定するパラメータを検索条件に指定できます。詳しくは **/ap/create**の節をご覧ください。

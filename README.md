@@ -312,7 +312,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`key` | *required* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
 `id_code` | *optional* | String | Reference transaction id from third-party platform.
 `partner_code` | *optional* | String | Reference platform code from third-party platform.
 **/ar/create** parameters | *optional* | Hash | See ar_receipts **/ar/create** parameters definition.
@@ -563,7 +563,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`key` | *optional* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
+`key` | *required* | Hash | Find data_partner conditions. This parameter should contains `id_code` & `partner_code`.
 `id_code` | *optional* | String | Reference transaction id from third-party platform.
 `partner_code` | *optional* | String | Reference platform code from third-party platform.
 **/ap/create** parameters | *optional* | Hash | See ap_payments **/ap/create** parameters definition.
