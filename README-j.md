@@ -1439,8 +1439,8 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `id` | *optional* | String | idで検索します。
-`price_min` | *optional* | String | 金額で検索します。税抜金額が指定した金額以上の仕訳を検索します。
-`price_max` | *optional* | String | 金額で検索します。税抜金額が指定した金額以下の仕訳を検索します。
+`price_min` | *optional* | Integer | 金額で検索します。税抜金額、または税額が指定した金額以上の科目を含む仕訳を検索します。
+`price_max` | *optional* | Integer | 金額で検索します。税抜金額、または税額が指定した金額以下の科目を含む仕訳を検索します。
 `memo` | *optional* | String | メモに書かれてある内容で部分検索します。
 `dept_code` | *optional* | String | 部門コードで検索します。
 `tag_list` | *optional* | String | セグメント(旧タグ)で検索します。
