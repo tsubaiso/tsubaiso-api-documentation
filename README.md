@@ -1497,7 +1497,8 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `id` | *optional* | String | Search using the journal id directly.
-`price` | *optional* | String | Search for journals with the specified amount. Matching journals will be returned if either its price excluding tax or sales tax price match the specified price.
+`price_min` | *optional* | String | Search for journals which amount is larger than specific price. Matching journals will be returned if the journal includes account title which price excluding tax or tax price is greater than or equal to the specified price.
+`price_max` | *optional* | String | Search for journals which amount is smaller than specific price. Matching journals will be returned if the journal includes account title which price excluding tax or tax price is smaller than or equals to specified price.
 `memo` | *optional* | String | Search journals that contain the specified keywords in their memo.
 `dept_code` | *optional* | String | Search journals that belong to the specified department.
 `tag_list` | *optional* | String | Search for journals that have the specified segment(formerly tag).
