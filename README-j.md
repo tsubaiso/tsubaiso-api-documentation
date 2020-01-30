@@ -814,7 +814,7 @@ JSON レスポンス:
 [
   {
     "created_at": null,
-    "customer_master_id": 105,
+    "customer_master_code": "individual",
     "finish_balance": 197149998,
     "memo": null,
     "ym": "2017-01",
