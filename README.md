@@ -543,7 +543,7 @@ Sample JSON Response :
 [
   {
     "created_at": null,
-    "customer_master_id": 105,
+    "customer_master_id": "individual",
     "finish_balance": 197149998,
     "memo": null,
     "ym": "2017-01",
