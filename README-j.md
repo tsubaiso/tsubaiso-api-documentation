@@ -1057,7 +1057,7 @@ Parameter | Necessity | Type | Description
 `tel` | *optional* | String | 電話番号(半角数字,ハイフン,アスタリスク,シャープ 40文字以内)
 `accountant_email` | *optional* | String | 経理担当者メールアドレス。請求書をツバイソからメール送信する場合に使います。
 `dept_code` | *optional* | String | 部門
-`tax_type_for_remittance_charge` | *required* | Integer | 支払手数料の課税区分。3は「共通売上分」、0は「対象外又は非課税仕入」
+`tax_type_for_remittance_charge` | *required* | Integer | 消込時の銀行手数料の消費税区分。3は「共通売上分一般仕入（10%）」、0は「対象外又は非課税仕入」
 `sender_name` | *optional* | String | 自動消込キーワード(40文字以内)
 `locale` | *optional* | String | 請求書の言語 "ja-JP": 日本語、"en": 英語
 `foreign_currency` | *optional* | Integer | 外貨取引の有無。0:無（外貨での請求書なし）、1: 「有（外貨での請求書あり）」

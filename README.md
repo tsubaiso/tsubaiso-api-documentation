@@ -1115,7 +1115,7 @@ Parameter | Necessity | Type | Description
 `tel` | *optional* | String | Phone Number (limit: 40 numbers, hyphens, asterisks, or pounds).
 `accountant_email` | *optional* | String | Accountant's email address. Invoices will be emailed to this address.
 `dept_code` | *optional* | String | Code of department.
-`tax_type_for_remittance_charge` | *required* | Integer | Tax on transaction fees. 3: Taxed, 0: Non-taxed.
+`tax_type_for_remittance_charge` | *required* | Integer | Consumption tax of bank fees at time of reconciling. 3: Taxed(Default: 10%), 0: Non-taxed.
 `sender_name` | *optional* | String | Keyword to use when applying receipts(limit: 40 characters)
 `locale` | *optional* | String | Language for invoice. "ja-JP": Japanese, "en": English.
 `foreign_currency` | *optional* | Integer | Foreign currency transactions. 0: No, 1: Yes.
