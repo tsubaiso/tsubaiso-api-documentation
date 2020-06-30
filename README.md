@@ -3001,7 +3001,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `sort_number` | *optional* | String | Sort Number
-`reason_code` | *required* | String | Reason Code
+`reason_code` | *required* | String | Reason Code. Alphanumeric characters and underscores, up to 60 characters.
 `reason_name` | *required* | String | Reason of Bank Transaction
 `dc` | *required* | String | 'd' if the transaction was a debit, 'c' if it was a credit.
 `is_valid` | *required* | Integer | Display Status 2:Manager Only　1:able 、0: Disable
@@ -3168,7 +3168,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `sort_no` | *optional* | Integer | Sort order
-`reason_code` | *required* | String | Reason code used for PettyCashTransaction
+`reason_code` | *required* | String | Reason code used for PettyCashTransaction. Alphanumeric characters and underscores, up to 60 characters.
 `reason_name` | *required* | String | Reason name used for PettyCashTransaction
 `dc` | *required* | Text | 'd' if the reason was a debit, 'c' if it was a credit
 `account_code` | *required* | text | Account code for the journal entry

@@ -2945,7 +2945,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `sort_number` | *optional* | String | 並び順
-`reason_code` | *required* | String | 原因コード
+`reason_code` | *required* | String | 原因コード。半角英数字及びアンダーバー60文字以内。
 `reason_name` | *required* | String | 原因名
 `dc` | *required* | String | 入出金区分　'd' は debit の意で「増加」に、'c' は credit の意で「減少」になります。
 `is_valid` | *required* | Integer | 表示区分 2:マネージャのみ　1: 表示、0: 非表示
@@ -3112,7 +3112,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `sort_no` | *optional* | Integer | 並び順
-`reason_code` | *required* | String | 原因コード
+`reason_code` | *required* | String | 原因コード。半角英数字及びアンダーバー60文字以内。
 `reason_name` | *required* | String | 原因名
 `dc` | *required* | Text | 入出金区分　d: 入金 c: 出金
 `account_code` | *required* | text | 勘定科目コード
