@@ -1941,6 +1941,7 @@ Parameter | Necessity | Type | Description
 `applicant_staff_code` | *optional* | String | Code of Staff.
 `dept_code` | *optional* | String | Dept code which the default is "COMMON".
 `memo` | *optional* | String | Memo for a reimbursement.
+`transactions` | *optional* | Array[Object] | Array of reimbursement transactions. See reimbursement_transactions/create parameters. (reimbursement_id is not required.) (Max 20)
 
 Sample Request:
 ``` sh
