@@ -1877,6 +1877,7 @@ Parameter | Necessity | Type | Description
 `applicant_staff_code` | *optional* | String | スタッフコード
 `dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
 `memo` | *optional* | String | メモ (30字まで)。
+`transactions` | *optional* | Array[Object] | 旅費経費精算明細の配列。パラメータは reimbursement_transactions/create parameters を参照。 (reimbursement_id は不要です) (最大20)
 
 リクエストの例:
 ``` sh
