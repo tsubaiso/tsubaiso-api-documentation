@@ -1806,6 +1806,7 @@ JSON レスポンスの例:
         applicant: "ヤマカワ"
         applicant_staff_code: "EP0001"
         application_term: "2007-07-01 00:00:00"
+        pay_date: "2020/10/01"
         owner_user_code: "clientuser"
         reimbursement_transactions_count: 0
         dept_code: "COMMON"
@@ -1818,6 +1819,7 @@ JSON レスポンスの例:
         applicant: "タカシ"
         applicant_staff_code: "EP0002"
         application_term: "2008-02-01 00:00:00"
+        pay_date: "2020/10/01"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
         dept_code: "SETSURITSU"
@@ -1847,6 +1849,7 @@ JSON レスポンスの例:
         applicant: "タカシ"
         applicant_staff_code: "EP0002"
         application_term: "2008-02-01 00:00:00"
+        pay_date: "2020/10/01"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
         dept_code: "SETSURITSU"
@@ -1874,6 +1877,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `application_term` | *required* | String | 申請書作成月。 "YYYY-MM-DD"形式
 `applicant` | *required-optional* | String | 申請者名 (20字まで)。applicant_staff_codeが存在しない場合、申請者名は必須です。
+`pay_date` | *optional* | String | 支払日。"YYYY-MM-DD"形式 OR "YYYY/MM/DD"形式
 `applicant_staff_code` | *optional* | String | スタッフコード
 `dept_code` | *optional* | String | 部門コード。デフォルトは"COMMON"。
 `memo` | *optional* | String | メモ (30字まで)。
@@ -1881,7 +1885,7 @@ Parameter | Necessity | Type | Description
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everythings is okey", "applicant_staff_code":"EP2000", "pay_date": "2020-10-01" }' https://tsubaiso.net/reimbursements/create
 ```
 
 **/reimbursements/update/:id**
@@ -1897,7 +1901,7 @@ https://tsubaiso.net/reimbursements/update/:id
 
 リクエスト例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01", "pay_date": "2020-10-01" }' https://tsubaiso.net/reimbursements/update/1
 ```
 
 **/reimbursements/destroy/:id**

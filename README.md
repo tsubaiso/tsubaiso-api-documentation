@@ -1870,6 +1870,7 @@ Sample JSON Response:
         id: 212
         applicant: "ヤマカワ"
         application_term: "2007-07-01 00:00:00"
+        pay_date: "2020/10/01"
         applicant_staff_code: "EP0001"
         owner_user_code: "clientuser"
         reimbursement_transactions_count: 0
@@ -1882,6 +1883,7 @@ Sample JSON Response:
         id: 213
         applicant: "タカシ"
         application_term: "2008-02-01 00:00:00"
+        pay_date: "2020/10/01"
         applicant_staff_code: "EP0002"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
@@ -1911,6 +1913,7 @@ Sample JSON response:
     id: 213
         applicant: "タカシ"
         application_term: "2008-02-01 00:00:00"
+        pay_date: "2020/10/01"
         owner_user_code: "yamakawa"
         reimbursement_transactions_count: 1
         dept_code: "SETSURITSU"
@@ -1938,6 +1941,7 @@ Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `application_term` | *required* | String | Date of issuing. Format must be "YYYY-MM-DD"
 `applicant` | *required-optional* | String | Applicant name (limit: 20 characters). Applicant would be Required if applicant_staff_code doesn't exist.
+`pay_date` | *optional* | String | Pay date. format can be "YYYY-MM-DD" OR "YYYY/MM/DD".
 `applicant_staff_code` | *optional* | String | Code of Staff.
 `dept_code` | *optional* | String | Dept code which the default is "COMMON".
 `memo` | *optional* | String | Memo for a reimbursement.
@@ -1945,7 +1949,7 @@ Parameter | Necessity | Type | Description
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "applicant":"ナカムラ", "memo":"Everything is okay", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXXXX" -X POST -d '{"application_term": "2015-09-01", "pay_date": "2020-10-01", "applicant":"ナカムラ", "memo":"Everything is okay", "applicant_staff_code":"EP2000"}' https://tsubaiso.net/reimbursements/create
 ```
 
 **/reimbursements/update/:id**
@@ -1961,7 +1965,7 @@ https://tsubaiso.net/reimbursements/update/:id
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01"}' https://tsubaiso.net/reimbursements/update/1
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"applicant": "アップデート株式会社", "term_application": "2016-10-01", "pay_date": "2020-10-01" }' https://tsubaiso.net/reimbursements/update/1
 ```
 
 **/reimbursements/destroy/:id**
