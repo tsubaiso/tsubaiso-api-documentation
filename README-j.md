@@ -222,6 +222,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | 入金予定に関するメモ
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`usage_no` | *optional* | Integer | 明細の種類. value: 0: 通常明細, 1: 決算整理明細. **決算整理機能ONに場合だけで、このオプション使える**
 `data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 
 リクエストの例:
@@ -759,6 +760,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | 源泉徴収区分コード (例: "nta2795"。 次のページを参照してください https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`usage_no` | *optional* | Integer | 明細の種類. value: 0: 通常明細, 1: 決算整理明細. **決算整理機能ONに場合だけで、このオプション使える**
 `data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
 
 リクエストの例:
@@ -1740,6 +1742,7 @@ Parameter | Necessity | Type | Description
 `memo` | *optional* | String | メモ。
 `tag_list` | *optional* | String | セグメント(旧タグ)識別コード文字列(カンマ区切り)。
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
+`usage_no` | *optional* | Integer | 明細の種類. value: 0: 通常明細, 1: 決算整理明細. **決算整理機能ONに場合だけで、このオプション使える**
 
 *debit and credit*
 
