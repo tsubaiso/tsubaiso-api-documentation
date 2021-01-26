@@ -222,7 +222,7 @@ Parameter | Necessity | Type | Description
 `scheduled_memo` | *optional* | String | Optional memo regarding receipt of funds.
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
-`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function.**
+`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function. If 1 is specified when the function is disabled, error will return.**
 `data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 
 Sample Request:
@@ -489,7 +489,7 @@ Parameter | Necessity | Type | Description
 `withholding_tax_segment` | *optional* | String | National Tax Agency tax code (ex: "nta2795" references https://www.nta.go.jp/taxanswer/gensen/2795.htm)
 `tag_list` | *optional* | String | Optional segment(formerly tag) code string.(Comma-separated)
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
-`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function.**
+`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function. If 1 is specified when the function is disabled, error will return..**
 `data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 
 Sample Request:
@@ -1799,7 +1799,7 @@ Parameter | Necessity | Type | Description
 `journal_timestamp` | *required* | String | Journal entry date. Format must be "YYYY-MM-DD"
 `data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
 `journal_dcs` | *required* | Array of Object | Debit and Credit entries of the journal. Journal_dcs must be passed as an array (even if there is only one). One journal_dc can only contain one debit entry and/or one credit entry. A journal_dc does not have to be balanced but the total of all journal_dcs must be balanced.
-`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function.**
+`usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function. If 1 is specified when the function is disabled, error will return..**
 
 *journal_dcs*
 
