@@ -4180,7 +4180,7 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `bank_account_master_id` | *required* | Integer | Bank Account MAster ID
-`start_timestamp` | *required* | Integer | Start date. Format must be “YYYY-MM-DD”.
+`start_timestamp` | *required* | Integer | Start date. Format must be “YYYY-MM-DD”.
 `finish_timestamp` | *required* | Integer | Finishi date. Format must be “YYYY-MM-DD”.
 
 Sample Request:
