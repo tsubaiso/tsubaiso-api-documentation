@@ -949,19 +949,20 @@ JSON レスポンスの例:
 ]
 ```
 
-**/customer_masters/search_by_reconcile_keyword/**
+**/customer_masters/match_by_sender_name/**
 
-説明: このエンドポイントは取引先の一覧を返します。
+説明: sender_nameがキーワードと一致した顧客のリストを返します。 このリストは、最長の `sender_name`フィールド順に並べられます。
 
 HTTP メソッド: GET
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`keyword` | *required* | String | Keyword.
+`keyword` | *required* | String | キーワード。
+`arap`    | *required* | String | 'ar': 販売管理の債権区分使用, 'ap': 購買管理の債権区分使用。
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/customer_masters/search_by_reconcile_keyword/
+https://tsubaiso.net/customer_masters/match_by_sender_name/
 ```
 
 JSON レスポンスの例:

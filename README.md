@@ -1006,19 +1006,20 @@ Sample JSON Response:
 ]
 ```
 
-**/customer_masters/search_by_reconcile_keyword/**
+**/customer_masters/match_by_sender_name/**
 
-Description: Returns list of customers, matched by keyword. This list will orderd by longest `sender_name` field.
+Description: Returns list of customers where sender_name matched by keyword. This list will ordered by longest `sender_name` field.
 
 Method: GET
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `keyword` | *required* | String | Keyword.
+`arap`    | *required* | String | Only accept 'ar': for AccountReceivable, 'ap': for AccountPayable.
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/customer_masters/search_by_reconcile_keyword/
+https://tsubaiso.net/customer_masters/match_by_sender_name/
 ```
 
 Sample JSON Response:
