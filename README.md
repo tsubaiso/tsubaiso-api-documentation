@@ -1006,7 +1006,7 @@ Sample JSON Response:
 ]
 ```
 
-**/customer_masters/match_by_sender_name/**
+**/customer_masters/search_by_reconcile_keyword/**
 
 Description: Returns list of customers where sender_name matched by keyword. This list will ordered by longest `sender_name` field.
 
@@ -1019,7 +1019,7 @@ Parameter | Necessity | Type | Description
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/customer_masters/match_by_sender_name/
+https://tsubaiso.net/customer_masters/search_by_reconcile_keyword/
 ```
 
 Sample JSON Response:

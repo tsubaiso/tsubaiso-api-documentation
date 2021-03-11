@@ -949,9 +949,9 @@ JSON レスポンスの例:
 ]
 ```
 
-**/customer_masters/match_by_sender_name/**
+**/customer_masters/search_by_reconcile_keyword/**
 
-説明: sender_nameがキーワードと一致した顧客のリストを返します。 このリストは、最長の `sender_name`フィールド順に並べられます。
+説明: 取引先の自動消込キーワード (sender_name) を、与えられた消込キーワード (reconcile_keyword) で前方一致するものを抽出して、その結果を返します。
 
 HTTP メソッド: GET
 
@@ -962,7 +962,7 @@ Parameter | Necessity | Type | Description
 
 URL 構成例:
 ``` sh
-https://tsubaiso.net/customer_masters/match_by_sender_name/
+https://tsubaiso.net/customer_masters/search_by_reconcile_keyword/
 ```
 
 JSON レスポンスの例:
