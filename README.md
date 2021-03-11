@@ -4058,12 +4058,12 @@ Method: GET
 
 URL Structure:
 ``` sh
-https://tsubaiso.net/bank_accounts/list/
+https://tsubaiso.net/bank_accounts/list/:year/:month
 ```
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/bank_accounts/list/2008/7
 ```
 
 Sample JSON response:
@@ -4075,7 +4075,7 @@ Sample JSON response:
     "is_closed": 0,
     "is_ok": 0,
     "start_timestamp": "2008/07/01 00:00:00 +0900",
-    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "finish_timestamp": "2008/07/31 00:00:00 +0900",
     "start_balance_fixed": null,
     "start_balance": null,
     "finish_balance": xxxxx,
@@ -4099,7 +4099,7 @@ Sample JSON response:
     "is_closed": 0,
     "is_ok": 0,
     "start_timestamp": "2008/07/01 00:00:00 +0900",
-    "finish_timestamp": "2020/01/31 00:00:00 +0900",
+    "finish_timestamp": "2008/07/31 00:00:00 +0900",
     "start_balance_fixed": null,
     "start_balance": null,
     "finish_balance": xxxxx,
