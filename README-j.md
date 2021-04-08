@@ -4720,6 +4720,11 @@ URL 構成例:
 https://tsubaiso.net/personalized_asset_type_masters/list
 ```
 
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET http://tsubaiso.net/personalized_asset_type_masters/list
+```
+
 JSON レスポンスの例:
 ```
 [
@@ -4773,6 +4778,11 @@ HTTP メソッド: GET
 URL 構成例:
 ``` sh
 https://tsubaiso.net/personalized_asset_type_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/personalized_asset_type_masters/show/1
 ```
 
 JSON レスポンスの例:

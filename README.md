@@ -4996,6 +4996,11 @@ URL Structure:
 https://tsubaiso.net/personalized_asset_type_masters/list
 ```
 
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/personalized_asset_type_masters/list
+```
+
 Sample JSON Response:
 ```
 [
@@ -5049,6 +5054,11 @@ Method: GET
 URL Structure:
 ``` sh
 https://tsubaiso.net/personalized_asset_type_masters/show/:id
+```
+
+Sample Request:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/personalized_asset_type_masters/show/1
 ```
 
 Sample JSON Response:
