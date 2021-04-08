@@ -40,6 +40,7 @@ This is the documentation for the beta version of the Tsubaiso API. The beta ver
    - [Tax Masters](#tax-masters)
    - [Physical Inventory Masters](#physical-inventory-masters)
    - [API History](#api-history)
+   - [Asset Type Masters](#asset-type-masters)
    - [Data Partners](#data-partners)
    - [Scheduled Dates](#scheduled-dates)
 - [Data Partners](#data-partners)
@@ -4981,6 +4982,140 @@ https://tsubaiso.net/physical_inventory_masters/destroy/:id
 Sample Request:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
+```
+
+#### Asset Type Masters
+**/personalized_asset_type_masters/list**
+
+Description: This endpoint returns the entire list asset type masters.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/list
+```
+
+Sample JSON Response:
+```
+[
+  {
+    "id":42,
+    "code":"221",
+    "name":"建設仮勘定",
+    "summary_account_no":8,
+    "local_tax_segment_code":null,
+    "corporate_tax_segment_name":null,
+    "asset_account_code":"221",
+    "contra_account_code":"730",
+    "contra_mc_account_code":"656",
+    "impairment_account_code":"730",
+    "impairment_mc_account_code":"656",
+    "sort_no":null,
+    "regist_user_code":null,
+    "update_user_code":null,
+    "created_at":"2020/11/12 15:45:12 +0900",
+    "updated_at":"2020/11/12 15:45:12 +0900",
+    "accumulated_depreciation_account_code":"230"
+  },
+  {
+    "id":41,
+    "code":"247",
+    "name":"リース資産(ソフトウェア)",
+    "summary_account_no":9,
+    "local_tax_segment_code":null,
+    "corporate_tax_segment_name":"リース資産(ソフトウェア)",
+    "asset_account_code":"247",
+    "contra_account_code":"730",
+    "contra_mc_account_code":"656",
+    "impairment_account_code":"730",
+    "impairment_mc_account_code":"656",
+    "sort_no":null,
+    "regist_user_code":null,
+    "update_user_code":null,
+    "created_at":"2020/11/12 15:45:12 +0900",
+    "updated_at":"2020/11/12 15:45:12 +0900",
+    "accumulated_depreciation_account_code":"230"
+  }
+]
+```
+
+**/personalized_asset_type_masters/show/:id**
+
+Description: This endpoint returns information for a single asset type master.
+
+Method: GET
+
+URL Structure:
+``` sh
+https://tsubaiso.net/personalized_asset_type_masters/show/:id
+```
+
+Sample JSON Response:
+```
+{
+  "id":42,
+  "code":"221",
+  "name":"建設仮勘定",
+  "summary_account_no":8,
+  "local_tax_segment_code":null,
+  "corporate_tax_segment_name":null,
+  "asset_account_code":"221",
+  "contra_account_code":"730",
+  "contra_mc_account_code":"656",
+  "impairment_account_code":"730",
+  "impairment_mc_account_code":"656",
+  "sort_no":null,
+  "regist_user_code":null,
+  "update_user_code":null,
+  "created_at":"2020/11/12 15:45:12 +0900",
+  "updated_at":"2020/11/12 15:45:12 +0900",
+  "accumulated_depreciation_account_code":"230"
+}
+```
+
+**/personalized_asset_type_masters/create**
+
+Description: This endpoint create new entity of the asset type master. The created entry will be sent back as JSON if succeed.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | Code for the asset type
+`name` | *required* | String | Name of asset type
+`sort_no` | Optional | Integer | Sort order
+`local_tax_segment_code` | Optional | Integer | 1: Structures<br>2: Machinery and equipment<br>3: Vessels<br>4: Aircraft<br>5: Vehicles and transportation equipment<br>6: Tools, furniture and fixtures
+`corporate_tax_segment_name` | Optional | String | Name of corporate income tax.
+`asset_account_code` | *required* | String | AccountMaster code for asset
+`contra_account_code` | *required* | String | AccountMaster code for depreciate of asset
+`contra_mc_account_code` | *required* | String | AccountMaster code  for depreciate of asset (Production cost)
+`impairment_account_code` | *required* | String | AccountMaster code to impairment of asset
+`impairment_mc_account_code` | *required* | String | AccountMaster code to impairment of asset (Production cost)
+`accumulated_depreciation_account_code` | *required* | String | AccountMaster code as Accumulated depreciation
+
+
+Sample Request:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code": "BUILDING", "name": "建設", "asset_account_code": "221", "contra_account_code": "730", "contra_mc_account_code": "656", "impairment_account_code": "730", "impairment_mc_account_code": "656", "accumulated_depreciation_account_code": "230"}' https://tsubaiso.net/personalized_asset_type_masters/create
+```
+
+**/personalized_asset_type_masters/destroy/:id**
+
+Description: This endpoint delete the asset type master with the specified id. Returns a status of 204 No Content.
+
+Method: POST
+
+URL Structure:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/destroy/:id
 ```
 
 ### API History
