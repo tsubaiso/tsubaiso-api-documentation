@@ -41,6 +41,7 @@ Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先�
    - [現金出納帳明細](#現金出納帳明細)
    - [税区分マスタ](#税区分マスタ)
    - [棚卸資産マスタ](#棚卸資産マスタ)
+   - [資産種類マスタ](#資産種類マスタ)
    - [API履歴](#API履歴)
    - [外部連携機能](#外部連携機能)
    - [予定日](#予定日)
@@ -4705,6 +4706,150 @@ https://tsubaiso.net/physical_inventory_masters/destroy/:id
 リクエストの例:
 ``` sh
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST https://tsubaiso.net/physical_inventory_masters/destroy/:id
+```
+
+#### 資産種類マスタ
+**/personalized_asset_type_masters/list**
+
+説明: このエンドポイントは資産種類マスタの一覧を返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/list
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET http://tsubaiso.net/personalized_asset_type_masters/list
+```
+
+JSON レスポンスの例:
+```
+[
+  {
+    "id":42,
+    "code":"221",
+    "name":"建設仮勘定",
+    "summary_account_no":8,
+    "local_tax_segment_code":null,
+    "corporate_tax_segment_name":null,
+    "asset_account_code":"221",
+    "contra_account_code":"730",
+    "contra_mc_account_code":"656",
+    "impairment_account_code":"730",
+    "impairment_mc_account_code":"656",
+    "sort_no":null,
+    "regist_user_code":null,
+    "update_user_code":null,
+    "created_at":"2020/11/12 15:45:12 +0900",
+    "updated_at":"2020/11/12 15:45:12 +0900",
+    "accumulated_depreciation_account_code":"230"
+  },
+  {
+    "id":41,
+    "code":"247",
+    "name":"リース資産(ソフトウェア)",
+    "summary_account_no":9,
+    "local_tax_segment_code":null,
+    "corporate_tax_segment_name":"リース資産(ソフトウェア)",
+    "asset_account_code":"247",
+    "contra_account_code":"730",
+    "contra_mc_account_code":"656",
+    "impairment_account_code":"730",
+    "impairment_mc_account_code":"656",
+    "sort_no":null,
+    "regist_user_code":null,
+    "update_user_code":null,
+    "created_at":"2020/11/12 15:45:12 +0900",
+    "updated_at":"2020/11/12 15:45:12 +0900",
+    "accumulated_depreciation_account_code":"230"
+  }
+]
+```
+
+**/personalized_asset_type_masters/show/:id**
+
+説明: このエンドポイントは単一の資産種類マスタを返します。
+
+HTTP メソッド: GET
+
+URL 構成例:
+``` sh
+https://tsubaiso.net/personalized_asset_type_masters/show/:id
+```
+
+リクエストの例:
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X GET https://tsubaiso.net/personalized_asset_type_masters/show/1
+```
+
+JSON レスポンスの例:
+```
+{
+  "id":42,
+  "code":"221",
+  "name":"建設仮勘定",
+  "summary_account_no":8,
+  "local_tax_segment_code":null,
+  "corporate_tax_segment_name":null,
+  "asset_account_code":"221",
+  "contra_account_code":"730",
+  "contra_mc_account_code":"656",
+  "impairment_account_code":"730",
+  "impairment_mc_account_code":"656",
+  "sort_no":null,
+  "regist_user_code":null,
+  "update_user_code":null,
+  "created_at":"2020/11/12 15:45:12 +0900",
+  "updated_at":"2020/11/12 15:45:12 +0900",
+  "accumulated_depreciation_account_code":"230"
+}
+```
+
+**/personalized_asset_type_masters/create**
+
+説明: 資産種類マスタを新規作成します。作成に成功した場合、新規作成されたマスタが JSON として返されます。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`code` | *required* | String | 資産種類コード
+`name` | *required* | String | 名称
+`sort_no` | Optional | Integer | 並び順
+`local_tax_segment_code` | Optional | Integer | 1: 構築物<br>2: 機械及び装置<br>3: 船舶<br>4: 航空機<br>5: 車両及び運搬具<br>6: 工具、器具及び備品
+`corporate_tax_segment_name` | Optional | String | 法人税名
+`asset_account_code` | *required* | String | 資産勘定科目 (勘定科目コード)
+`contra_account_code` | *required* | String | 償却勘定科目(勘定科目コード)
+`contra_mc_account_code` | *required* | String | 償却勘定科目(製造原価)(勘定科目コード)
+`impairment_account_code` | *required* | String | 減損勘定科目のデフォルト(勘定科目コード)
+`impairment_mc_account_code` | *required* | String | 減損勘定科目(製造原価)のデフォルト(勘定科目コード)
+`accumulated_depreciation_account_code` | *required* | String | 減価償却累計額勘定科目(勘定科目コード)
+
+
+リクエストの例:
+```sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"code": "BUILDING", "name": "建設", "asset_account_code": "221", "contra_account_code": "730", "contra_mc_account_code": "656", "impairment_account_code": "730", "impairment_mc_account_code": "656", "accumulated_depreciation_account_code": "230"}' https://tsubaiso.net/personalized_asset_type_masters/create
+```
+
+**/personalized_asset_type_masters/destroy/:id**
+
+説明: 指定された id の資産種類マスタを削除します。成功した場合 204 No Content が返ります。
+
+HTTP メソッド: POST
+
+URL 構成例:
+```sh
+https://tsubaiso.net/personalized_asset_type_masters/destroy/:id
 ```
 
 #### API履歴
