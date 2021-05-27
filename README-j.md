@@ -312,13 +312,13 @@ JSON レスポンス例:
 
 **/ar_reconciliations/list**
 
-説明: このエンドポイントは現在の年月の入金・消込明細の一覧を返します。
+説明: このエンドポイントは対象の年月の入金・消込明細の一覧を返します。
 
 HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ar_reconciliations/list
+https://tsubaiso.net/ar_reconciliations/list/:year/:month
 ```
 
 JSON レスポンスの例:
@@ -443,6 +443,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 `reconciliation` | *required* | Integer | 入金額
 `customer_master_code` | *required* | String | 取引先コード
 `memo` | *optional* | String | メモ
@@ -478,13 +479,13 @@ https://tsubaiso.net/ar_reconciliations/unreconcile
 
 **/ap_reconciliations/list**
 
-説明: このエンドポイントは現在の年月の支払・消込明細の一覧を返します。
+説明: このエンドポイントは対象の年月の支払・消込明細の一覧を返します。
 
 HTTP メソッド: GET
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ap_reconciliations/list
+https://tsubaiso.net/ap_reconciliations/list/:year/:month
 ```
 
 JSON レスポンスの例:
@@ -578,6 +579,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 `customer_master_id` | *required* | Integer | 消込先
 `withholding_tax` | *optional* | Integer | 源泉徴収額
 `withholding_tax` | *optional* | Integer | 為替差損益

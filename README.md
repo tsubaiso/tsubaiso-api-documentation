@@ -593,13 +593,13 @@ curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Ac
 
 **/ar_reconciliations/list**
 
-Description: This endpoint returns a list of ar_reconsilations.
+Description: This endpoint returns a list of ar_reconsilations by year and month.
 
 Method: GET
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar_reconciliations/list
+https://tsubaiso.net/ar_reconciliations/list/:year/:month
 ```
 
 Sample JSON response:
@@ -724,6 +724,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation Id.
 `reconciliation` | *required* | Integer | The amount of money recieved.
 `customer_master_code` | *required* | String | Code of the transaction party.
 `memo` | *optional* | String | Memo
@@ -759,7 +760,7 @@ Sample Request:
 
 **/ap_reconciliations/list**
 
-Description: This endpoint returns a list of ap_reconciliations.
+Description: This endpoint returns a list of ap_reconciliations by year and month.
 
 Method: GET
 
@@ -859,6 +860,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation Id.
 `customer_master_code` | *required* | Integer | Code of the transaction party.
 `withholding_tax` | *optional* | Integer | Amount of withholding tax
 `exchange_gain_and_loss` | *optional* | Integer | Amount of remittance charge you have paied.
