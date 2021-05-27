@@ -379,7 +379,7 @@ JSON レスポンスの例:
 
 リクエスト例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list/2021/5
 ```
 
 **/ar_reconciliations/show/:id**
@@ -533,7 +533,7 @@ JSON レスポンスの例:
 
 リクエスト例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list/2021/5
 ```
 
 **/ap_reconciliations/show/:id**

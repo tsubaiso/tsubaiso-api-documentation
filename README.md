@@ -660,7 +660,7 @@ Sample JSON response:
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list/2021/5
 ```
 
 **/ar_reconciliations/show/:id**
@@ -766,7 +766,7 @@ Method: GET
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ap_reconciliations/list
+https://tsubaiso.net/ap_reconciliations/list/:year/:month
 ```
 
 Sample JSON Resonse:
@@ -814,7 +814,7 @@ Sample JSON Resonse:
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list/2021/5
 ```
 
 **/ap_reconciliations/show/:id**
