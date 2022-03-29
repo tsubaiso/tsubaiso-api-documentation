@@ -655,7 +655,9 @@ JSON レスポンスの例:
         "sales_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
-        "reason_master_code": "BUYING_IN"
+        "reason_master_code": "BUYING_IN",
+        "scheduled_pay_method": "BANK_FB",
+        "scheduled_pay_interface_id": 2
     }, {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
@@ -682,7 +684,9 @@ JSON レスポンスの例:
         "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
-        "reason_master_code": "BUYING_IN"
+        "reason_master_code": "BUYING_IN",
+        "scheduled_pay_method": "CASH",
+        "scheduled_pay_interface_id": null
     }
 ]
 ```
@@ -726,7 +730,9 @@ JSON レスポンスの例:
     "sales_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
-    "reason_master_code": "BUYING_IN"
+    "reason_master_code": "BUYING_IN",
+    "scheduled_pay_method": "BANK_FB",
+    "scheduled_pay_interface_id": 2
 }
 ```
 
@@ -765,10 +771,12 @@ Parameter | Necessity | Type | Description
 `tag_name_list` | *optional* | String | セグメント(旧タグ)名称文字列(カンマ区切り)。**このオプションはtag_listが存在しない場合にのみ有効です**
 `usage_no` | *optional* | Integer | 明細の種類. value: 0: 通常明細, 1: 決算整理明細. **システム機能設定の決算整理機能が有効の場合にのみ使用できます。決算整理機能が無効の場合に1を指定するとエラーが返却されます。**
 `data_partner` | *optional* | Object | 詳細は[外部連携機能](#外部連携機能)を参照。
+`scheduled_pay_method` | *optional* | String | 支払方法。'BANK_FB':ファームバンキング支払, 'BANK_AUTOMATIC':自動引落, 'BANK_MANUAL':銀行手動, 'CASH':現金, 'OTHERS':その他、手形、小切手、ファクタリング、現物支給等
+`scheduled_pay_interface_id` | *optional* | Integer | 支払元の銀行口座ID。支払方法が BANK_FB, BANK_AUTOMATIC, BANK_MANUAL のいずれかの場合のみ、有効かつ必須です。
 
 リクエストの例:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1 }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "scheduled_pay_method": "BANK_FB", "scheduled_pay_interface_id":2 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
@@ -784,7 +792,7 @@ https://tsubaiso.net/ap_payments/update/:id
 
 リクエスト例:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "更新  メモ", "price_including_tax": 5400 }'  https://tsubaiso.net/ap_payments/update/6621
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "更新  メモ", "price_including_tax": 5400, "scheduled_pay_method": "BANK_FB", "scheduled_pay_interface_id":2 }'  https://tsubaiso.net/ap_payments/update/6621
 ```
 
 **/ap/destroy/:id**
