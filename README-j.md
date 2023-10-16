@@ -382,7 +382,7 @@ JSON レスポンスの例:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list/2021/5
 ```
 
-**/ar_reconciliations/show/:id**
+**/ar_reconciliations/show/**
 
 説明: このエンドポイントは単一の入金・消込明細を返します。
 
@@ -392,6 +392,12 @@ URL 構成例:
 ``` sh
 https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 
 JSON レスポンスの例:
 ```
@@ -428,7 +434,7 @@ JSON レスポンスの例:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/reconcile/:id**
+**/ar_reconciliations/reconcile**
 
 説明: 入金・消込明細を消込します。消込に成功した場合、作成された明細が JSON として返されます。
 
@@ -444,6 +450,12 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `reconciliation_id` | *required* | Integer | 消込Id
+`reconcile_transactions` | *required* | Array of Object | reconcile_transactionsは配列で指定します。
+
+reconcile_transactions:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
 `reconciliation` | *required* | Integer | 入金額
 `customer_master_code` | *required* | String | 取引先コード
 `memo` | *optional* | String | メモ
@@ -459,7 +471,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/unreconcile/:id**
+**/ar_reconciliations/unreconcile**
 
 説明: 指定された id の入金・消込明細を未消込します。
 
@@ -469,6 +481,12 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/ar_reconciliations/unreconcile
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 
 リクエストの例:
 ```sh
@@ -536,7 +554,7 @@ JSON レスポンスの例:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list/2021/5
 ```
 
-**/ap_reconciliations/show/:id**
+**/ap_reconciliations/show/**
 
 説明: このエンドポイントは単一の支払・消込明細を返します。
 
@@ -546,6 +564,12 @@ URL 構成例:
 ``` sh
 https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 
 JSON レスポンスの例:
 ```
@@ -564,7 +588,7 @@ JSON レスポンスの例:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ap_reconciliations/reconcile/:id**
+**/ap_reconciliations/reconcile/**
 
 説明: 支払・消込明細を消込します。消込に成功した場合、作成された明細が JSON として返されます。
 
@@ -572,7 +596,7 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ap_reconciliations/reconcile
+https://tsubaiso.net/ap_reconciliations/reconcile/
 ```
 
 Parameters:
@@ -580,7 +604,13 @@ Parameters:
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
 `reconciliation_id` | *required* | Integer | 消込Id
-`customer_master_id` | *required* | Integer | 消込先
+`reconcile_transactions` | *required* | Array of Object | reconcile_transactionsは配列で指定します。
+
+reconcile_transactions:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`customer_master_id` | *required* | Integer | 消込先(取引先Id)
 `withholding_tax` | *optional* | Integer | 源泉徴収額
 `withholding_tax` | *optional* | Integer | 為替差損益
 `exchange_gain_and_loss` | *optional* | Integer | 為替差損益
@@ -597,7 +627,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}]}' https://tsubaiso.net/eap/ap_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/unreconcile/:id**
+**/ar_reconciliations/unreconcile/**
 
 説明: 指定された id の支払・消込明細を未消込します。
 
@@ -605,8 +635,14 @@ HTTP メソッド: POST
 
 URL 構成例:
 ```sh
-https://tsubaiso.net/ap_reconciliations/unreconcile
+https://tsubaiso.net/ap_reconciliations/unreconcile/
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | 消込Id
 
 リクエストの例:
 ```sh
@@ -3128,7 +3164,7 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | Text | 入出金区分　d: 入金 c: 出金
 `account_code` | *required* | text | 勘定科目コード
 `port_type` | *required* | Integer | エリア区分。 1 は「国内」、 2 は「国外」、３は「国内・国外」
-`is_vaild` | *required* | Integer | 表示区分 1: 表示、0: 非表示
+`is_valid` | *required* | Integer | 表示区分 1: 表示、0: 非表示
 `memo` | *optional* | Strings | 説明
 
 リクエストの例:
@@ -3176,6 +3212,13 @@ URL 構成例:
 ```sh
 https://tsubaiso.net/bonuses/list/
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`bonus_no` | *required* | String | 賞与の回数番号
+`target_year` | *required* | String | 対象年
 
 リクエスト例:
 ```sh
