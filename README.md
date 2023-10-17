@@ -678,7 +678,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 
 Sample JSON Response:
 ```
@@ -730,7 +730,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 `reconcile_transactions` | *required* | Array of Object | reconcile_transactions must be passed as an array.
 
 reconcile_transactions:
@@ -850,7 +850,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 
 Sample JSON Response:
 ```
@@ -884,7 +884,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 `reconcile_transactions` | *required* | Array of Object | reconcile_transactions must be passed as an array.
 
 reconcile_transactions:

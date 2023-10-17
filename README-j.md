@@ -397,7 +397,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | 消込Id
+`reconciliation_id` | *required* | Integer | 消込仕訳明細Id
 
 JSON レスポンスの例:
 ```
@@ -449,7 +449,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | 消込Id
+`reconciliation_id` | *required* | Integer | 消込仕訳明細Id
 `reconcile_transactions` | *required* | Array of Object | reconcile_transactionsは配列で指定します。
 
 reconcile_transactions:
@@ -569,7 +569,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | 消込Id
+`reconciliation_id` | *required* | Integer | 消込仕訳明細Id
 
 JSON レスポンスの例:
 ```
@@ -603,7 +603,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | 消込Id
+`reconciliation_id` | *required* | Integer | 消込仕訳明細Id
 `reconcile_transactions` | *required* | Array of Object | reconcile_transactionsは配列で指定します。
 
 reconcile_transactions:
@@ -642,7 +642,7 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | 消込Id
+`reconciliation_id` | *required* | Integer | 消込仕訳明細Id
 
 リクエストの例:
 ```sh
