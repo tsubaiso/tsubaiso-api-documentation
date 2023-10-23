@@ -3219,7 +3219,7 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | Text | 'd' if the reason was a debit, 'c' if it was a credit
 `account_code` | *required* | text | Account code for the journal entry
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction. 3 for both.
-`is_vaild` | *required* | Integer | PettyCashReasonMaster use status. 1: In use, 0: Not in use.
+`is_valid` | *required* | Integer | PettyCashReasonMaster use status. 1: In use, 0: Not in use.
 `memo` | *optional* | Strings | Memo for PettyCashReasonMaster
 
 Sample Request:

@@ -434,7 +434,7 @@ JSON レスポンスの例:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/reconcile**
+**/ar_reconciliations/reconcile/**
 
 説明: 入金・消込明細を消込します。消込に成功した場合、作成された明細が JSON として返されます。
 
@@ -471,7 +471,7 @@ Parameter | Necessity | Type | Description
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' http://burikama.tech/tsubaiso.wen/eap/ar_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/unreconcile**
+**/ar_reconciliations/unreconcile/**
 
 説明: 指定された id の入金・消込明細を未消込します。
 
