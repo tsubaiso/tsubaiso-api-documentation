@@ -666,7 +666,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/list/2021/5
 ```
 
-**/ar_reconciliations/show/:id**
+**/ar_reconciliations/show/**
 
 Description: This endpoint returns a single ar_reconcilation transaction.
 
@@ -676,6 +676,12 @@ URL Structure:
 ``` sh
 https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 
 Sample JSON Response:
 ```
@@ -712,7 +718,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ar_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/reconcile/:id**
+**/ar_reconciliations/reconcile/**
 
 Description: This endpoint reconciles single ar_reconcilation transaction which specified by id. The reconciled transaction will be sent back as JSON if successful.
 
@@ -727,7 +733,13 @@ Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
+`reconcile_transactions` | *required* | Array of Object | reconcile_transactions must be passed as an array.
+
+reconcile_transactions:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
 `reconciliation` | *required* | Integer | The amount of money recieved.
 `customer_master_code` | *required* | String | Code of the transaction party.
 `memo` | *optional* | String | Memo
@@ -743,7 +755,7 @@ Sample JSON Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}, {"reconciliation": 23,"remittance_charge": 300, "customer_master_code": "KAI", "memo": "This is a scheduled memo2"}] }' https://tsubaiso.net/ar_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ar_reconciliations/unreconcile/:id**
+**/ar_reconciliations/unreconcile/**
 
 Description: This endpoint unreconciles single ar_reconcilation transaction which specified by id.
 
@@ -751,8 +763,14 @@ Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ar_reconciliations/unreconcile
+https://tsubaiso.net/ar_reconciliations/unreconcile/
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation Id.
 
 Sample Request:
 ```sh
@@ -820,7 +838,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/list/2021/5
 ```
 
-**/ap_reconciliations/show/:id**
+**/ap_reconciliations/show/**
 
 Description: This endpoint returns a single ap_reconciliation transaction.
 
@@ -830,6 +848,12 @@ URL Structure:
 ``` sh
 https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
 ```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
 
 Sample JSON Response:
 ```
@@ -848,7 +872,7 @@ Sample Requrest:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" https://tsubaiso.net/ap_reconciliations/show?reconciliation_id=:id
 ```
 
-**/ap_reconciliations/reconcile/:id**
+**/ap_reconciliations/reconcile/**
 
 Description: This endpoint reconciles single ap_reconciliation transaction which specified by id. The reconciled transaction will be sent back as JSON if successful.
 
@@ -856,14 +880,20 @@ HTTP Method: POST
 
 URL Structure:
 ```sh
-https://tsubaiso.net/ap_reconciliations/reconcile
+https://tsubaiso.net/ap_reconciliations/reconcile/
 ```
 
 Parameters:
 
 Parameter | Necessity | Type | Description
 --- | --- | --- | ---
-`reconciliation_id` | *required* | Integer | Reconciliation Id.
+`reconciliation_id` | *required* | Integer | Reconciliation journal dc Id.
+`reconcile_transactions` | *required* | Array of Object | reconcile_transactions must be passed as an array.
+
+reconcile_transactions:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
 `customer_master_code` | *required* | Integer | Code of the transaction party.
 `withholding_tax` | *optional* | Integer | Amount of withholding tax
 `exchange_gain_and_loss` | *optional* | Integer | Amount of remittance charge you have paied.
@@ -879,7 +909,7 @@ Sample Request:
 curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXX" -X POST -d '{ "reconcile_transactions": [{"reconciliation": 100, "customer_master_code": "individual"}]}' https://tsubaiso.net/eap/ap_reconciliations/reconcile?reconciliation_id=:id
 ```
 
-**/ap_reconciliations/unreconcile/:id**
+**/ap_reconciliations/unreconcile/**
 
 Description: This endpoint unreconciles single ap_reconciliation transaction which specified by id.
 
@@ -889,6 +919,11 @@ URL Structure:
 ```sh
 https://tsubaiso.net/ap_reconciliations/unreconcile
 ```
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`reconciliation_id` | *required* | Integer | Reconciliation Id.
 
 Sample Request:
 ```sh
@@ -3187,7 +3222,7 @@ Parameter | Necessity | Type | Description
 `dc` | *required* | Text | 'd' if the reason was a debit, 'c' if it was a credit
 `account_code` | *required* | text | Account code for the journal entry
 `port_type` | *required* | Integer | 1 for domestic transaction. 2 for foreign transaction. 3 for both.
-`is_vaild` | *required* | Integer | PettyCashReasonMaster use status. 1: In use, 0: Not in use.
+`is_valid` | *required* | Integer | PettyCashReasonMaster use status. 1: In use, 0: Not in use.
 `memo` | *optional* | Strings | Memo for PettyCashReasonMaster
 
 Sample Request:
