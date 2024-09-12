@@ -5234,9 +5234,16 @@ Parameter | Necessity | Type | Description
 
 ### Scheduled Dates
 
+**/scheduled_dates/calc**
+
 Description: Calculate Scheduled Date from target_date by sight and closing_day.
 
-Access to Tsubaiso resources: -
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/scheduled_dates/calc
+```
 
 Parameters:
 
@@ -5246,3 +5253,36 @@ Parameter | Necessity | Type | Description
 `sight` | *required* | String (Have same rule with CusomerMaster#pay_sight, or receive_sight) | Specified the pattern to collect month and day of scheduled date
 `closing_day` | *required* | String (Have same rule with CusomerMaster#pay_closing_schedule, or receive_closing_schedule) | Closing day of the monthly transaction.
 `shift` | *optional* | String | 'before' or 'after' (default is 'before'). If your calculated scheduled date is holiday this parameter will used. Pick 'before' if you want scheduled date is working day before of holiday and 'after' is your working day is next day of holiday.
+
+
+**/scheduled_dates/bulk_calc**
+
+Description: Bulk Calculate Scheduled Date.
+
+Method: GET
+
+URL Structure:
+```sh
+https://tsubaiso.net/scheduled_dates/bulk_calc
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`bulk_schedules_input` | *required* | String consist with multiples item of  `scheduled_dates#calc` parameter. Ex. [ { target_date: '2020-08-01', sight: '1m', closing_day: '2', shift: 'after' }] | -
+
+Sample JSON Body Response:
+```
+[
+  {
+    "scheduled_date": "2020-08-03",
+    "status": "200",
+  },
+
+  {
+    "error": "target date is required.",
+    "status": "422",
+  }
+]
+```
