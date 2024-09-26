@@ -383,7 +383,9 @@ Sample JSON response:
         "sales_tax": 400,
         "tax_code": 0,
         "customer_master_code": 8201,
-        "reason_master_code": "BUYING_IN"
+        "reason_master_code": "BUYING_IN",
+        "scheduled_pay_method": "BANK_FB",
+        "scheduled_pay_interface_id": 2
     }, {
         "accrual_timestamp": "2015/10/31 00:00:00 +0900",
         "ap_payment_attachments_count": null,
@@ -411,7 +413,9 @@ Sample JSON response:
         "sales_tax": 800,
         "tax_code": 0,
         "customer_master_code": 101,
-        "reason_master_code": "BUYING_IN"
+        "reason_master_code": "BUYING_IN",
+        "scheduled_pay_method": "CASH",
+        "scheduled_pay_interface_id": null
     }
 ]
 ```
@@ -456,7 +460,9 @@ Sample JSON response:
     "sales_tax": 400,
     "tax_code": 0,
     "customer_master_code": 8201,
-    "reason_master_code": "BUYING_IN"
+    "reason_master_code": "BUYING_IN",
+    "scheduled_pay_method": "BANK_FB",
+    "scheduled_pay_interface_id": 2
 }
 ```
 
@@ -495,10 +501,12 @@ Parameter | Necessity | Type | Description
 `tag_name_list` | *optional* | String | Optional segment(formerly tag) name string.(Comma-separated) **Only if tag_list is not provided.**
 `usage_no` | *optional* | Integer | Type of transaction. value: 0: Standard, 1: Closing Adjustment transaction. **to use, need to activate ClosingAdjustment Function. If 1 is specified when the function is disabled, error will return..**
 `data_partner` | *optional* | Object | See [data partners](#data-partners) section for more details.
+`scheduled_pay_method` | *optional* | String |
+`scheduled_pay_interface_id` | *optional* | Integer |
 
 Sample Request:
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign" }' https://tsubaiso.net/ap_payments/create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "scheduled_pay_method": "BANK_FB", "scheduled_pay_interface_id":2 }' https://tsubaiso.net/ap_payments/create
 ```
 
 **/ap_payments/update/:id**
@@ -514,7 +522,7 @@ https://tsubaiso.net/ap_payments/update/:id
 
 Sample Request:
 ```sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800 }'  https://tsubaiso.net/ap_payments/update/6621
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"memo": "updated memo", "price_including_tax": 10800, "scheduled_pay_method": "BANK_FB", "scheduled_pay_interface_id":2 }'  https://tsubaiso.net/ap_payments/update/6621
 ```
 
 **/ap/destroy/:id**
@@ -588,7 +596,7 @@ Parameter | Necessity | Type | Description
 Sample Request :
 
 ``` sh
-curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "key": { "id_code": "TESTID", "partner_code": "EXAMPLE" } }' https://tsubaiso.net/ap_payments/find_or_create
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "key": { "id_code": "TESTID", "partner_code": "EXAMPLE" }, "scheduled_pay_method": "BANK_FB", "scheduled_pay_interface_id":2 }' https://tsubaiso.net/ap_payments/find_or_create
 ```
 
 
