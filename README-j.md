@@ -311,6 +311,33 @@ JSON レスポンス例:
   }
 ]
 ```
+
+**/ar_receipts/find_or_create**
+
+説明: 指定された条件を元に既に登録された売上明細を検索し、もし存在しなければ新規に売上明細を登録します。このエンドポイントはサードパーティ製のアプリケーションがツバイソERPに重複した売上明細を作成するのを防ぐのに有効です。このエンドポイントは既存の、あるいは新規作成された単一の売上明細を返します。
+
+Method: POST
+
+URL 構成例:
+
+``` sh
+https://tsubaiso.net/ar_receipts/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *required* | Hash | 売上明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
+`id_code` | *optional* | String | サードパーティー製アプリケーション内で指定されたIDを指定します。
+`partner_code` | *optional* | String |　サードパーティー製アプリケーションをコードを指定します。
+**/ar/create** parameters | *optional* | Hash |  売上明細の作成に指定するパラメータを検索条件に指定できます。詳しくは **/ar/create** の節をご覧ください。
+
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "realization_timestamp": "2015-10-31", "customer_master_code": "101", "dept_code": "DEPT A", "reason_master_code": "SALES", "dc": "d", "memo": "500 widgets", "tag_list": "Payment,Foreign", "tax_code": 0, "key" : { "id_code": "TESTID", "partner_code": "EXAMPLECODE" }" }'
+```
 #### 入金消込明細
 
 **/ar_reconciliations/list**
@@ -871,6 +898,40 @@ JSON レスポンス:
     "exchange_gain_and_loss": 0
   }
 ]
+```
+
+**/ap_payments/find_or_create**
+
+説明: 指定された条件を元に既に登録された 仕入経費明細を検索し、もし存在しなければ新規に仕入経費明細を登録します。このエンドポイントはサードパーティ製のアプリケーションがツバイソERPに重複した仕入経費明細を作成するのを防ぐのに有効です。このエンドポイントは既存の、あるいは新規作成された単一の仕入経費明細を返します。
+
+Method: POST
+
+URL 構成例:
+
+``` sh
+https://tsubaiso.net/ar_receipts/find_or_create
+```
+
+HTTPメソッド: POST
+
+URL 構成例:
+
+``` sh
+https://tsubaiso.net/ap_payments/find_or_create
+```
+
+Parameters:
+
+Parameter | Necessity | Type | Description
+--- | --- | --- | ---
+`key` | *required* | Hash |  仕入経費明細の検索に用いるメタデータを指定します。このパラメータを使用するには`id_code` & `partner_code`が必要になります。
+`id_code` | *optional* | String | サードパーティー製アプリケーション内で指定されたIDを指定します。
+`partner_code` | *optional* | String | サードパーティー製アプリケーションをコードを指定します。
+**/ap/create** parameters | *optional* | Hash | 売上明細の作成に指定するパラメータを検索条件に指定できます。詳しくは **/ap/create**の節をご覧ください。
+Sample Request :
+
+``` sh
+curl -i -H "Content-Type: application/json" -H "Accept: application/json" -H "Access-Token: XXXXXXXXXXXXXX" -X POST -d '{"price_including_tax": 5400, "accrual_timestamp": "2015-10-31", "customer_master_code": "8201", "dept_code": "DEPT C", "reason_master_code": "BUYING_IN", "dc": "c", "memo": "Office Supplies for Frank", "tax_code": 0, "port_type": 1, "tag_list": "Payment,Foreign", "key": { "id_code": "TESTID", "partner_code": "EXAMPLE" } }' https://tsubaiso.net/ap_payments/find_or_create
 ```
 
 #### 取引先
