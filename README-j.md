@@ -1,4 +1,4 @@
-# Tsubaiso API (beta)
+# Tsubaiso API
 
 このドキュメントでは Tsubaiso API のベータ版の説明をします。
 Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先、社員のデータをやりとりできます。
