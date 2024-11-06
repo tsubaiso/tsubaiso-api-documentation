@@ -1,9 +1,6 @@
 # Tsubaiso API
 
-このドキュメントでは Tsubaiso API のベータ版の説明をします。
-Tsubaiso API ベータ版では売上明細、仕入・経費明細、取引先、社員のデータをやりとりできます。
-将来のバージョンでは、ツバイソシステムの他のモジュールにアクセスするための新しいエンドポイントが加わる予定です。
-
+このドキュメントでは Tsubaiso API の説明をします。
 こちらの Tsubaiso REST API 1.0 のドキュメントも合わせてご参照ください。
 https://tsubaiso.net/eap/apidoc
 

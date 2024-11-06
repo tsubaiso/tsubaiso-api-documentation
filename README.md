@@ -1,7 +1,6 @@
 # Tsubaiso API
 
-This is the documentation for the beta version of the Tsubaiso API. The beta version currently handles accounts receivables, accounts payable transactions, customer management and staff/staff data management. Future versions of this API will add new endpoints to access other modules of the Tsubaiso system.
-
+This is the documentation for the Tsubaiso API.
 Please also refer to this document.
 https://tsubaiso.net/eap/apidoc
 
